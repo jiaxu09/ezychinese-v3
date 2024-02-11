@@ -2,32 +2,73 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background: 42 49% 95%;
+    --foreground: 42 5% 0%;
+    --card: 42 49% 90%;
+    --card-foreground: 42 5% 10%;
+    --popover: 42 49% 95%;
+    --popover-foreground: 42 95% 0%;
+    --primary: 42 84.5% 72.2%;
+    --primary-foreground: 220 16% 36%;
+    --secondary: 193 43% 67%;
+    --secondary-foreground: 0 0% 0%;
+    --success: 169 28% 48%;
+    --success-foreground: 0 0% 0%;
+    --info: 222 71% 59%;
+    --info-foreground: 0 0% 0%;
+    --muted: 4 30% 85%;
+    --muted-foreground: 42 5% 35%;
+    --accent: 22 95% 58%;
+    --accent-foreground: 42 5% 10%;
+    --destructive: 0 50% 30%;
+    --destructive-foreground: 42 5% 90%;
+    --border: 0 0% 26%;
+    --input: 42 30% 18%;
+    --ring: 42 84.5% 72.2%;
+    --radius: 0.75rem;
+    --neutral: 0 0% 26%;
+  }
+  .dark {
+    --background: 42 49% 5%;
+    --foreground: 42 5% 90%;
+    --card: 42 49% 0%;
+    --card-foreground: 42 5% 90%;
+    --popover: 42 49% 5%;
+    --popover-foreground: 42 5% 90%;
+    --primary: 42 84.5% 72.2%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 42 30% 10%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 4 30% 15%;
+    --muted-foreground: 42 5% 60%;
+    --accent: 4 30% 15%;
+    --accent-foreground: 42 5% 90%;
+    --destructive: 0 50% 30%;
+    --destructive-foreground: 42 5% 90%;
+    --border: 42 30% 18%;
+    --input: 42 30% 18%;
+    --ring: 42 84.5% 72.2%;
+    --radius: 0.75rem;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer components {
+  h1 {
+    @apply scroll-m-20 text-2xl lg:text-4xl;
+  }
+
+  h2 {
+    @apply scroll-m-20 pb-2 text-3xl font-medium tracking-tight first:mt-0;
   }
 }
