@@ -75,6 +75,11 @@ export default withPWA({
         hostname: 'lh3.googleusercontent.com',
         pathname: '**',
       },
+      {
+        protocol: 'https',
+        hostname: 'jyemvxshpznmgnzoxuhp.supabase.co',
+        pathname: '**',
+      },
     ],
   },
 })

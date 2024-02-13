@@ -72,6 +72,30 @@ export type Database = {
           }
         ]
       }
+      radicals: {
+        Row: {
+          background_url: string | null
+          characters: string[]
+          created_at: string
+          id: string
+          name: string
+        }
+        Insert: {
+          background_url?: string | null
+          characters: string[]
+          created_at?: string
+          id?: string
+          name: string
+        }
+        Update: {
+          background_url?: string | null
+          characters?: string[]
+          created_at?: string
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

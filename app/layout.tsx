@@ -5,6 +5,8 @@ import './globals.css'
 import { cn } from '@/lib/utils'
 import AuthProvider from '@/components/auth-provider'
 import Navbar from '@/components/navbar'
+import QueryProvider from '@/components/query-provider'
+import { Toaster } from '@/components/ui/toaster'
 
 export const metadata: Metadata = {
   metadataBase: new URL('http://localhost:3000'),
@@ -70,9 +72,12 @@ export default function RootLayout({
         className="flex flex-col min-h-screen bg-background text-neutral"
         suppressHydrationWarning={true}
       >
-        <Navbar />
-        <main>{children}</main>
-        <AuthProvider />
+        <QueryProvider>
+          <Navbar />
+          <main>{children}</main>
+          <AuthProvider />
+        </QueryProvider>
+        <Toaster />
       </body>
     </html>
   )

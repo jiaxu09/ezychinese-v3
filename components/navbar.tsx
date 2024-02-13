@@ -15,6 +15,7 @@ import {
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { User } from 'lucide-react'
+import Link from 'next/link'
 
 const Navbar = () => {
   const pathname = usePathname()
@@ -41,7 +42,7 @@ const Navbar = () => {
   return (
     <div className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex items-center justify-between py-4 md:py-6">
-        <div className="flex items-center justify-center space-x-2">
+        <Link href="/" className="flex items-center justify-center space-x-2">
           <div className="w-7 h-7 md:w-12 md:h-12 relative">
             <Image
               src="/images/logo.webp"
@@ -56,7 +57,7 @@ const Navbar = () => {
             {' '}
             <span className=" text-success">ezy</span>Chinese
           </h1>
-        </div>
+        </Link>
         <div>
           {user ? (
             <DropdownMenu>
@@ -72,12 +73,14 @@ const Navbar = () => {
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuItem>My Quizzes</DropdownMenuItem>
+                <DropdownMenuItem className=" text-neutral">
+                  My Quizzes
+                </DropdownMenuItem>
                 <DropdownMenuItem
-                  className=" cursor-pointer"
+                  className=" cursor-pointer "
                   onClick={handleSignout}
                 >
-                  Signout
+                  Sign out
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -88,8 +91,8 @@ const Navbar = () => {
               variant="default"
             >
               <Image
-                className="mr-2 w-4 h-4 md:h-7 md:w-7"
-                src="/images/google.webp"
+                className="mr-2 w-4 h-4 md:h-5 md:w-5"
+                src="/images/google.svg"
                 width={24}
                 height={24}
                 priority

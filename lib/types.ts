@@ -1,3 +1,8 @@
+import { SupabaseClient } from '@supabase/supabase-js'
+import { Database } from './database.types'
+
+export type TypedSupabaseClient = SupabaseClient<Database>
+
 export interface IUser {
   created_at: string
   display_name: string | null
@@ -5,4 +10,10 @@ export interface IUser {
   id: string
   image_url: string | null
   role: string
+}
+
+export interface IRadical {
+  name: string
+  characters: string[]
+  background_url: string
 }
