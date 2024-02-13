@@ -10,6 +10,12 @@ import { useGetChineseRadicals } from '@/lib/react-query/queries'
 import { supabaseServer } from '@/lib/supabase/server'
 import EditSwitch from './_components/edit-switch'
 
+export const metadata = {
+  title: 'Chinese Radicals',
+  description:
+    'Chinese radicals are the building blocks of Chinese characters.',
+}
+
 const ChineseRadicalsPage = async () => {
   const queryClient = new QueryClient()
   const supabase = supabaseServer()
