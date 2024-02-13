@@ -18,27 +18,44 @@ import FileUploader from '@/components/file-uploader'
 import { Button } from '@/components/ui/button'
 
 import { supabaseBrowser } from '@/lib/supabase/browser'
-import { useAddChineseRadical } from '@/lib/react-query/queries'
+import {
+  useAddChineseRadical,
+  useUpdateChineseRadical,
+} from '@/lib/react-query/queries'
 
 import { RotateCcw } from 'lucide-react'
+import supabaseUrl from '@/lib/utils'
 
 type RadicalFormProps = {
   radical?: any
-  action: 'Create' | 'Update'
+  action: 'Create' | 'Edit'
 }
 
 const RadicalForm = ({ radical, action }: RadicalFormProps) => {
-  const { mutate: addChineseRadical, error, isPending } = useAddChineseRadical()
+  const {
+    mutate: addChineseRadical,
+    error: createdError,
+    isPending: createdPeding,
+  } = useAddChineseRadical()
+  const {
+    mutate: updateChineseRadical,
+    error: updatedError,
+    isPending: updatedPending,
+  } = useUpdateChineseRadical(radical?.id)
 
   //image uploader
-  const [fileUrl, setFileUrl] = useState<string>('')
+  const [fileUrl, setFileUrl] = useState<string>(
+    supabaseUrl(radical?.background_url)
+  )
 
   const form = useForm<z.infer<typeof RadicalValidation>>({
     resolver: zodResolver(RadicalValidation),
     defaultValues: {
       name: radical ? radical?.name : '',
       background: [],
-      characters: radical ? radical.characters : '',
+      characters: radical
+        ? radical.characters.toString().replaceAll(',', ' ')
+        : '',
     },
   })
 
@@ -60,12 +77,21 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
       }
     }
 
-    //save radical to DB
-    await addChineseRadical({
-      name: value.name,
-      background_url: backgroundUrl,
-      characters: value.characters.split(' '),
-    })
+    if (action === 'Create') {
+      //save radical to DB
+      await addChineseRadical({
+        name: value.name,
+        background_url: backgroundUrl,
+        characters: value.characters.split(' '),
+      })
+    }
+    if (action === 'Edit') {
+      await updateChineseRadical({
+        name: value.name,
+        background_url: backgroundUrl,
+        characters: value.characters.split(' '),
+      })
+    }
     form.reset()
     setFileUrl('')
   }
@@ -121,14 +147,19 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
             </FormItem>
           )}
         />
-        {error && (
+        {(createdError || updatedError) && (
           <FormMessage className="text-center text-error h-2">
             Something went wrong!
           </FormMessage>
         )}
 
-        <Button disabled={isPending} variant="default" type="submit">
-          {isPending ? (
+        <Button
+          aria-label="radical submit"
+          disabled={createdPeding || updatedPending}
+          variant="default"
+          type="submit"
+        >
+          {createdPeding || updatedPending ? (
             <>
               <RotateCcw className="mr-2 h-5 w-5 animate-spin" />{' '}
               <span>Submiting</span>

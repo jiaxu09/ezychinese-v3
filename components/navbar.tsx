@@ -90,15 +90,6 @@ const Navbar = () => {
               onClick={handleSignin}
               variant="default"
             >
-              <Image
-                className="mr-2 w-4 h-4 md:h-5 md:w-5"
-                src="/images/google.svg"
-                width={24}
-                height={24}
-                priority
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                alt="ezyChinese Google"
-              />
               <span className="lg:text-lg">Sign in&nbsp;</span>{' '}
               <span className="hidden lg:block text-lg"> with Google</span>{' '}
             </Button>

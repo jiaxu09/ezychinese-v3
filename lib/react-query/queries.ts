@@ -1,6 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { QUERY_KEYS } from './queryKeys'
-import { addChineseRadical, getChineseRadicals } from '../supabase/api'
+import {
+  addChineseRadical,
+  getChineseRadicals,
+  updateChineseRadical,
+} from '../supabase/api'
 import { IRadical, TypedSupabaseClient } from '../types'
 import { useToast } from '@/components/ui/use-toast'
 
@@ -15,6 +19,23 @@ export const useAddChineseRadical = () => {
       })
       toast({
         title: 'Cool! Radical created successfully. ',
+        variant: 'success',
+      })
+    },
+  })
+}
+
+export const useUpdateChineseRadical = (id: string | null) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (item: IRadical) => updateChineseRadical(item, id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETCHINESERADICALS],
+      })
+      toast({
+        title: 'Cool! Radical updated successfully. ',
         variant: 'success',
       })
     },

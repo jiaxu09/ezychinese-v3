@@ -2,7 +2,6 @@ import { useCallback, useState } from 'react'
 import { FileWithPath, useDropzone } from 'react-dropzone'
 
 import { convertFileToUrl } from '@/lib/utils'
-import { Button } from './ui/button'
 import { UploadCloud } from 'lucide-react'
 import Image from 'next/image'
 
@@ -46,7 +45,13 @@ const FileUploader = ({
         <>
           <div className="flex flex-1 justify-center w-full lg:p-10">
             <div className=" relative w-48 h-32 ">
-              <Image src={fileUrl} fill alt="image" className=" object-cover" />
+              <Image
+                src={fileUrl}
+                fill
+                alt="image"
+                className=" object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
             </div>
           </div>
           <p className="file_uploader-label">Click or drag photo to replace</p>

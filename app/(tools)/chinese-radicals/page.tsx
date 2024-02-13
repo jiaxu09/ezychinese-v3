@@ -6,9 +6,9 @@ import {
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query'
-import { prefetchQuery } from '@supabase-cache-helpers/postgrest-react-query'
 import { useGetChineseRadicals } from '@/lib/react-query/queries'
 import { supabaseServer } from '@/lib/supabase/server'
+import EditSwitch from './_components/edit-switch'
 
 const ChineseRadicalsPage = async () => {
   const queryClient = new QueryClient()
@@ -18,8 +18,8 @@ const ChineseRadicalsPage = async () => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <div className="container mx-auto flex flex-col items-center gap-6 ">
-        <h1 className=" text-2xl md:text-4xl text-center pb-6">
+      <div className="container mx-auto flex flex-col items-center py-10">
+        <h1 className=" text-2xl md:text-4xl text-center py-2">
           Chinese Radicals
         </h1>
         <div className="grow">
@@ -27,7 +27,10 @@ const ChineseRadicalsPage = async () => {
         </div>
 
         <div className="fixed bottom-20 right-10 md:right-48">
-          <CreateButton />
+          <div className="flex gap-6 items-center justify-center">
+            <CreateButton />
+            <EditSwitch />
+          </div>
         </div>
       </div>
     </HydrationBoundary>

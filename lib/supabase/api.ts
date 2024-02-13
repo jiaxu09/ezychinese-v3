@@ -13,6 +13,20 @@ export const addChineseRadical = async (item: IRadical) => {
   }
 }
 
+export const updateChineseRadical = async (
+  item: IRadical,
+  id: string | null
+) => {
+  if (!id) {
+    return
+  }
+  const supabase = supabaseBrowser()
+  const { error } = await supabase.from('radicals').update(item).eq('id', id)
+  if (error) {
+    throw new Error('Something went wrong!')
+  }
+}
+
 export const getChineseRadicals = async (supabase: TypedSupabaseClient) => {
   const { data, error } = await supabase
     .from('radicals')

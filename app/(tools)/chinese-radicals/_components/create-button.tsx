@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import {
   Popover,
   PopoverContent,
@@ -9,7 +9,7 @@ import {
 
 import { useUser } from '@/lib/store/user'
 
-import { Plus, SendHorizonal } from 'lucide-react'
+import { SendHorizonal } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import RadicalForm from './radical-form'
 

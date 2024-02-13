@@ -62,7 +62,25 @@ const config = {
         },
         neutral:{
           DEFAULT: "hsl(var(--neutral))",
-        }
+        },
+        wuzzy:{
+          DEFAULT:"hsl(var(--wuzzy))",
+        },
+        green:{
+          DEFAULT:"hsl(var(--green))",
+        },
+        crayola:{
+          DEFAULT:"hsl(var(--crayola))",
+        },
+        skyblue:{
+          DEFAULT:"hsl(var(--skyblue))",
+        },
+        pastelblue:{
+          DEFAULT:"hsl(var(--pastelblue))",
+        },
+        pewterblue:{
+          DEFAULT:"hsl(var(--pewterblue))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
