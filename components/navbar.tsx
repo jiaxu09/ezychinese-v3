@@ -55,7 +55,7 @@ const Navbar = () => {
           </div>
           <h1>
             {' '}
-            <span className=" text-success">ezy</span>Chinese
+            <span className=" text-green">ezy</span>Chinese
           </h1>
         </Link>
         <div>

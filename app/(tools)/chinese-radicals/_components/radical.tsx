@@ -56,18 +56,36 @@ const Radical = ({
           </div>
         </DialogContent>
       ) : (
-        <DialogContent className="sm:max-w-md md:max-w-4xl h-[30vh] md:h-[85vh]">
+        <DialogContent className="sm:max-w-md md:max-w-5xl h-[70vh] md:h-[85vh]">
           <div className="z-10 relative container flex items-center justify-center ">
-            <h2 className=" absolute top-0 mx-auto">Chinese Radical</h2>
+            <h2 className=" absolute top-0 md:top-20 md:left-20  md:-rotate-45 mx-auto bg-skyblue py-1 md:py-2 px-3 rounded-lg text-sm md:text-2xl">
+              Chinese Radical
+            </h2>
+            <div className=" absolute top-0 left-16 md:top-10 md:left-[12%]">
+              <div className=" relative w-1/4 md:w-2/3">
+                <Image
+                  src="/images/logo1.svg"
+                  width={101}
+                  height={102}
+                  alt="ezyChinese radicals"
+                />
+              </div>
+            </div>
             <div className="border rounded-full p-2 md:p-6 bg-card text-lg md:text-6xl flex flex-col justify-center items-center">
               <ruby>
-                <span className=" text-6xl inline-block">{name}</span>
+                <span className=" text-lg md:text-6xl inline-block">
+                  {name}
+                </span>
                 {radical_pinyin && (
-                  <rt className=" text-primary text-3xl">{radical_pinyin}</rt>
+                  <rt className=" text-primary md:text-3xl">
+                    {radical_pinyin}
+                  </rt>
                 )}
               </ruby>
               {radical_meaning && (
-                <p className="italic text-wuzzy text-lg">{radical_meaning}</p>
+                <p className="italic text-wuzzy text-sm md:text-lg">
+                  {radical_meaning}
+                </p>
               )}
             </div>
             {characters.map((character, index) => (
@@ -80,21 +98,21 @@ const Radical = ({
                   'bottom-[8%]': index === 3,
                 })}
               >
-                <Card>
-                  <CardContent className="text-sm md:text-3xl p-4">
-                    <div className="pt-4 flex flex-col items-center justify-center">
+                <Card className=" max-w-sm md:w-[10rem]">
+                  <CardContent className="text-sm md:text-3xl p-1 md:px-2">
+                    <div className=" flex flex-col items-center justify-center">
                       <ruby>
-                        <span className=" text-6xl inline-block">
+                        <span className=" text-lg md:text-6xl inline-block">
                           {character}
                         </span>
                         {characters_pinyins && (
-                          <rt className=" text-primary text-3xl">
+                          <rt className=" text-primary text-sm md:text-3xl">
                             {characters_pinyins[index]}
                           </rt>
                         )}
                       </ruby>
                       {characters_meanings && (
-                        <p className="text-wuzzy italic text-lg">
+                        <p className="text-wuzzy max-w-20 mx-auto italic text-sm md:text-lg">
                           {' '}
                           {characters_meanings[index]}
                         </p>
@@ -123,10 +141,10 @@ const Radical = ({
             />
           </div>
 
-          <p className=" fixed bottom-10 left-10 font-mono italic text-gray-400">
+          <p className=" fixed bottom-10 left-10 font-mono italic text-gray-400 text-xs lg:text-lg">
             faye@ezyChinese
           </p>
-          <p className=" fixed top-10 font-mono right-10 italic text-gray-400">
+          <p className=" fixed top-16 rotate-45 font-mono right-6 italic text-gray-400 text-xs lg:text-lg">
             faye@ezyChinese
           </p>
         </DialogContent>
