@@ -8,7 +8,6 @@ const Loading = () => {
         src="/images/loading.svg"
         width={512}
         height={512}
-        priority
         alt="ezyChinese loading"
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       />

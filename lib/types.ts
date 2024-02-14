@@ -21,3 +21,13 @@ export interface IRadical {
   characters_meanings?: string[]
   background_url?: string
 }
+
+export interface IIdiom {
+  name: string[]
+  idiom_pinyin: string[]
+  idiom_meaning?: string
+  example: string[]
+  example_pinyin: string[]
+  example_meaning: string
+  background_url?: string
+}

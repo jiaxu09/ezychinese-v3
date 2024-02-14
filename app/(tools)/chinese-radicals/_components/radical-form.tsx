@@ -15,7 +15,6 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import FileUploader from '@/components/file-uploader'
-import { Button } from '@/components/ui/button'
 
 import { supabaseBrowser } from '@/lib/supabase/browser'
 import {
@@ -23,9 +22,9 @@ import {
   useUpdateChineseRadical,
 } from '@/lib/react-query/queries'
 
-import { RotateCcw } from 'lucide-react'
 import supabaseUrl from '@/lib/utils'
 import { IRadical } from '@/lib/types'
+import SubmitButton from '../../_components/submit-button'
 
 type RadicalFormProps = {
   radical?: any
@@ -53,15 +52,13 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
     resolver: zodResolver(RadicalValidation),
     defaultValues: {
       name: radical ? radical?.name : '',
-      radical_pinyin: radical ? radical?.pinyin : '',
-      radical_meaning: radical ? radical?.meaning : '',
+      radical_pinyin: radical ? radical?.radical_pinyin : '',
+      radical_meaning: radical ? radical?.radical_meaning : '',
       background: [],
-      characters: radical ? radical.characters.toString() : '',
-      characters_pinyins: radical
-        ? radical?.characters_pinyins?.toString()
-        : '',
+      characters: radical ? radical.characters.join('') : '',
+      characters_pinyins: radical ? radical?.characters_pinyins?.join(' ') : '',
       characters_meanings: radical
-        ? radical?.characters_meanings?.toString()
+        ? radical?.characters_meanings?.join(',')
         : '',
     },
   })
@@ -84,16 +81,18 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
       }
     }
 
-    console.log(value.characters_meanings?.split(',').map(String))
-
     const item: IRadical = {
       name: value.name,
       radical_pinyin: value.radical_pinyin,
       radical_meaning: value.radical_meaning,
       background_url: backgroundUrl,
-      characters: value.characters.split(','),
-      characters_pinyins: value.characters_pinyins.split(','),
-      characters_meanings: value.characters_meanings?.split(','),
+      characters: value.characters.replace(/,\s*$/, '').split(''),
+      characters_pinyins: value.characters_pinyins
+        .replace(/,\s*$/, '')
+        .split(' '),
+      characters_meanings: value.characters_meanings
+        ?.replace(/,\s*$/, '')
+        .split(','),
     }
 
     if (action === 'Create') {
@@ -110,7 +109,7 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
   return (
     <Form {...form}>
       <form
-        className="flex flex-col gap-4 w-full max-w-5xl"
+        className="flex flex-col gap-4 w-full"
         onSubmit={form.handleSubmit(handleSubmit)}
       >
         <div className="flex items-center justify-center space-x-2">
@@ -158,11 +157,7 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input
-                    type="text"
-                    placeholder="对应4个汉字,以,分隔."
-                    {...field}
-                  />
+                  <Input type="text" placeholder="对应4个汉字" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -176,7 +171,7 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
                 <FormControl>
                   <Input
                     type="text"
-                    placeholder="对应汉字拼音,以,分隔."
+                    placeholder="对应汉字拼音,以空格分隔."
                     {...field}
                   />
                 </FormControl>
@@ -220,21 +215,11 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
           </FormMessage>
         )}
 
-        <Button
-          aria-label="radical submit"
-          disabled={createdPeding || updatedPending}
-          variant="default"
-          type="submit"
-        >
-          {createdPeding || updatedPending ? (
-            <>
-              <RotateCcw className="mr-2 h-5 w-5 animate-spin" />{' '}
-              <span>Submiting</span>
-            </>
-          ) : (
-            <span>Submit</span>
-          )}
-        </Button>
+        <SubmitButton
+          type="radical"
+          createdPeding={createdPeding}
+          updatedPending={updatedPending}
+        />
       </form>
     </Form>
   )

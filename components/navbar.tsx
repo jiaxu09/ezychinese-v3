@@ -55,7 +55,10 @@ const Navbar = () => {
           </div>
           <h1>
             {' '}
-            <span className=" text-green">ezy</span>Chinese
+            <span className="bg-gradient-to-r from-wuzzy via-green to-pewterblue inline-block text-transparent bg-clip-text">
+              ezy
+            </span>
+            Chinese
           </h1>
         </Link>
         <div>

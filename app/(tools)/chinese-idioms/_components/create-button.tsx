@@ -19,7 +19,7 @@ const CreateButton = () => {
       </PopoverTrigger>
       <PopoverContent>
         <h2 className=" text-center pb-4">Add Idiom</h2>
-        <IdiomForm />
+        <IdiomForm action="Create" />
       </PopoverContent>
     </Popover>
   )

@@ -1,13 +1,14 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import { Card, CardContent } from '@/components/ui/card'
-import supabaseUrl, { cn, shimmer, toBase64 } from '@/lib/utils'
+import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import { useChineseRadicalEdit } from '@/lib/store/radicalEdit'
 import RadicalForm from './radical-form'
-import Hero from '/public/images/placeholder.webp'
-import BlurBg from '@/components/blur-bg'
+import BgImg from '../../_components/bg-img'
+import WaterMark from '../../_components/water-mark'
 
 interface RadicalProps {
   id: string
@@ -31,6 +32,7 @@ const Radical = ({
   id,
 }: RadicalProps) => {
   const edit = useChineseRadicalEdit((state) => state.edit)
+  const [isHidden, setHidden] = useState(false) // hide idiom to display background
 
   return (
     <Dialog>
@@ -59,20 +61,30 @@ const Radical = ({
       ) : (
         <DialogContent className="sm:max-w-md md:max-w-5xl h-[70vh] md:h-[85vh]">
           <div className="z-10 relative container flex items-center justify-center ">
-            <h2 className=" absolute top-0 md:top-20 md:left-20  md:-rotate-45 mx-auto bg-skyblue py-1 md:py-2 px-3 rounded-lg text-sm md:text-2xl">
-              Chinese Radical
-            </h2>
-            <div className=" absolute top-0 left-16 md:top-10 md:left-[12%]">
-              <div className=" relative w-1/4 md:w-2/3">
+            <div
+              onClick={() => setHidden(!isHidden)}
+              className="absolute top-0 left-10 md:top-10 md:left-[12%]"
+            >
+              <div className=" relative w-2/5 md:w-2/3">
                 <Image
-                  src="/images/logo1.svg"
-                  width={101}
-                  height={102}
+                  src="/images/radical.svg"
+                  width={226}
+                  height={178}
                   alt="ezyChinese radicals"
+                  priority
+                  sizes="33vw"
                 />
               </div>
             </div>
-            <div className="border rounded-full p-2 md:p-6 bg-card text-lg md:text-6xl flex flex-col justify-center items-center">
+
+            <div
+              className={cn(
+                'border rounded-full p-2 md:p-6 text-lg md:text-6xl flex flex-col justify-center items-center bg-white/80',
+                {
+                  hidden: isHidden,
+                }
+              )}
+            >
               <ruby>
                 <span className=" text-lg md:text-6xl inline-block">
                   {name}
@@ -97,9 +109,10 @@ const Radical = ({
                   'left-[0%] md:left-[20%]': index === 1,
                   'top-[8%]': index === 2,
                   'bottom-[8%]': index === 3,
+                  hidden: isHidden,
                 })}
               >
-                <Card className=" max-w-sm md:w-[10rem]">
+                <Card className=" max-w-sm md:w-[10rem] bg-white/80">
                   <CardContent className="text-sm md:text-3xl p-1 md:px-2">
                     <div className=" flex flex-col items-center justify-center">
                       <ruby>
@@ -124,17 +137,8 @@ const Radical = ({
               </div>
             ))}
           </div>
-
-          <div className=" fixed top-0 right-0 bottom-0 w-full h-full z-0 ">
-            <BlurBg />
-          </div>
-
-          <p className=" fixed bottom-10 left-10 font-mono italic text-gray-400 text-xs lg:text-lg">
-            faye@ezyChinese
-          </p>
-          <p className=" fixed top-16 rotate-45 font-mono right-6 italic text-gray-400 text-xs lg:text-lg">
-            faye@ezyChinese
-          </p>
+          <BgImg background_url={background_url} hiddenContent={isHidden} />
+          <WaterMark />
         </DialogContent>
       )}
     </Dialog>

@@ -37,6 +37,42 @@ export type Database = {
         }
         Relationships: []
       }
+      idioms: {
+        Row: {
+          background_url: string | null
+          created_at: string
+          example: string[]
+          example_meaning: string
+          example_pinyin: string[]
+          id: string
+          idiom_meaning: string | null
+          idiom_pinyin: string[]
+          name: string[]
+        }
+        Insert: {
+          background_url?: string | null
+          created_at?: string
+          example: string[]
+          example_meaning: string
+          example_pinyin: string[]
+          id?: string
+          idiom_meaning?: string | null
+          idiom_pinyin: string[]
+          name: string[]
+        }
+        Update: {
+          background_url?: string | null
+          created_at?: string
+          example?: string[]
+          example_meaning?: string
+          example_pinyin?: string[]
+          id?: string
+          idiom_meaning?: string | null
+          idiom_pinyin?: string[]
+          name?: string[]
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string

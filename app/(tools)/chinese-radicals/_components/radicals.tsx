@@ -4,9 +4,8 @@ import { useQuery } from '@tanstack/react-query'
 import React, { useState } from 'react'
 import Radical from './radical'
 import { supabaseBrowser } from '@/lib/supabase/browser'
-import { Button } from '@/components/ui/button'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { notFound } from 'next/navigation'
+import PaginationButton from '@/components/pagination-button'
 
 const Radicals = () => {
   const supabase = supabaseBrowser()
@@ -21,9 +20,9 @@ const Radicals = () => {
   }
 
   return (
-    <div className="w-full flex flex-col items-center justify-evenly ">
-      <div className="grid grid-cols-5 md:grid-cols-12 gap-6 md:gap-10">
-        {data?.data?.map((radical, index) => (
+    <div className="w-full h-full flex flex-col items-center">
+      <div className="grid grid-cols-5 md:grid-cols-12 gap-6 md:gap-10 ">
+        {data?.data.map((radical, index) => (
           <div
             key={index}
             className="p-4 md:p-8 flex items-center justify-center "
@@ -41,28 +40,12 @@ const Radicals = () => {
           </div>
         ))}
       </div>
-      <div className="fixed bottom-32 ">
-        <div className="flex items-center justify-center space-x-4">
-          <Button
-            onClick={() => setPage((old) => Math.max(old - 1, 0))}
-            disabled={page === 0}
-            variant="default"
-          >
-            <ChevronLeft className="w-5 h-5" /> Prev
-          </Button>
-          <Button
-            disabled={isPlaceholderData || !data?.hasMore}
-            onClick={() => {
-              if (!isPlaceholderData && data?.hasMore) {
-                setPage((old) => old + 1)
-              }
-            }}
-            variant="default"
-          >
-            Next <ChevronRight className="w-5 h-5" />{' '}
-          </Button>
-        </div>
-      </div>
+      <PaginationButton
+        page={page}
+        setPage={setPage}
+        isPlaceholderData={isPlaceholderData}
+        hasMore={data?.hasMore}
+      />
     </div>
   )
 }
