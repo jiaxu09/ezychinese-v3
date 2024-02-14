@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { useChineseRadicalEdit } from '@/lib/store/radicalEdit'
 import RadicalForm from './radical-form'
 import Hero from '/public/images/placeholder.webp'
+import BlurBg from '@/components/blur-bg'
 
 interface RadicalProps {
   id: string
@@ -38,7 +39,7 @@ const Radical = ({
       </DialogTrigger>
       {edit ? (
         <DialogContent>
-          <div>
+          <>
             <h2 className=" text-center pb-4">Edit Radical</h2>
             <RadicalForm
               radical={{
@@ -53,7 +54,7 @@ const Radical = ({
               }}
               action="Edit"
             />
-          </div>
+          </>
         </DialogContent>
       ) : (
         <DialogContent className="sm:max-w-md md:max-w-5xl h-[70vh] md:h-[85vh]">
@@ -124,21 +125,8 @@ const Radical = ({
             ))}
           </div>
 
-          <div className=" fixed top-0 right-0 w-full h-full z-0 ">
-            <Image
-              className=" object-contain blur-sm"
-              src={
-                background_url && background_url.length !== 0
-                  ? supabaseUrl(background_url)
-                  : Hero
-              }
-              alt={name}
-              fill
-              placeholder={`data:image/svg+xml;base64,${toBase64(
-                shimmer(700, 475)
-              )}`}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
+          <div className=" fixed top-0 right-0 bottom-0 w-full h-full z-0 ">
+            <BlurBg />
           </div>
 
           <p className=" fixed bottom-10 left-10 font-mono italic text-gray-400 text-xs lg:text-lg">

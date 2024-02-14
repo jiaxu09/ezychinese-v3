@@ -11,3 +11,7 @@ export const RadicalValidation = z.object({
     .min(1, { message: 'Characters pinyin are required.' }),
   characters_meanings: z.string().optional(),
 })
+
+export const IdiomValidation = z.object({
+  
+})
