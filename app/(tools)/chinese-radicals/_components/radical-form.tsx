@@ -25,6 +25,7 @@ import {
 
 import { RotateCcw } from 'lucide-react'
 import supabaseUrl from '@/lib/utils'
+import { IRadical } from '@/lib/types'
 
 type RadicalFormProps = {
   radical?: any
@@ -52,9 +53,15 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
     resolver: zodResolver(RadicalValidation),
     defaultValues: {
       name: radical ? radical?.name : '',
+      radical_pinyin: radical ? radical?.pinyin : '',
+      radical_meaning: radical ? radical?.meaning : '',
       background: [],
-      characters: radical
-        ? radical.characters.toString().replaceAll(',', ' ')
+      characters: radical ? radical.characters.toString() : '',
+      characters_pinyins: radical
+        ? radical?.characters_pinyins?.toString()
+        : '',
+      characters_meanings: radical
+        ? radical?.characters_meanings?.toString()
         : '',
     },
   })
@@ -77,20 +84,24 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
       }
     }
 
+    console.log(value.characters_meanings?.split(',').map(String))
+
+    const item: IRadical = {
+      name: value.name,
+      radical_pinyin: value.radical_pinyin,
+      radical_meaning: value.radical_meaning,
+      background_url: backgroundUrl,
+      characters: value.characters.split(','),
+      characters_pinyins: value.characters_pinyins.split(','),
+      characters_meanings: value.characters_meanings?.split(','),
+    }
+
     if (action === 'Create') {
       //save radical to DB
-      await addChineseRadical({
-        name: value.name,
-        background_url: backgroundUrl,
-        characters: value.characters.split(' '),
-      })
+      await addChineseRadical(item)
     }
     if (action === 'Edit') {
-      await updateChineseRadical({
-        name: value.name,
-        background_url: backgroundUrl,
-        characters: value.characters.split(' '),
-      })
+      await updateChineseRadical(item)
     }
     form.reset()
     setFileUrl('')
@@ -99,32 +110,88 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
   return (
     <Form {...form}>
       <form
-        className="flex flex-col gap-9 w-full max-w-5xl"
+        className="flex flex-col gap-4 w-full max-w-5xl"
         onSubmit={form.handleSubmit(handleSubmit)}
       >
+        <div className="flex items-center justify-center space-x-2">
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input type="text" placeholder="部首" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="radical_pinyin"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input type="text" placeholder="部首拼音" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="radical_meaning"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input type="text" placeholder="部首英文" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        <div className="flex items-center justify-center space-x-2">
+          <FormField
+            control={form.control}
+            name="characters"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input
+                    type="text"
+                    placeholder="对应4个汉字,以,分隔."
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="characters_pinyins"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input
+                    type="text"
+                    placeholder="对应汉字拼音,以,分隔."
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
         <FormField
           control={form.control}
-          name="name"
+          name="characters_meanings"
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input type="text" placeholder="部首" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="characters"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Input
-                  type="text"
-                  placeholder="最多4个汉字,空格分隔."
-                  {...field}
-                />
+                <Input type="text" placeholder="对应英文,以,分隔." {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

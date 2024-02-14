@@ -14,6 +14,10 @@ export interface IUser {
 
 export interface IRadical {
   name: string
+  radical_pinyin?: string
+  radical_meaning?: string
   characters: string[]
-  background_url: string
+  characters_pinyins: string[]
+  characters_meanings?: string[]
+  background_url?: string
 }

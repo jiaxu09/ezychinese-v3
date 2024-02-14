@@ -1,4 +1,8 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import {
+  keepPreviousData,
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query'
 import { QUERY_KEYS } from './queryKeys'
 import {
   addChineseRadical,
@@ -42,9 +46,13 @@ export const useUpdateChineseRadical = (id: string | null) => {
   })
 }
 
-export const useGetChineseRadicals = (client: TypedSupabaseClient) => {
+export const useGetChineseRadicals = (
+  client: TypedSupabaseClient,
+  page: number
+) => {
   return {
-    queryKey: [QUERY_KEYS.GETCHINESERADICALS],
-    queryFn: () => getChineseRadicals(client),
+    queryKey: [QUERY_KEYS.GETCHINESERADICALS, page],
+    queryFn: () => getChineseRadicals(client, page),
+    placeholderData: keepPreviousData,
   }
 }

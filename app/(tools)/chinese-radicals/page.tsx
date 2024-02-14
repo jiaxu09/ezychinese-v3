@@ -20,7 +20,7 @@ const ChineseRadicalsPage = async () => {
   const queryClient = new QueryClient()
   const supabase = supabaseServer()
 
-  await queryClient.prefetchQuery(useGetChineseRadicals(supabase))
+  await queryClient.prefetchQuery(useGetChineseRadicals(supabase, 0))
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

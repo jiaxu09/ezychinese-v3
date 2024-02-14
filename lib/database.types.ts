@@ -76,23 +76,35 @@ export type Database = {
         Row: {
           background_url: string | null
           characters: string[]
+          characters_meanings: string[] | null
+          characters_pinyins: string[] | null
           created_at: string
           id: string
           name: string
+          radical_meaning: string | null
+          radical_pinyin: string | null
         }
         Insert: {
           background_url?: string | null
           characters: string[]
+          characters_meanings?: string[] | null
+          characters_pinyins?: string[] | null
           created_at?: string
           id?: string
           name: string
+          radical_meaning?: string | null
+          radical_pinyin?: string | null
         }
         Update: {
           background_url?: string | null
           characters?: string[]
+          characters_meanings?: string[] | null
+          characters_pinyins?: string[] | null
           created_at?: string
           id?: string
           name?: string
+          radical_meaning?: string | null
+          radical_pinyin?: string | null
         }
         Relationships: []
       }
