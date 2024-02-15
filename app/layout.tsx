@@ -7,6 +7,7 @@ import AuthProvider from '@/components/auth-provider'
 import Navbar from '@/components/navbar'
 import QueryProvider from '@/components/query-provider'
 import { Toaster } from '@/components/ui/toaster'
+import Footer from '@/components/footer'
 
 export const metadata: Metadata = {
   metadataBase: new URL('http://localhost:3000'),
@@ -75,6 +76,7 @@ export default function RootLayout({
         <QueryProvider>
           <Navbar />
           <main>{children}</main>
+          <Footer />
           <AuthProvider />
         </QueryProvider>
         <Toaster />

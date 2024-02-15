@@ -81,7 +81,7 @@ const Idiom = ({
                 hidden: isHidden,
               })}
             >
-              <div className="flex flex-col space-y-4 items-center justify-center py-10">
+              <div className="flex flex-col space-y-4 items-center justify-center py-4 md:py-10">
                 <div className="flex items-center gap-4">
                   {name.map((character, index) => (
                     <ruby key={index}>
@@ -96,9 +96,9 @@ const Idiom = ({
                 </div>
                 <div className="text-lg md:text-2xl ">{idiom_meaning}</div>
               </div>
-              <Separator className="my-6 relative">
+              <Separator className="my-3 md:my-6 relative">
                 <div className="-translate-y-5 flex items-center justify-center">
-                  <div className="w-16 h-16">
+                  <div className="w-8 h-8 md:w-16 md:h-16">
                     <Image
                       src="/images/example.svg"
                       width={215}
@@ -108,14 +108,14 @@ const Idiom = ({
                   </div>
                 </div>
               </Separator>
-              <div className="w-3/4 mx-auto py-2">
+              <div className="w-full md:w-3/4 mx-auto py-2">
                 <div className=" flex items-center gap-4 w-full flex-wrap">
                   {example.map((char, index) => (
                     <ruby key={index}>
                       <span className=" text-lg md:text-3xl inline-block">
                         {char}
                       </span>
-                      <rt className=" text-primary md:text-2xl">
+                      <rt className="text-lg text-primary md:text-2xl">
                         {example_pinyin[index]}
                       </rt>
                     </ruby>

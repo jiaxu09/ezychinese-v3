@@ -1,5 +1,5 @@
 import BlurBg from '@/components/blur-bg'
-import supabaseUrl, { cn } from '@/lib/utils'
+import supabaseUrl, { cn, rgbDataURL } from '@/lib/utils'
 import Image from 'next/image'
 import React from 'react'
 
@@ -17,6 +17,8 @@ const BgImg = ({ background_url, hiddenContent }: BgImgProps) => {
             'blur-none': hiddenContent,
           })}
           src={supabaseUrl(background_url)}
+          placeholder="blur"
+          blurDataURL={rgbDataURL(94, 129, 172)}
           fill
           alt="ezyChinese radical"
           priority

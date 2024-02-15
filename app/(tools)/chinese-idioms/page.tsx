@@ -24,8 +24,8 @@ const ChineseIdiomsPage = async () => {
   await queryClient.prefetchQuery(useGetChineseIdioms(supabase, 0))
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <div className="container mx-auto flex flex-col items-center py-10">
-        <h1 className=" text-2xl md:text-4xl text-center py-2">
+      <div className="container mx-auto flex flex-col items-center py-0 md:py-10">
+        <h1 className=" text-xl md:text-4xl text-center py-2">
           Chinese Idioms
         </h1>
         <div className="grow">
@@ -47,7 +47,7 @@ const ChineseIdiomsPage = async () => {
           priority
         />
       </div>
-      <div className=" absolute top-[12%] right-[10%] md:top-[15%] md:left-[65%] md:w-16 w-10 rotate-12">
+      <div className=" absolute top-[10%] right-[10%] md:top-[15%] md:left-[65%] md:w-16 w-10 rotate-12">
         <Image
           src="/images/logo3.svg"
           width={101}
