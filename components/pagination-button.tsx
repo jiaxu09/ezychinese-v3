@@ -15,7 +15,7 @@ const PaginationButton = ({
   hasMore,
 }: PaginationButtonProps) => {
   return (
-    <div className="fixed bottom-4 md:bottom-32 ">
+    <div className="fixed bottom-20 md:bottom-32 ">
       <div className="flex items-center justify-center space-x-4">
         <Button
           aria-label="Previous"

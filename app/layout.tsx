@@ -75,7 +75,7 @@ export default function RootLayout({
       >
         <QueryProvider>
           <Navbar />
-          <main>{children}</main>
+          <main className="flex-grow">{children}</main>
           <Footer />
           <AuthProvider />
         </QueryProvider>

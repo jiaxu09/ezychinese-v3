@@ -3,6 +3,7 @@ import Zhongwen from '/public/images/zhongwen.webp'
 import CSOL from '/public/images/csol.webp'
 import Image from 'next/image'
 import { Button } from './ui/button'
+import Link from 'next/link'
 
 const Books = () => {
   return (
@@ -19,9 +20,9 @@ const Books = () => {
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
-          <Button variant="default" aria-label="more">
-            more
-          </Button>
+          <Link href="/chinese-books">
+            <Button variant="default">more</Button>
+          </Link>
         </div>
       </div>
       <div className="w-full bg-pastelblue py-10">

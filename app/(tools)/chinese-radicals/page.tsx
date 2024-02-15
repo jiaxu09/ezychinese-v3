@@ -29,7 +29,9 @@ const ChineseRadicalsPage = async () => {
         <h1 className=" text-xl md:text-4xl text-center py-2">
           Chinese Radicals
         </h1>
-        <Radicals />
+        <div className=" flex-grow">
+          <Radicals />
+        </div>
         <div className="hidden md:block fixed bottom-0 md:bottom-20 right-10 md:right-48">
           <div className="flex gap-6 items-center justify-center">
             <CreateButton />
