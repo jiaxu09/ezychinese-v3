@@ -80,6 +80,11 @@ export default withPWA({
         hostname: 'jyemvxshpznmgnzoxuhp.supabase.co',
         pathname: '**',
       },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        pathname: '**',
+      },
     ],
   },
 })

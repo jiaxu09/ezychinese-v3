@@ -49,17 +49,20 @@ const Navbar = () => {
               width={222}
               height={219}
               priority
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              sizes="33vw"
               alt="ezyChinese Logo"
             />
           </div>
-          <h1>
-            {' '}
-            <span className="bg-gradient-to-r from-wuzzy via-green to-pewterblue inline-block text-transparent bg-clip-text">
-              ezy
-            </span>
-            Chinese
-          </h1>
+          <div className='w-24 md:w-44 relative'>
+            <Image
+              src="/images/ezyChinese.svg"
+              width={699}
+              height={186}
+              alt="ezyChinese"
+              priority
+              sizes="33vw"
+            />
+          </div>
         </Link>
         <div>
           {user ? (

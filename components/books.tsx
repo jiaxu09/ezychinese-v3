@@ -16,12 +16,12 @@ const Books = () => {
               alt="ezyChinese Zhongwen"
               width={415}
               height={215}
-              placeholder="blur"
+              priority
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
-          <Link href="/chinese-books">
-            <Button variant="default">more</Button>
+          <Link aria-label="ezyChinese zhongwen" href="/zhongwen">
+            <Button variant="default">中文</Button>
           </Link>
         </div>
       </div>
@@ -33,12 +33,12 @@ const Books = () => {
               alt="ezyChinese CSOL"
               width={333}
               height={215}
-              placeholder="blur"
+              priority
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
-          <Button variant="default" aria-label="more">
-            more
+          <Button variant="crayola" aria-label="more">
+            CSOL
           </Button>
         </div>
       </div>

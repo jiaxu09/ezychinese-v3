@@ -25,7 +25,7 @@ const ChineseIdiomsPage = async () => {
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <div className="container mx-auto flex flex-col items-center py-0 md:py-10">
-        <h1 className=" text-xl md:text-4xl text-center py-2">
+        <h1 className=" text-xl md:text-4xl text-center py-2 text-primary">
           Chinese Idioms
         </h1>
         <div className="grow">

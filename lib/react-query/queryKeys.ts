@@ -5,4 +5,6 @@ export enum QUERY_KEYS {
   ADDCHINESEIDIOM = 'addchineseidiom',
   GETCHINESEIDIOMS = 'getchineseidioms',
   UPDATECHINESEIDIOM = 'updatechineseidiom',
+  GETCHINESEBOOKS = 'getchinesebooks',
+  GETCHAPTERSBYBOOKID = 'getchaptersbybookid',
 }

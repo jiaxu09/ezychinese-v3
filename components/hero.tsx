@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge'
 
 const Hero = () => {
   return (
-    <div className="relative grid grid-cols-1 md:grid-cols-2 py-10 gap-2">
+    <div className="relative grid grid-cols-1 md:grid-cols-2 py-4 md:py-10 gap-2">
       <div className="flex flex-col justify-center p-6 md:p-0 w-full md:w-4/5 mx-auto">
         <h1 className=" text-3xl md:text-4xl text-left">
           “A man who knows two languages is worth two men.”{' '}

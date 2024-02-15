@@ -9,7 +9,7 @@ export const convertFileToUrl = (file: File) => URL.createObjectURL(file);
 
 export default function supabaseUrl( src:string | null) {
   if(src){
-    return `https://jyemvxshpznmgnzoxuhp.supabase.co/storage/v1/object/public/ezyChinese/${src}`
+    return `${process.env.NEXT_PUBLIC_SUPABASE_URL!}/storage/v1/object/public/ezyChinese/${src}`
   }
   return ''
 }

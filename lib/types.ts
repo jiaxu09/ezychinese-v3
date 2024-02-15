@@ -31,3 +31,25 @@ export interface IIdiom {
   example_meaning: string
   background_url?: string
 }
+
+export interface IBook {
+  id: string
+  name: string
+  slug: string
+  imgUrl: string
+}
+
+export interface IChapter {
+  id: string
+  name: string
+  slug: string
+  img: {
+    url: string
+    width: number
+    height: number
+  }
+  book: {
+    slug: string
+    name: string
+  }
+}
