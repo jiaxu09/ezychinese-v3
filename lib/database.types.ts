@@ -10,6 +10,30 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      dictionary: {
+        Row: {
+          char: string
+          id: string
+          pinyin: string[]
+          radicals: string | null
+          strokes: number
+        }
+        Insert: {
+          char: string
+          id?: string
+          pinyin: string[]
+          radicals?: string | null
+          strokes: number
+        }
+        Update: {
+          char?: string
+          id?: string
+          pinyin?: string[]
+          radicals?: string | null
+          strokes?: number
+        }
+        Relationships: []
+      }
       favorites: {
         Row: {
           id: string

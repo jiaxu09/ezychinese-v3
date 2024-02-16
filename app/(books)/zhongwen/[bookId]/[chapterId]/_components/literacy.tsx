@@ -69,6 +69,8 @@ const Literacy = ({ bookId, chapterId }: LiteracyProps) => {
     }
   }
 
+  const handleDictionary = () => {}
+
   return (
     <div className="flex flex-col items-center justify-center space-y-4">
       <div className="grid grid-cols-5 gap-6">
@@ -102,7 +104,7 @@ const Literacy = ({ bookId, chapterId }: LiteracyProps) => {
             <div className=" cursor-pointer" onClick={handleSound}>
               <Volume2 className="w-6 h-6 text-crayola " />
             </div>
-            <div>
+            <div className=" cursor-pointer" onClick={handleDictionary}>
               <Scroll className="w-6 h-6 text-orange " />
             </div>
             <div>
