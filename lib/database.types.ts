@@ -117,6 +117,8 @@ export type Database = {
           created_at: string
           id: string
           name: string
+          radical_explain: string[] | null
+          radical_explain_pinyin: string[] | null
           radical_meaning: string | null
           radical_pinyin: string | null
         }
@@ -128,6 +130,8 @@ export type Database = {
           created_at?: string
           id?: string
           name: string
+          radical_explain?: string[] | null
+          radical_explain_pinyin?: string[] | null
           radical_meaning?: string | null
           radical_pinyin?: string | null
         }
@@ -139,6 +143,8 @@ export type Database = {
           created_at?: string
           id?: string
           name?: string
+          radical_explain?: string[] | null
+          radical_explain_pinyin?: string[] | null
           radical_meaning?: string | null
           radical_pinyin?: string | null
         }

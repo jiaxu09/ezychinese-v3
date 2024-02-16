@@ -5,6 +5,8 @@ export const RadicalValidation = z.object({
   name: z.string().min(1, { message: 'Radical is required.' }),
   radical_pinyin: z.string().optional(),
   radical_meaning: z.string().optional(),
+  radical_explain: z.string().optional(),
+  radical_explain_pinyin: z.string().optional(),
   characters: z.string().min(1, { message: 'Characters are required.' }),
   characters_pinyins: z
     .string()

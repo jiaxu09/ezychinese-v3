@@ -81,6 +81,9 @@ const config = {
         pewterblue:{
           DEFAULT:"hsl(var(--pewterblue))",
         },
+        orange:{
+          DEFAULT:"hsl(var(--orange))"
+        }
       },
       borderRadius: {
         lg: "var(--radius)",

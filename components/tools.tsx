@@ -12,7 +12,7 @@ const Tools = () => {
           Tools
         </h1>
         <div className=" grid grid-rows-3 md:w-2/3 md:h-52 md:flex md:justify-center md:items-center ">
-          <div className=" flex items-center justify-start md:w-1/3 md:h-full lg:translate-x-2 xl:translate-x-28 lg:translate-y-32">
+          <div className=" flex items-center justify-start md:w-1/3 md:h-full lg:translate-x-2 xl:translate-x-20 lg:translate-y-32">
             <Link
               href="/chinese-radicals"
               className=" w-3/4 h-3/4 md:w-2/3 flex flex-col space-y-2 items-center justify-center bg-skyblue rounded-lg shadow-md hover:bg-skyblue/80 "
@@ -23,18 +23,29 @@ const Tools = () => {
               </h1>
             </Link>
           </div>
-          <div className="flex items-center justify-center translate-x-6 md:translate-x-0 md:w-1/3 md:h-full md:translate-y-10">
+          <div className="relative flex items-center justify-center translate-x-6 md:translate-x-0 md:w-1/3 md:h-full md:translate-y-10">
             <Link
               href="/chinese-idioms"
               className="w-3/4 h-3/4 md:w-2/3  flex flex-col items-center justify-center bg-crayola rounded-lg shadow-md rotate-12 hover:bg-crayola/80"
             >
               <BookOpenText className="w-5 h-5 md:w-8 md:h-8 " />
-              <h1 className="text-sm md:text-lg text-center font-semibold w-2/3 mx-auto">
+              <h1 className="text-sm md:text-lg -rotate-12 text-center font-semibold w-2/3 mx-auto">
                 Chinese Idioms
               </h1>
             </Link>
+            <div className=" absolute -bottom-2 left-10 ">
+              <div className="w-1/2 relative">
+                <Image
+                  src="/images/circle.svg"
+                  width={100}
+                  height={100}
+                  alt="circle"
+                  priority
+                />
+              </div>
+            </div>
           </div>
-          <div className="flex items-center justify-end translate-x-12 lg:-translate-x-2 xl:-translate-x-28 md:w-1/3 md:h-full ">
+          <div className="flex items-center justify-end translate-x-12 lg:-translate-x-2 xl:-translate-x-20 md:w-1/3 md:h-full ">
             <div className="w-3/4 h-3/4 md:w-2/3 flex flex-col items-center justify-center bg-pewterblue rounded-lg  shadow-md hover:bg-pewterblue/90">
               <NotebookPen className="w-5 h-5 md:w-8 md:h-8 " />
               <h1 className="text-sm md:text-lg text-center font-semibold ">

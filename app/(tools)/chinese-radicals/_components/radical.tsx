@@ -9,12 +9,15 @@ import { useChineseRadicalEdit } from '@/lib/store/radicalEdit'
 import RadicalForm from './radical-form'
 import BgImg from '../../_components/bg-img'
 import WaterMark from '../../_components/water-mark'
+import { Separator } from '@/components/ui/separator'
 
 interface RadicalProps {
   id: string
   name: string
   radical_pinyin: string | null
   radical_meaning: string | null
+  radical_explain: string[] | null
+  radical_explain_pinyin: string[] | null
   characters: string[]
   characters_pinyins: string[] | null
   characters_meanings: string[] | null
@@ -25,6 +28,8 @@ const Radical = ({
   name,
   radical_pinyin,
   radical_meaning,
+  radical_explain,
+  radical_explain_pinyin,
   characters,
   characters_pinyins,
   characters_meanings,
@@ -52,6 +57,8 @@ const Radical = ({
                 characters_pinyins,
                 characters_meanings,
                 background_url,
+                radical_explain,
+                radical_explain_pinyin,
                 id,
               }}
               action="Edit"
@@ -59,85 +66,74 @@ const Radical = ({
           </>
         </DialogContent>
       ) : (
-        <DialogContent className="sm:max-w-md md:max-w-5xl h-[70vh] md:h-[85vh]">
-          <div className="z-10 relative container flex items-center justify-center ">
-            <div
-              onClick={() => setHidden(!isHidden)}
-              className="absolute top-0 left-10 md:top-10 md:left-[12%]"
-            >
-              <div className=" relative w-2/5 md:w-2/3">
-                <Image
-                  src="/images/radical.svg"
-                  width={226}
-                  height={178}
-                  alt="ezyChinese radicals"
-                  priority
-                  sizes="33vw"
-                />
-              </div>
-            </div>
-
-            <div
-              className={cn(
-                'border rounded-full p-2 md:p-6 text-lg md:text-6xl flex flex-col justify-center items-center bg-white/80',
-                {
-                  hidden: isHidden,
-                }
-              )}
-            >
-              <ruby>
-                <span className=" text-lg md:text-6xl inline-block">
-                  {name}
-                </span>
-                {radical_pinyin && (
-                  <rt className=" text-primary md:text-3xl">
-                    {radical_pinyin}
-                  </rt>
+        <DialogContent className="sm:max-w-md md:max-w-5xl h-[70vh] md:h-[85vh] relative">
+          <div className=" relative flex flex-col items-center justify-center space-y-8 pb-20 z-10">
+            <div className="w-full flex items-center justify-center gap-8">
+              <div className="flex flex-col items-center border border-secondary p-4 rounded-lg">
+                <ruby>
+                  <span className=" text-lg md:text-6xl inline-block">
+                    {name}
+                  </span>
+                  {radical_pinyin && (
+                    <rt className=" md:text-3xl">{radical_pinyin}</rt>
+                  )}
+                </ruby>
+                {radical_meaning && (
+                  <p className="italic text-sm md:text-lg">{radical_meaning}</p>
                 )}
-              </ruby>
-              {radical_meaning && (
-                <p className="italic text-wuzzy text-sm md:text-lg">
-                  {radical_meaning}
-                </p>
-              )}
-            </div>
-            {characters.map((character, index) => (
-              <div
-                key={index}
-                className={cn(' absolute', {
-                  'right-[0%] md:right-[20%]': index === 0,
-                  'left-[0%] md:left-[20%]': index === 1,
-                  'top-[8%]': index === 2,
-                  'bottom-[8%]': index === 3,
-                  hidden: isHidden,
-                })}
-              >
-                <Card className=" max-w-sm md:w-[10rem] bg-white/80">
-                  <CardContent className="text-sm md:text-3xl p-1 md:px-2">
-                    <div className=" flex flex-col items-center justify-center">
-                      <ruby>
-                        <span className=" text-lg md:text-6xl inline-block">
-                          {character}
-                        </span>
-                        {characters_pinyins && (
-                          <rt className=" text-primary text-sm md:text-3xl">
-                            {characters_pinyins[index]}
-                          </rt>
-                        )}
-                      </ruby>
-                      {characters_meanings && (
-                        <p className="text-wuzzy max-w-20 mx-auto italic text-sm md:text-lg">
-                          {' '}
-                          {characters_meanings[index]}
-                        </p>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
               </div>
-            ))}
+              <div className="flex items-center justify-center space-x-2 border border-primary p-8 rounded-full">
+                {radical_explain?.map((char, index) => (
+                  <ruby key={index}>
+                    <span className=" text-lg md:text-xl inline-block">
+                      {char}
+                    </span>
+                    {radical_pinyin && radical_explain_pinyin && (
+                      <rt className=" md:text-xl">
+                        {radical_explain_pinyin[index]}
+                      </rt>
+                    )}
+                  </ruby>
+                ))}
+              </div>
+            </div>
+            <Separator className="my-3 md:my-6 relative"></Separator>
+            <div className="flex items-center justify-center gap-20 rounded-lg px-20 py-10 bg-primary/50">
+              {characters.map((character, index) => (
+                <div key={index}>
+                  <div className=" flex flex-col items-center justify-center">
+                    <ruby>
+                      <span className=" text-lg md:text-6xl inline-block">
+                        {character}
+                      </span>
+                      {characters_pinyins && (
+                        <rt className=" text-primary text-sm md:text-3xl">
+                          {characters_pinyins[index]}
+                        </rt>
+                      )}
+                    </ruby>
+                    {characters_meanings && (
+                      <p className="text-wuzzy max-w-20 mx-auto italic text-sm md:text-lg">
+                        {' '}
+                        {characters_meanings[index]}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className=" absolute top-[5%] right-[10%] w-24">
+              <Image
+                src="/images/radical.webp"
+                width={250}
+                height={171}
+                alt="ezyChinese radical"
+                priority
+                sizes="33vw"
+              />
+            </div>
           </div>
-          <BgImg background_url={background_url} hiddenContent={isHidden} />
+          <BgImg />
           <WaterMark />
         </DialogContent>
       )}

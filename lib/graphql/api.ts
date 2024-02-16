@@ -1,4 +1,4 @@
-import { IBook, IChapter } from '../types'
+import { IBook, IChapter, ILiteracies } from '../types'
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT!
 
@@ -61,6 +61,34 @@ export const getChaptersByBookId = async (slug: string) => {
 
     const chapters = data.data.chapters as IChapter[]
     return chapters
+  } catch (error) {
+    throw Error
+  }
+}
+
+export const getLiteracyByChapter = async (slug: string) => {
+  try {
+    if (!slug) {
+      return
+    }
+    const data = await fetch(graphqlAPI, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `query GetCharactersByChapter($slug: String!) {
+          literacies(where: { chapter: { slug: $slug } }) {
+            answers
+            questions
+          }
+        }`,
+        variables: { slug },
+      }),
+    }).then((res) => res.json())
+    const literacies = data.data.literacies as ILiteracies[]
+
+    return literacies[0]
   } catch (error) {
     throw Error
   }

@@ -1,6 +1,7 @@
 import { SupabaseClient } from '@supabase/supabase-js'
 import { Database } from './database.types'
 
+
 export type TypedSupabaseClient = SupabaseClient<Database>
 
 export interface IUser {
@@ -20,6 +21,8 @@ export interface IRadical {
   characters_pinyins: string[]
   characters_meanings?: string[]
   background_url?: string
+  radical_explain?: string[]
+  radical_explain_pinyin?: string[]
 }
 
 export interface IIdiom {
@@ -52,4 +55,9 @@ export interface IChapter {
     slug: string
     name: string
   }
+}
+
+export interface ILiteracies {
+  answers: string[]
+  questions: string[]
 }

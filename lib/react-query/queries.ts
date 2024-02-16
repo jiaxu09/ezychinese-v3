@@ -14,7 +14,12 @@ import {
 } from '../supabase/api'
 import { IIdiom, IRadical, TypedSupabaseClient } from '../types'
 import { useToast } from '@/components/ui/use-toast'
-import { getChaptersByBookId, getChineseBooks } from '../graphql/api'
+import {
+  getChaptersByBookId,
+  getChineseBooks,
+  getLiteracyByChapter,
+} from '../graphql/api'
+import { getHanziSound } from '../api'
 
 //Chinese Radicals
 export const useAddChineseRadical = () => {
@@ -111,7 +116,13 @@ export const useGetChineseIdioms = (
 }
 
 //End of Chinese Idioms
-
+// Hanzi Sound
+export const useHanziSound = (character: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETHANZISOUND, character],
+    queryFn: () => getHanziSound(character),
+  }
+}
 //Chinese Books Graphql
 
 export const useGetChineseBooks = () => {
@@ -124,5 +135,12 @@ export const useGetChaptersByBookId = (slug: string) => {
   return {
     queryKey: [QUERY_KEYS.GETCHAPTERSBYBOOKID],
     queryFn: () => getChaptersByBookId(slug),
+  }
+}
+
+export const useGetLiteracyByChapter = (slug: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETLITERACYBYCHAPTER, slug],
+    queryFn: () => getLiteracyByChapter(slug),
   }
 }

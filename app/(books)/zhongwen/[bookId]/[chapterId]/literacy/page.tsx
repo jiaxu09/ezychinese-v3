@@ -1,6 +1,11 @@
-import React from 'react'
-import Breadcrumb from '../_components/breadcrumb'
-import Practices from '../_components/tabs'
+import { useGetLiteracyByChapter } from '@/lib/react-query/queries'
+import {
+  HydrationBoundary,
+  QueryClient,
+  dehydrate,
+} from '@tanstack/react-query'
+import React, { Suspense } from 'react'
+import Literacy from '../_components/literacy'
 
 interface LiteracyProps {
   params: {
@@ -8,13 +13,19 @@ interface LiteracyProps {
     chapterId: string
   }
 }
-const LiteracyPage = ({ params }: LiteracyProps) => {
+const LiteracyPage = async ({ params }: LiteracyProps) => {
+  const queryClient = new QueryClient()
+  await queryClient.prefetchQuery(
+    useGetLiteracyByChapter(`${params.bookId}-${params.chapterId}`)
+  )
   return (
-    <main>
-      <div className="container mx-auto ">
-        {/* <Practices bookId={params.bookId} chapterId={params.chapterId} /> */}
-      </div>
-    </main>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <main>
+        <Suspense fallback={null}>
+          <Literacy bookId={params.bookId} chapterId={params.chapterId} />
+        </Suspense>
+      </main>
+    </HydrationBoundary>
   )
 }
 

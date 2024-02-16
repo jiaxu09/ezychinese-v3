@@ -32,6 +32,8 @@ const Radicals = () => {
               name={radical.name}
               radical_meaning={radical.radical_meaning}
               radical_pinyin={radical.radical_pinyin}
+              radical_explain={radical.radical_explain}
+              radical_explain_pinyin={radical.radical_explain_pinyin}
               characters={radical.characters}
               characters_meanings={radical.characters_meanings}
               characters_pinyins={radical.characters_pinyins}

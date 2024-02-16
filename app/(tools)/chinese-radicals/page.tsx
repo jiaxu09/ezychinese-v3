@@ -38,24 +38,6 @@ const ChineseRadicalsPage = async () => {
             <EditSwitch />
           </div>
         </div>
-        <div className=" absolute bottom-[10%] left-[5%] md:bottom-[15%] md:left-[25%] w-12 md:w-20">
-          <Image
-            src="/images/logos.svg"
-            width={359}
-            height={219}
-            alt="ezyChinese logos"
-            priority
-          />
-        </div>
-        <div className=" absolute top-[13%] right-[10%] md:top-[15%] md:right-[15%] md:w-16 w-10 rotate-12">
-          <Image
-            src="/images/logo2.svg"
-            width={359}
-            height={219}
-            alt="ezyChinese logo"
-            priority
-          />
-        </div>
       </div>
     </HydrationBoundary>
   )

@@ -43,21 +43,21 @@ const Navbar = () => {
     <div className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex items-center justify-between py-4 md:py-6">
         <Link href="/" className="flex items-center justify-center space-x-2">
-          <div className="w-7 h-7 md:w-12 md:h-12 relative">
+          <div className="w-7 h-7 md:w-10 md:h-10 relative">
             <Image
               src="/images/logo.webp"
-              width={222}
-              height={219}
+              width={350}
+              height={350}
               priority
               sizes="33vw"
               alt="ezyChinese Logo"
             />
           </div>
-          <div className='w-24 md:w-44 relative'>
+          <div className="w-24 md:w-40 relative">
             <Image
-              src="/images/ezyChinese.svg"
-              width={699}
-              height={186}
+              src="/images/ezyChinese.webp"
+              width={256}
+              height={48}
               alt="ezyChinese"
               priority
               sizes="33vw"
@@ -79,14 +79,15 @@ const Navbar = () => {
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuItem className=" text-neutral">
-                  My Quizzes
+                <DropdownMenuItem className=" ">
+                  <Link href="/" aria-label="myquizzes">
+                    <Button variant="ghost">My Quizzes</Button>
+                  </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem
-                  className=" cursor-pointer "
-                  onClick={handleSignout}
-                >
-                  Sign out
+                <DropdownMenuItem>
+                  <Button variant="ghost" onClick={handleSignout}>
+                    Sign out
+                  </Button>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

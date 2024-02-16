@@ -54,6 +54,10 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
       name: radical ? radical?.name : '',
       radical_pinyin: radical ? radical?.radical_pinyin : '',
       radical_meaning: radical ? radical?.radical_meaning : '',
+      radical_explain: radical ? radical?.radical_explain.join('') : '',
+      radical_explain_pinyin: radical
+        ? radical?.radical_explain_pinyin.join(' ')
+        : '',
       background: [],
       characters: radical ? radical.characters.join('') : '',
       characters_pinyins: radical ? radical?.characters_pinyins?.join(' ') : '',
@@ -85,6 +89,10 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
       name: value.name,
       radical_pinyin: value.radical_pinyin,
       radical_meaning: value.radical_meaning,
+      radical_explain: value.radical_explain?.replace(/,\s*$/, '').split(''),
+      radical_explain_pinyin: value.radical_explain_pinyin
+        ?.replace(/,\s*$/, '')
+        .split(' '),
       background_url: backgroundUrl,
       characters: value.characters.replace(/,\s*$/, '').split(''),
       characters_pinyins: value.characters_pinyins
@@ -144,6 +152,36 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
               <FormItem>
                 <FormControl>
                   <Input type="text" placeholder="部首英文" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        <div className="flex items-center justify-center space-x-2 ">
+          <FormField
+            control={form.control}
+            name="radical_explain"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input type="text" placeholder="部首中文解释" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="radical_explain_pinyin"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input
+                    type="text"
+                    placeholder="对应拼音，空格分隔"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>

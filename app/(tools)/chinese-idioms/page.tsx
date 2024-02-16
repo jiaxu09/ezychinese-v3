@@ -38,24 +38,6 @@ const ChineseIdiomsPage = async () => {
           </div>
         </div>
       </div>
-      <div className=" absolute bottom-[5%] left-12 md:bottom-[15%] md:left-[35%] w-10 md:w-20">
-        <Image
-          src="/images/logo2.svg"
-          width={159}
-          height={134}
-          alt="ezyChinese logos"
-          priority
-        />
-      </div>
-      <div className=" absolute top-[10%] right-[10%] md:top-[15%] md:left-[65%] md:w-16 w-10 rotate-12">
-        <Image
-          src="/images/logo3.svg"
-          width={101}
-          height={102}
-          alt="ezyChinese logo"
-          priority
-        />
-      </div>
     </HydrationBoundary>
   )
 }

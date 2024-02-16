@@ -3,30 +3,20 @@ import supabaseUrl, { cn, rgbDataURL } from '@/lib/utils'
 import Image from 'next/image'
 import React from 'react'
 
-interface BgImgProps {
-  background_url: string | null | undefined
-  hiddenContent: boolean
-}
-const BgImg = ({ background_url, hiddenContent }: BgImgProps) => {
+const BgImg = () => {
   return (
     <div className=" fixed top-0 right-0 bottom-0 w-full h-full z-0 ">
-      {background_url ? (
+      <div className=" backdrop-blur-lg flex items-center justify-center w-full h-full">
         <Image
-          className={cn({
-            'blur-md': !hiddenContent,
-            'blur-none': hiddenContent,
-          })}
-          src={supabaseUrl(background_url)}
-          placeholder="blur"
-          blurDataURL={rgbDataURL(94, 129, 172)}
-          fill
+          className=" blur-sm"
+          src="/images/watermark_logo.webp"
+          width={350}
+          height={350}
           alt="ezyChinese radical"
           priority
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
-      ) : (
-        <BlurBg />
-      )}
+      </div>
     </div>
   )
 }

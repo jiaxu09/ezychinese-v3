@@ -60,21 +60,16 @@ const Idiom = ({
       ) : (
         <DialogContent className="sm:max-w-md md:max-w-5xl h-[70vh] md:h-[85vh]">
           <div className="z-10 relative flex flex-col items-center">
-            <div className=" absolute top-0 left-4 md:top-12 md:left-16  md:rotate-45 mx-auto py-1 md:py-2 px-3 rounded-lg text-sm md:text-2xl">
-              <div
-                className=" relative w-2/5 md:w-4/5 z-20"
-                onClick={() => setHidden(!isHidden)}
-              >
-                <Image
-                  src="/images/idiom.svg"
-                  width={167}
-                  height={135}
-                  alt="ezyChinese idiom"
-                  priority
-                  sizes="33vw"
-                />
-              </div>
+            <div
+              onClick={() => setHidden(!isHidden)}
+              className="fixed p-2 top-4 left-[10%]  text-center rounded-lg"
+            >
+              <p className="bg-green rounded-full p-4">Chinese Idiom</p>
             </div>
+            <div className="fixed p-2 top-4 right-[10%]  text-center rounded-lg">
+              <h3 className=" bg-primary rounded-full p-2">成语</h3>
+            </div>
+
             <div
               className={cn('w-full h-full', {
                 'bg-white/80': background_url && !isHidden,
@@ -96,18 +91,7 @@ const Idiom = ({
                 </div>
                 <div className="text-lg md:text-2xl ">{idiom_meaning}</div>
               </div>
-              <Separator className="my-3 md:my-6 relative">
-                <div className="-translate-y-5 flex items-center justify-center">
-                  <div className="w-8 h-8 md:w-16 md:h-16">
-                    <Image
-                      src="/images/example.svg"
-                      width={215}
-                      height={145}
-                      alt="ezyChinese example"
-                    />
-                  </div>
-                </div>
-              </Separator>
+              <Separator className="my-3 md:my-6 relative"></Separator>
               <div className="w-full md:w-3/4 mx-auto py-2">
                 <div className=" flex items-center gap-4 w-full flex-wrap">
                   {example.map((char, index) => (
@@ -127,7 +111,7 @@ const Idiom = ({
               </div>
             </div>
           </div>
-          <BgImg background_url={background_url} hiddenContent={isHidden} />
+          <BgImg />
           <WaterMark />
         </DialogContent>
       )}
