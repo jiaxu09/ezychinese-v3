@@ -9,8 +9,8 @@ const BgImg = () => {
       <Image
         className=" "
         src="/images/logo.webp"
-        width={350}
-        height={350}
+        width={80}
+        height={80}
         alt="ezyChinese radical"
         priority
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
