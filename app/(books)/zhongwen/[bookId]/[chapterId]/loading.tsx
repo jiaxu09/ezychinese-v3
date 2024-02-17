@@ -1,10 +1,23 @@
 import React from 'react'
-import { Skeleton } from '@/components/ui/skeleton'
+import LoadingImg from '/public/images/loading.svg'
+import Image from 'next/image'
+import { rgbDataURL } from '@/lib/utils'
 
 const Loading = () => {
   return (
     <div className="flex justify-center items-center py-8">
-      <Skeleton className="w-[250px] h-[250px] md:w-[800px] md:h-[400px] bg-gray-300 rounded-lg" />
+      <div className="w-2/3 mx-auto">
+        <Image
+          src={LoadingImg}
+          width={512}
+          height={512}
+          alt="ezyChinese loading"
+          priority
+          placeholder="blur"
+          blurDataURL={rgbDataURL(94, 129, 172)}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+      </div>
     </div>
   )
 }

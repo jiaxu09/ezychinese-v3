@@ -33,8 +33,8 @@ const Tools = () => {
                 Chinese Idioms
               </h1>
             </Link>
-            <div className=" absolute -bottom-2 left-10 ">
-              <div className="w-1/2 relative">
+            <div className=" absolute translate-x-24 translate-y-10 md:translate-x-0 md:translate-y-0 md:-bottom-2 md:left-10 ">
+              <div className="w-1/3 md:w-1/2 relative">
                 <Image
                   src="/images/circle.svg"
                   width={100}

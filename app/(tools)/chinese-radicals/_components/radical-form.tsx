@@ -117,7 +117,7 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
   return (
     <Form {...form}>
       <form
-        className="flex flex-col gap-4 w-full"
+        className="flex flex-col gap-4 w-full border border-primary rounded-lg p-4"
         onSubmit={form.handleSubmit(handleSubmit)}
       >
         <div className="flex items-center justify-center space-x-2">
