@@ -63,7 +63,7 @@ const Idiom = ({
                   <div className="flex items-center gap-4">
                     {name.map((character, index) => (
                       <ruby key={index}>
-                        <span className=" text-2xl md:text-6xl inline-block">
+                        <span className=" py-1 text-2xl md:text-6xl inline-block">
                           {character}
                         </span>
                         <rt className="text-lg text-gray-600  md:text-3xl">

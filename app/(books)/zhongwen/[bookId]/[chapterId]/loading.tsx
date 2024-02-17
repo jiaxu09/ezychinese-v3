@@ -1,7 +1,6 @@
 import React from 'react'
 import LoadingImg from '/public/images/loading.svg'
 import Image from 'next/image'
-import { rgbDataURL } from '@/lib/utils'
 
 const Loading = () => {
   return (
@@ -13,9 +12,7 @@ const Loading = () => {
           height={512}
           alt="ezyChinese loading"
           priority
-          placeholder="blur"
-          blurDataURL={rgbDataURL(94, 129, 172)}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          sizes="33vw"
         />
       </div>
     </div>

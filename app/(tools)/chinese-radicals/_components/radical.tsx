@@ -90,11 +90,11 @@ const Radical = ({
                       </div>
                       <div className="flex flex-col items-center justify-center ">
                         <ruby>
-                          <span className=" text-lg md:text-6xl inline-block">
+                          <span className=" text-xl md:text-6xl inline-block">
                             {name}
                           </span>
                           {radical_pinyin && (
-                            <rt className=" text-gray-600 md:text-3xl">
+                            <rt className=" text-gray-600 text-lg md:text-3xl">
                               {radical_pinyin}
                             </rt>
                           )}
@@ -115,7 +115,7 @@ const Radical = ({
                             {char}
                           </span>
                           {radical_pinyin && radical_explain_pinyin && (
-                            <rt className=" text-gray-600 md:text-xl">
+                            <rt className=" text-gray-600 text-lg md:text-xl">
                               {radical_explain_pinyin[index]}
                             </rt>
                           )}
@@ -131,7 +131,7 @@ const Radical = ({
                     <div key={index}>
                       <div className=" flex flex-col items-center justify-center">
                         <ruby>
-                          <span className=" text-lg md:text-6xl inline-block">
+                          <span className=" text-xl md:text-6xl inline-block">
                             {character}
                           </span>
                           {characters_pinyins && (
@@ -142,7 +142,6 @@ const Radical = ({
                         </ruby>
                         {characters_meanings && (
                           <p className="max-w-20 mx-auto italic text-sm md:text-lg">
-                            {' '}
                             {characters_meanings[index]}
                           </p>
                         )}
