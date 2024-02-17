@@ -2,18 +2,26 @@
 import { Button } from '@/components/ui/button'
 import {
   useGetLiteracyByChapter,
+  useHanziDictionary,
+  useHanziEnglish,
+  useHanziMeaning,
   useHanziSound,
 } from '@/lib/react-query/queries'
 import { useQuery } from '@tanstack/react-query'
 import React, { useState } from 'react'
 
 import HanziWriter from 'hanzi-writer'
-import { BookMarked, Languages, PenLine, Scroll, Volume2 } from 'lucide-react'
+import { PenLine, RotateCcw, Volume2 } from 'lucide-react'
+
+import Dictionary from './literacy/dictionary'
+import English from './literacy/english'
+import Meaning from './literacy/meaning'
 
 interface LiteracyProps {
   bookId: string
   chapterId: string
 }
+
 const Literacy = ({ bookId, chapterId }: LiteracyProps) => {
   const [writer, setWriter] = useState<HanziWriter | null>(null)
   const [quiz, setQuiz] = useState<HanziWriter | null>(null)
@@ -24,10 +32,25 @@ const Literacy = ({ bookId, chapterId }: LiteracyProps) => {
     useGetLiteracyByChapter(`${bookId}-${chapterId}`)
   )
 
-  const { data: soundUrl } = useQuery(useHanziSound(selectedCharacter))
+  const { data: soundUrl, isLoading: isLoadingSound } = useQuery(
+    useHanziSound(selectedCharacter)
+  )
+
+  const { data: dictionary, isLoading: isLoadingDictionary } = useQuery(
+    useHanziDictionary(selectedCharacter)
+  )
+
+  const { data: english, isLoading: isLoadingEnglish } = useQuery(
+    useHanziEnglish(selectedCharacter)
+  )
+
+  const { data: meaning, isLoading: isLoadingMeaning } = useQuery(
+    useHanziMeaning(selectedCharacter)
+  )
 
   const handleCharacterClick = (character: string) => {
     setSelectedCharacter(character)
+
     if (!writer) {
       setWriter(
         HanziWriter.create('character-target-div', `${character}`, {
@@ -69,7 +92,12 @@ const Literacy = ({ bookId, chapterId }: LiteracyProps) => {
     }
   }
 
-  const handleDictionary = () => {}
+  const handleAnimateReset = () => {
+    if (quiz && selectedCharacter) {
+      quiz.setCharacter(selectedCharacter)
+      quiz.quiz()
+    }
+  }
 
   return (
     <div className="flex flex-col items-center justify-center space-y-4">
@@ -98,33 +126,70 @@ const Literacy = ({ bookId, chapterId }: LiteracyProps) => {
             <line x1="0" y1="96" x2="192" y2="96" stroke="#DDD" />
           </svg>
           <div className="flex items-center justify-center space-x-3">
-            <div className=" cursor-pointer" onClick={handleAnimate}>
+            <div
+              aria-label="ezyChinese hanzi animate"
+              className=" cursor-pointer"
+              onClick={handleAnimate}
+            >
               <PenLine className="w-6 h-6 text-pastelblue " />
             </div>
-            <div className=" cursor-pointer" onClick={handleSound}>
-              <Volume2 className="w-6 h-6 text-crayola " />
-            </div>
-            <div className=" cursor-pointer" onClick={handleDictionary}>
-              <Scroll className="w-6 h-6 text-orange " />
-            </div>
             <div>
-              <Languages className="w-6 h-6 text-skyblue " />
+              {isLoadingSound ? (
+                <RotateCcw className=" h-6 w-6 animate-spin text-crayola" />
+              ) : (
+                <div
+                  aria-label="ezyChinese hanzi sound"
+                  className=" cursor-pointer"
+                >
+                  <Volume2
+                    onClick={handleSound}
+                    className="w-6 h-6 text-crayola "
+                  />
+                </div>
+              )}
             </div>
-            <div>
-              <BookMarked className="w-6 h-6 text-wuzzy " />
+            <div className=" cursor-pointer">
+              {isLoadingDictionary ? (
+                <RotateCcw className=" h-6 w-6 animate-spin text-orange" />
+              ) : (
+                <Dictionary
+                  strokes={dictionary?.strokes}
+                  radical={dictionary?.radicals}
+                  pinyin={dictionary?.pinyin}
+                />
+              )}
+            </div>
+            <div className=" cursor-pointer">
+              {isLoadingEnglish ? (
+                <RotateCcw className=" h-6 w-6 animate-spin text-skyblue" />
+              ) : (
+                <English english={english} />
+              )}
+            </div>
+            <div className=" cursor-pointer">
+              {isLoadingMeaning ? (
+                <RotateCcw className=" h-6 w-6 animate-spin text-wuzzy" />
+              ) : (
+                <Meaning meaning={meaning} />
+              )}
             </div>
           </div>
         </div>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          id="character-quiz-div"
-          className="w-[200px] h-[200px] border-2 border-primary"
-        >
-          <line x1="0" y1="0" x2="192" y2="192" stroke="#DDD" />
-          <line x1="192" y1="0" x2="0" y2="192" stroke="#DDD" />
-          <line x1="96" y1="0" x2="96" y2="192" stroke="#DDD" />
-          <line x1="0" y1="96" x2="192" y2="96" stroke="#DDD" />
-        </svg>
+        <div className="flex flex-col items-center space-y-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            id="character-quiz-div"
+            className="w-[200px] h-[200px] border-2 border-primary"
+          >
+            <line x1="0" y1="0" x2="192" y2="192" stroke="#DDD" />
+            <line x1="192" y1="0" x2="0" y2="192" stroke="#DDD" />
+            <line x1="96" y1="0" x2="96" y2="192" stroke="#DDD" />
+            <line x1="0" y1="96" x2="192" y2="96" stroke="#DDD" />
+          </svg>
+          <div className=" cursor-pointer" onClick={handleAnimateReset}>
+            <RotateCcw className=" h-6 w-6  text-green" />
+          </div>
+        </div>
       </div>
     </div>
   )

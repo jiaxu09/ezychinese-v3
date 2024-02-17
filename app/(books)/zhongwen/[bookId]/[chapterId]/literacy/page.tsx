@@ -1,3 +1,4 @@
+import { type Metadata } from "next"
 import { useGetLiteracyByChapter } from '@/lib/react-query/queries'
 import {
   HydrationBoundary,
@@ -13,6 +14,23 @@ interface LiteracyProps {
     chapterId: string
   }
 }
+
+export async function generateMetadata({
+  params,
+}: LiteracyProps): Promise<Metadata> {
+  const id = params.bookId
+
+  if (!id) {
+    return {}
+  }
+
+  return {
+    metadataBase: new URL("https://ezychinese-v3.vercel.app/"),
+    title: `中文 | 第${id}册 - 练习`,
+    description: '暨南大学中文1-6册.',
+  }
+}
+
 const LiteracyPage = async ({ params }: LiteracyProps) => {
   const queryClient = new QueryClient()
   await queryClient.prefetchQuery(

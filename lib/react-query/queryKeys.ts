@@ -9,4 +9,7 @@ export enum QUERY_KEYS {
   GETCHAPTERSBYBOOKID = 'getchaptersbybookid',
   GETLITERACYBYCHAPTER = 'getliteracybychapter',
   GETHANZISOUND = 'gethanzisound',
+  GETHANZIDICTIONARY = 'gethanzidictionary',
+  GETHANZIENGLISH = 'gethanzienglish',
+  GETHANZIMEANING = 'gethanzimeaning',
 }

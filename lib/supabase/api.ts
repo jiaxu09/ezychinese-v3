@@ -101,3 +101,8 @@ export const getChineseIdioms = async (
 
   return { data, hasMore }
 }
+
+//End of Chinese Idioms
+
+//Literacy
+

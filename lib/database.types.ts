@@ -14,21 +14,21 @@ export type Database = {
         Row: {
           char: string
           id: string
-          pinyin: string[]
+          pinyin: string[] | null
           radicals: string | null
           strokes: number
         }
         Insert: {
           char: string
           id?: string
-          pinyin: string[]
+          pinyin?: string[] | null
           radicals?: string | null
           strokes: number
         }
         Update: {
           char?: string
           id?: string
-          pinyin?: string[]
+          pinyin?: string[] | null
           radicals?: string | null
           strokes?: number
         }
@@ -171,6 +171,42 @@ export type Database = {
           radical_explain_pinyin?: string[] | null
           radical_meaning?: string | null
           radical_pinyin?: string | null
+        }
+        Relationships: []
+      }
+      translation: {
+        Row: {
+          english: string | null
+          id: string
+          zi: string
+        }
+        Insert: {
+          english?: string | null
+          id?: string
+          zi: string
+        }
+        Update: {
+          english?: string | null
+          id?: string
+          zi?: string
+        }
+        Relationships: []
+      }
+      zidian: {
+        Row: {
+          explanation: string | null
+          id: string
+          word: string | null
+        }
+        Insert: {
+          explanation?: string | null
+          id?: string
+          word?: string | null
+        }
+        Update: {
+          explanation?: string | null
+          id?: string
+          word?: string | null
         }
         Relationships: []
       }

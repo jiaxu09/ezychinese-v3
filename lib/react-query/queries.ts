@@ -19,7 +19,12 @@ import {
   getChineseBooks,
   getLiteracyByChapter,
 } from '../graphql/api'
-import { getHanziSound } from '../api'
+import {
+  getHanziDictionary,
+  getHanziEnglish,
+  getHanziSound,
+  getHanziMeaning,
+} from '../api'
 
 //Chinese Radicals
 export const useAddChineseRadical = () => {
@@ -116,13 +121,40 @@ export const useGetChineseIdioms = (
 }
 
 //End of Chinese Idioms
-// Hanzi Sound
+
+// Literacy
 export const useHanziSound = (character: string) => {
   return {
     queryKey: [QUERY_KEYS.GETHANZISOUND, character],
     queryFn: () => getHanziSound(character),
+    enabled: character.length !== 0,
   }
 }
+
+export const useHanziDictionary = (character: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETHANZIDICTIONARY, character],
+    queryFn: () => getHanziDictionary(character),
+    enabled: character.length !== 0,
+  }
+}
+
+export const useHanziEnglish = (character: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETHANZIENGLISH, character],
+    queryFn: () => getHanziEnglish(character),
+    enabled: character.length !== 0,
+  }
+}
+
+export const useHanziMeaning = (character: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETHANZIMEANING, character],
+    queryFn: () => getHanziMeaning(character),
+    enabled: character.length !== 0,
+  }
+}
+
 //Chinese Books Graphql
 
 export const useGetChineseBooks = () => {
