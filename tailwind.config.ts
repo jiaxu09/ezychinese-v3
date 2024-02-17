@@ -83,6 +83,9 @@ const config = {
         },
         orange:{
           DEFAULT:"hsl(var(--orange))"
+        },
+        watermarker:{
+          DEFAULT:"hsl(var(--watermarker))"
         }
       },
       borderRadius: {

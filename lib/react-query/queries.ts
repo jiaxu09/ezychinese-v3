@@ -18,6 +18,7 @@ import {
   getChaptersByBookId,
   getChineseBooks,
   getLiteracyByChapter,
+  getWordsByChapter,
 } from '../graphql/api'
 import {
   getHanziDictionary,
@@ -154,6 +155,9 @@ export const useHanziMeaning = (character: string) => {
     enabled: character.length !== 0,
   }
 }
+//End of literacy
+
+//Word
 
 //Chinese Books Graphql
 
@@ -174,5 +178,12 @@ export const useGetLiteracyByChapter = (slug: string) => {
   return {
     queryKey: [QUERY_KEYS.GETLITERACYBYCHAPTER, slug],
     queryFn: () => getLiteracyByChapter(slug),
+  }
+}
+
+export const useGetWordsByChapter = (slug: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETWORDSBYCHAPTER, slug],
+    queryFn: () => getWordsByChapter(slug),
   }
 }

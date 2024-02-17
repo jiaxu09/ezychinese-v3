@@ -17,9 +17,11 @@ const Meaning = ({ meaning }: MeaningProps) => {
           <BookMarked className="w-6 h-6 text-wuzzy " />
         </div>
       </DialogTrigger>
-      <DialogContent className="container max-h-[50vh] overflow-y-scroll">
-        <div className=" bg-pewterblue rounded-lg p-2 m-2">{meaning}</div>
-      </DialogContent>
+      {meaning && (
+        <DialogContent className="container max-h-[50vh] overflow-y-scroll">
+          <div className=" bg-pewterblue rounded-lg p-2 m-2">{meaning}</div>
+        </DialogContent>
+      )}
     </Dialog>
   )
 }

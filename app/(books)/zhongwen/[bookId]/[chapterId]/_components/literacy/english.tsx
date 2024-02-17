@@ -17,11 +17,13 @@ const English = ({ english }: EnglishProps) => {
           <Languages className="w-6 h-6 text-skyblue " />
         </div>
       </DialogTrigger>
-      <DialogContent className="container ">
-        <div className="flex flex-col items-center justify-center p-2 bg-skyblue text-center rounded-lg m-6">
-          <p className=" text-gray-600 text-lg">{english}</p>
-        </div>
-      </DialogContent>
+      {english && (
+        <DialogContent className="container ">
+          <div className="flex flex-col items-center justify-center p-2 bg-skyblue text-center rounded-lg m-6">
+            <p className=" text-gray-600 text-lg">{english}</p>
+          </div>
+        </DialogContent>
+      )}
     </Dialog>
   )
 }

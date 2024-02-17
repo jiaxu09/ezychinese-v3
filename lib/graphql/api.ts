@@ -93,3 +93,36 @@ export const getLiteracyByChapter = async (slug: string) => {
     throw Error
   }
 }
+
+export const getWordsByChapter = async (slug: string) => {
+  try {
+    if (!slug) {
+      return
+    }
+    const data = await fetch(graphqlAPI, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `query GetWordsByChapter($slug: String!) {
+          literacies(where: { chapter: { slug: $slug } }) {
+            words
+            wordsImages {
+              height
+              width
+              url
+            }
+            wordsAudio {
+              url
+            }
+          }
+        }`,
+        variables: { slug },
+      }),
+    }).then((res) => res.json())
+    return data
+  } catch (error) {
+    throw Error
+  }
+}
