@@ -53,7 +53,7 @@ const Words = ({ bookId, chapterId }: WordsProps) => {
   }
   return (
     <div className="flex items-center justify-center space-y-4">
-      <Carousel className="w-full max-w-lg" setApi={setApi}>
+      <Carousel className="w-4/5 mx-auto md:max-w-lg" setApi={setApi}>
         <CarouselContent>
           {data?.words.map((word, index) => (
             <CarouselItem key={index}>
