@@ -56,8 +56,8 @@ const Navbar = () => {
           <div className="w-24 md:w-40 relative">
             <Image
               src="/images/ezyChinese.webp"
-              width={256}
-              height={48}
+              width={171}
+              height={33}
               alt="ezyChinese"
               priority
               sizes="33vw"

@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react'
 
 import { convert } from 'pinyin-pro'
 import WellDone from '@/components/well-done'
+import placeholderImg from '/public/images/logo_lg.webp'
 
 interface MatchProps {
   bookId: string
@@ -134,27 +135,28 @@ const Match = ({ bookId, chapterId }: MatchProps) => {
                 aria-label="match game"
               >
                 <div className="inner relative w-full h-full">
-                  <div className="front bg-base-300">
+                  <div className="front">
                     <div className="text-3xl font-medium">
                       {card.pinyin ? (
-                        <span className=" p-4 bg-crayola rounded-lg">
+                        <span className=" p-8 bg-crayola rounded-lg">
                           {convert(card.character)}
                         </span>
                       ) : (
-                        <span className=" p-4 bg-pewterblue rounded-lg">
+                        <span className=" p-8 bg-pewterblue rounded-lg">
                           {card.character}
                         </span>
                       )}
                     </div>
                   </div>
-                  <div className="m-back bg-info transition-all duration-500 ease-in-out p-2">
+                  <div className="m-back bg-accent transition-all duration-500 ease-in-out p-2">
                     <Image
-                      src="/images/logo_lg.webp"
+                      src={placeholderImg}
                       width={180}
                       height={163}
                       alt="ezyChinese match game"
                       priority
                       sizes="33vw"
+                      placeholder="blur"
                     />
                   </div>
                 </div>

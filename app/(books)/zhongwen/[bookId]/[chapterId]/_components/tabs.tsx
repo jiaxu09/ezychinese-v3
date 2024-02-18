@@ -32,14 +32,14 @@ const Tabs = ({ bookId, chapterId }: TabsProps) => {
 
   return (
     <div className="py-8">
-      <div className="flex items-center justify-start gap-6 flex-wrap">
+      <div className="flex items-center justify-start gap-3 md:gap-6 flex-wrap">
         {tabs.map((tab) => (
           <Link
             key={tab.path}
             href={`/zhongwen/${bookId}/${chapterId}/${tab.path}`}
           >
             <Button
-              className="w-24"
+              className=" w-16 md:w-24"
               variant={pathname.includes(tab.path) ? 'default' : 'secondary'}
             >
               {tab.name}

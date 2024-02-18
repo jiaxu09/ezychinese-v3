@@ -13,4 +13,5 @@ export enum QUERY_KEYS {
   GETHANZIENGLISH = 'gethanzienglish',
   GETHANZIMEANING = 'gethanzimeaning',
   GETWORDSBYCHAPTER = 'getwordsbychapter',
+  GETVideoBYCHAPTER = 'getvideobychapter',
 }

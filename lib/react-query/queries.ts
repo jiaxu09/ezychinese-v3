@@ -18,6 +18,7 @@ import {
   getChaptersByBookId,
   getChineseBooks,
   getLiteracyByChapter,
+  getVideoByChapter,
   getWordsByChapter,
 } from '../graphql/api'
 import {
@@ -185,5 +186,12 @@ export const useGetWordsByChapter = (slug: string) => {
   return {
     queryKey: [QUERY_KEYS.GETWORDSBYCHAPTER, slug],
     queryFn: () => getWordsByChapter(slug),
+  }
+}
+
+export const useGetVideosByChapter = (slug: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETVideoBYCHAPTER, slug],
+    queryFn: () => getVideoByChapter(slug),
   }
 }

@@ -13,7 +13,7 @@ const PracticesLayout = ({
     <main className="container py-4">
       <Breadcrumb bookId={params.bookId} chapterId={params.chapterId} />
       <Tabs bookId={params.bookId} chapterId={params.chapterId} />
-      {children}
+      <main className=" max-w-3xl mx-auto">{children}</main>
     </main>
   )
 }
