@@ -103,3 +103,41 @@
     @apply scroll-m-20 pb-2 text-3xl font-medium tracking-tight first:mt-0;
   }
 }
+
+/***************Memory game***************/
+.flipped .inner {
+  transform: rotateY(180deg);
+}
+.inner {
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  -webkit-transform-origin: 50% 50%;
+  transition: 0.8s cubic-bezier(0.38, 0.02, 0.09, 1.66) all;
+}
+
+.front,
+.m-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  -webkit-perspective: 0;
+  -webkit-transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+}
+
+.front {
+  transform: rotateY(180deg);
+}
+
+/**********End of Memory Game*****/

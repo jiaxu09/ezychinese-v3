@@ -47,7 +47,7 @@ const Navbar = () => {
             <Image
               src="/images/logo.webp"
               width={98}
-              height={93}
+              height={89}
               priority
               sizes="33vw"
               alt="ezyChinese Logo"
