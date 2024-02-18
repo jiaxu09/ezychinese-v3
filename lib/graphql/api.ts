@@ -1,4 +1,4 @@
-import { IBook, IChapter, ILiteracies } from '../types'
+import { IBook, IChapter, ILiteracies, IWords } from '../types'
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT!
 
@@ -121,7 +121,8 @@ export const getWordsByChapter = async (slug: string) => {
         variables: { slug },
       }),
     }).then((res) => res.json())
-    return data
+    const words = data.data.literacies[0] as IWords
+    return words
   } catch (error) {
     throw Error
   }

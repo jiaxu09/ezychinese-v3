@@ -1,7 +1,6 @@
 import { SupabaseClient } from '@supabase/supabase-js'
 import { Database } from './database.types'
 
-
 export type TypedSupabaseClient = SupabaseClient<Database>
 
 export interface IUser {
@@ -60,4 +59,14 @@ export interface IChapter {
 export interface ILiteracies {
   answers: string[]
   questions: string[]
+}
+
+export interface IWords {
+  words: string[]
+  wordsAudio: { url: string }[]
+  wordsImages: {
+    height: string
+    width: string
+    url: string
+  }[]
 }

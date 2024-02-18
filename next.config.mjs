@@ -85,6 +85,11 @@ export default withPWA({
         hostname: 'res.cloudinary.com',
         pathname: '**',
       },
+      {
+        protocol: 'https',
+        hostname: 'media.graphassets.com',
+        pathname: '**',
+      },
     ],
   },
 })
