@@ -20,19 +20,29 @@ const Dictionary = ({ strokes, pinyin, radical }: DictionaryProps) => {
         </div>
       </DialogTrigger>
       {strokes && (
-        <DialogContent className="container ">
-          <div className=" grid grid-cols-3 gap-8 m-6">
-            <div className="flex flex-col items-center justify-center p-2 bg-primary rounded-lg">
-              <h2 className=" text-lg">笔画</h2>{' '}
-              <h3 className=" text-gray-600 text-lg">{strokes}</h3>
-            </div>
-            <div className="flex flex-col items-center justify-center p-2 bg-wuzzy rounded-lg">
-              <h2 className=" text-lg">拼音</h2>{' '}
-              <h3 className=" text-gray-800 text-lg">{pinyin?.toString()}</h3>
-            </div>
-            <div className="flex flex-col items-center justify-center p-2 bg-green rounded-lg">
-              <h2 className=" text-lg">部首</h2>{' '}
-              <h3 className=" text-gray-600 text-lg">{radical}</h3>
+        <DialogContent className=" ">
+          <div className="w-full ">
+            <div className="flex flex-col">
+              <div className="grid grid-cols-2">
+                <div className=" bg-primary">
+                  <div className="flex items-center justify-center py-10 space-x-4">
+                    <p className=" text-lg">笔画:</p>
+                    <p className=" text-gray-600 text-lg">{strokes}</p>
+                  </div>
+                </div>
+                <div className=" bg-crayola">
+                  <div className="flex py-10 items-center justify-center rounded-lg space-x-4">
+                    <p className=" text-lg">部首:</p>
+                    <p className=" text-gray-600 text-lg">{radical}</p>
+                  </div>
+                </div>
+              </div>
+              <div className=" bg-skyblue">
+                <div className="flex items-center justify-center rounded-lg py-10 space-x-4">
+                  <p className=" text-lg">拼音:</p>
+                  <p className=" text-gray-800 text-lg">{pinyin?.toString()}</p>
+                </div>
+              </div>
             </div>
           </div>
         </DialogContent>

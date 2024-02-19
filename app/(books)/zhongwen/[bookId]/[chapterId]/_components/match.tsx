@@ -134,17 +134,17 @@ const Match = ({ bookId, chapterId }: MatchProps) => {
                 }}
                 aria-label="match game"
               >
-                <div className="inner relative w-full h-full">
+                <div className="inner relative w-24 h-24 ">
                   <div className="front">
                     <div className="text-3xl font-medium">
                       {card.pinyin ? (
-                        <span className=" p-8 bg-crayola rounded-lg">
+                        <div className="bg-crayola rounded-lg w-24 h-24 flex items-center justify-center">
                           {convert(card.character)}
-                        </span>
+                        </div>
                       ) : (
-                        <span className=" p-8 bg-pewterblue rounded-lg">
+                        <div className="bg-pewterblue rounded-lg w-24 h-24 flex items-center justify-center">
                           {card.character}
-                        </span>
+                        </div>
                       )}
                     </div>
                   </div>

@@ -18,8 +18,8 @@ const Meaning = ({ meaning }: MeaningProps) => {
         </div>
       </DialogTrigger>
       {meaning && (
-        <DialogContent className="container max-h-[50vh] overflow-y-scroll">
-          <div className=" bg-pewterblue rounded-lg p-2 m-2">{meaning}</div>
+        <DialogContent className=" max-h-[50vh] overflow-y-scroll">
+          <div className=" bg-pewterblue rounded-lg p-8">{meaning}</div>
         </DialogContent>
       )}
     </Dialog>

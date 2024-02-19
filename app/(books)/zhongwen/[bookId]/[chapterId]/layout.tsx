@@ -20,8 +20,8 @@ const tabs = [
     path: 'video',
   },
   {
-    name: '视频',
-    path: 'video',
+    name: '练习',
+    path: 'quiz',
   },
 ]
 const PracticesLayout = ({

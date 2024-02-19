@@ -18,8 +18,8 @@ const English = ({ english }: EnglishProps) => {
         </div>
       </DialogTrigger>
       {english && (
-        <DialogContent className="container ">
-          <div className="flex flex-col items-center justify-center p-2 bg-skyblue text-center rounded-lg m-6">
+        <DialogContent className="bg-skyblue ">
+          <div className="flex flex-col items-center justify-center p-2  text-center rounded-lg m-6">
             <p className=" text-gray-600 text-lg">{english}</p>
           </div>
         </DialogContent>
