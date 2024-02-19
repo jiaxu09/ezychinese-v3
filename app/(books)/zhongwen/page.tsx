@@ -20,9 +20,6 @@ const ChineseBooksPage = async () => {
     <HydrationBoundary state={dehydrate(queryClient)}>
       <main>
         <div className=" container mx-auto">
-          <h1 className="text-xl md:text-4xl text-center py-4 md:py-8">
-            选择课本
-          </h1>
           <Books />
         </div>
       </main>

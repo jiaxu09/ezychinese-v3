@@ -15,6 +15,7 @@ import {
 import { IIdiom, IRadical, TypedSupabaseClient } from '../types'
 import { useToast } from '@/components/ui/use-toast'
 import {
+  getCSOLBooks,
   getChaptersByBookId,
   getChineseBooks,
   getLiteracyByChapter,
@@ -168,6 +169,7 @@ export const useGetChineseBooks = () => {
     queryFn: () => getChineseBooks(),
   }
 }
+
 export const useGetChaptersByBookId = (slug: string) => {
   return {
     queryKey: [QUERY_KEYS.GETCHAPTERSBYBOOKID],
@@ -193,5 +195,15 @@ export const useGetVideosByChapter = (slug: string) => {
   return {
     queryKey: [QUERY_KEYS.GETVideoBYCHAPTER, slug],
     queryFn: () => getVideoByChapter(slug),
+  }
+}
+
+// END OF Chinese Books
+
+//CSOL
+export const useGetCSOLBooks = () => {
+  return {
+    queryKey: [QUERY_KEYS.GETCSOLBOOKS],
+    queryFn: () => getCSOLBooks(),
   }
 }

@@ -4,22 +4,23 @@ import React from 'react'
 
 const tabs = [
   {
-    name: '生字',
-    path: 'literacy',
+    name: 'Words',
+    path: 'words',
   },
   {
-    name: '词语',
-    path: 'word',
+    name: 'Read',
+    path: 'read',
   },
   {
-    name: '记忆',
-    path: 'match',
+    name: 'Sing',
+    path: 'sing',
   },
   {
-    name: '视频',
-    path: 'video',
+    name: 'Write',
+    path: 'write',
   },
 ]
+
 const PracticesLayout = ({
   children,
   params,
@@ -30,12 +31,12 @@ const PracticesLayout = ({
   return (
     <main className="container py-4">
       <Breadcrumb
-        type="zhongwen"
+        type="csol"
         bookId={params.bookId}
         chapterId={params.chapterId}
       />
       <Tabs
-        type="zhongwen"
+        type="csol"
         tabs={tabs}
         bookId={params.bookId}
         chapterId={params.chapterId}

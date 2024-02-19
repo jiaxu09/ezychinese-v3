@@ -4,30 +4,17 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
 
-const tabs = [
-  {
-    name: '生字',
-    path: 'literacy',
-  },
-  {
-    name: '词语',
-    path: 'word',
-  },
-  {
-    name: '记忆',
-    path: 'match',
-  },
-  {
-    name: '视频',
-    path: 'video',
-  },
-]
-
 interface TabsProps {
+  type: 'csol' | 'zhongwen'
   bookId: string
   chapterId: string
+  tabs: {
+    name: string
+    path: string
+  }[]
 }
-const Tabs = ({ bookId, chapterId }: TabsProps) => {
+
+const Tabs = ({ bookId, chapterId, tabs, type }: TabsProps) => {
   const pathname = usePathname()
 
   return (
@@ -36,7 +23,7 @@ const Tabs = ({ bookId, chapterId }: TabsProps) => {
         {tabs.map((tab) => (
           <Link
             key={tab.path}
-            href={`/zhongwen/${bookId}/${chapterId}/${tab.path}`}
+            href={`/${type}/${bookId}/${chapterId}/${tab.path}`}
           >
             <Button
               className=" w-16 md:w-24"

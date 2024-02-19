@@ -1,16 +1,14 @@
 'use client'
-
 import WordsCard from '@/app/(books)/_components/words-card'
 import { useGetWordsByChapter } from '@/lib/react-query/queries'
-
 import { useQuery } from '@tanstack/react-query'
-
 import React from 'react'
 
 interface WordsProps {
   bookId: string
   chapterId: string
 }
+
 const Words = ({ bookId, chapterId }: WordsProps) => {
   const { data, isFetched } = useQuery(
     useGetWordsByChapter(`${bookId}-${chapterId}`)

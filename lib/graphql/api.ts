@@ -153,3 +153,29 @@ export const getVideoByChapter = async (slug: string) => {
     throw Error
   }
 }
+
+export const getCSOLBooks = async () => {
+  try {
+    const data = await fetch(graphqlAPI, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `query GetBooks {
+              books(where:{isChineseBook:false},orderBy: number_ASC) {
+                id
+                name
+                slug
+                imgUrl
+              }
+            }`,
+      }),
+    }).then((res) => res.json())
+
+    const books = data.data.books as IBook[]
+    return books
+  } catch (error) {
+    throw Error
+  }
+}

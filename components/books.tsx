@@ -37,9 +37,11 @@ const Books = () => {
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
-          <Button variant="crayola" aria-label="more">
-            CSOL
-          </Button>
+          <Link aria-label="ezyChinese zhongwen" href="/csol">
+            <Button variant="crayola" aria-label="more">
+              CSOL
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

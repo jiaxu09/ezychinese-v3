@@ -3,10 +3,11 @@ import Link from 'next/link'
 import React from 'react'
 
 interface BreadcrumbProps {
+  type: 'csol' | 'zhongwen'
   bookId: string
   chapterId: string
 }
-const Breadcrumb = ({ bookId, chapterId }: BreadcrumbProps) => {
+const Breadcrumb = ({ bookId, chapterId, type }: BreadcrumbProps) => {
   return (
     <div className=" flex items-center justify-start">
       <nav className="flex" aria-label="Breadcrumb">
@@ -24,7 +25,7 @@ const Breadcrumb = ({ bookId, chapterId }: BreadcrumbProps) => {
             <div className="flex items-center">
               <ChevronRight className="w-4 h-4 text-gray-500" />
               <Link
-                href={`/zhongwen/${bookId}`}
+                href={`/${type}/${bookId}`}
                 className="inline-flex items-center ml- text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white"
               >
                 <Book className="w-4 h-4 md:w-5 md:h-5 mr-2 " />
