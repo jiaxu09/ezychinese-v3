@@ -8,16 +8,16 @@ const tabs = [
     path: 'words',
   },
   {
-    name: 'Read',
-    path: 'read',
+    name: 'Reading',
+    path: 'reading',
   },
   {
-    name: 'Sing',
-    path: 'sing',
+    name: 'Singing',
+    path: 'singing',
   },
   {
-    name: 'Write',
-    path: 'write',
+    name: 'Writing',
+    path: 'writing',
   },
 ]
 

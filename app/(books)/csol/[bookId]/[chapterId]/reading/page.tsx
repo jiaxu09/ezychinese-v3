@@ -1,14 +1,11 @@
 import { type Metadata } from "next"
-import { useGetWordsByChapter } from '@/lib/react-query/queries'
-import {
-  HydrationBoundary,
-  QueryClient,
-  dehydrate,
-} from '@tanstack/react-query'
+import { useGetReadingByChapter } from '@/lib/react-query/queries'
+import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query'
 import React, { Suspense } from 'react'
-import Words from '../_components/words'
+import Reading from "../_components/reading"
 
-interface CSOLWordsProps {
+
+interface CSOLReadingProps {
   params: {
     bookId: string
     chapterId: string
@@ -17,7 +14,7 @@ interface CSOLWordsProps {
 
 export async function generateMetadata({
   params,
-}: CSOLWordsProps): Promise<Metadata> {
+}: CSOLReadingProps): Promise<Metadata> {
   const id = params.bookId
 
   if (!id) {
@@ -26,25 +23,25 @@ export async function generateMetadata({
 
   return {
     metadataBase: new URL("https://ezychinese-v3.vercel.app/"),
-    title: `CSOL | 第${id}册 - Sing`,
+    title: `CSOL | 第${id}册 - Reading`,
     description: '',
   }
 }
 
-const CSOLWordPage = async ({ params }: CSOLWordsProps) => {
+const CSOLReadingPage =async ({ params }: CSOLReadingProps) => {
   const queryClient = new QueryClient()
   await queryClient.prefetchQuery(
-    useGetWordsByChapter(`${params.bookId}-${params.chapterId}`)
+    useGetReadingByChapter(`${params.bookId}-${params.chapterId}`)
   )
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <main>
         <Suspense fallback={null}>
-          <Words bookId={params.bookId} chapterId={params.chapterId} />
+          <Reading bookId={params.bookId} chapterId={params.chapterId} />
         </Suspense>
       </main>
     </HydrationBoundary>
   )
 }
 
-export default CSOLWordPage
+export default CSOLReadingPage

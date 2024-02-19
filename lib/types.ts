@@ -70,3 +70,23 @@ export interface IWords {
     url: string
   }[]
 }
+
+export interface ISing {
+  singMp3: {
+    url: string
+  }
+  singImg: {
+    url: string
+    width: number
+    height: number
+  }
+}
+
+export interface IReading {
+  reading: string[]
+  readingPinyin: string[]
+  readingEng: string[]
+  readingMp3: {
+    url: string
+  }
+}

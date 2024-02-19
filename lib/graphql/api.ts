@@ -1,4 +1,4 @@
-import { IBook, IChapter, ILiteracies, IWords } from '../types'
+import { IBook, IChapter, ILiteracies, IReading, ISing, IWords } from '../types'
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT!
 
@@ -175,6 +175,71 @@ export const getCSOLBooks = async () => {
 
     const books = data.data.books as IBook[]
     return books
+  } catch (error) {
+    throw Error
+  }
+}
+
+export const getSingByChapter = async (slug: string) => {
+  try {
+    if (!slug) {
+      return
+    }
+    const data = await fetch(graphqlAPI, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `query GetSingByChapter($slug: String!) {
+          literacies(where: { chapter: { slug: $slug } }) {
+            singMp3 {
+              url
+            }
+            singImg {
+              url
+              width
+              height
+            }
+          }
+        }`,
+        variables: { slug },
+      }),
+    }).then((res) => res.json())
+
+    const sing = data.data.literacies[0] as ISing
+    return sing
+  } catch (error) {
+    throw Error
+  }
+}
+
+export const getReadingByChapter = async (slug: string) => {
+  try {
+    if (!slug) {
+      return
+    }
+    const data = await fetch(graphqlAPI, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `query GetReadingByChapter($slug: String!) {
+          literacies(where: { chapter: { slug: $slug } }) {
+            reading
+            readingPinyin
+            readingEng
+            readingMp3 {
+              url
+            }
+          }
+        }`,
+        variables: { slug },
+      }),
+    }).then((res) => res.json())
+    const reading = data.data.literacies[0] as IReading
+    return reading
   } catch (error) {
     throw Error
   }

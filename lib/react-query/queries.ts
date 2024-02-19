@@ -14,6 +14,7 @@ import {
 } from '../supabase/api'
 import { IIdiom, IRadical, TypedSupabaseClient } from '../types'
 import { useToast } from '@/components/ui/use-toast'
+import { getReadingByChapter, getSingByChapter } from '../graphql/api'
 import {
   getCSOLBooks,
   getChaptersByBookId,
@@ -205,5 +206,19 @@ export const useGetCSOLBooks = () => {
   return {
     queryKey: [QUERY_KEYS.GETCSOLBOOKS],
     queryFn: () => getCSOLBooks(),
+  }
+}
+
+export const useGetSingByChapter = (slug: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETSINGBYCHAPTER, slug],
+    queryFn: () => getSingByChapter(slug),
+  }
+}
+
+export const useGetReadingByChapter = (slug: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETREADINGBYCHAPTE, slug],
+    queryFn: () => getReadingByChapter(slug),
   }
 }

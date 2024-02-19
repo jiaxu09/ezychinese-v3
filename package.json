@@ -38,6 +38,7 @@
     "pinyin-pro": "^3.19.5",
     "prettier-plugin-tailwindcss": "^0.5.11",
     "react": "^18",
+    "react-audio-player": "^0.17.0",
     "react-dom": "^18",
     "react-dropzone": "^14.2.3",
     "react-hook-form": "^7.50.1",

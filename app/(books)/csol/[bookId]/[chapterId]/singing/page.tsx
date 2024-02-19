@@ -1,14 +1,12 @@
 import { type Metadata } from "next"
-import { useGetWordsByChapter } from '@/lib/react-query/queries'
-import {
-  HydrationBoundary,
-  QueryClient,
-  dehydrate,
-} from '@tanstack/react-query'
-import React, { Suspense } from 'react'
-import Words from '../_components/words'
 
-interface CSOLWordsProps {
+import { useGetSingByChapter } from '@/lib/react-query/queries'
+import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query'
+import React, { Suspense } from 'react'
+import Singing from "../_components/singing"
+
+
+interface CSOLSingProps {
   params: {
     bookId: string
     chapterId: string
@@ -17,7 +15,7 @@ interface CSOLWordsProps {
 
 export async function generateMetadata({
   params,
-}: CSOLWordsProps): Promise<Metadata> {
+}: CSOLSingProps): Promise<Metadata> {
   const id = params.bookId
 
   if (!id) {
@@ -26,25 +24,25 @@ export async function generateMetadata({
 
   return {
     metadataBase: new URL("https://ezychinese-v3.vercel.app/"),
-    title: `CSOL | 第${id}册 - Sing`,
+    title: `CSOL | 第${id}册 - Singing`,
     description: '',
   }
 }
 
-const CSOLWordPage = async ({ params }: CSOLWordsProps) => {
+const CSOLSingPage =async ({ params }: CSOLSingProps) => {
   const queryClient = new QueryClient()
   await queryClient.prefetchQuery(
-    useGetWordsByChapter(`${params.bookId}-${params.chapterId}`)
+    useGetSingByChapter(`${params.bookId}-${params.chapterId}`)
   )
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <main>
         <Suspense fallback={null}>
-          <Words bookId={params.bookId} chapterId={params.chapterId} />
+          <Singing bookId={params.bookId} chapterId={params.chapterId} />
         </Suspense>
       </main>
     </HydrationBoundary>
   )
 }
 
-export default CSOLWordPage
+export default CSOLSingPage
