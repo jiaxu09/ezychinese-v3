@@ -1,22 +1,20 @@
 'use client'
+import LiteracyPractice from '@/app/(books)/_components/literacy-practice'
 import { useGetLiteracyByChapter } from '@/lib/react-query/queries'
 import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 
-import LiteracyPractice from '@/app/(books)/_components/literacy-practice'
-
-interface LiteracyProps {
+interface WritingProps {
   bookId: string
   chapterId: string
 }
 
-const Literacy = ({ bookId, chapterId }: LiteracyProps) => {
-
+const Writing = ({ bookId, chapterId }: WritingProps) => {
   const { data, isFetched } = useQuery(
     useGetLiteracyByChapter(`${bookId}-${chapterId}`)
   )
 
-  return <LiteracyPractice data={data}/>
+  return <LiteracyPractice data={data} />
 }
 
-export default Literacy
+export default Writing
