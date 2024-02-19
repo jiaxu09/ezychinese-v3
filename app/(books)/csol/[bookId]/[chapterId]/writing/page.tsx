@@ -27,7 +27,7 @@ export async function generateMetadata({
 
   return {
     metadataBase: new URL("https://ezychinese-v3.vercel.app/"),
-    title: `CSOL | 第${id}册 - Writing`,
+    title: `CSOL | ${id} - Writing`,
     description: '',
   }
 }
