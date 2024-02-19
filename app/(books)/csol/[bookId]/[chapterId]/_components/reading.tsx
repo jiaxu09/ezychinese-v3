@@ -10,7 +10,6 @@ interface ReadingProps {
 }
 
 const Reading = ({ bookId, chapterId }: ReadingProps) => {
-
   const { data, isFetched } = useQuery(
     useGetReadingByChapter(`${bookId}-${chapterId}`)
   )
@@ -20,18 +19,20 @@ const Reading = ({ bookId, chapterId }: ReadingProps) => {
       <div className="flex flex-col">
         {data?.reading.map((chineseLine, index) => (
           <div className=" text-center" key={index}>
-            <div className="flex items-center text-2xl">
+            <div className="flex items-center text-lg md:text-2xl">
               {chineseLine
                 .replace(/ /g, '')
+                .replace(/\s/g, '')
                 .replace('，', '')
                 .replace('。', '')
                 .replace('，', '')
                 .replace(',', '')
                 .replace(';', '')
+                .trim()
                 .split('')
                 .map((c, index1) => (
                   <ruby key={index1}>
-                    <span className=" text-3xl text-gray-600 px-2 inline-block">
+                    <span className="text-lg md:text-3xl text-gray-600 px-2 inline-block">
                       {c}
                     </span>
                     <rt className=" text-lg ">
@@ -40,13 +41,14 @@ const Reading = ({ bookId, chapterId }: ReadingProps) => {
                         [index1]?.replace(/ /g, '')
                         .replace('，', '')
                         .replace(',', '')
-                        .replace('。', '')}
+                        .replace('。', '')
+                        .replace(/\s/g, '')}
                     </rt>
                   </ruby>
                 ))}
             </div>
             {data?.readingEng && data?.readingEng.length > 0 && (
-              <div className="text-xl text-gray-500 italic p-2">
+              <div className="text-sm md:text-xl text-gray-500 italic p-2">
                 {data?.readingEng[index].trim()}
               </div>
             )}

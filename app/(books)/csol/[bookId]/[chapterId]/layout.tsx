@@ -7,10 +7,10 @@ const tabs = [
     name: 'Words',
     path: 'words',
   },
-  {
-    name: 'Reading',
-    path: 'reading',
-  },
+  // {
+  //   name: 'Reading',
+  //   path: 'reading',
+  // },
   {
     name: 'Singing',
     path: 'singing',
@@ -41,7 +41,7 @@ const PracticesLayout = ({
         bookId={params.bookId}
         chapterId={params.chapterId}
       />
-      <main className=" max-w-3xl mx-auto">{children}</main>
+      <main className="max-w-3xl mx-auto">{children}</main>
     </main>
   )
 }

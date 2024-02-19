@@ -19,6 +19,10 @@ const tabs = [
     name: '视频',
     path: 'video',
   },
+  {
+    name: '视频',
+    path: 'video',
+  },
 ]
 const PracticesLayout = ({
   children,
