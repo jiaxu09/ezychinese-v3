@@ -41,7 +41,7 @@ const BookDetailsPage = async ({ params }: BookDetailsProps) => {
       <main>
         <div className=" container mx-auto">
           <h1 className="text-xl md:text-4xl text-center py-4 md:py-8">
-            选择练习册
+            Select a Chapter 
           </h1>
           <Chapters slug={params.bookId} />
         </div>

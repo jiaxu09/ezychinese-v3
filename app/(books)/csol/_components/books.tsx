@@ -12,7 +12,14 @@ const Books = () => {
     notFound()
   }
 
-  return <BooksList books={data} type="csol" />
+  return (
+    <>
+      <h1 className="text-xl md:text-4xl text-center py-4 md:py-8">
+        Select a Book
+      </h1>
+      <BooksList books={data} type="csol" />
+    </>
+  )
 }
 
 export default Books
