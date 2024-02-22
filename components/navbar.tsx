@@ -47,10 +47,22 @@ const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between py-4 md:py-6">
         <Link href="/" className="flex items-center justify-center space-x-2">
           <div className="w-7 h-7 md:w-10 md:h-10 relative">
-            <Image src={Logo} priority sizes="33vw" alt="ezyChinese Logo" />
+            <Image
+              src={Logo}
+              quality={75}
+              priority
+              sizes="33vw"
+              alt="ezyChinese Logo"
+            />
           </div>
           <div className="w-24 md:w-40 relative">
-            <Image src={EzyChinese} alt="ezyChinese" priority sizes="33vw" />
+            <Image
+              src={EzyChinese}
+              quality={75}
+              alt="ezyChinese"
+              priority
+              sizes="33vw"
+            />
           </div>
         </Link>
         <div>

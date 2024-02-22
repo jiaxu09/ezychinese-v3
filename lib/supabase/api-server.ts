@@ -6,6 +6,7 @@ import { supabaseServer } from './server'
 
 export const addChineseRadical = async (item: IRadical) => {
   const supabase = supabaseServer()
+  const { data } = await supabase.auth.getSession()
   const { error } = await supabase.from('radicals').insert(item)
   if (error) {
     throw new Error('Something went wrong!')

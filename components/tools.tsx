@@ -55,6 +55,7 @@ const Tools = () => {
             src={StairH}
             width={856}
             height={168}
+            quality={75}
             priority
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             alt="ezyChinese tools"
@@ -65,6 +66,7 @@ const Tools = () => {
             src={Stair}
             width={120}
             height={383}
+            quality={75}
             priority
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             alt="ezyChinese tools"
