@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 
 import LiteracyPractice from '@/app/(books)/_components/literacy-practice'
+import { notFound } from 'next/navigation'
 
 interface LiteracyProps {
   bookId: string
@@ -11,12 +12,14 @@ interface LiteracyProps {
 }
 
 const Literacy = ({ bookId, chapterId }: LiteracyProps) => {
-
-  const { data, isFetched } = useQuery(
+  const { data, isFetched, error } = useQuery(
     useGetLiteracyByChapter(`${bookId}-${chapterId}`)
   )
 
-  return <LiteracyPractice data={data}/>
+  if (!data) {
+    notFound()
+  }
+  return <LiteracyPractice data={data} />
 }
 
 export default Literacy

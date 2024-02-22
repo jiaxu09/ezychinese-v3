@@ -1,5 +1,3 @@
-import BlurBg from '@/components/blur-bg'
-import supabaseUrl, { cn, rgbDataURL } from '@/lib/utils'
 import Image from 'next/image'
 import React from 'react'
 

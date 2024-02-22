@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react'
 import { convert } from 'pinyin-pro'
 import WellDone from '@/components/well-done'
 import placeholderImg from '/public/images/logo_lg.webp'
+import { notFound } from 'next/navigation'
 
 interface MatchProps {
   bookId: string
@@ -32,6 +33,9 @@ const Match = ({ bookId, chapterId }: MatchProps) => {
   const { data, isFetched } = useQuery(
     useGetLiteracyByChapter(`${bookId}-${chapterId}`)
   )
+  if (!data) {
+    notFound()
+  }
 
   const random_numbers = Array.from(Array(data?.answers.length).keys())
     .map((value) => ({ value, sort: Math.random() }))

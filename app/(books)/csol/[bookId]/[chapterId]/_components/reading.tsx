@@ -1,6 +1,7 @@
 'use client'
 import { useGetReadingByChapter } from '@/lib/react-query/queries'
 import { useQuery } from '@tanstack/react-query'
+import { notFound } from 'next/navigation'
 import React from 'react'
 import ReactAudioPlayer from 'react-audio-player'
 
@@ -13,6 +14,10 @@ const Reading = ({ bookId, chapterId }: ReadingProps) => {
   const { data, isFetched } = useQuery(
     useGetReadingByChapter(`${bookId}-${chapterId}`)
   )
+
+  if (!data) {
+    notFound()
+  }
 
   return (
     <div className="flex flex-col items-center justify-center pt-4">

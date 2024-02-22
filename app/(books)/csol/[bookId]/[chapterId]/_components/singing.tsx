@@ -4,6 +4,7 @@ import { useGetSingByChapter } from '@/lib/react-query/queries'
 import { rgbDataURL } from '@/lib/utils'
 import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
+import { notFound } from 'next/navigation'
 import React from 'react'
 import ReactAudioPlayer from 'react-audio-player'
 
@@ -16,6 +17,10 @@ const Singing = ({ bookId, chapterId }: SingProps) => {
   const { data: sing, isFetched } = useQuery(
     useGetSingByChapter(`${bookId}-${chapterId}`)
   )
+
+  if (!sing) {
+    notFound()
+  }
 
   return (
     <div className="flex w-full md:w-4/5 mx-auto flex-col items-center justify-center py-4 space-y-4">

@@ -1,6 +1,7 @@
 'use client'
 import { useGetVideosByChapter } from '@/lib/react-query/queries'
 import { useQuery } from '@tanstack/react-query'
+import { notFound } from 'next/navigation'
 import React from 'react'
 
 interface VideoProps {
@@ -12,6 +13,10 @@ const Video = ({ bookId, chapterId }: VideoProps) => {
   const { data: videos, isFetched } = useQuery(
     useGetVideosByChapter(`${bookId}-${chapterId}`)
   )
+
+  if (!videos) {
+    notFound()
+  }
 
   return (
     <div className="flex flex-col items-center justify-center space-y-4">

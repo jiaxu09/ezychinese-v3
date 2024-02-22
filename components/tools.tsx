@@ -2,7 +2,6 @@ import Image from 'next/image'
 import React from 'react'
 import { Pen, BookOpenText, NotebookPen } from 'lucide-react'
 import Link from 'next/link'
-import { Card, CardContent, CardDescription } from './ui/card'
 
 const Tools = () => {
   return (
