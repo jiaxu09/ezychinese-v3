@@ -1,3 +1,4 @@
+'use server'
 import { IBook, IChapter, ILiteracies, IReading, ISing, IWords } from '../types'
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT!

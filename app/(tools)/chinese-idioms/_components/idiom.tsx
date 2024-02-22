@@ -1,7 +1,7 @@
 'use client'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
-import React, { useState } from 'react'
+import React from 'react'
 import BgImg from '../../_components/bg-img'
 import WaterMark from '../../_components/water-mark'
 import { useChineseIdiomEdit } from '@/lib/store/idiomEdit'
@@ -55,7 +55,7 @@ const Idiom = ({
           </>
         </DialogContent>
       ) : (
-        <DialogContent className="sm:max-w-md md:max-w-5xl h-[40vh] md:h-[85vh]">
+        <DialogContent className="sm:max-w-md md:max-w-5xl ">
           <div className=" relative flex flex-col items-center ">
             <div className="w-full h-full  rounded-lg grid grid-rows-2">
               <div className="w-full h-full bg-orange">

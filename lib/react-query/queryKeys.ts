@@ -16,5 +16,6 @@ export enum QUERY_KEYS {
   GETVideoBYCHAPTER = 'getvideobychapter',
   GETCSOLBOOKS = 'getcsolbooks',
   GETSINGBYCHAPTER = 'getsingbychapter',
-  GETREADINGBYCHAPTE='getreadingbychapter'
+  GETREADINGBYCHAPTE = 'getreadingbychapter',
+  GETAUTH = 'getauth',
 }

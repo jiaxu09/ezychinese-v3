@@ -1,18 +1,16 @@
 'use client'
 import PaginationButton from '@/components/pagination-button'
 import { useGetChineseIdioms } from '@/lib/react-query/queries'
-import { supabaseBrowser } from '@/lib/supabase/browser'
 import { useQuery } from '@tanstack/react-query'
 import { notFound } from 'next/navigation'
 import React, { useState } from 'react'
 import Idiom from './idiom'
 
 const Idioms = () => {
-  const supabase = supabaseBrowser()
   const [page, setPage] = useState<number>(0)
 
   const { data, isFetched, isPlaceholderData } = useQuery(
-    useGetChineseIdioms(supabase, page)
+    useGetChineseIdioms(page)
   )
 
   if (isFetched && !data) {

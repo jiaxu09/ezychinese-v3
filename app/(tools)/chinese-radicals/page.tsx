@@ -7,9 +7,7 @@ import {
   QueryClient,
 } from '@tanstack/react-query'
 import { useGetChineseRadicals } from '@/lib/react-query/queries'
-import { supabaseServer } from '@/lib/supabase/server'
 import EditSwitch from './_components/edit-switch'
-import Image from 'next/image'
 
 export const metadata = {
   title: 'Chinese Radicals',
@@ -19,9 +17,8 @@ export const metadata = {
 
 const ChineseRadicalsPage = async () => {
   const queryClient = new QueryClient()
-  const supabase = supabaseServer()
 
-  await queryClient.prefetchQuery(useGetChineseRadicals(supabase, 0))
+  await queryClient.prefetchQuery(useGetChineseRadicals(0))
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

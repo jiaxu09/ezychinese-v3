@@ -12,7 +12,7 @@ const Radicals = () => {
   const [page, setPage] = useState<number>(0)
 
   const { data, isFetched, isPlaceholderData } = useQuery(
-    useGetChineseRadicals(supabase, page)
+    useGetChineseRadicals(page)
   )
 
   if (isFetched && !data) {

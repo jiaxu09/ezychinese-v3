@@ -6,10 +6,8 @@ import {
   QueryClient,
   dehydrate,
 } from '@tanstack/react-query'
-import { supabaseServer } from '@/lib/supabase/server'
 import { useGetChineseIdioms } from '@/lib/react-query/queries'
 import Idioms from './_components/idioms'
-import Image from 'next/image'
 
 export const metadata = {
   title: 'Chinese Idioms',
@@ -19,9 +17,8 @@ export const metadata = {
 
 const ChineseIdiomsPage = async () => {
   const queryClient = new QueryClient()
-  const supabase = supabaseServer()
 
-  await queryClient.prefetchQuery(useGetChineseIdioms(supabase, 0))
+  await queryClient.prefetchQuery(useGetChineseIdioms(0))
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <div className="container mx-auto flex flex-col items-center py-0 md:py-10">

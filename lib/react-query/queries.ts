@@ -4,14 +4,6 @@ import {
   useQueryClient,
 } from '@tanstack/react-query'
 import { QUERY_KEYS } from './queryKeys'
-import {
-  addChineseIdiom,
-  addChineseRadical,
-  getChineseIdioms,
-  getChineseRadicals,
-  updateChineseIdiom,
-  updateChineseRadical,
-} from '../supabase/api'
 import { IIdiom, IRadical, TypedSupabaseClient } from '../types'
 import { useToast } from '@/components/ui/use-toast'
 import { getReadingByChapter, getSingByChapter } from '../graphql/api'
@@ -29,6 +21,15 @@ import {
   getHanziSound,
   getHanziMeaning,
 } from '../api'
+import {
+  addChineseIdiom,
+  addChineseRadical,
+  getAuth,
+  getChineseIdioms,
+  getChineseRadicals,
+  updateChineseIdiom,
+  updateChineseRadical,
+} from '../supabase/api-server'
 
 //Chinese Radicals
 export const useAddChineseRadical = () => {
@@ -65,13 +66,10 @@ export const useUpdateChineseRadical = (id: string | null) => {
   })
 }
 
-export const useGetChineseRadicals = (
-  client: TypedSupabaseClient,
-  page: number
-) => {
+export const useGetChineseRadicals = (page: number) => {
   return {
     queryKey: [QUERY_KEYS.GETCHINESERADICALS, page],
-    queryFn: () => getChineseRadicals(client, page),
+    queryFn: () => getChineseRadicals(page),
     placeholderData: keepPreviousData,
   }
 }
@@ -113,13 +111,10 @@ export const useUpdateChineseIdiom = (id: string | null) => {
   })
 }
 
-export const useGetChineseIdioms = (
-  client: TypedSupabaseClient,
-  page: number
-) => {
+export const useGetChineseIdioms = (page: number) => {
   return {
     queryKey: [QUERY_KEYS.GETCHINESEIDIOMS, page],
-    queryFn: () => getChineseIdioms(client, page),
+    queryFn: () => getChineseIdioms(page),
     placeholderData: keepPreviousData,
   }
 }
@@ -220,5 +215,13 @@ export const useGetReadingByChapter = (slug: string) => {
   return {
     queryKey: [QUERY_KEYS.GETREADINGBYCHAPTE, slug],
     queryFn: () => getReadingByChapter(slug),
+  }
+}
+
+//Auth supabase
+export const useGetAuth = () => {
+  return {
+    queryKey: [QUERY_KEYS.GETAUTH],
+    queryFn: () => getAuth(),
   }
 }

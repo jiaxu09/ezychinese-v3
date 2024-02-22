@@ -2,14 +2,11 @@
 import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
-import { Card, CardContent } from '@/components/ui/card'
-import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import { useChineseRadicalEdit } from '@/lib/store/radicalEdit'
 import RadicalForm from './radical-form'
 import BgImg from '../../_components/bg-img'
 import WaterMark from '../../_components/water-mark'
-import { Separator } from '@/components/ui/separator'
 import supabaseUrl from '../../../../lib/utils'
 
 interface RadicalProps {
