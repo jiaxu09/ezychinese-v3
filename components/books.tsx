@@ -14,8 +14,6 @@ const Books = () => {
             <Image
               src={Zhongwen}
               alt="ezyChinese Zhongwen"
-              width={415}
-              height={215}
               priority
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
@@ -31,8 +29,6 @@ const Books = () => {
             <Image
               src={CSOL}
               alt="ezyChinese CSOL"
-              width={333}
-              height={215}
               priority
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />

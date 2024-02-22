@@ -2,6 +2,9 @@ import Image from 'next/image'
 import React from 'react'
 import { Pen, BookOpenText, NotebookPen } from 'lucide-react'
 import Link from 'next/link'
+import Circle from '/public/images/circle.webp'
+import StairH from '/public/images/stair-h.webp'
+import Stair from '/public/images/stair.webp'
 
 const Tools = () => {
   return (
@@ -32,15 +35,9 @@ const Tools = () => {
                 Chinese Idioms
               </h1>
             </Link>
-            <div className=" absolute translate-x-24 translate-y-10 md:translate-x-0 md:translate-y-0 md:-bottom-2 md:left-10 ">
-              <div className="w-1/3 md:w-1/2 relative">
-                <Image
-                  src="/images/circle.svg"
-                  width={100}
-                  height={100}
-                  alt="circle"
-                  priority
-                />
+            <div className=" absolute translate-x-16 translate-y-10 md:translate-x-0 md:translate-y-0 md:-bottom-2 md:left-10 ">
+              <div className="w-8 h-8 md:w-12 md:h-12 relative">
+                <Image src={Circle} alt="circle" priority sizes="33vw" />
               </div>
             </div>
           </div>
@@ -55,8 +52,7 @@ const Tools = () => {
         </div>
         <div className="hidden md:flex">
           <Image
-            className=""
-            src="/images/stair-h.svg"
+            src={StairH}
             width={856}
             height={168}
             priority
@@ -66,8 +62,7 @@ const Tools = () => {
         </div>
         <div className=" p-2 md:hidden">
           <Image
-            className=""
-            src="/images/stair.svg"
+            src={Stair}
             width={120}
             height={383}
             priority
