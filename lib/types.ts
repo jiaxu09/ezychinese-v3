@@ -90,3 +90,9 @@ export interface IReading {
     url: string
   }
 }
+
+export type CorrectOrder = {
+  question: string[]
+  answer: string
+  source: string
+}

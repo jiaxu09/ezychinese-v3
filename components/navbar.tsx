@@ -17,8 +17,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { User } from 'lucide-react'
 import Link from 'next/link'
 
-import Logo from '/public/images/logo.webp'
-import EzyChinese from '/public/images/ezyChinese.webp'
+import supabaseUrl from '@/lib/utils'
 
 const Navbar = () => {
   const pathname = usePathname()
@@ -48,8 +47,10 @@ const Navbar = () => {
         <Link href="/" className="flex items-center justify-center space-x-2">
           <div className="w-7 h-7 md:w-10 md:h-10 relative">
             <Image
-              src={Logo}
+              src={supabaseUrl('images/logo.webp')}
               quality={75}
+              width={98}
+              height={89}
               priority
               sizes="33vw"
               alt="ezyChinese Logo"
@@ -57,8 +58,10 @@ const Navbar = () => {
           </div>
           <div className="w-24 md:w-40 relative">
             <Image
-              src={EzyChinese}
+              src={supabaseUrl('images/ezyChinese.webp')}
               quality={75}
+              width={171}
+              height={33}
               alt="ezyChinese"
               priority
               sizes="33vw"

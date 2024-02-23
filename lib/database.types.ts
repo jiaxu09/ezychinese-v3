@@ -10,27 +10,27 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      dictionary: {
+      correct_order: {
         Row: {
-          char: string
+          answer: string
+          created_at: string
           id: string
-          pinyin: string[] | null
-          radicals: string | null
-          strokes: number
+          question: string[]
+          source: string
         }
         Insert: {
-          char: string
+          answer: string
+          created_at?: string
           id?: string
-          pinyin?: string[] | null
-          radicals?: string | null
-          strokes: number
+          question: string[]
+          source: string
         }
         Update: {
-          char?: string
+          answer?: string
+          created_at?: string
           id?: string
-          pinyin?: string[] | null
-          radicals?: string | null
-          strokes?: number
+          question?: string[]
+          source?: string
         }
         Relationships: []
       }
@@ -58,6 +58,57 @@ export type Database = {
           publisher?: string
           title?: string
           userId?: string
+        }
+        Relationships: []
+      }
+      find_difference: {
+        Row: {
+          answer: string
+          created_at: string
+          id: string
+          question: string[]
+          source: string
+        }
+        Insert: {
+          answer: string
+          created_at?: string
+          id?: string
+          question: string[]
+          source: string
+        }
+        Update: {
+          answer?: string
+          created_at?: string
+          id?: string
+          question?: string[]
+          source?: string
+        }
+        Relationships: []
+      }
+      form_phrases: {
+        Row: {
+          answers: string[]
+          choices_a: string[]
+          choices_b: string[]
+          created_at: string
+          id: string
+          source: string
+        }
+        Insert: {
+          answers: string[]
+          choices_a: string[]
+          choices_b: string[]
+          created_at?: string
+          id?: string
+          source: string
+        }
+        Update: {
+          answers?: string[]
+          choices_a?: string[]
+          choices_b?: string[]
+          created_at?: string
+          id?: string
+          source?: string
         }
         Relationships: []
       }
@@ -171,6 +222,36 @@ export type Database = {
           radical_explain_pinyin?: string[] | null
           radical_meaning?: string | null
           radical_pinyin?: string | null
+        }
+        Relationships: []
+      }
+      right_explanation: {
+        Row: {
+          answer: string
+          choices: string[]
+          created_at: string
+          id: string
+          question: string
+          sentence: string
+          source: string
+        }
+        Insert: {
+          answer: string
+          choices: string[]
+          created_at?: string
+          id?: string
+          question: string
+          sentence: string
+          source: string
+        }
+        Update: {
+          answer?: string
+          choices?: string[]
+          created_at?: string
+          id?: string
+          question?: string
+          sentence?: string
+          source?: string
         }
         Relationships: []
       }

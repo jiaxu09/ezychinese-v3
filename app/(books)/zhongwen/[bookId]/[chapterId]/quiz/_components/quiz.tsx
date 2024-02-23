@@ -11,12 +11,6 @@ import QuizFormPhrases from './quiz-form-phrases'
 import QuizFindDifference from './quiz-find-difference'
 
 const quiz = {
-  correct_order: [
-    {
-      question: ['看见', '我', '云云', '唱歌'],
-      answer: '我看见云云唱歌',
-    },
-  ],
   form_phrases: [
     {
       choices_a: ['街', '真', '上', '看', '方', '红', '停'],

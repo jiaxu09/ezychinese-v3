@@ -24,7 +24,7 @@ import {
 
 import supabaseUrl from '@/lib/utils'
 import { IRadical } from '@/lib/types'
-import SubmitButton from '../../_components/submit-button'
+import SubmitButton from '../../../../components/submit-button'
 
 type RadicalFormProps = {
   radical?: any

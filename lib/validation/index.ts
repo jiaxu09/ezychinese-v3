@@ -25,3 +25,10 @@ export const IdiomValidation = z.object({
     .string()
     .min(1, { message: 'Example meaning is required.' }),
 })
+
+// Quiz
+export const CorrectOrderValidation = z.object({
+  question: z.string().min(1, { message: 'Question is required.' }),
+  answer: z.string().min(1, { message: 'Answer is required.' }),
+  source: z.string().min(1, { message: 'Source is required.' }),
+})

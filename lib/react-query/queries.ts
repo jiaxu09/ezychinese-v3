@@ -4,7 +4,7 @@ import {
   useQueryClient,
 } from '@tanstack/react-query'
 import { QUERY_KEYS } from './queryKeys'
-import { IIdiom, IRadical, TypedSupabaseClient } from '../types'
+import { CorrectOrder, IIdiom, IRadical, TypedSupabaseClient } from '../types'
 import { useToast } from '@/components/ui/use-toast'
 import { getReadingByChapter, getSingByChapter } from '../graphql/api'
 import {
@@ -24,9 +24,12 @@ import {
 import {
   addChineseIdiom,
   addChineseRadical,
+  addCorrectOrder,
+  deleteCorrectOrder,
   getAuth,
   getChineseIdioms,
   getChineseRadicals,
+  getCorrectOrderByChapter,
   updateChineseIdiom,
   updateChineseRadical,
 } from '../supabase/api-server'
@@ -224,4 +227,46 @@ export const useGetAuth = () => {
     queryKey: [QUERY_KEYS.GETAUTH],
     queryFn: () => getAuth(),
   }
+}
+
+//Quiz Form
+export const useGetCorrectOrderByChapter = (source: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETCORRECTORDERBYCHAPTER, source],
+    queryFn: () => getCorrectOrderByChapter(source),
+  }
+}
+
+export const useAddCorrectOrder = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (item: CorrectOrder) => addCorrectOrder(item),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETCORRECTORDERBYCHAPTER, source],
+      })
+      toast({
+        title: 'Cool! 连词成句 created successfully. ',
+        variant: 'success',
+      })
+    },
+  })
+}
+
+export const useDeleteCorrectOrder = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (id: string) => deleteCorrectOrder(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETCORRECTORDERBYCHAPTER, source],
+      })
+      toast({
+        title: 'Cool! 连词成句 deleted successfully. ',
+        variant: 'success',
+      })
+    },
+  })
 }

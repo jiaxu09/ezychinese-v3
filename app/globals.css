@@ -10,8 +10,8 @@
     --card-foreground: 217 5% 15%;
     --popover: 217 100% 95%;
     --popover-foreground: 217 100% 10%;
-    --primary: 213 32% 52%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 222 16% 28%;
+    --primary-foreground: 218 27% 94%;
     --secondary: 217 30% 70%;
     --secondary-foreground: 0 0% 0%;
     --muted: 179 30% 85%;
@@ -28,10 +28,10 @@
     --green: 92 28% 65%;
     --crayola: 40 71% 73%;
     --skyblue: 193 43% 67%;
-    --pastelblue: 210, 34%, 63%;
+    --pastelblue: 213, 32%, 52%;
     --pewterblue: 179 25% 65%;
     --orange: 14 51% 63%;
-    --neutral: 220 16% 22%;
+    --neutral: 220 17% 32%;
     --watermarker: 219 28% 88%;
   }
   .dark {

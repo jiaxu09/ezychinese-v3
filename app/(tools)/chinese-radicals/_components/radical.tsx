@@ -122,7 +122,7 @@ const Radical = ({
                   </div>
                 </div>
               </div>
-              <div className="w-full h-full bg-primary py-10 md:py-20">
+              <div className="w-full h-full bg-pastelblue py-10 md:py-20">
                 <div className="grid grid-cols-4 ">
                   {characters.map((character, index) => (
                     <div key={index}>
@@ -151,7 +151,7 @@ const Radical = ({
             <div className=" absolute top-4 left-4 md:top-8 md:left-14">
               <div className=" w-12 md:w-24">
                 <Image
-                  src="/images/radical.webp"
+                  src={supabaseUrl('images/radical.webp')}
                   width={188}
                   height={114}
                   alt="ezyChinese idiom"

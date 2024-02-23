@@ -15,7 +15,6 @@ const QuizCorrectOrder = ({
   quiz,
   setCurrentCompleted,
 }: QuizCorrectOrderProps) => {
-    
   const [correct_order] = useState<CorrectOrder[]>(quiz.correct_order)
 
   if (!quiz.hasOwnProperty('correct_order')) {

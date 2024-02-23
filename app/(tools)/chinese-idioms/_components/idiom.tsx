@@ -7,6 +7,7 @@ import WaterMark from '../../_components/water-mark'
 import { useChineseIdiomEdit } from '@/lib/store/idiomEdit'
 import IdiomForm from './idiom-form'
 import Image from 'next/image'
+import supabaseUrl from '@/lib/utils'
 
 interface IdiomProps {
   background_url: string | null
@@ -100,7 +101,7 @@ const Idiom = ({
             <div className=" absolute top-8 right-14">
               <div className="w-12 md:w-24">
                 <Image
-                  src="/images/idiom.webp"
+                  src={supabaseUrl('images/idiom.webp')}
                   width={188}
                   height={114}
                   alt="ezyChinese idiom"

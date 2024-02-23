@@ -23,7 +23,7 @@ import {
   useAddChineseIdiom,
   useUpdateChineseIdiom,
 } from '@/lib/react-query/queries'
-import SubmitButton from '../../_components/submit-button'
+import SubmitButton from '../../../../components/submit-button'
 
 type IdiomFormProps = {
   idiom?: any

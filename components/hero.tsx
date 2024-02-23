@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import React from 'react'
-import HeroImage from '/public/images/hero.webp'
 import { Star } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
+import supabaseUrl from '@/lib/utils'
 
 const Hero = () => {
   return (
@@ -15,7 +15,9 @@ const Hero = () => {
       </div>
       <div className="relative w-2/3 md:w-1/2 mx-auto">
         <Image
-          src={HeroImage}
+          src={supabaseUrl('images/hero.webp')}
+          width={559}
+          height={510}
           alt="ezyChinese Hero "
           priority
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

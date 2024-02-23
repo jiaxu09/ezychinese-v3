@@ -26,7 +26,6 @@ const QuizFormPhrases = ({
   return (
     <div className="flex flex-col items-center justify-center w-full animate-fade-left animate-duration-1000 animate-ease-in-out animate-fill-both">
       <h1 className="pb-4 text-center">点击并匹配词语</h1>
-
       <FormPhrases
         choices_a={form_phrases[0]['choices_a']}
         choices_b={form_phrases[0]['choices_b']}

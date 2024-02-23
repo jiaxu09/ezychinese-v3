@@ -2,8 +2,8 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <footer className=" bg-pastelblue w-full ">
-      <div className="container flex px-3 py-2 items-center justify-center space-x-4 ">
+    <footer className=" bg-primary w-full ">
+      <div className="container flex px-3 py-2 items-center justify-center space-x-4 text-primary-foreground ">
         <p>&copy; ezyChinese</p>
         <svg
           xmlns="http://www.w3.org/2000/svg"

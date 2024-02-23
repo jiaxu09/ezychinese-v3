@@ -27,7 +27,7 @@ const Tabs = ({ bookId, chapterId, tabs, type }: TabsProps) => {
           >
             <Button
               className=" w-16 md:w-24"
-              variant={pathname.includes(tab.path) ? 'default' : 'secondary'}
+              variant={pathname.includes(tab.path) ? 'default' : 'outline'}
             >
               {tab.name}
             </Button>

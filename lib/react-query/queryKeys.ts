@@ -18,4 +18,7 @@ export enum QUERY_KEYS {
   GETSINGBYCHAPTER = 'getsingbychapter',
   GETREADINGBYCHAPTE = 'getreadingbychapter',
   GETAUTH = 'getauth',
+  GETCORRECTORDERBYCHAPTER = 'getcorrectorderbychapter',
+  ADDCORRECTORDER = 'addcorrectorder',
+  DELETECORRECTORDER = 'deletecorrectorder',
 }

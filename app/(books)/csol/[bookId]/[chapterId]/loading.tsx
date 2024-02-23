@@ -1,14 +1,14 @@
 import React from 'react'
-import LoadingImg from '/public/images/loading.svg'
 import Image from 'next/image'
+import supabaseUrl from '@/lib/utils'
 
 const Loading = () => {
   return (
     <div className="flex justify-center items-center w-full ">
       <Image
-        src={LoadingImg}
-        width={512}
-        height={512}
+        src={supabaseUrl('images/loading.webp')}
+        width={1600}
+        height={1600}
         alt="ezyChinese loading"
         priority
         sizes="33vw"

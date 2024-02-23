@@ -3,11 +3,9 @@ import { useGetLiteracyByChapter } from '@/lib/react-query/queries'
 import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
-
-import { convert } from 'pinyin-pro'
 import WellDone from '@/components/well-done'
-import placeholderImg from '/public/images/logo_lg.webp'
 import { notFound } from 'next/navigation'
+import supabaseUrl from '@/lib/utils'
 
 interface MatchProps {
   bookId: string
@@ -30,9 +28,12 @@ const Match = ({ bookId, chapterId }: MatchProps) => {
   const [choiceTwo, setChoiceTwo] = useState<Card | null>(null)
   const [disabled, setDisabled] = useState(false)
 
+  const [pinyins, setPinyins] = useState<string[]>([])
+
   const { data, isFetched } = useQuery(
     useGetLiteracyByChapter(`${bookId}-${chapterId}`)
   )
+
   if (!data) {
     notFound()
   }
@@ -43,29 +44,48 @@ const Match = ({ bookId, chapterId }: MatchProps) => {
     .map(({ value }) => value)
     .slice(0, 6)
 
+  const convertPinyin = async (pinyin: string[]) => {
+    const response = await fetch('/api/pinyin', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(pinyin),
+    })
+
+    const pinyins = (await response.json()) as string[]
+    setPinyins(pinyins)
+  }
+  useEffect(() => {
+    convertPinyin(data?.questions!)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   useEffect(() => {
     let controller = new AbortController()
 
-    const shuffledCards = [...data?.answers!, ...data?.questions!]
-      .map((character, index) => ({
-        character,
-        id: Math.random(),
-        matched: false,
-        match:
-          index > data?.answers?.length! - 1
-            ? index - data?.answers?.length!
-            : index,
-        pinyin: index > data?.answers.length! - 1,
-      }))
-      .filter((obj) => random_numbers.includes(obj.match))
-      .sort(() => Math.random() - 0.5)
-    setCards(shuffledCards)
+    if (pinyins.length > 0) {
+      const shuffledCards = [...data?.answers!, ...pinyins]
+        .map((character, index) => ({
+          character,
+          id: Math.random(),
+          matched: false,
+          match:
+            index > data?.answers?.length! - 1
+              ? index - data?.answers?.length!
+              : index,
+          pinyin: index > data?.answers.length! - 1,
+        }))
+        .filter((obj) => random_numbers.includes(obj.match))
+        .sort(() => Math.random() - 0.5)
+      setCards(shuffledCards)
+    }
 
     return () => {
       controller?.abort()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [data?.answers, pinyins])
 
   useEffect(() => {
     let timeout: NodeJS.Timeout | undefined
@@ -143,7 +163,7 @@ const Match = ({ bookId, chapterId }: MatchProps) => {
                     <div className="text-3xl font-medium">
                       {card.pinyin ? (
                         <div className="bg-crayola rounded-lg w-24 h-24 flex items-center justify-center">
-                          {convert(card.character)}
+                          {card.character}
                         </div>
                       ) : (
                         <div className="bg-pewterblue rounded-lg w-24 h-24 flex items-center justify-center">
@@ -154,13 +174,12 @@ const Match = ({ bookId, chapterId }: MatchProps) => {
                   </div>
                   <div className="m-back bg-accent transition-all duration-500 ease-in-out p-2">
                     <Image
-                      src={placeholderImg}
+                      src={supabaseUrl('images/logo_lg.webp')}
                       width={180}
                       height={163}
                       alt="ezyChinese match game"
                       priority
                       sizes="33vw"
-                      placeholder="blur"
                     />
                   </div>
                 </div>

@@ -1,12 +1,17 @@
 'use server'
 
-import { IIdiom, IRadical } from '../types'
+import { CorrectOrder, IIdiom, IRadical } from '../types'
 import { getPagination } from '../utils'
 import { supabaseServer } from './server'
 
 export const addChineseRadical = async (item: IRadical) => {
   const supabase = supabaseServer()
   const { data } = await supabase.auth.getSession()
+
+  if (!data?.session?.user) {
+    return
+  }
+
   const { error } = await supabase.from('radicals').insert(item)
   if (error) {
     throw new Error('Something went wrong!')
@@ -21,7 +26,15 @@ export const updateChineseRadical = async (
   if (!id) {
     return
   }
+
   const supabase = supabaseServer()
+
+  const { data } = await supabase.auth.getSession()
+
+  if (!data?.session?.user) {
+    return
+  }
+
   const { error } = await supabase.from('radicals').update(item).eq('id', id)
   if (error) {
     throw new Error('Something went wrong!')
@@ -30,6 +43,13 @@ export const updateChineseRadical = async (
 
 export const addChineseIdiom = async (item: IIdiom) => {
   const supabase = supabaseServer()
+
+  const { data } = await supabase.auth.getSession()
+
+  if (!data?.session?.user) {
+    return
+  }
+
   const { error } = await supabase.from('idioms').insert(item)
   if (error) {
     console.log(error)
@@ -42,6 +62,13 @@ export const updateChineseIdiom = async (item: IIdiom, id: string | null) => {
     return
   }
   const supabase = supabaseServer()
+
+  const { data } = await supabase.auth.getSession()
+
+  if (!data?.session?.user) {
+    return
+  }
+
   const { error } = await supabase.from('idioms').update(item).eq('id', id)
   if (error) {
     throw new Error('Something went wrong!')
@@ -103,4 +130,53 @@ export const getChineseIdioms = async (page: number) => {
   }
 
   return { data, hasMore }
+}
+
+//Quiz Form
+export const getCorrectOrderByChapter = async (source: string) => {
+  const supabase = supabaseServer()
+  const { data, error } = await supabase
+    .from('correct_order')
+    .select('*')
+    .eq('source', source)
+
+  if (error) {
+    console.log(error)
+    throw Error
+  }
+  return data
+}
+
+export const addCorrectOrder = async (item: CorrectOrder) => {
+  const supabase = supabaseServer()
+
+  const { data } = await supabase.auth.getSession()
+
+  if (!data?.session?.user) {
+    return
+  }
+
+  const { error } = await supabase.from('correct_order').insert(item)
+  if (error) {
+    console.log(error)
+    throw new Error('Something went wrong!')
+  }
+}
+
+export const deleteCorrectOrder = async (id: string) => {
+  const supabase = supabaseServer()
+  const { data } = await supabase.auth.getSession()
+
+  if (!id) {
+    return
+  }
+
+  if (!data?.session?.user) {
+    return
+  }
+  const { error } = await supabase.from('correct_order').delete().eq('id', id)
+  if (error) {
+    console.log(error)
+    throw new Error('Something went wrong!')
+  }
 }
