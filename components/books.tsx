@@ -1,8 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
-import { Button } from './ui/button'
 import Link from 'next/link'
 import supabaseUrl, { rgbDataURL } from '@/lib/utils'
+import { ChevronRight } from 'lucide-react'
 
 const Books = () => {
   return (
@@ -21,10 +21,13 @@ const Books = () => {
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
-          <Link aria-label="ezyChinese zhongwen" href="/zhongwen">
-            <Button variant="default" aria-label="more">
-              中文
-            </Button>
+          <Link
+            aria-label="ezyChinese zhongwen"
+            href="/zhongwen"
+            className="group flex items-center space-x-2 text-primary hover:text-primary/80"
+          >
+            explore all books{' '}
+            <ChevronRight className=" group-hover:scale-75 transition-all duration-500" />
           </Link>
         </div>
       </div>
@@ -42,10 +45,13 @@ const Books = () => {
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
-          <Link aria-label="ezyChinese zhongwen" href="/csol">
-            <Button variant="default" aria-label="more">
-              CSOL
-            </Button>
+          <Link
+            className="group flex items-center space-x-2 text-primary hover:text-primary/80"
+            aria-label="ezyChinese zhongwen"
+            href="/csol"
+          >
+            explore all books{' '}
+            <ChevronRight className=" group-hover:scale-75 transition-all duration-500" />
           </Link>
         </div>
       </div>

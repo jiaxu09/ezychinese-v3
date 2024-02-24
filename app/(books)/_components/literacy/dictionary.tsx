@@ -24,7 +24,7 @@ const Dictionary = ({ strokes, pinyin, radical }: DictionaryProps) => {
           <div className="w-full ">
             <div className="flex flex-col">
               <div className="grid grid-cols-2">
-                <div className=" bg-primary">
+                <div className=" bg-wuzzy">
                   <div className="flex items-center justify-center py-10 space-x-4">
                     <p className=" text-lg">笔画:</p>
                     <p className=" text-gray-600 text-lg">{strokes}</p>

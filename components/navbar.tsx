@@ -48,23 +48,21 @@ const Navbar = () => {
           <div className="w-7 h-7 md:w-10 md:h-10 relative">
             <Image
               src={supabaseUrl('images/logo.webp')}
-              quality={75}
               width={98}
               height={89}
               priority
-              sizes="33vw"
+              sizes="100vw"
               alt="ezyChinese Logo"
             />
           </div>
           <div className="w-24 md:w-40 relative">
             <Image
               src={supabaseUrl('images/ezyChinese.webp')}
-              quality={75}
               width={171}
               height={33}
               alt="ezyChinese"
               priority
-              sizes="33vw"
+              sizes="100vw"
             />
           </div>
         </Link>
