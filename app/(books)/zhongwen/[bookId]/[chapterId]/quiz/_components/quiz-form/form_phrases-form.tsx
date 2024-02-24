@@ -84,42 +84,6 @@ const FormPhrasesForm = ({ bookId, chapterId }: FormPhrasesFormProps) => {
 
   return (
     <div className="flex flex-col gap-2">
-      <Collapsible
-        open={isOpen}
-        onOpenChange={setIsOpen}
-        className=" space-y-2"
-      >
-        <div className="flex items-center justify-center space-x-4 px-4">
-          <h4 className="text-lg font-semibold">所有题目</h4>
-          <CollapsibleTrigger asChild>
-            <Button variant="ghost" size="sm">
-              <ChevronsUpDown className="h-4 w-4" />
-              <span className="sr-only">Toggle</span>
-            </Button>
-          </CollapsibleTrigger>
-        </div>
-        <CollapsibleContent className="space-y-2 text-lg px-6 ">
-          {form_phrases?.map((item) => (
-            <div
-              className="even:bg-skyblue odd:bg-orange rounded-lg p-1 flex items-center justify-between"
-              key={item.id}
-            >
-              {item.answers}
-              <Button
-                disabled={deletePending}
-                variant="ghost"
-                onClick={() => handleDeleteFormPhrases(item.id!)}
-              >
-                {deletePending ? (
-                  <RotateCcw className="w-4 h-4 text-watermarker animate-spin " />
-                ) : (
-                  <Trash2 className="w-4 h-4 text-destructive" />
-                )}
-              </Button>
-            </div>
-          ))}
-        </CollapsibleContent>
-      </Collapsible>
       <Card>
         <CardHeader>
           <CardTitle>组成词语</CardTitle>
@@ -207,6 +171,42 @@ const FormPhrasesForm = ({ bookId, chapterId }: FormPhrasesFormProps) => {
           </Form>
         </CardContent>
       </Card>
+      <Collapsible
+        open={isOpen}
+        onOpenChange={setIsOpen}
+        className=" space-y-2"
+      >
+        <div className="flex items-center justify-center space-x-4 px-4">
+          <h4 className="text-lg font-semibold">所有题目</h4>
+          <CollapsibleTrigger asChild>
+            <Button variant="ghost" size="sm">
+              <ChevronsUpDown className="h-4 w-4" />
+              <span className="sr-only">Toggle</span>
+            </Button>
+          </CollapsibleTrigger>
+        </div>
+        <CollapsibleContent className="space-y-2 text-lg px-6 ">
+          {form_phrases?.map((item) => (
+            <div
+              className="even:bg-skyblue odd:bg-orange rounded-lg p-1 flex items-center justify-between"
+              key={item.id}
+            >
+              {item.answers}
+              <Button
+                disabled={deletePending}
+                variant="ghost"
+                onClick={() => handleDeleteFormPhrases(item.id!)}
+              >
+                {deletePending ? (
+                  <RotateCcw className="w-4 h-4 text-watermarker animate-spin " />
+                ) : (
+                  <Trash2 className="w-4 h-4 text-destructive" />
+                )}
+              </Button>
+            </div>
+          ))}
+        </CollapsibleContent>
+      </Collapsible>
     </div>
   )
 }

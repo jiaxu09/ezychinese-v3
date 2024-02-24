@@ -29,7 +29,7 @@ const Singing = ({ bookId, chapterId }: SingProps) => {
           className=" rounded-lg object-contain"
           src={sing?.singImg?.url!}
           placeholder="blur"
-          blurDataURL={rgbDataURL(216, 222, 233)}
+          blurDataURL={rgbDataURL(229, 233, 240)}
           width={sing?.singImg.width}
           height={sing?.singImg.height}
           alt="ezyChinese - Sing"

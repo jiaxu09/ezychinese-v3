@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { Button } from './ui/button'
 import Link from 'next/link'
-import supabaseUrl from '@/lib/utils'
+import supabaseUrl, { rgbDataURL } from '@/lib/utils'
 
 const Books = () => {
   return (
@@ -16,6 +16,8 @@ const Books = () => {
               height={215}
               alt="ezyChinese Zhongwen"
               priority
+              placeholder="blur"
+              blurDataURL={rgbDataURL(235, 202, 137)}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
@@ -35,6 +37,8 @@ const Books = () => {
               height={215}
               alt="ezyChinese CSOL"
               priority
+              placeholder="blur"
+              blurDataURL={rgbDataURL(93, 129, 172)}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
