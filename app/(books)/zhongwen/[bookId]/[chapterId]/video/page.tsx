@@ -39,7 +39,7 @@ const VideoPage = async ({ params }: VideoProps) => {
   )
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <main>
+      <main className=" min-h-[80vh]">
         <Suspense fallback={null}>
           <Video bookId={params.bookId} chapterId={params.chapterId} />
         </Suspense>

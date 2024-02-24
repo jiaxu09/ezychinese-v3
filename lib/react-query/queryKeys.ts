@@ -21,4 +21,13 @@ export enum QUERY_KEYS {
   GETCORRECTORDERBYCHAPTER = 'getcorrectorderbychapter',
   ADDCORRECTORDER = 'addcorrectorder',
   DELETECORRECTORDER = 'deletecorrectorder',
+  ADDRIGHTEXPLANATION = 'addrightexplanation',
+  GETRIGHTEXPLANATIONBYCHAPTER = 'getrightexplanationbychapter',
+  DELETERIGHTEXPLANATION = 'deleterightexplanation',
+  ADDFORMPHRASES = 'addformphrases',
+  GETFORMPHRASESBYCHAPTER = 'getformphrasesbychapter',
+  DELETEFORMPHRASES = 'deleteformphrases',
+  ADDFINDDIFFERENCE = 'addfinddifference',
+  GETFINDDIFFERENCEBYCHAPTER = 'getfinddifferencebychapter',
+  DELETEFINDDIFFERENCE = 'deletefinddifference',
 }

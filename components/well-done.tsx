@@ -3,7 +3,7 @@ import Image from 'next/image'
 import supabaseUrl from '@/lib/utils'
 const WellDone = () => {
   return (
-    <div className="animate-ping animate-infinite animate-duration-1000 animate-ease-in-out w-1/3 mx-auto">
+    <div className="animate-ping animate-infinite animate-duration-1000 animate-ease-in-out w-1/3 mx-auto py-20">
       <Image
         src={supabaseUrl('images/well-done.webp')}
         width={690}

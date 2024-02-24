@@ -3,12 +3,10 @@ import { useGetChineseRadicals } from '@/lib/react-query/queries'
 import { useQuery } from '@tanstack/react-query'
 import React, { useState } from 'react'
 import Radical from './radical'
-import { supabaseBrowser } from '@/lib/supabase/browser'
 import { notFound } from 'next/navigation'
 import PaginationButton from '@/components/pagination-button'
 
 const Radicals = () => {
-  const supabase = supabaseBrowser()
   const [page, setPage] = useState<number>(0)
 
   const { data, isFetched, isPlaceholderData } = useQuery(

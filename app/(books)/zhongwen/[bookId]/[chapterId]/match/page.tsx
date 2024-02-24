@@ -39,7 +39,7 @@ const MatchPage = async ({ params }: MatchProps) => {
   )
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <main>
+      <main className=" min-h-[80vh]">
         <Suspense fallback={null}>
           <Match bookId={params.bookId} chapterId={params.chapterId} />
         </Suspense>

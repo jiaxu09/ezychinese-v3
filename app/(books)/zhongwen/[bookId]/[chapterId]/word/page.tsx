@@ -39,7 +39,7 @@ const WordsPage = async ({ params }: WordsProps) => {
   )
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <main>
+      <main className=" min-h-[80vh]">
         <Suspense fallback={null}>
           <Words bookId={params.bookId} chapterId={params.chapterId} />
         </Suspense>

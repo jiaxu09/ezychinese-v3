@@ -32,3 +32,24 @@ export const CorrectOrderValidation = z.object({
   answer: z.string().min(1, { message: 'Answer is required.' }),
   source: z.string().min(1, { message: 'Source is required.' }),
 })
+
+export const RightExplanationValidation = z.object({
+  sentence: z.string().min(1, { message: 'Sentence is required.' }),
+  choices: z.string().min(1, { message: 'Choices is required.' }),
+  answer: z.string().min(1, { message: 'Answer is required.' }),
+  question: z.string().min(1, { message: 'Question is required.' }),
+  source: z.string().min(1, { message: 'Source is required.' }),
+})
+
+export const FormPhrasesValidation = z.object({
+  choices_a: z.string().min(1, { message: 'Choice_a is required.' }),
+  choices_b: z.string().min(1, { message: 'Choice_b is required.' }),
+  answers: z.string().min(1, { message: 'Answer is required.' }),
+  source: z.string().min(1, { message: 'Source is required.' }),
+})
+
+export const FindDifferenceValidation = z.object({
+  question: z.string().min(1, { message: 'question is required.' }),
+  answer: z.string().min(1, { message: 'Answer is required.' }),
+  source: z.string().min(1, { message: 'Source is required.' }),
+})

@@ -7,7 +7,7 @@ const Loading = () => {
     <div className="flex items-center justify-center container m-auto">
       <Image
         className="w-full md:w-1/3 mx-auto"
-        src={supabaseUrl('images/loading.webp')}
+        src={supabaseUrl('images/loading.svg')}
         alt="ezyChinese loading"
         placeholder="blur"
         sizes="33vw"

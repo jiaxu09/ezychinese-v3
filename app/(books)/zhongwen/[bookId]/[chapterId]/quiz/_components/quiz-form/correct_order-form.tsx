@@ -24,7 +24,6 @@ import {
   Trash2,
 } from 'lucide-react'
 import Image from 'next/image'
-import CorrectOrderImage from '/public/images/correct_order.webp'
 import { CorrectOrder } from '@/lib/types'
 import {
   useAddCorrectOrder,
@@ -37,6 +36,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@/components/ui/collapsible'
+import supabaseUrl from '@/lib/utils'
 
 interface CorrectOrderFormProps {
   bookId: string
@@ -94,7 +94,7 @@ const CorrectOrderForm = ({ bookId, chapterId }: CorrectOrderFormProps) => {
         className=" space-y-2"
       >
         <div className="flex items-center justify-center space-x-4 px-4">
-          <h4 className="text-lg font-semibold">所有连词成句</h4>
+          <h4 className="text-lg font-semibold">所有题目</h4>
           <CollapsibleTrigger asChild>
             <Button variant="ghost" size="sm">
               <ChevronsUpDown className="h-4 w-4" />
@@ -112,10 +112,10 @@ const CorrectOrderForm = ({ bookId, chapterId }: CorrectOrderFormProps) => {
               <Button
                 disabled={deletePending}
                 variant="ghost"
-                onClick={() => handleDeleteCorrectOrder(item.id)}
+                onClick={() => handleDeleteCorrectOrder(item.id!)}
               >
                 {deletePending ? (
-                  <RotateCcw className="w-4 h-4 text-watermarker " />
+                  <RotateCcw className="w-4 h-4 text-watermarker animate-spin" />
                 ) : (
                   <Trash2 className="w-4 h-4 text-destructive" />
                 )}
@@ -136,9 +136,11 @@ const CorrectOrderForm = ({ bookId, chapterId }: CorrectOrderFormProps) => {
             <DialogContent>
               <Image
                 className="p-2 mx-auto object-contain"
+                width={418}
+                height={403}
                 priority
                 sizes="33vw"
-                src={CorrectOrderImage}
+                src={supabaseUrl('images/correct_order.webp')}
                 alt="ezyChinese 连词成句"
               />
             </DialogContent>

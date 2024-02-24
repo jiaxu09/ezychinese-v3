@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from 'react'
-
 import { IdiomValidation } from '@/lib/validation'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
@@ -102,7 +101,7 @@ const IdiomForm = ({ idiom, action }: IdiomFormProps) => {
   return (
     <Form {...form}>
       <form
-        className="flex flex-col gap-4 w-full"
+        className="flex flex-col gap-4 w-full rounded-lg p-4"
         onSubmit={form.handleSubmit(handleSubmit)}
       >
         <div className=" flex items-center justify-center space-x-2">

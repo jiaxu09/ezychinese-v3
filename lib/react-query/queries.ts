@@ -4,9 +4,22 @@ import {
   useQueryClient,
 } from '@tanstack/react-query'
 import { QUERY_KEYS } from './queryKeys'
-import { CorrectOrder, IIdiom, IRadical, TypedSupabaseClient } from '../types'
+import {
+  CorrectOrder,
+  FindDifference,
+  FormPhrases,
+  IIdiom,
+  IRadical,
+  RightExplanation,
+  TypedSupabaseClient,
+} from '../types'
 import { useToast } from '@/components/ui/use-toast'
 import { getReadingByChapter, getSingByChapter } from '../graphql/api'
+import {
+  addFindDifference,
+  deleteFindDifference,
+  getFindDifferenceByChapter,
+} from '../supabase/api-server'
 import {
   getCSOLBooks,
   getChaptersByBookId,
@@ -25,11 +38,17 @@ import {
   addChineseIdiom,
   addChineseRadical,
   addCorrectOrder,
+  addFormPhrases,
+  addRightExplanation,
   deleteCorrectOrder,
+  deleteFormPhrases,
+  deleteRightExplanation,
   getAuth,
   getChineseIdioms,
   getChineseRadicals,
   getCorrectOrderByChapter,
+  getFormPhrasesByChapter,
+  getRightExplanationByChapter,
   updateChineseIdiom,
   updateChineseRadical,
 } from '../supabase/api-server'
@@ -265,6 +284,129 @@ export const useDeleteCorrectOrder = (source: string) => {
       })
       toast({
         title: 'Cool! 连词成句 deleted successfully. ',
+        variant: 'success',
+      })
+    },
+  })
+}
+
+export const useGetRightExplanationByChapter = (source: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETRIGHTEXPLANATIONBYCHAPTER, source],
+    queryFn: () => getRightExplanationByChapter(source),
+  }
+}
+
+export const useAddRightExplanation = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (item: RightExplanation) => addRightExplanation(item),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETRIGHTEXPLANATIONBYCHAPTER, source],
+      })
+      toast({
+        title: 'Cool! 选择正确解释 created successfully. ',
+        variant: 'success',
+      })
+    },
+  })
+}
+
+export const useDeleteRightExplanationByChapter = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (id: string) => deleteRightExplanation(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETRIGHTEXPLANATIONBYCHAPTER, source],
+      })
+      toast({
+        title: 'Cool! 选择正确解释 deleted successfully. ',
+        variant: 'success',
+      })
+    },
+  })
+}
+
+export const useGetFormPhrasesByChapter = (source: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETFORMPHRASESBYCHAPTER, source],
+    queryFn: () => getFormPhrasesByChapter(source),
+  }
+}
+
+export const useAddFormPhrases = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (item: FormPhrases) => addFormPhrases(item),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETFORMPHRASESBYCHAPTER, source],
+      })
+      toast({
+        title: 'Cool! 组成词语 created successfully. ',
+        variant: 'success',
+      })
+    },
+  })
+}
+
+export const useDeleteFormPhrases = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (id: string) => deleteFormPhrases(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETFORMPHRASESBYCHAPTER, source],
+      })
+      toast({
+        title: 'Cool! 组成词语 deleted successfully. ',
+        variant: 'success',
+      })
+    },
+  })
+}
+
+export const useGetFindDifferenceByChapter = (source: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETFINDDIFFERENCEBYCHAPTER, source],
+    queryFn: () => getFindDifferenceByChapter(source),
+  }
+}
+
+export const useAddFindDifference = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (item: FindDifference) => addFindDifference(item),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETFINDDIFFERENCEBYCHAPTER, source],
+      })
+      toast({
+        title: 'Cool! 找出不同 created successfully. ',
+        variant: 'success',
+      })
+    },
+  })
+}
+
+export const useDeleteFindDifference = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (id: string) => deleteFindDifference(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETFINDDIFFERENCEBYCHAPTER, source],
+      })
+      toast({
+        title: 'Cool! 找出不同 deleted successfully. ',
         variant: 'success',
       })
     },

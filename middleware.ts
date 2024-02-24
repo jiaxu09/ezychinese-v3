@@ -58,9 +58,7 @@ export async function middleware(request: NextRequest) {
 
 	const { data } = await supabase.auth.getSession();
 
-	// if (!data.session  && request.nextUrl.pathname === '/favorites') {
-	// 	return NextResponse.redirect(new URL("/", request.url));
-	// }
+
 }
 
 export const config = {

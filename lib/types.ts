@@ -92,6 +92,31 @@ export interface IReading {
 }
 
 export type CorrectOrder = {
+  id?: string
+  question: string[]
+  answer: string
+  source: string
+}
+
+export type RightExplanation = {
+  id?: string
+  sentence: string
+  choices: string[]
+  answer: string
+  question: string
+  source: string
+}
+
+export type FormPhrases = {
+  id?: string
+  choices_a: string[]
+  choices_b: string[]
+  answers: string[]
+  source: string
+}
+
+export type FindDifference = {
+  id?: string
   question: string[]
   answer: string
   source: string

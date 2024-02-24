@@ -19,11 +19,12 @@ const QuizFormPage = async ({ params }: QuizFormProps) => {
   await queryClient.prefetchQuery(
     useGetCorrectOrderByChapter(`${params.bookId}-${params.chapterId}`)
   )
+
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <div className="w-full">
+      <main className="w-full min-h-[80vh]">
         <QuizFormTabs bookId={params.bookId} chapterId={params.chapterId} />
-      </div>
+      </main>
     </HydrationBoundary>
   )
 }
