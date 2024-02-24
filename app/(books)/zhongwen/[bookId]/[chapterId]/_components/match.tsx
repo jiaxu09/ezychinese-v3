@@ -136,7 +136,7 @@ const Match = ({ bookId, chapterId }: MatchProps) => {
 
   return (
     <>
-      {gameFinished ? (
+      {!gameFinished ? (
         <div className="flex items-center justify-center">
           <div className="w-full md:w-1/3">
             <WellDone />
