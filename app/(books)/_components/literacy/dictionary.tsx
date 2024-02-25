@@ -16,7 +16,7 @@ const Dictionary = ({ strokes, pinyin, radical }: DictionaryProps) => {
           className=" cursor-pointer"
           aria-label="ezyChinese dictionary"
         >
-          <Scroll className="w-6 h-6 text-orange " />
+          <Scroll className="w-8 h-8 text-orange " />
         </div>
       </DialogTrigger>
       {strokes && (
@@ -26,14 +26,14 @@ const Dictionary = ({ strokes, pinyin, radical }: DictionaryProps) => {
               <div className="grid grid-cols-2">
                 <div className=" bg-wuzzy">
                   <div className="flex items-center justify-center py-10 space-x-4">
-                    <p className=" text-lg">笔画:</p>
-                    <p className=" text-gray-600 text-lg">{strokes}</p>
+                    <p className=" text-primary text-lg">笔画:</p>
+                    <p className=" text-gray-800 text-lg">{strokes}</p>
                   </div>
                 </div>
                 <div className=" bg-crayola">
                   <div className="flex py-10 items-center justify-center rounded-lg space-x-4">
-                    <p className=" text-lg">部首:</p>
-                    <p className=" text-gray-600 text-lg">{radical}</p>
+                    <p className=" text-primary text-lg">部首:</p>
+                    <p className=" text-gray-800 text-lg">{radical}</p>
                   </div>
                 </div>
               </div>

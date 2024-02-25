@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { User } from 'lucide-react'
+import { User, WifiOff } from 'lucide-react'
 import Link from 'next/link'
 import supabaseUrl from '@/lib/utils'
 import useNetworkInformation from '@/hook/useNetworkInformation'
@@ -107,7 +107,7 @@ const Navbar = () => {
             <Button
               aria-label="sign in"
               onClick={handleSignin}
-              variant="default"
+              variant="outline"
             >
               <span>Sign in</span>
             </Button>
@@ -115,8 +115,9 @@ const Navbar = () => {
         </div>
       </div>
       {!isOnline && (
-        <div className=" fixed top-0 left-0 right-0 bg-wuzzy text-center animate-fade-down">
-          you are Offline!
+        <div className=" fixed flex items-center justify-center top-0 py-1 left-0 right-0 bg-wuzzy text-center animate-fade-down">
+          <WifiOff className="w-5 h-5 mr-4" />
+          You are Offline!
         </div>
       )}
     </div>

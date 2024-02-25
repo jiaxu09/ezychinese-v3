@@ -21,7 +21,7 @@ const PaginationButton = ({
           aria-label="Previous"
           onClick={() => setPage((old) => Math.max(old - 1, 0))}
           disabled={page === 0}
-          variant="default"
+          variant="outline"
         >
           <ChevronLeft className="w-5 h-5" /> Prev
         </Button>
@@ -33,7 +33,7 @@ const PaginationButton = ({
               setPage((old) => old + 1)
             }
           }}
-          variant="default"
+          variant="outline"
         >
           Next <ChevronRight className="w-5 h-5" />{' '}
         </Button>

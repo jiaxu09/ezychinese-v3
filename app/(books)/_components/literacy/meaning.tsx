@@ -14,7 +14,7 @@ const Meaning = ({ meaning }: MeaningProps) => {
           className=" cursor-pointer"
           aria-label="ezyChinese hanzi meaning"
         >
-          <BookMarked className="w-6 h-6 text-wuzzy " />
+          <BookMarked className="w-8 h-8 text-wuzzy " />
         </div>
       </DialogTrigger>
       {meaning && (

@@ -14,7 +14,7 @@ const English = ({ english }: EnglishProps) => {
           className=" cursor-pointer"
           aria-label="ezyChinese english"
         >
-          <Languages className="w-6 h-6 text-skyblue " />
+          <Languages className="w-8 h-8 text-skyblue " />
         </div>
       </DialogTrigger>
       {english && (

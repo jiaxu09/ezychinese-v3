@@ -31,7 +31,7 @@ const Books = () => {
           </Link>
         </div>
       </div>
-      <div className="w-full bg-pastelblue py-10">
+      <div className="w-full bg-pewterblue py-10">
         <div className="flex flex-col items-center justify-center space-y-2">
           <div className="w-2/3 object-container relative flex justify-center">
             <Image
@@ -41,7 +41,7 @@ const Books = () => {
               alt="ezyChinese CSOL"
               priority
               placeholder="blur"
-              blurDataURL={rgbDataURL(93, 129, 172)}
+              blurDataURL={rgbDataURL(143, 188, 187)}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>

@@ -1,6 +1,7 @@
 'use client'
 import { Button } from '@/components/ui/button'
 import { useUser } from '@/lib/store/user'
+import { Plus } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 
@@ -19,7 +20,7 @@ const AddButton = ({ params }: AddButtonProps) => {
   return (
     <Link href={`/zhongwen/${params.bookId}/${params.chapterId}/quiz/new-quiz`}>
       <Button aria-label="ezyChinese add new quiz" variant="default">
-        Add Quiz
+        <Plus />
       </Button>
     </Link>
   )

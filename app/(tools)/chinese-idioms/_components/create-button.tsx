@@ -12,7 +12,7 @@ const CreateButton = () => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button aria-label="add" type="button" variant="default">
+        <Button aria-label="add" type="button" variant="outline">
           Create New
           <SendHorizonal className="w-5 h-5 ml-1" aria-hidden="true" />
         </Button>

@@ -10,7 +10,7 @@
     --card-foreground: 217 5% 15%;
     --popover: 217 100% 95%;
     --popover-foreground: 217 100% 10%;
-    --primary: 222 16% 28%;
+    --primary: 222 16% 22%;
     --primary-foreground: 218 27% 94%;
     --secondary: 217 30% 70%;
     --secondary-foreground: 0 0% 0%;
@@ -24,13 +24,13 @@
     --input: 217 30% 26%;
     --ring: 217 45% 27%;
     --radius: 0.3rem;
-    --wuzzy: 354 42% 56%;
+    --wuzzy: 22 95% 58%;
     --green: 92 28% 65%;
     --crayola: 40 71% 73%;
     --skyblue: 193 43% 67%;
-    --pastelblue: 213, 32%, 52%;
+    --pastelblue: 210, 34%, 63%;
     --pewterblue: 179 25% 65%;
-    --orange: 14 51% 63%;
+    --orange: 286 100% 91%;
     --neutral: 220 17% 32%;
     --watermarker: 219 28% 88%;
   }

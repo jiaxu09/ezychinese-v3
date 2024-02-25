@@ -48,8 +48,8 @@ const LiteracyPractice = ({ data }: LiteracyPracticeProps) => {
     if (!writer) {
       setWriter(
         HanziWriter.create('character-target-div', `${character}`, {
-          width: 200,
-          height: 200,
+          width: 300,
+          height: 300,
           padding: 5,
           strokeAnimationSpeed: 1,
         })
@@ -60,8 +60,8 @@ const LiteracyPractice = ({ data }: LiteracyPracticeProps) => {
 
     if (!quiz) {
       const quiz = HanziWriter.create('character-quiz-div', `${character}`, {
-        width: 200,
-        height: 200,
+        width: 300,
+        height: 300,
         padding: 5,
         showCharacter: false,
       })
@@ -94,16 +94,16 @@ const LiteracyPractice = ({ data }: LiteracyPracticeProps) => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center space-y-4">
+    <div className="flex flex-col items-center justify-center space-y-4 pb-10">
       <div className="grid grid-cols-5 gap-6">
         {data?.answers.map((char, index) => (
           <div key={index} className="p-2 flex items-center justify-center">
-            <Button
+            <div
               onClick={() => handleCharacterClick(char)}
-              variant="outline"
+              className=" border border-primary rounded-lg p-4 cursor-pointer"
             >
-              {char}
-            </Button>
+              <span className=" text-lg md:text-6xl">{char}</span>
+            </div>
           </div>
         ))}
       </div>
@@ -112,12 +112,12 @@ const LiteracyPractice = ({ data }: LiteracyPracticeProps) => {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             id="character-target-div"
-            className="w-[200px] h-[200px] border-2 border-secondary"
+            className="w-[300px] h-[300px] border-2 border-secondary"
           >
-            <line x1="0" y1="0" x2="192" y2="192" stroke="#DDD" />
-            <line x1="192" y1="0" x2="0" y2="192" stroke="#DDD" />
-            <line x1="96" y1="0" x2="96" y2="192" stroke="#DDD" />
-            <line x1="0" y1="96" x2="192" y2="96" stroke="#DDD" />
+            <line x1="0" y1="0" x2="300" y2="300" stroke="#DDD" />
+            <line x1="300" y1="0" x2="0" y2="300" stroke="#DDD" />
+            <line x1="150" y1="0" x2="150" y2="300" stroke="#DDD" />
+            <line x1="0" y1="150" x2="300" y2="150" stroke="#DDD" />
           </svg>
           <div className="flex items-center justify-center space-x-3">
             <div
@@ -125,11 +125,11 @@ const LiteracyPractice = ({ data }: LiteracyPracticeProps) => {
               className=" cursor-pointer"
               onClick={handleAnimate}
             >
-              <PenLine className="w-6 h-6 text-pastelblue " />
+              <PenLine className="w-8 h-8 text-pastelblue " />
             </div>
             <div>
               {isLoadingSound ? (
-                <RotateCcw className=" h-6 w-6 animate-spin text-crayola" />
+                <RotateCcw className=" h-8 w-8 animate-spin text-crayola" />
               ) : (
                 <div
                   aria-label="ezyChinese hanzi sound"
@@ -137,14 +137,14 @@ const LiteracyPractice = ({ data }: LiteracyPracticeProps) => {
                 >
                   <Volume2
                     onClick={handleSound}
-                    className="w-6 h-6 text-crayola "
+                    className="w-8 h-8 text-crayola "
                   />
                 </div>
               )}
             </div>
             <div className=" cursor-pointer">
               {isLoadingDictionary ? (
-                <RotateCcw className=" h-6 w-6 animate-spin text-orange" />
+                <RotateCcw className=" h-8 w-8 animate-spin text-orange" />
               ) : (
                 <Dictionary
                   strokes={dictionary?.strokes}
@@ -155,14 +155,14 @@ const LiteracyPractice = ({ data }: LiteracyPracticeProps) => {
             </div>
             <div className=" cursor-pointer">
               {isLoadingEnglish ? (
-                <RotateCcw className=" h-6 w-6 animate-spin text-skyblue" />
+                <RotateCcw className=" h-8 w-8 animate-spin text-skyblue" />
               ) : (
                 <English english={english} />
               )}
             </div>
             <div className=" cursor-pointer">
               {isLoadingMeaning ? (
-                <RotateCcw className=" h-6 w-6 animate-spin text-wuzzy" />
+                <RotateCcw className=" h-8 w-8 animate-spin text-wuzzy" />
               ) : (
                 <Meaning meaning={meaning} />
               )}
@@ -173,15 +173,15 @@ const LiteracyPractice = ({ data }: LiteracyPracticeProps) => {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             id="character-quiz-div"
-            className="w-[200px] h-[200px] border-2 border-primary"
+            className="w-[300px] h-[300px] border-2 border-primary"
           >
-            <line x1="0" y1="0" x2="192" y2="192" stroke="#DDD" />
-            <line x1="192" y1="0" x2="0" y2="192" stroke="#DDD" />
-            <line x1="96" y1="0" x2="96" y2="192" stroke="#DDD" />
-            <line x1="0" y1="96" x2="192" y2="96" stroke="#DDD" />
+            <line x1="0" y1="0" x2="300" y2="300" stroke="#DDD" />
+            <line x1="300" y1="0" x2="0" y2="300" stroke="#DDD" />
+            <line x1="150" y1="0" x2="150" y2="300" stroke="#DDD" />
+            <line x1="0" y1="150" x2="300" y2="150" stroke="#DDD" />
           </svg>
           <div className=" cursor-pointer" onClick={handleAnimateReset}>
-            <RotateCcw className=" h-6 w-6  text-green" />
+            <RotateCcw className=" h-8 w-8  text-green" />
           </div>
         </div>
       </div>

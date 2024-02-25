@@ -37,8 +37,8 @@ const QuizPage = async ({ params }: QuizProps) => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <div className="flex flex-col min-h-[80vh]">
-        <div className="w-full md:flex justify-end space-x-4 hidden">
+      <div className="relative flex flex-col min-h-[80vh]">
+        <div className=" absolute bottom-0 right-0 md:flex justify-end space-x-4 hidden">
           <AddButton params={params} />
         </div>
         <Suspense fallback={null}>

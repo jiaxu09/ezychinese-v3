@@ -53,28 +53,28 @@ export default function RootLayout({
 
         <meta
           name="description"
-          content="ezyChinese - Help you learning Chinese easily."
+          content="ezyChinese - Where Learning Chinese is a Breeze for Kids!"
         />
         <meta
           property="og:description"
-          content="ezyChinese - Help you learning Chinese easily."
+          content="ezyChinese - Where Learning Chinese is a Breeze for Kids!"
         />
         <meta
           name="twitter:description"
-          content="ezyChinese - Help you learning Chinese easily."
+          content="ezyChinese - Where Learning Chinese is a Breeze for Kids!"
         />
 
         <meta
           property="og:image"
-          content="https://res.cloudinary.com/dp6apfu5b/image/upload/v1695275646/c9t9kzlp9y2m8hag7nhl.png"
+          content="https://res.cloudinary.com/dp6apfu5b/image/upload/f_auto,q_auto/v1/ezyChinese-v3/logo"
         />
         <meta
           name="twitter:image"
-          content="https://res.cloudinary.com/dp6apfu5b/image/upload/v1695275646/c9t9kzlp9y2m8hag7nhl.png"
+          content="https://res.cloudinary.com/dp6apfu5b/image/upload/f_auto,q_auto/v1/ezyChinese-v3/logo"
         />
       </head>
       <body
-        className="flex flex-col min-h-screen bg-background text-neutral"
+        className="flex flex-col min-h-screen bg-background text-primary"
         suppressHydrationWarning={true}
       >
         <QueryProvider>
