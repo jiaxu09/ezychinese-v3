@@ -13,14 +13,14 @@ const Radicals = () => {
     useGetChineseRadicals(page)
   )
 
-  if (isFetched && !data) {
+  if (isFetched && !data?.data) {
     notFound()
   }
 
   return (
     <div className="w-full h-full flex flex-col items-center">
       <div className="grid grid-cols-5 md:grid-cols-12 gap-6 md:gap-10 ">
-        {data?.data.map((radical, index) => (
+        {data?.data?.map((radical, index) => (
           <div
             key={index}
             className="p-4 md:p-8 flex items-center justify-center "

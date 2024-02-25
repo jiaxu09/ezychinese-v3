@@ -108,7 +108,7 @@ const Navbar = () => {
               onClick={handleSignin}
               variant="default"
             >
-              <span>Sign in&nbsp;</span> <span> with Google</span>{' '}
+              <span>Sign in</span>
             </Button>
           )}
         </div>

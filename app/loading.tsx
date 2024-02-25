@@ -9,11 +9,11 @@ const Loading = () => {
         className="w-full md:w-1/3 mx-auto"
         src={supabaseUrl('images/loading.svg')}
         alt="ezyChinese loading"
-        placeholder="blur"
         sizes="33vw"
         width={1600}
         height={1600}
-        blurDataURL={rgbDataURL(216, 222, 233)}
+        placeholder="blur"
+        blurDataURL={rgbDataURL(247, 246, 241)}
       />
     </div>
   )

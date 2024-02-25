@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import supabaseUrl from '@/lib/utils'
+import supabaseUrl, { rgbDataURL } from '@/lib/utils'
 
 const Loading = () => {
   return (
@@ -12,6 +12,8 @@ const Loading = () => {
         alt="ezyChinese loading"
         priority
         sizes="33vw"
+        placeholder="blur"
+        blurDataURL={rgbDataURL(247, 246, 241)}
       />
     </div>
   )

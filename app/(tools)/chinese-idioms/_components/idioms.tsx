@@ -13,7 +13,7 @@ const Idioms = () => {
     useGetChineseIdioms(page)
   )
 
-  if (isFetched && !data) {
+  if (isFetched && !data?.data) {
     notFound()
   }
 
