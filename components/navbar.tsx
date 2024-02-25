@@ -16,14 +16,17 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { User } from 'lucide-react'
 import Link from 'next/link'
-
+import { useToast } from '@/components/ui/use-toast'
 import supabaseUrl from '@/lib/utils'
+import useNetworkInformation from '@/hook/useNetworkInformation'
+import Misc from './misc'
 
 const Navbar = () => {
   const pathname = usePathname()
-
   const user = useUser((state) => state.user)
   const setUser = useUser((state) => state.setUser)
+
+  const [isOnline] = useNetworkInformation()
 
   const handleSignin = async () => {
     const supabase = supabaseBrowser()
@@ -113,6 +116,11 @@ const Navbar = () => {
           )}
         </div>
       </div>
+      {!isOnline && (
+        <div className=" fixed top-0 left-0 right-0 bg-wuzzy text-center animate-fade-down">
+          you are Offline!
+        </div>
+      )}
     </div>
   )
 }
