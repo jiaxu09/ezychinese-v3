@@ -66,7 +66,7 @@ const Navbar = () => {
             />
           </div>
         </Link>
-        <div>
+        <div className="flex items-center justify-start">
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -80,16 +80,25 @@ const Navbar = () => {
                   </AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
+              <DropdownMenuContent className=" bg-background">
                 <DropdownMenuItem className=" ">
-                  <Link href="/" aria-label="myquizzes">
-                    <Button variant="ghost">My Quizzes</Button>
+                  <Link
+                    className="w-full flex justify-start text-lg"
+                    href="/"
+                    aria-label="myquizzes"
+                  >
+                    My Quizzes
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Button variant="ghost" onClick={handleSignout}>
+                  <div
+                    className="w-full flex justify-start text-lg"
+                    role="button"
+                    aria-label="sign out"
+                    onClick={handleSignout}
+                  >
                     Sign out
-                  </Button>
+                  </div>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -99,8 +108,7 @@ const Navbar = () => {
               onClick={handleSignin}
               variant="default"
             >
-              <span className="lg:text-lg">Sign in&nbsp;</span>{' '}
-              <span className="hidden lg:block text-lg"> with Google</span>{' '}
+              <span>Sign in&nbsp;</span> <span> with Google</span>{' '}
             </Button>
           )}
         </div>

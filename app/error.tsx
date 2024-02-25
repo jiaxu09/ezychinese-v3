@@ -3,7 +3,7 @@
 import React from 'react'
 import Misc from '@/components/misc'
 
-const Error = () => {
+const ErrorBoundary = () => {
   return (
     <div className="relative container mx-auto py-20 flex flex-col items-center">
       <div className="flex items-center justify-center font-medium">
@@ -21,4 +21,4 @@ const Error = () => {
   )
 }
 
-export default Error
+export default ErrorBoundary
