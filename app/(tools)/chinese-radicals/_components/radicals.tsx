@@ -13,7 +13,7 @@ const Radicals = () => {
     useGetChineseRadicals(page)
   )
 
-  if (isFetched && !data?.data) {
+  if (isFetched && !data) {
     notFound()
   }
 

@@ -16,10 +16,8 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { User } from 'lucide-react'
 import Link from 'next/link'
-import { useToast } from '@/components/ui/use-toast'
 import supabaseUrl from '@/lib/utils'
 import useNetworkInformation from '@/hook/useNetworkInformation'
-import Misc from './misc'
 
 const Navbar = () => {
   const pathname = usePathname()
