@@ -14,7 +14,7 @@ const QiHunEpisodes = () => {
   }
 
   return (
-    <div className="grid grid-cols-3 md:grid-cols-10 gap-5 md:gap-10">
+    <div className="grid grid-cols-3 md:grid-cols-10 gap-5 md:gap-10 pb-16">
       {data?.map((item) => (
         <Link href={`/hikaru-no-go/${item.episode}`} key={item.episode}>
           <Button variant="outline">Episode {item.episode}</Button>
