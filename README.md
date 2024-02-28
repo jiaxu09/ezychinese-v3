@@ -9,9 +9,13 @@ Customize your learning experience with themes and levels
 
 ## Technologies
 Next.js: A React framework for building fast and scalable web applications
+
 React Query: A library for fetching, caching, and updating data in React
+
 TypeScript: A superset of JavaScript that adds static types and other features
+
 Supabase: An open-source alternative to Firebase that provides authentication, database, storage, and more
+
 Installation
 To run this project locally, you need to have Node.js and npm installed on your machine.
 
