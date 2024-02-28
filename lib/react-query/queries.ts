@@ -11,11 +11,10 @@ import {
   IIdiom,
   IRadical,
   RightExplanation,
-  TypedSupabaseClient,
 } from '../types'
 import { useToast } from '@/components/ui/use-toast'
 import {
-  getQiHunEpisode,
+  getQiHunAllEpisodes,
   getQiHunEpisodeDetails,
   getReadingByChapter,
   getSingByChapter,
@@ -421,8 +420,8 @@ export const useDeleteFindDifference = (source: string) => {
 //Videos
 export const useGetQiHunEpisodes = () => {
   return {
-    queryKey: [QUERY_KEYS.GETQIHUNEPISODES],
-    queryFn: () => getQiHunEpisode(),
+    queryKey: [QUERY_KEYS.GETQIHUNALLEPISODES],
+    queryFn: () => getQiHunAllEpisodes(),
   }
 }
 

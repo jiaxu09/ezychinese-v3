@@ -8,9 +8,11 @@ import React from 'react'
 
 const QiHunEpisodes = () => {
   const { data, isFetched } = useQuery(useGetQiHunEpisodes())
-  if (isFetched && !data) {
-    notFound()
-  }
+
+  console.log(data)
+  // if (isFetched && !data) {
+  //   notFound()
+  // }
 
   return (
     <div className="grid grid-cols-3 md:grid-cols-10 gap-5 md:gap-10">

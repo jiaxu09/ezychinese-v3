@@ -19,7 +19,7 @@ const Videos = () => {
             className=" relative w-full bg-white hover:bg-white/20 p-4 border border-primary shadow-sm transition-all duration-300 rounded-lg flex items-center justify-start pl-6 md:pl-10"
           >
             <div className="flex items-center space-x-3">
-              <div className=''>
+              <div className="">
                 <ruby>
                   <span className="text-lg md:text-3xl text-gray-600 px-2 inline-block">
                     棋

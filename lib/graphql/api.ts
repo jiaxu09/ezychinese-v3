@@ -256,7 +256,7 @@ export const getReadingByChapter = async (slug: string) => {
 }
 
 //Videos
-export const getQiHunEpisode = async () => {
+export const getQiHunAllEpisodes = async () => {
   try {
     const data = await fetch(graphqlAPI, {
       method: 'POST',
@@ -267,6 +267,7 @@ export const getQiHunEpisode = async () => {
         query: `query GetQiHunEpisodes() {
           hikaruNoGos {
             episode
+            videoId
           }
         }`,
       }),
