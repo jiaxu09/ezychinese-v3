@@ -1,5 +1,4 @@
-import React from 'react'
-import QiHunHeader from './_components/header'
+import React, { Suspense } from 'react'
 import QiHunEpisodes from './_components/episodes'
 import {
   HydrationBoundary,
@@ -15,8 +14,12 @@ const HikaruNoGoPage = async () => {
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <div className=" container flex flex-col ">
-        <QiHunHeader />
-        <QiHunEpisodes />
+        <div className="flex items-center justify-center w-full pb-10">
+          <h1 className=" text-lg md:text-5xl">棋魂</h1>
+        </div>
+        <Suspense fallback={null}>
+          <QiHunEpisodes />
+        </Suspense>
       </div>
     </HydrationBoundary>
   )

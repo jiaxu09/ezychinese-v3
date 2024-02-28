@@ -4,7 +4,7 @@ import {
   QueryClient,
   dehydrate,
 } from '@tanstack/react-query'
-import React from 'react'
+import React, { Suspense } from 'react'
 import EpisodeDetails from './_components/episode-details'
 import Link from 'next/link'
 
@@ -29,7 +29,9 @@ const EpisodePage = async ({ params }: EpisodePageProps) => {
           <span>集</span>
         </div>
         <div className="w-full">
-          <EpisodeDetails episode={params.episode} />
+          <Suspense fallback={null}>
+            <EpisodeDetails episode={params.episode} />
+          </Suspense>
         </div>
       </div>
     </HydrationBoundary>
