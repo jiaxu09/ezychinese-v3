@@ -8,7 +8,7 @@ const Tools = () => {
   return (
     <div className="relative w-full py-4 md:py-10">
       <div className=" relative grid grid-cols-3 md:flex md:flex-col md:items-center md:justify-center">
-        <h1 className=" flex flex-col justify-end text-3xl md:text-4xl p-10 md:absolute md:top-10 md:left-16">
+        <h1 className=" flex flex-col justify-end text-3xl md:text-4xl p-10 md:absolute md:top-10 md:left-20">
           Tools
         </h1>
         <div className=" grid grid-rows-3 md:w-2/3 md:h-52 md:flex md:justify-center md:items-center ">
