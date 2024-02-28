@@ -2,7 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import { Pen, BookOpenText, NotebookPen } from 'lucide-react'
 import Link from 'next/link'
-import supabaseUrl from '@/lib/utils'
+import supabaseUrl, { rgbDataURL } from '@/lib/utils'
 
 const Tools = () => {
   return (
@@ -61,6 +61,8 @@ const Tools = () => {
             width={856}
             height={168}
             quality={75}
+            placeholder='blur'
+            blurDataURL={rgbDataURL(248, 247, 242)}
             priority
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             alt="ezyChinese tools"

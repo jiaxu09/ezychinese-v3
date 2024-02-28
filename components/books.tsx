@@ -12,8 +12,8 @@ const Books = () => {
           <div className="w-2/3 object-container relative flex justify-center">
             <Image
               src={supabaseUrl('images/zhongwen.webp')}
-              width={415}
-              height={215}
+              width={300}
+              height={156}
               alt="ezyChinese Zhongwen"
               priority
               placeholder="blur"
@@ -36,8 +36,8 @@ const Books = () => {
           <div className="w-2/3 object-container relative flex justify-center">
             <Image
               src={supabaseUrl('images/csol.webp')}
-              width={333}
-              height={215}
+              width={300}
+              height={169}
               alt="ezyChinese CSOL"
               priority
               placeholder="blur"

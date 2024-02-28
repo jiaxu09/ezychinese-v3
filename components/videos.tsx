@@ -42,7 +42,7 @@ const Videos = () => {
               height={330}
               alt="ezyChinese QiHun"
               priority
-              sizes="33vw"
+              sizes="(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
         </Link>

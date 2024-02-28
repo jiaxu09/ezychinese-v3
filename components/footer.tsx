@@ -27,7 +27,7 @@ const Footer = () => {
             <path d="m10 15 5-3-5-3z" />
           </svg>
         </div>
-        <Link target="_blank" href="https://github.com/jiaxu09/ezychinese-v3">
+        <Link aria-label='ezyChinese github' target="_blank" href="https://github.com/jiaxu09/ezychinese-v3">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
