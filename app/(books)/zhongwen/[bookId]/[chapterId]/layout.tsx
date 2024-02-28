@@ -32,7 +32,7 @@ const PracticesLayout = ({
   params: { bookId: string; chapterId: string }
 }>) => {
   return (
-    <main className="container py-4">
+    <div className="container py-4">
       <Breadcrumb
         type="zhongwen"
         bookId={params.bookId}
@@ -45,7 +45,7 @@ const PracticesLayout = ({
         chapterId={params.chapterId}
       />
       <main className=" max-w-3xl mx-auto">{children}</main>
-    </main>
+    </div>
   )
 }
 

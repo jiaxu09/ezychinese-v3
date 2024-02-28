@@ -32,4 +32,5 @@ export enum QUERY_KEYS {
   DELETEFINDDIFFERENCE = 'deletefinddifference',
   GETQIHUNALLEPISODES = 'getqihunallepisodes',
   GETQIHUNEPISODEDETAILS = 'getqihunepisodedetails',
+  GETPINYINBYCATEGORY = 'getpinyinbycategory',
 }

@@ -6,6 +6,8 @@ import {
   IReading,
   ISing,
   IWords,
+  Pinyin,
+  PinyinCategories,
   QiHunEpisode,
   QiHunEpisodeDetails,
 } from '../types'
@@ -310,5 +312,36 @@ export const getQiHunEpisodeDetails = async (episode: string) => {
     }).then((res) => res.json())
     const details = data.data.hikaruNoGos[0] as QiHunEpisodeDetails
     return details
+  } catch (error) {}
+}
+
+//Tools Pinyin
+
+export const getPinyinByCategory = async (category: PinyinCategories) => {
+  try {
+    const data = await fetch(graphqlAPI, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `query GetPinyinByCategory($category: String!) {
+          pinyins(where: { category: $category }, orderBy: number_ASC) {
+            id
+            name
+            number
+            subcategory
+            tones {
+              fileName
+              url(transformation: { document: { output: {} } })
+            }
+            category
+          }
+        }`,
+        variables: { category },
+      }),
+    }).then((res) => res.json())
+    const initials = data.data.pinyins as Pinyin[]
+    return initials
   } catch (error) {}
 }

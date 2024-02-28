@@ -139,3 +139,17 @@ export type QiHunEpisodeDetails = {
   }
   engSub: { to: string; from: string; text: string }[]
 }
+
+export type PinyinCategories = 'initials' | 'finals' | 'whole syllables'
+
+export type Pinyin = {
+  id: string
+  name: string
+  number: number
+  subcategory: ''
+  tones: {
+    fileName: string
+    url: string
+  }[]
+  category: PinyinCategories
+}

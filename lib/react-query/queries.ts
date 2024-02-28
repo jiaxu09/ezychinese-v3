@@ -10,10 +10,12 @@ import {
   FormPhrases,
   IIdiom,
   IRadical,
+  PinyinCategories,
   RightExplanation,
 } from '../types'
 import { useToast } from '@/components/ui/use-toast'
 import {
+  getPinyinByCategory,
   getQiHunAllEpisodes,
   getQiHunEpisodeDetails,
   getReadingByChapter,
@@ -146,6 +148,14 @@ export const useGetChineseIdioms = (page: number) => {
 }
 
 //End of Chinese Idioms
+
+//Pinyin
+export const useGetChinesePinyinByCategory = (category: PinyinCategories) => {
+  return {
+    queryKey: [QUERY_KEYS.GETPINYINBYCATEGORY, category],
+    queryFn: () => getPinyinByCategory(category),
+  }
+}
 
 // Literacy
 export const useHanziSound = (character: string) => {
