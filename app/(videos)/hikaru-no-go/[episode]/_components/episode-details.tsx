@@ -67,7 +67,7 @@ const EpisodeDetails = ({ episode }: EpisodeDetailsProps) => {
     <div className="w-full py-2 flex flex-col gap-10">
       <div className="flex items-center justify-center w-full ">
         <YouTube
-          iframeClassName="w-full h-[400px] aspect-video"
+          iframeClassName="w-full md:h-[400px] aspect-video"
           videoId={data?.videoId}
           onStateChange={handleStateChange}
           onPlay={handlePlay}
@@ -75,16 +75,20 @@ const EpisodeDetails = ({ episode }: EpisodeDetailsProps) => {
         />
       </div>
       <div className="flex flex-col items-center justify-center space-y-4 py-10 md:py-0 h-[180px]">
-        <div className="flex items-center text-lg md:text-5xl space-x-1">
+        <div className="flex items-center space-x-2">
           {pinyinSub &&
             zhSub?.map((char, index) => (
               <ruby key={index} className="">
-                <span className="  inline-block">{char}</span>
-                <rt className=" text-gray-600 ">{pinyinSub[index]}</rt>
+                <span className="text-lg md:text-5xl  inline-block">
+                  {char}
+                </span>
+                <rt className="text-lg md:text-4xl text-slate-950 ">
+                  {pinyinSub[index]}
+                </rt>
               </ruby>
             ))}
         </div>
-        <p className=" text-gray-600 text-lg md:text-3xl">{enSub}</p>
+        <p className="  text-lg md:text-4xl text-stone-900">{enSub}</p>
       </div>
     </div>
   )
