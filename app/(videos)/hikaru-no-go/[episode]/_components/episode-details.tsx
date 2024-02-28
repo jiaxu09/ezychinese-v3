@@ -67,7 +67,7 @@ const EpisodeDetails = ({ episode }: EpisodeDetailsProps) => {
     <div className="w-full py-2 flex flex-col gap-10">
       <div className="flex items-center justify-center w-full ">
         <YouTube
-          iframeClassName="w-full md:h-[400px] aspect-video"
+          iframeClassName="w-full h-[200px] md:h-[400px] aspect-video"
           videoId={data?.videoId}
           onStateChange={handleStateChange}
           onPlay={handlePlay}
