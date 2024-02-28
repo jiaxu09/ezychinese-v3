@@ -30,4 +30,6 @@ export enum QUERY_KEYS {
   ADDFINDDIFFERENCE = 'addfinddifference',
   GETFINDDIFFERENCEBYCHAPTER = 'getfinddifferencebychapter',
   DELETEFINDDIFFERENCE = 'deletefinddifference',
+  GETQIHUNEPISODES = 'getqihunepisodes',
+  GETQIHUNEPISODEDETAILS = 'getqihunepisodedetails',
 }

@@ -174,7 +174,7 @@ const CorrectOrderForm = ({ bookId, chapterId }: CorrectOrderFormProps) => {
         <CollapsibleContent className="space-y-2 text-lg px-6 ">
           {correct_order?.map((item) => (
             <div
-              className="even:bg-skyblue odd:bg-orange rounded-lg p-1 flex items-center justify-between"
+              className="even:bg-skyblue odd:bg-pastelblue rounded-lg p-1 flex items-center justify-between"
               key={item.id}
             >
               {item.answer}

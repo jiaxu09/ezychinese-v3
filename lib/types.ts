@@ -121,3 +121,21 @@ export type FindDifference = {
   answer: string
   source: string
 }
+
+export type QiHunEpisode = {
+  episode: string
+}
+
+export type QiHunEpisodeDetails = {
+  episode: string
+  videoId: string
+  pinyinSub: { to: string; from: string; text: string }[]
+  id: string
+  zhSub: { to: string; from: string; text: string }[]
+  thumbnail: {
+    url: string
+    width: string
+    height: String
+  }
+  engSub: { to: string; from: string; text: string }[]
+}

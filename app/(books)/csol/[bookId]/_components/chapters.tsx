@@ -19,7 +19,7 @@ const Chapters = ({ slug }: ChaptersProps) => {
         <Link
           aria-label="ezyChinese zhongwen"
           key={index}
-          className="[&:nth-child(1n)]:bg-crayola [&:nth-child(2n)]:bg-wuzzy [&:nth-child(3n)]:bg-green border rounded-full"
+          className="[&:nth-child(1n)]:bg-crayola [&:nth-child(2n)]:bg-skyblue [&:nth-child(3n)]:bg-green border rounded-full"
           href={`/csol/${slug}/${item.name}/words`}
         >
           <div className=" cursor-pointer  flex items-center justify-center p-8 ">

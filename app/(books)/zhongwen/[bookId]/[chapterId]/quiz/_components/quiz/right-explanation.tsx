@@ -75,7 +75,7 @@ const RightExplanation = ({
               </span>
             )}
             {index === 2 && (
-              <span className="mr-2 w-6 h-6 flex items-center justify-center rounded-full bg-orange">
+              <span className="mr-2 w-6 h-6 flex items-center justify-center rounded-full bg-pastelblue">
                 C
               </span>
             )}

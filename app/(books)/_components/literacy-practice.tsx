@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from 'react'
-
 import HanziWriter from 'hanzi-writer'
 import { PenLine, RotateCcw, Volume2 } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
@@ -11,7 +10,6 @@ import {
   useHanziSound,
 } from '@/lib/react-query/queries'
 import { ILiteracies } from '@/lib/types'
-import { Button } from '@/components/ui/button'
 import Dictionary from './literacy/dictionary'
 import English from './literacy/english'
 import Meaning from './literacy/meaning'
@@ -144,7 +142,7 @@ const LiteracyPractice = ({ data }: LiteracyPracticeProps) => {
             </div>
             <div className=" cursor-pointer">
               {isLoadingDictionary ? (
-                <RotateCcw className=" h-8 w-8 animate-spin text-orange" />
+                <RotateCcw className=" h-8 w-8 animate-spin text-pewterblue" />
               ) : (
                 <Dictionary
                   strokes={dictionary?.strokes}
@@ -162,7 +160,7 @@ const LiteracyPractice = ({ data }: LiteracyPracticeProps) => {
             </div>
             <div className=" cursor-pointer">
               {isLoadingMeaning ? (
-                <RotateCcw className=" h-8 w-8 animate-spin text-wuzzy" />
+                <RotateCcw className=" h-8 w-8 animate-spin text-green" />
               ) : (
                 <Meaning meaning={meaning} />
               )}

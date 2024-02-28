@@ -13,14 +13,14 @@ const withPWA = withPWAInit({
 
 const ContentSecurityPolicy = `
     default-src 'self' vercel.live;
-    script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com vercel.live va.vercel-scripts.com grand-python-3.clerk.accounts.dev;
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com vercel.live va.vercel-scripts.com youtube.com http://www.youtube.com https://www.youtube.com;
     style-src 'self' 'unsafe-inline';
     img-src * blob: data:;
     media-src *;
     connect-src *;
     font-src 'self' data:;
     worker-src * blob: data;
-    frame-src www.youtube.com
+    frame-src www.youtube.com https://www.youtube.com;
 `
 
 const securityHeaders = [

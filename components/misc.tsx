@@ -15,7 +15,7 @@ const Misc = () => {
   return (
     <div>
       <Bean className="absolute bottom-[12%] left-[30%] text-wuzzy" />
-      <Beef className="absolute -bottom-[12%] left-[20%] text-orange" />
+      <Beef className="absolute -bottom-[12%] left-[20%] text-pastelblue" />
       <Apple className=" absolute top-[12%] right-[30%] text-green" />
       <Fish className=" absolute -bottom-[32%] right-[25%] text-pewterblue" />
       <Flower className=" absolute top-[22%] left-[15%] text-pastelblue" />

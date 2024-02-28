@@ -1,5 +1,14 @@
 'use server'
-import { IBook, IChapter, ILiteracies, IReading, ISing, IWords } from '../types'
+import {
+  IBook,
+  IChapter,
+  ILiteracies,
+  IReading,
+  ISing,
+  IWords,
+  QiHunEpisode,
+  QiHunEpisodeDetails,
+} from '../types'
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT!
 
@@ -244,4 +253,61 @@ export const getReadingByChapter = async (slug: string) => {
   } catch (error) {
     throw Error
   }
+}
+
+//Videos
+export const getQiHunEpisode = async () => {
+  try {
+    const data = await fetch(graphqlAPI, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `query GetQiHunEpisodes() {
+          hikaruNoGos {
+            episode
+          }
+        }`,
+      }),
+    }).then((res) => res.json())
+    const episodes = data.data.hikaruNoGos as QiHunEpisode[]
+    return episodes
+  } catch (error) {
+    return null
+  }
+}
+
+export const getQiHunEpisodeDetails = async (episode: string) => {
+  if (!episode) {
+    return
+  }
+  try {
+    const data = await fetch(graphqlAPI, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `query GetQiHunEpisodeDetails($episode: String!) {
+          hikaruNoGos(where:  {episode: $episode}) {
+            episode
+            videoId
+            pinyinSub
+            id
+            zhSub
+            thumbnail {
+              url
+              width
+              height
+            }
+            engSub
+          }
+        }`,
+        variables: { episode },
+      }),
+    }).then((res) => res.json())
+    const details = data.data.hikaruNoGos[0] as QiHunEpisodeDetails
+    return details
+  } catch (error) {}
 }

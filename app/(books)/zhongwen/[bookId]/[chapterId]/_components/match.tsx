@@ -174,7 +174,7 @@ const Match = ({ bookId, chapterId }: MatchProps) => {
                   </div>
                   <div className="m-back bg-accent transition-all duration-500 ease-in-out p-2">
                     <Image
-                      src={supabaseUrl('images/logo_lg.webp')}
+                      src={supabaseUrl('images/logo.webp')}
                       width={180}
                       height={163}
                       alt="ezyChinese match game"

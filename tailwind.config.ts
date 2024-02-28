@@ -63,12 +63,6 @@ const config = {
         neutral:{
           DEFAULT: "hsl(var(--neutral))",
         },
-        wuzzy:{
-          DEFAULT:"hsl(var(--wuzzy))",
-        },
-        green:{
-          DEFAULT:"hsl(var(--green))",
-        },
         crayola:{
           DEFAULT:"hsl(var(--crayola))",
         },
@@ -81,8 +75,8 @@ const config = {
         pewterblue:{
           DEFAULT:"hsl(var(--pewterblue))",
         },
-        orange:{
-          DEFAULT:"hsl(var(--orange))"
+        green:{
+          DEFAULT:"hsl(var(--green))",
         },
         watermarker:{
           DEFAULT:"hsl(var(--watermarker))"

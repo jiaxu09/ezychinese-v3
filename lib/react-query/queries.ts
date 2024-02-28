@@ -14,7 +14,12 @@ import {
   TypedSupabaseClient,
 } from '../types'
 import { useToast } from '@/components/ui/use-toast'
-import { getReadingByChapter, getSingByChapter } from '../graphql/api'
+import {
+  getQiHunEpisode,
+  getQiHunEpisodeDetails,
+  getReadingByChapter,
+  getSingByChapter,
+} from '../graphql/api'
 import {
   addFindDifference,
   deleteFindDifference,
@@ -411,4 +416,21 @@ export const useDeleteFindDifference = (source: string) => {
       })
     },
   })
+}
+
+//Videos
+export const useGetQiHunEpisodes = () => {
+  return {
+    queryKey: [QUERY_KEYS.GETQIHUNEPISODES],
+    queryFn: () => getQiHunEpisode(),
+    staleTime: 100,
+  }
+}
+
+export const useGetQiHunEpisodeDetails = (episode: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETQIHUNEPISODEDETAILS, episode],
+    queryFn: () => getQiHunEpisodeDetails(episode),
+    staleTime: 100,
+  }
 }

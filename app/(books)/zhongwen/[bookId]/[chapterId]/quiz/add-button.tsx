@@ -19,7 +19,7 @@ const AddButton = ({ params }: AddButtonProps) => {
   }
   return (
     <Link href={`/zhongwen/${params.bookId}/${params.chapterId}/quiz/new-quiz`}>
-      <Button aria-label="ezyChinese add new quiz" variant="default">
+      <Button aria-label="ezyChinese add new quiz" variant="outline">
         <Plus />
       </Button>
     </Link>

@@ -6,7 +6,7 @@ import supabaseUrl from '@/lib/utils'
 
 const Tools = () => {
   return (
-    <div className="relative w-full py-4 md:pt-16">
+    <div className="relative w-full py-4 md:py-10">
       <div className=" relative grid grid-cols-3 md:flex md:flex-col md:items-center md:justify-center">
         <h1 className=" flex flex-col justify-end text-3xl md:text-4xl p-10 md:absolute md:top-10 md:left-16">
           Tools
@@ -47,7 +47,7 @@ const Tools = () => {
             </div>
           </div>
           <div className="flex items-center justify-end translate-x-12 lg:-translate-x-2 xl:-translate-x-20 md:w-1/3 md:h-full ">
-            <div className="w-3/4 h-3/4 md:w-2/3 flex flex-col items-center justify-center bg-wuzzy rounded-lg  shadow-md hover:bg-wuzzy/90">
+            <div className="w-3/4 h-3/4 md:w-2/3 flex flex-col items-center justify-center bg-green rounded-lg shadow-md hover:bg-green/80">
               <NotebookPen className="w-5 h-5 md:w-8 md:h-8  text-primary" />
               <h1 className="text-sm md:text-lg text-center font-semibold  text-primary">
                 Pinyin
@@ -69,8 +69,8 @@ const Tools = () => {
         <div className=" p-2 md:hidden">
           <Image
             src={supabaseUrl('images/stair.webp')}
-            width={120}
-            height={383}
+            width={180}
+            height={575}
             quality={75}
             priority
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
