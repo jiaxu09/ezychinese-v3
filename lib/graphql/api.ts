@@ -264,10 +264,9 @@ export const getQiHunAllEpisodes = async () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        query: `query GetQiHunEpisodes() {
+        query: `query GetQiHunEpisodes {
           hikaruNoGos {
             episode
-            videoId
           }
         }`,
       }),
@@ -275,6 +274,7 @@ export const getQiHunAllEpisodes = async () => {
     const episodes = data.data.hikaruNoGos as QiHunEpisode[]
     return episodes
   } catch (error) {
+    console.log(error)
     return null
   }
 }
