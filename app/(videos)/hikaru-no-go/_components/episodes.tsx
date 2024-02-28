@@ -8,7 +8,6 @@ import React from 'react'
 
 const QiHunEpisodes = () => {
   const { data, isFetched } = useQuery(useGetQiHunEpisodes())
-
   if (isFetched && !data) {
     notFound()
   }
