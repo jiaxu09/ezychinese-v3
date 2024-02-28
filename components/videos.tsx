@@ -9,7 +9,7 @@ const Videos = () => {
     <div className="flex flex-col py-4 md:pt-16 bg-foreground">
       <div className="flex items-center justify-center space-x-2">
         <h1 className="  md:pl-28 ">Learning by Watching</h1>
-        <Tv className="w-8 h-8 text-destructive" />
+        <Tv className="w-8 h-8" />
       </div>
       <div className="container grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 py-10 gap-10 px-14">
         <Link
