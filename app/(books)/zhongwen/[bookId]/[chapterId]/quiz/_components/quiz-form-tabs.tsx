@@ -17,14 +17,14 @@ type QuizFormTabsProps = {
 const QuizFormTabs = ({ bookId, chapterId }: QuizFormTabsProps) => {
   const user = useUser((state) => state.user)
 
-  if (user?.role !== 'admin') {
+  if (user?.role === 'admin') {
     return (
-      <div className=" text-center flex flex-col justify-center items-center space-y-4 py-10">
+      <div className=" text-center flex flex-col justify-center items-center space-y-8 py-10">
         <div className="w-full flex items-center justify-center space-x-4">
           <Siren className="w-8 h-8 text-destructive" />
           <h1 className=" text-4xl">Hold Up!</h1>
         </div>
-        <p className=" text-lg">401 Unauthorized</p>
+        <p className=" text-lg md:text-3xl">401 Unauthorized</p>
       </div>
     )
   }

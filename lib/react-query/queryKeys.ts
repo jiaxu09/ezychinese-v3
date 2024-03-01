@@ -33,4 +33,6 @@ export enum QUERY_KEYS {
   GETQIHUNALLEPISODES = 'getqihunallepisodes',
   GETQIHUNEPISODEDETAILS = 'getqihunepisodedetails',
   GETPINYINBYCATEGORY = 'getpinyinbycategory',
+  GETHANYUBOOKS = 'gethanyubooks',
+  GETHANYUUNITS = 'gethanyuunits',
 }

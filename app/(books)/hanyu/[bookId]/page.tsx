@@ -1,15 +1,10 @@
-import { type Metadata } from "next"
-import { useGetChaptersByBookId } from '@/lib/react-query/queries'
-import {
-  HydrationBoundary,
-  QueryClient,
-  dehydrate,
-} from '@tanstack/react-query'
 import React from 'react'
-import Chapters from "./_components/chapters"
+import { type Metadata } from "next"
+import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query'
+import { useGetHanYuUnits } from '@/lib/react-query/queries'
+import Units from './_components/units'
 
-
-interface BookDetailsProps {
+interface HanYuUnitPageProps {
   params: {
     bookId: string
   }
@@ -17,7 +12,7 @@ interface BookDetailsProps {
 
 export async function generateMetadata({
   params,
-}: BookDetailsProps): Promise<Metadata> {
+}: HanYuUnitPageProps): Promise<Metadata> {
   const id = params.bookId
 
   if (!id) {
@@ -26,28 +21,27 @@ export async function generateMetadata({
 
   return {
     metadataBase: new URL("https://ezychinese.app"),
-    title: `CSOL`,
+    title: `汉语 第${id}册`,
     description: '',
   }
 }
 
-const BookDetailsPage = async ({ params }: BookDetailsProps) => {
+const HanYuUnitPage =async ({ params }: HanYuUnitPageProps) => {
   const queryClient = new QueryClient()
 
-  await queryClient.prefetchQuery(useGetChaptersByBookId(params.bookId))
-  
+  await queryClient.prefetchQuery(useGetHanYuUnits(params.bookId))
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <main>
         <div className=" container mx-auto">
           <h1 className="text-xl md:text-4xl text-center py-4 md:py-8">
-            Select a Chapter 
+            选择单元
           </h1>
-          <Chapters slug={params.bookId} />
+         <Units bookId={params.bookId}/>
         </div>
       </main>
     </HydrationBoundary>
   )
 }
 
-export default BookDetailsPage
+export default HanYuUnitPage

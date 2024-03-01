@@ -25,6 +25,8 @@ import {
   addFindDifference,
   deleteFindDifference,
   getFindDifferenceByChapter,
+  getHanYuBooks,
+  getHanYuUnits,
 } from '../supabase/api-server'
 import {
   getCSOLBooks,
@@ -439,5 +441,20 @@ export const useGetQiHunEpisodeDetails = (episode: string) => {
   return {
     queryKey: [QUERY_KEYS.GETQIHUNEPISODEDETAILS, episode],
     queryFn: () => getQiHunEpisodeDetails(episode),
+  }
+}
+
+//Hanyu
+export const useGetHanYuBooks = () => {
+  return {
+    queryKey: [QUERY_KEYS.GETHANYUBOOKS],
+    queryFn: () => getHanYuBooks(),
+  }
+}
+
+export const useGetHanYuUnits = (book: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETHANYUUNITS, book],
+    queryFn: () => getHanYuUnits(book),
   }
 }

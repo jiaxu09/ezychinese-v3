@@ -25,7 +25,7 @@ export async function generateMetadata({
   }
 
   return {
-    metadataBase: new URL("https://ezychinese-v3.vercel.app/"),
+    metadataBase: new URL("https://ezychinese.app"),
     title: `中文 | 第${id}册 - 生字`,
     description: '暨南大学中文1-6册.',
   }

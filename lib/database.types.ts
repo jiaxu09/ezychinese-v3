@@ -112,6 +112,56 @@ export type Database = {
         }
         Relationships: []
       }
+      hanyu_books: {
+        Row: {
+          created_at: string
+          id: string
+          image: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          image: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          image?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      hanyu_units: {
+        Row: {
+          book: string
+          created_at: string
+          id: string
+          name: string
+        }
+        Insert: {
+          book: string
+          created_at?: string
+          id?: string
+          name: string
+        }
+        Update: {
+          book?: string
+          created_at?: string
+          id?: string
+          name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_hanyu_units_book_fkey"
+            columns: ["book"]
+            isOneToOne: false
+            referencedRelation: "hanyu_books"
+            referencedColumns: ["name"]
+          }
+        ]
+      }
       idioms: {
         Row: {
           background_url: string | null

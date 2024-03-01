@@ -22,6 +22,7 @@ import {
   FormPhrases,
   RightExplanation,
 } from '@/lib/types'
+import NoContent from '@/components/no-content'
 
 interface QuizProps {
   bookId: string
@@ -87,12 +88,7 @@ const Quiz = ({ bookId, chapterId }: QuizProps) => {
     quiz.form_phrases?.length === 0 &&
     quiz.right_explanation?.length === 0
   ) {
-    return (
-      <div className="flex flex-col items-center justify-center space-y-4 py-20">
-        <MessageCircleWarning className="w-20 h-20 md:w-36 md:h-36 text-primary" />
-        <p className=" text-lg md:text-2xl">No quiz was found</p>
-      </div>
-    )
+    return <NoContent />
   }
 
   return (

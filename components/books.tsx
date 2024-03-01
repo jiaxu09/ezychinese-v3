@@ -16,8 +16,8 @@ const Books = () => {
               height={156}
               alt="ezyChinese Zhongwen"
               priority
-              placeholder="blur"
-              blurDataURL={rgbDataURL(235, 202, 137)}
+              // placeholder="blur"
+              // blurDataURL={rgbDataURL(235, 202, 137)}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
@@ -40,8 +40,56 @@ const Books = () => {
               height={169}
               alt="ezyChinese CSOL"
               priority
+              // placeholder="blur"
+              // blurDataURL={rgbDataURL(143, 188, 187)}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          </div>
+          <Link
+            className="group flex items-center space-x-2 text-primary hover:text-primary/80"
+            aria-label="ezyChinese zhongwen"
+            href="/csol"
+          >
+            explore all books{' '}
+            <ChevronRight className=" group-hover:scale-75 transition-all duration-500" />
+          </Link>
+        </div>
+      </div>
+      <div className="w-full bg-green py-10">
+        <div className="flex flex-col items-center justify-center space-y-2">
+          <div className="w-2/3 object-container relative flex justify-center">
+            <Image
+              src={supabaseUrl('images/hanyu.webp')}
+              width={300}
+              height={164}
+              alt="ezyChinese HanYu"
+              priority
               placeholder="blur"
-              blurDataURL={rgbDataURL(143, 188, 187)}
+              blurDataURL={rgbDataURL(163, 180, 140)}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          </div>
+          <Link
+            aria-label="ezyChinese zhongwen"
+            href="/hanyu"
+            className="group flex items-center space-x-2 text-primary hover:text-primary/80"
+          >
+            explore all books{' '}
+            <ChevronRight className=" group-hover:scale-75 transition-all duration-500" />
+          </Link>
+        </div>
+      </div>
+      <div className="w-full bg-skyblue py-10">
+        <div className="flex flex-col items-center justify-center space-y-2">
+          <div className="w-2/3 object-container relative flex justify-center">
+            <Image
+              src={supabaseUrl('images/others.webp')}
+              width={313}
+              height={162}
+              alt="ezyChinese other books"
+              priority
+              placeholder="blur"
+              blurDataURL={rgbDataURL(136, 192, 208)}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>

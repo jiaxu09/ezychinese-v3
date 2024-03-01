@@ -211,3 +211,31 @@ export const deleteFormPhrases = async (id: string) => {
 export const deleteFindDifference = async (id: string) => {
   await deleteFunction(id, 'find_difference')
 }
+
+//Hanyu
+export const getHanYuBooks = async () => {
+  const supabase = supabaseServer()
+  const { data, error } = await supabase
+    .from('hanyu_books')
+    .select('*')
+    .order('created_at', { ascending: true })
+  if (error) {
+    console.log(error)
+    throw Error
+  }
+  return data
+}
+
+export const getHanYuUnits = async (bookId: string) => {
+  const supabase = supabaseServer()
+  const { data, error } = await supabase
+    .from('hanyu_units')
+    .select('*')
+    .eq('book', bookId)
+
+  if (error) {
+    console.log(error)
+    throw Error
+  }
+  return data
+}
