@@ -11,13 +11,16 @@ interface AddButtonProps {
 }
 const AddButton = ({ bookId, chapterId }: AddButtonProps) => {
   const user = useUser(state => state.user)
+
   return (
-    <div className='flex w-full items-center justify-end'>
-      <Link href={`/hanyu/${bookId}/${chapterId}/new`}>
-        <Button variant='outline' size='icon'>
-          <Plus />
-        </Button>
-      </Link>
+    <div className='fixed bottom-20 right-2 md:right-20'>
+      {user && user?.role === 'admin' && (
+        <Link href={`/hanyu/${bookId}/${chapterId}/new`}>
+          <Button variant='outline' size='icon'>
+            <Plus />
+          </Button>
+        </Link>
+      )}
     </div>
   )
 }

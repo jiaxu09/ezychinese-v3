@@ -1,16 +1,23 @@
 import { type Metadata } from 'next'
 import React from 'react'
 import Text from '../_components/text'
+import {
+  HydrationBoundary,
+  QueryClient,
+  dehydrate
+} from '@tanstack/react-query'
+import { useGetHanYuTextsByChapter } from '@/lib/react-query/queries'
 
-interface WordsPageProps {
+interface TextsPageProps {
   params: {
     bookId: string
     chapterId: string
   }
 }
+
 export async function generateMetadata({
   params
-}: WordsPageProps): Promise<Metadata> {
+}: TextsPageProps): Promise<Metadata> {
   const id = params.bookId
 
   if (!id) {
@@ -24,12 +31,19 @@ export async function generateMetadata({
   }
 }
 
-const TextPage = () => {
+const TextsPage = async ({ params }: TextsPageProps) => {
+  const queryClient = new QueryClient()
+
+  await queryClient.prefetchQuery(
+    useGetHanYuTextsByChapter(`${params.bookId}-${params.chapterId}`)
+  )
   return (
-    <div className='flex items-center justify-center '>
-      <Text />
-    </div>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <div className='mx-auto max-w-3xl'>
+        <Text bookId={params.bookId} chapterId={params.chapterId}/>
+      </div>
+    </HydrationBoundary>
   )
 }
 
-export default TextPage
+export default TextsPage

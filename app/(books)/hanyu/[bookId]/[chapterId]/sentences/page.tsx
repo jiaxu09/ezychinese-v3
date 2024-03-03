@@ -1,8 +1,10 @@
 import { type Metadata } from 'next'
 import React from 'react'
 import Sentences from '../_components/sentences'
+import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query'
+import { useGetHanYuSentencesByChapter } from '@/lib/react-query/queries'
 
-interface WordsPageProps {
+interface SentencesPageProps {
   params: {
     bookId: string
     chapterId: string
@@ -10,7 +12,7 @@ interface WordsPageProps {
 }
 export async function generateMetadata({
   params
-}: WordsPageProps): Promise<Metadata> {
+}: SentencesPageProps): Promise<Metadata> {
   const id = params.bookId
 
   if (!id) {
@@ -23,11 +25,18 @@ export async function generateMetadata({
     description: '句子'
   }
 }
-const SentencesPage = () => {
+const SentencesPage = async ({ params }: SentencesPageProps) => {
+  const queryClient = new QueryClient()
+
+  await queryClient.prefetchQuery(
+    useGetHanYuSentencesByChapter(`${params.bookId}-${params.chapterId}`)
+  )
   return (
-    <div className='flex items-center justify-center '>
-      <Sentences />
-    </div>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <div className='mx-auto max-w-3xl'>
+        <Sentences bookId={params.bookId} chapterId={params.chapterId} />
+      </div>
+    </HydrationBoundary>
   )
 }
 

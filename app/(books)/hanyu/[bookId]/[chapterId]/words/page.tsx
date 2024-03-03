@@ -1,6 +1,12 @@
 import { type Metadata } from 'next'
 import React from 'react'
 import Words from '../_components/words'
+import {
+  HydrationBoundary,
+  QueryClient,
+  dehydrate
+} from '@tanstack/react-query'
+import { useGetHanYuWordsByChapter } from '@/lib/react-query/queries'
 
 interface WordsPageProps {
   params: {
@@ -24,11 +30,18 @@ export async function generateMetadata({
   }
 }
 
-const WordsPage = () => {
+const WordsPage = async ({ params }: WordsPageProps) => {
+  const queryClient = new QueryClient()
+
+  await queryClient.prefetchQuery(
+    useGetHanYuWordsByChapter(`${params.bookId}-${params.chapterId}`)
+  )
   return (
-    <div className='flex items-center justify-center '>
-      <Words />
-    </div>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <div className='mx-auto max-w-3xl'>
+        <Words bookId={params.bookId} chapterId={params.chapterId} />
+      </div>
+    </HydrationBoundary>
   )
 }
 

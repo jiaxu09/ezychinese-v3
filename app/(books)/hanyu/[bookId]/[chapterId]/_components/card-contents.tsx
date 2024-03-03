@@ -3,6 +3,7 @@ import React from 'react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Volume2 } from 'lucide-react'
 import Image from 'next/image'
+import supabaseUrl from '@/lib/utils'
 
 interface CardContentsProps {
   audio: string
@@ -11,7 +12,7 @@ interface CardContentsProps {
 }
 const CardContents = ({ audio, sentence, image }: CardContentsProps) => {
   const handleSound = (url: string) => {
-    const audio = new Audio(url)
+    const audio = new Audio(supabaseUrl(url))
     audio.play()
   }
   return (
@@ -33,7 +34,7 @@ const CardContents = ({ audio, sentence, image }: CardContentsProps) => {
         <div className='relative h-3/4 w-3/4'>
           <Image
             className=' object-contain'
-            src={image}
+            src={supabaseUrl(image)}
             alt={`ezyChinese ${sentence}`}
             fill
             priority

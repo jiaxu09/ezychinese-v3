@@ -5,7 +5,7 @@ import AddButton from './_components/add-button'
 
 const tabs = [
   {
-    name: '生字/Words',
+    name: '生词/Words',
     path: 'words'
   },
   {
@@ -45,9 +45,8 @@ const PracticesLayout = ({
         bookId={params.bookId}
         chapterId={params.chapterId}
       />
-      <div className=' mx-auto max-w-3xl'>{children}</div>
-      <AddButton  bookId={params.bookId}
-        chapterId={params.chapterId}/>
+      <div className=''>{children}</div>
+      <AddButton bookId={params.bookId} chapterId={params.chapterId} />
     </div>
   )
 }

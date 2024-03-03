@@ -8,12 +8,29 @@ import {
   CorrectOrder,
   FindDifference,
   FormPhrases,
+  HanYuSentence,
+  HanYuText,
+  HanYuWord,
+  HanYuWriting,
   IIdiom,
   IRadical,
   PinyinCategories,
   RightExplanation,
 } from '../types'
 import { useToast } from '@/components/ui/use-toast'
+import {
+  addHanYuSentence,
+  addHanYuText,
+  addHanYuWriting,
+  deleteHanYuSentence,
+  deleteHanYuText,
+  deleteHanYuWord,
+  deleteHanYuWriting,
+  getHanYuSentencesByChapter,
+  getHanYuTextsByChapter,
+  getHanYuWordsByChapter,
+  getHanYuWritingsByChapter,
+} from '../supabase/api-server'
 import {
   getPinyinByCategory,
   getQiHunAllEpisodes,
@@ -23,6 +40,7 @@ import {
 } from '../graphql/api'
 import {
   addFindDifference,
+  addHanYuWord,
   deleteFindDifference,
   getFindDifferenceByChapter,
   getHanYuBooks,
@@ -457,4 +475,168 @@ export const useGetHanYuUnits = (book: string) => {
     queryKey: [QUERY_KEYS.GETHANYUUNITS, book],
     queryFn: () => getHanYuUnits(book),
   }
+}
+
+export const useAddHanYuWords = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (item: HanYuWord) => addHanYuWord(item),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETHANYUWORDSBYCHAPTER, source],
+      })
+      toast({
+        title: 'Cool! 生字/Words created successfully. ',
+        variant: 'success',
+      })
+    },
+  })
+}
+
+export const useGetHanYuWordsByChapter = (source: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETHANYUWORDSBYCHAPTER, source],
+    queryFn: () => getHanYuWordsByChapter(source),
+  }
+}
+
+export const useDeleteHanYuWord = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (id: string) => deleteHanYuWord(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETHANYUWORDSBYCHAPTER, source],
+      })
+      toast({
+        title: 'Cool! 生字/Words deleted successfully. ',
+        variant: 'success',
+      })
+    },
+  })
+}
+
+export const useGetHanYuSentencesByChapter = (source: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETHANYUSENTENCESBYCHAPTER, source],
+    queryFn: () => getHanYuSentencesByChapter(source),
+  }
+}
+
+export const useAddHanYuSentence = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (item: HanYuSentence) => addHanYuSentence(item),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETHANYUSENTENCESBYCHAPTER, source],
+      })
+      toast({
+        title: 'Cool! 句子/Sentences created successfully. ',
+        variant: 'success',
+      })
+    },
+  })
+}
+
+export const useDeleteHanYuSentence = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (id: string) => deleteHanYuSentence(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETHANYUSENTENCESBYCHAPTER, source],
+      })
+      toast({
+        title: 'Cool! 句子/Sentences deleted successfully. ',
+        variant: 'success',
+      })
+    },
+  })
+}
+
+export const useGetHanYuTextsByChapter = (source: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETHANYUTEXTSBYCHAPTER, source],
+    queryFn: () => getHanYuTextsByChapter(source),
+  }
+}
+
+export const useAddHanYuText = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (item: HanYuText) => addHanYuText(item),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETHANYUTEXTSBYCHAPTER, source],
+      })
+      toast({
+        title: 'Cool! 课本/Text created successfully. ',
+        variant: 'success',
+      })
+    },
+  })
+}
+
+export const useDeleteHanYuText = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (id: string) => deleteHanYuText(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETHANYUTEXTSBYCHAPTER, source],
+      })
+      toast({
+        title: 'Cool! 课本/Text deleted successfully. ',
+        variant: 'success',
+      })
+    },
+  })
+}
+
+export const useGetHanYuWritingssByChapter = (source: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETHANYUWRITINGSBYCHAPTER, source],
+    queryFn: () => getHanYuWritingsByChapter(source),
+  }
+}
+
+export const useAddHanYuWriting = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (item: HanYuWriting) => addHanYuWriting(item),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETHANYUWRITINGSBYCHAPTER, source],
+      })
+      toast({
+        title: 'Cool! 汉字/Writing created successfully. ',
+        variant: 'success',
+      })
+    },
+  })
+}
+
+export const useDeleteHanYuWriting = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (id: string) => deleteHanYuWriting(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETHANYUWRITINGSBYCHAPTER, source],
+      })
+      toast({
+        title: 'Cool! 汉字/Writing deleted successfully. ',
+        variant: 'success',
+      })
+    },
+  })
 }

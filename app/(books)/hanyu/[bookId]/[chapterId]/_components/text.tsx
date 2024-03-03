@@ -1,29 +1,32 @@
 'use client'
-import { Card, CardContent } from '@/components/ui/card'
 import { CarouselItem } from '@/components/ui/carousel'
-import { Volume2 } from 'lucide-react'
-import Image from 'next/image'
 import React from 'react'
 import CarouselItems from './Carousel-items'
 import CardContents from './card-contents'
+import NoContent from '@/components/no-content'
+import { notFound } from 'next/navigation'
+import { useGetHanYuTextsByChapter } from '@/lib/react-query/queries'
+import { useQuery } from '@tanstack/react-query'
 
-const texts = [
-  {
-    sentence: '小华:你好!\n小红:你好!',
-    image:
-      'https://jyemvxshpznmgnzoxuhp.supabase.co/storage/v1/object/public/ezyChinese/hanyu-images/Screenshot%20from%202024-03-01%2010-27-55.png',
-    audio:
-      'https://jyemvxshpznmgnzoxuhp.supabase.co/storage/v1/object/public/ezyChinese/mp3/nihao-zaijian.mp3'
+interface TextProps {
+  bookId: string
+  chapterId: string
+}
+
+const Text = ({ bookId, chapterId }: TextProps) => {
+  const { data: hanyu_sentences, isFetched } = useQuery(
+    useGetHanYuTextsByChapter(`${bookId}-${chapterId}`)
+  )
+
+  if (!hanyu_sentences) {
+    notFound()
   }
-]
-const Text = () => {
-  const handleSound = (url: string) => {
-    const audio = new Audio(url)
-    audio.play()
+  if (hanyu_sentences.length === 0) {
+    return <NoContent />
   }
   return (
     <CarouselItems>
-      {texts.map((item, index) => (
+      {hanyu_sentences.map((item, index) => (
         <CarouselItem key={index}>
           <CardContents
             audio={item.audio}

@@ -153,3 +153,34 @@ export type Pinyin = {
   }[]
   category: PinyinCategories
 }
+
+//HanYu
+export type HanYuWord = {
+  id?: string
+  hanzi: string
+  pinyin: string
+  english: string
+  audio: string
+  source: string
+}
+export type HanYuSentence = {
+  id?: string
+  sentence: string
+  image: string
+  audio: string
+  source: string
+}
+
+export type HanYuText = {
+  id?: string
+  sentence: string
+  image: string
+  audio: string
+  source: string
+}
+
+export type HanYuWriting = {
+  id?: string
+  hanzi: string[]
+  source: string
+}

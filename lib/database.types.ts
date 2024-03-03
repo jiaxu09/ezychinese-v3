@@ -117,19 +117,73 @@ export type Database = {
           created_at: string
           id: string
           image: string
-          name: string
+          name: string | null
         }
         Insert: {
           created_at?: string
           id?: string
           image: string
-          name: string
+          name?: string | null
         }
         Update: {
           created_at?: string
           id?: string
           image?: string
-          name?: string
+          name?: string | null
+        }
+        Relationships: []
+      }
+      hanyu_sentences: {
+        Row: {
+          audio: string
+          created_at: string
+          id: string
+          image: string
+          sentence: string
+          source: string
+        }
+        Insert: {
+          audio: string
+          created_at?: string
+          id?: string
+          image: string
+          sentence: string
+          source: string
+        }
+        Update: {
+          audio?: string
+          created_at?: string
+          id?: string
+          image?: string
+          sentence?: string
+          source?: string
+        }
+        Relationships: []
+      }
+      hanyu_texts: {
+        Row: {
+          audio: string
+          created_at: string
+          id: string
+          image: string
+          sentence: string
+          source: string
+        }
+        Insert: {
+          audio: string
+          created_at?: string
+          id?: string
+          image: string
+          sentence: string
+          source: string
+        }
+        Update: {
+          audio?: string
+          created_at?: string
+          id?: string
+          image?: string
+          sentence?: string
+          source?: string
         }
         Relationships: []
       }
@@ -161,6 +215,57 @@ export type Database = {
             referencedColumns: ["name"]
           }
         ]
+      }
+      hanyu_words: {
+        Row: {
+          audio: string
+          created_at: string
+          english: string
+          hanzi: string
+          id: string
+          pinyin: string
+          source: string
+        }
+        Insert: {
+          audio: string
+          created_at?: string
+          english: string
+          hanzi: string
+          id?: string
+          pinyin: string
+          source: string
+        }
+        Update: {
+          audio?: string
+          created_at?: string
+          english?: string
+          hanzi?: string
+          id?: string
+          pinyin?: string
+          source?: string
+        }
+        Relationships: []
+      }
+      hanyu_writings: {
+        Row: {
+          created_at: string
+          hanzi: string[]
+          id: string
+          source: string
+        }
+        Insert: {
+          created_at?: string
+          hanzi: string[]
+          id?: string
+          source: string
+        }
+        Update: {
+          created_at?: string
+          hanzi?: string[]
+          id?: string
+          source?: string
+        }
+        Relationships: []
       }
       idioms: {
         Row: {

@@ -9,7 +9,6 @@ import {
   useHanziMeaning,
   useHanziSound
 } from '@/lib/react-query/queries'
-import { ILiteracies } from '@/lib/types'
 import Dictionary from './literacy/dictionary'
 import English from './literacy/english'
 import Meaning from './literacy/meaning'

@@ -4,32 +4,35 @@ import { CarouselItem } from '@/components/ui/carousel'
 import { Volume2 } from 'lucide-react'
 import React from 'react'
 import CarouselItems from './Carousel-items'
+import { useQuery } from '@tanstack/react-query'
+import { useGetHanYuWordsByChapter } from '@/lib/react-query/queries'
+import { notFound } from 'next/navigation'
+import NoContent from '@/components/no-content'
+import supabaseUrl from '@/lib/utils'
 
-const words = [
-  {
-    hanzi: '你',
-    pinyin: 'ni',
-    english: 'you',
-    audio:
-      'https://jyemvxshpznmgnzoxuhp.supabase.co/storage/v1/object/public/ezyChinese/mp3/ni3.mp3'
-  },
-  {
-    hanzi: '好',
-    pinyin: 'hao',
-    english: 'good',
-    audio:
-      'https://jyemvxshpznmgnzoxuhp.supabase.co/storage/v1/object/public/ezyChinese/mp3/hao3.mp3'
-  }
-]
+interface WordsProps {
+  bookId: string
+  chapterId: string
+}
 
-const Words = () => {
+const Words = ({ bookId, chapterId }: WordsProps) => {
+  const { data: hanyu_words, isFetched } = useQuery(
+    useGetHanYuWordsByChapter(`${bookId}-${chapterId}`)
+  )
   const handleSound = (url: string) => {
-    const audio = new Audio(url)
+    const audio = new Audio(supabaseUrl(url))
     audio.play()
+  }
+
+  if (!hanyu_words) {
+    notFound()
+  }
+  if (hanyu_words.length === 0) {
+    return <NoContent />
   }
   return (
     <CarouselItems>
-      {words.map((word, index) => (
+      {hanyu_words?.map((word, index) => (
         <CarouselItem key={index}>
           <Card>
             <CardContent className='flex flex-col items-center justify-center space-y-4 md:h-[60vh]'>
@@ -41,10 +44,10 @@ const Words = () => {
                 <Volume2 className='h-8 w-8 text-crayola ' />
               </div>
               <ruby>
-                <span className=' inline-block text-xl md:text-[6rem]'>
+                <span className=' inline-block text-3xl md:text-[6rem]'>
                   {word.hanzi}
                 </span>
-                <rt className=' text-lg text-gray-600 md:text-[5rem]'>
+                <rt className=' text-xl text-gray-600 md:text-[5rem]'>
                   {word.pinyin}
                 </rt>
               </ruby>

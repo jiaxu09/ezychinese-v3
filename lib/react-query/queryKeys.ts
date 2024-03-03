@@ -35,4 +35,12 @@ export enum QUERY_KEYS {
   GETPINYINBYCATEGORY = 'getpinyinbycategory',
   GETHANYUBOOKS = 'gethanyubooks',
   GETHANYUUNITS = 'gethanyuunits',
+  GETHANYUWORDSBYCHAPTER = 'gethanyuwordsbychapter',
+  ADDHANYUWORDS = 'addhanyuwords',
+  DELETEHANYUWORD = 'deletehanyuword',
+  GETHANYUSENTENCESBYCHAPTER = 'gethanyusentencesbychapter',
+  ADDHANYUSENTENCES = 'addhanyusentences',
+  DELETEHANYUSENTENCE = 'deletehanyusentence',
+  GETHANYUTEXTSBYCHAPTER = 'gethanyutextsbychapter',
+  GETHANYUWRITINGSBYCHAPTER = 'gethanyuwritingsbychapter',
 }

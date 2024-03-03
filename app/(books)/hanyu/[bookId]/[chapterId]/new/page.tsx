@@ -1,7 +1,18 @@
 import React from 'react'
+import NewPractices from './_components/new-practices'
 
-const NewPracticesPage = () => {
-  return <div>NewPracticesPage</div>
+interface NewPracticesPageProps {
+  params: {
+    bookId: string
+    chapterId: string
+  }
+}
+const NewPracticesPage = ({ params }: NewPracticesPageProps) => {
+  return (
+    <div className='container w-full'>
+      <NewPractices bookId={params.bookId} chapterId={params.chapterId} />
+    </div>
+  )
 }
 
 export default NewPracticesPage
