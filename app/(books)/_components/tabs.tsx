@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import React from 'react'
 
 interface TabsProps {
-  type: 'csol' | 'zhongwen'
+  type: 'csol' | 'zhongwen' | 'hanyu'
   bookId: string
   chapterId: string
   tabs: {
@@ -26,7 +26,7 @@ const Tabs = ({ bookId, chapterId, tabs, type }: TabsProps) => {
             href={`/${type}/${bookId}/${chapterId}/${tab.path}`}
           >
             <Button
-              className=" w-16 md:w-24"
+              className=" md:w-32"
               variant={pathname.includes(tab.path) ? 'default' : 'outline'}
             >
               {tab.name}

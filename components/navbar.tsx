@@ -63,7 +63,7 @@ const Navbar = () => {
               height={33}
               alt="ezyChinese"
               priority
-              sizes="100vw"
+              sizes="33vw"
             />
           </div>
         </Link>

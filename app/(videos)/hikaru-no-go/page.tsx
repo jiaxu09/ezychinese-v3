@@ -7,6 +7,12 @@ import {
 } from '@tanstack/react-query'
 import { useGetQiHunEpisodes } from '@/lib/react-query/queries'
 
+export const metadata = {
+  title: 'Learning by Watching',
+  description:
+    'Dive into immersive language learning experiences with our Learning by Watching.',
+}
+
 const HikaruNoGoPage = async () => {
   const queryClient = new QueryClient()
 

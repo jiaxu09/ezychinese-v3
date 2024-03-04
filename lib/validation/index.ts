@@ -53,3 +53,40 @@ export const FindDifferenceValidation = z.object({
   answer: z.string().min(1, { message: 'Answer is required.' }),
   source: z.string().min(1, { message: 'Source is required.' }),
 })
+
+//Hanyu
+export const HanYuWordsValidation = z.object({
+  hanzi: z.string().min(1, { message: 'Hanzi is required.' }),
+  pinyin: z.string().min(1, { message: 'Pinyin is required.' }),
+  english: z.string().min(1, { message: 'English is required.' }),
+  audio: z
+    .any()
+    .refine((file) => file?.length == 1, 'Audio is required.')
+    .refine((file) => file[0]?.size <= 1000000, `Max file size is 1MB.`),
+  source: z.string().min(1, { message: 'Source is required.' }),
+})
+
+export const HanYuSentenceValidation = z.object({
+  sentence: z.string().min(1, { message: 'Sentence is required.' }),
+  audio: z
+    .any()
+    .refine((file) => file?.length == 1, 'Audio is required.')
+    .refine((file) => file[0]?.size <= 1000000, `Max file size is 1MB.`),
+  image: z.custom<File[]>(),
+  source: z.string().min(1, { message: 'Source is required.' }),
+})
+
+export const HanYuTextValidation = z.object({
+  sentence: z.string().min(1, { message: 'Sentence is required.' }),
+  audio: z
+    .any()
+    .refine((file) => file?.length == 1, 'Audio is required.')
+    .refine((file) => file[0]?.size <= 1000000, `Max file size is 1MB.`),
+  image: z.custom<File[]>(),
+  source: z.string().min(1, { message: 'Source is required.' }),
+})
+
+export const HanYuWritingValidation = z.object({
+  characters: z.string().min(1, { message: 'Sentence is required.' }),
+  source: z.string().min(1, { message: 'Source is required.' }),
+})

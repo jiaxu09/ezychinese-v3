@@ -3,7 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 
 interface BreadcrumbProps {
-  type: 'csol' | 'zhongwen'
+  type: 'csol' | 'zhongwen' | 'hanyu'
   bookId: string
   chapterId: string
 }

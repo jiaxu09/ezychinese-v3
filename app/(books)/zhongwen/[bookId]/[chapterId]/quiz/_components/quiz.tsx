@@ -14,14 +14,15 @@ import {
   useGetCorrectOrderByChapter,
   useGetFindDifferenceByChapter,
   useGetFormPhrasesByChapter,
-  useGetRightExplanationByChapter,
+  useGetRightExplanationByChapter
 } from '@/lib/react-query/queries'
 import {
   CorrectOrder,
   FindDifference,
   FormPhrases,
-  RightExplanation,
+  RightExplanation
 } from '@/lib/types'
+import NoContent from '@/components/no-content'
 
 interface QuizProps {
   bookId: string
@@ -29,10 +30,10 @@ interface QuizProps {
 }
 
 type Quiz = {
-  correct_order: CorrectOrder[] | undefined
-  find_difference: FindDifference[] | undefined
-  form_phrases: FormPhrases[] | undefined
-  right_explanation: RightExplanation[] | undefined
+  correct_order?: CorrectOrder[] | undefined
+  find_difference?: FindDifference[] | undefined
+  form_phrases?: FormPhrases[] | undefined
+  right_explanation?: RightExplanation[] | undefined
 }
 
 const Quiz = ({ bookId, chapterId }: QuizProps) => {
@@ -65,10 +66,16 @@ const Quiz = ({ bookId, chapterId }: QuizProps) => {
 
   useEffect(() => {
     const result: Quiz = {
-      correct_order: correct_order,
-      find_difference: find_difference,
-      form_phrases: form_phrases,
-      right_explanation: right_explanation,
+      ...(correct_order &&
+        correct_order.length > 0 && { correct_order: correct_order }),
+      ...(find_difference &&
+        find_difference.length > 0 && { find_difference: find_difference }),
+      ...(form_phrases &&
+        form_phrases.length > 0 && { form_phrases: form_phrases }),
+      ...(right_explanation &&
+        right_explanation.length > 0 && {
+          right_explanation: right_explanation
+        })
     }
     setQuiz(result)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -79,46 +86,35 @@ const Quiz = ({ bookId, chapterId }: QuizProps) => {
       setAllDone(true)
     }
   }, [currentCompleted, index, quiz])
-
-  if (
-    quiz &&
-    quiz.correct_order?.length === 0 &&
-    quiz.find_difference?.length === 0 &&
-    quiz.form_phrases?.length === 0 &&
-    quiz.right_explanation?.length === 0
-  ) {
-    return (
-      <div className="flex flex-col items-center justify-center space-y-4 py-20">
-        <MessageCircleWarning className="w-20 h-20 md:w-36 md:h-36 text-primary" />
-        <p className=" text-lg md:text-2xl">No quiz was found</p>
-      </div>
-    )
+  
+  if (quiz && Object.keys(quiz).length === 0) {
+    return <NoContent />
   }
 
   return (
-    <div className="flex flex-col gap-2 w-full  ">
+    <div className='flex w-full flex-col gap-2  '>
       {quiz &&
         Object.keys(quiz).map((key, i) => (
-          <div className="w-full " key={i}>
-            {key === 'correct_order' && index === i && !isAllDone && (
+          <div className='w-full ' key={i}>
+            {quiz.correct_order && index === i && !isAllDone && (
               <QuizCorrectOrder
                 quiz={quiz}
                 setCurrentCompleted={setCurrentCompleted}
               />
             )}
-            {key === 'right_explanation' && index === i && !isAllDone && (
+            {quiz.right_explanation && index === i && !isAllDone && (
               <QuizRightExplanation
                 quiz={quiz}
                 setCurrentCompleted={setCurrentCompleted}
               />
             )}
-            {key === 'form_phrases' && index === i && !isAllDone && (
+            {quiz.form_phrases && index === i && !isAllDone && (
               <QuizFormPhrases
                 quiz={quiz}
                 setCurrentCompleted={setCurrentCompleted}
               />
             )}
-            {key === 'find_difference' && index === i && !isAllDone && (
+            {quiz.find_difference && index === i && !isAllDone && (
               <QuizFindDifference
                 quiz={quiz}
                 setCurrentCompleted={setCurrentCompleted}
@@ -128,17 +124,17 @@ const Quiz = ({ bookId, chapterId }: QuizProps) => {
         ))}
 
       {isAllDone && (
-        <div className="w-2/3 mx-auto">
+        <div className='mx-auto w-2/3'>
           <WellDone />
         </div>
       )}
       {quiz && index < Object.keys(quiz).length && currentCompleted && (
         <Button
           onClick={handleProgress}
-          variant="default"
-          className="animate-fade-up w-1/3 mx-auto text-center my-6"
+          variant='default'
+          className='mx-auto my-6 w-1/3 animate-fade-up text-center'
         >
-          Next <ChevronRight className="w-5 h-5 " />
+          Next <ChevronRight className='h-5 w-5 ' />
         </Button>
       )}
     </div>

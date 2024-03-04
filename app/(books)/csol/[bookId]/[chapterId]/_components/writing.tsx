@@ -19,7 +19,7 @@ const Writing = ({ bookId, chapterId }: WritingProps) => {
     notFound()
   }
 
-  return <LiteracyPractice data={data} />
+  return <LiteracyPractice characters={data.answers} />
 }
 
 export default Writing

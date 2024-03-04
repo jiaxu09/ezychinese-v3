@@ -4,7 +4,7 @@ import supabaseUrl, { rgbDataURL } from '@/lib/utils'
 
 const Loading = () => {
   return (
-    <div className="flex justify-center items-center w-full md:w-2/3 mx-auto ">
+    <div className="flex justify-center items-center w-full md:w-2/5 mx-auto ">
       <Image
         src={supabaseUrl('images/loading.svg')}
         width={1600}

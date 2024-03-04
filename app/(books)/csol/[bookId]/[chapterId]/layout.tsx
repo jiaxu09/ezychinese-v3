@@ -7,10 +7,6 @@ const tabs = [
     name: 'Words',
     path: 'words',
   },
-  // {
-  //   name: 'Reading',
-  //   path: 'reading',
-  // },
   {
     name: 'Singing',
     path: 'singing',

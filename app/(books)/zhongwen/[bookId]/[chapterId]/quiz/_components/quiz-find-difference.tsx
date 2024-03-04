@@ -18,9 +18,7 @@ const QuizFindDifference = ({
 }: QuizFindDifferenceProps) => {
   const [find_difference] = useState<FindDifference[]>(quiz.find_difference)
 
-  if (!quiz.hasOwnProperty('find_difference')) {
-    return <></>
-  }
+  
   return (
     <div className="flex flex-col items-center justify-center w-full animate-fade-left animate-duration-1000 animate-ease-in-out animate-fill-both">
       <h1 className="pb-4 text-center">找出不同类的词</h1>

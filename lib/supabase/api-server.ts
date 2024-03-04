@@ -4,6 +4,10 @@ import {
   CorrectOrder,
   FindDifference,
   FormPhrases,
+  HanYuSentence,
+  HanYuText,
+  HanYuWord,
+  HanYuWriting,
   IIdiom,
   IRadical,
   RightExplanation,
@@ -210,4 +214,84 @@ export const deleteFormPhrases = async (id: string) => {
 }
 export const deleteFindDifference = async (id: string) => {
   await deleteFunction(id, 'find_difference')
+}
+
+//Hanyu
+export const getHanYuBooks = async () => {
+  const supabase = supabaseServer()
+  const { data, error } = await supabase
+    .from('hanyu_books')
+    .select('*')
+    .order('created_at', { ascending: true })
+  if (error) {
+    console.log(error)
+    throw Error
+  }
+  return data
+}
+
+export const getHanYuUnits = async (bookId: string) => {
+  const supabase = supabaseServer()
+  const { data, error } = await supabase
+    .from('hanyu_units')
+    .select('*')
+    .eq('book', bookId)
+
+  if (error) {
+    console.log(error)
+    throw Error
+  }
+  return data
+}
+
+export const addHanYuWord = async (item: HanYuWord) => {
+  await addFunction('hanyu_words', item)
+}
+
+export const getHanYuWordsByChapter = async (source: string) => {
+  const result = (await getFunction(source, 'hanyu_words')) as HanYuWord[]
+  return result
+}
+
+export const deleteHanYuWord = async (id: string) => {
+  await deleteFunction(id, 'hanyu_words')
+}
+
+export const addHanYuSentence = async (item: HanYuSentence) => {
+  await addFunction('hanyu_sentences', item)
+}
+export const getHanYuSentencesByChapter = async (source: string) => {
+  const result = (await getFunction(
+    source,
+    'hanyu_sentences'
+  )) as HanYuSentence[]
+  return result
+}
+
+export const deleteHanYuSentence = async (id: string) => {
+  await deleteFunction(id, 'hanyu_sentences')
+}
+
+export const addHanYuText = async (item: HanYuText) => {
+  await addFunction('hanyu_texts', item)
+}
+export const getHanYuTextsByChapter = async (source: string) => {
+  const result = (await getFunction(source, 'hanyu_texts')) as HanYuText[]
+  return result
+}
+
+export const deleteHanYuText = async (id: string) => {
+  await deleteFunction(id, 'hanyu_texts')
+}
+
+export const addHanYuWriting = async (item: HanYuWriting) => {
+  await addFunction('hanyu_writings', item)
+}
+export const getHanYuWritingsByChapter = async (source: string) => {
+  const result = (await getFunction(source, 'hanyu_writings')) as HanYuWriting[]
+  return result
+}
+
+export const deleteHanYuWriting = async (id: string) => {
+  await deleteFunction(id, 'hanyu_writings')
 }

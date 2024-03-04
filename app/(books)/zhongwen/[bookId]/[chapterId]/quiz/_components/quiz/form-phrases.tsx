@@ -12,7 +12,7 @@ const FormPhrases = ({
   choices_a,
   choices_b,
   answers,
-  setCurrentCompleted,
+  setCurrentCompleted
 }: FormPhrasesProps) => {
   const [selectedA, setSelectedA] = useState<string | null>(null)
   const [selectedB, setSelectedB] = useState<string | null>(null)
@@ -22,15 +22,10 @@ const FormPhrases = ({
   const [incorrectSelection, setIncorrectSelection] = useState<boolean>(false)
 
   useEffect(() => {
-    setCurrentCompleted(false)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  useEffect(() => {
     if (selectedA && selectedB) {
       if (
         answers.some(
-          (a) =>
+          a =>
             a.split('').includes(selectedA) && a.split('').includes(selectedB)
         )
       ) {
@@ -49,51 +44,51 @@ const FormPhrases = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [answers, selectedA, selectedB])
   return (
-    <div className="grid grid-cols-2 md:flex md:flex-col gap-20 md:gap-10 pb-2">
-      <div className="flex flex-col md:flex-row items-center gap-6">
-        {choices_a.map((char) => (
+    <div className='grid grid-cols-2 gap-20 pb-2 md:flex md:flex-col md:gap-10'>
+      <div className='flex flex-col items-center gap-6 md:flex-row'>
+        {choices_a.map(char => (
           <Button
-            className="w-12 relative"
-            aria-label="ezyChinese form phrases"
+            className='relative w-12'
+            aria-label='ezyChinese form phrases'
             disabled={correctSelection.includes(char)}
             onClick={() => setSelectedA(char)}
             key={char}
             variant={
               (selectedA === char && !incorrectSelection) ||
-              correctSelection.some((c) => c.split('').includes(char))
+              correctSelection.some(c => c.split('').includes(char))
                 ? 'success'
                 : incorrectSelection && selectedA === char
-                ? 'destructive'
-                : 'outline'
+                  ? 'destructive'
+                  : 'outline'
             }
           >
             {char}
-            {correctSelection.some((c) => c.split('').includes(char)) && (
-              <Sparkles className="w-4 h-4 top-[8%] left-0 text-yellow-300 animate-ping animate-twice animate-duration-1000 animate-ease-linear absolute" />
+            {correctSelection.some(c => c.split('').includes(char)) && (
+              <Sparkles className='absolute left-0 top-[8%] h-4 w-4 animate-ping text-yellow-300 animate-duration-1000 animate-twice animate-ease-linear' />
             )}
           </Button>
         ))}
       </div>
-      <div className="flex flex-col md:flex-row items-center gap-6">
-        {choices_b.map((char) => (
+      <div className='flex flex-col items-center gap-6 md:flex-row'>
+        {choices_b.map(char => (
           <Button
-            aria-label="ezyChinese form phrases"
+            aria-label='ezyChinese form phrases'
             disabled={correctSelection.includes(char)}
             onClick={() => setSelectedB(char)}
             key={char}
-            className="w-12 relative"
+            className='relative w-12'
             variant={
               (selectedB === char && !incorrectSelection) ||
-              correctSelection.some((c) => c.split('').includes(char))
+              correctSelection.some(c => c.split('').includes(char))
                 ? 'success'
                 : incorrectSelection && selectedB === char
-                ? 'destructive'
-                : 'outline'
+                  ? 'destructive'
+                  : 'outline'
             }
           >
             {char}
-            {correctSelection.some((c) => c.split('').includes(char)) && (
-              <Sparkles className="w-4 h-4 bottom-[8%] right-0 text-yellow-300 animate-ping animate-twice animate-duration-1000 animate-ease-linear absolute" />
+            {correctSelection.some(c => c.split('').includes(char)) && (
+              <Sparkles className='absolute bottom-[8%] right-0 h-4 w-4 animate-ping text-yellow-300 animate-duration-1000 animate-twice animate-ease-linear' />
             )}
           </Button>
         ))}

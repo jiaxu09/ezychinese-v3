@@ -13,6 +13,13 @@ interface EpisodePageProps {
     episode: string
   }
 }
+
+export const metadata = {
+  title: 'QiHun',
+  description:
+    'Dive into immersive language learning experiences with our Learning by Watching.',
+}
+
 const EpisodePage = async ({ params }: EpisodePageProps) => {
   const queryClient = new QueryClient()
 

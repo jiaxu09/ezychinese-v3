@@ -7,18 +7,17 @@ import {
   useHanziDictionary,
   useHanziEnglish,
   useHanziMeaning,
-  useHanziSound,
+  useHanziSound
 } from '@/lib/react-query/queries'
-import { ILiteracies } from '@/lib/types'
 import Dictionary from './literacy/dictionary'
 import English from './literacy/english'
 import Meaning from './literacy/meaning'
 
 interface LiteracyPracticeProps {
-  data: ILiteracies | undefined
+  characters: string[]
 }
 
-const LiteracyPractice = ({ data }: LiteracyPracticeProps) => {
+const LiteracyPractice = ({ characters }: LiteracyPracticeProps) => {
   const [writer, setWriter] = useState<HanziWriter | null>(null)
   const [quiz, setQuiz] = useState<HanziWriter | null>(null)
 
@@ -49,7 +48,7 @@ const LiteracyPractice = ({ data }: LiteracyPracticeProps) => {
           width: 300,
           height: 300,
           padding: 5,
-          strokeAnimationSpeed: 1,
+          strokeAnimationSpeed: 1
         })
       )
     } else {
@@ -61,7 +60,7 @@ const LiteracyPractice = ({ data }: LiteracyPracticeProps) => {
         width: 300,
         height: 300,
         padding: 5,
-        showCharacter: false,
+        showCharacter: false
       })
       setQuiz(quiz)
       quiz.quiz()
@@ -92,57 +91,57 @@ const LiteracyPractice = ({ data }: LiteracyPracticeProps) => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center space-y-4 pb-10">
-      <div className="grid grid-cols-5 gap-6">
-        {data?.answers.map((char, index) => (
-          <div key={index} className="p-2 flex items-center justify-center">
+    <div className='flex flex-col items-center justify-center space-y-4 pb-10'>
+      <div className='grid grid-cols-5 gap-6'>
+        {characters.map((char, index) => (
+          <div key={index} className='flex items-center justify-center p-2'>
             <div
               onClick={() => handleCharacterClick(char)}
-              className=" border border-primary rounded-lg p-4 cursor-pointer"
+              className=' cursor-pointer rounded-lg border border-primary p-4'
             >
-              <span className=" text-lg md:text-6xl">{char}</span>
+              <span className=' text-lg md:text-6xl'>{char}</span>
             </div>
           </div>
         ))}
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="flex flex-col items-center justify-center space-y-4">
+      <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
+        <div className='flex flex-col items-center justify-center space-y-4'>
           <svg
-            xmlns="http://www.w3.org/2000/svg"
-            id="character-target-div"
-            className="w-[300px] h-[300px] border-2 border-secondary"
+            xmlns='http://www.w3.org/2000/svg'
+            id='character-target-div'
+            className='h-[300px] w-[300px] border-2 border-secondary'
           >
-            <line x1="0" y1="0" x2="300" y2="300" stroke="#DDD" />
-            <line x1="300" y1="0" x2="0" y2="300" stroke="#DDD" />
-            <line x1="150" y1="0" x2="150" y2="300" stroke="#DDD" />
-            <line x1="0" y1="150" x2="300" y2="150" stroke="#DDD" />
+            <line x1='0' y1='0' x2='300' y2='300' stroke='#DDD' />
+            <line x1='300' y1='0' x2='0' y2='300' stroke='#DDD' />
+            <line x1='150' y1='0' x2='150' y2='300' stroke='#DDD' />
+            <line x1='0' y1='150' x2='300' y2='150' stroke='#DDD' />
           </svg>
-          <div className="flex items-center justify-center space-x-3">
+          <div className='flex items-center justify-center space-x-3'>
             <div
-              aria-label="ezyChinese hanzi animate"
-              className=" cursor-pointer"
+              aria-label='ezyChinese hanzi animate'
+              className=' cursor-pointer'
               onClick={handleAnimate}
             >
-              <PenLine className="w-8 h-8 text-pastelblue " />
+              <PenLine className='h-8 w-8 text-pastelblue ' />
             </div>
             <div>
               {isLoadingSound ? (
-                <RotateCcw className=" h-8 w-8 animate-spin text-crayola" />
+                <RotateCcw className=' h-8 w-8 animate-spin text-crayola' />
               ) : (
                 <div
-                  aria-label="ezyChinese hanzi sound"
-                  className=" cursor-pointer"
+                  aria-label='ezyChinese hanzi sound'
+                  className=' cursor-pointer'
                 >
                   <Volume2
                     onClick={handleSound}
-                    className="w-8 h-8 text-crayola "
+                    className='h-8 w-8 text-crayola '
                   />
                 </div>
               )}
             </div>
-            <div className=" cursor-pointer">
+            <div className=' cursor-pointer'>
               {isLoadingDictionary ? (
-                <RotateCcw className=" h-8 w-8 animate-spin text-pewterblue" />
+                <RotateCcw className=' h-8 w-8 animate-spin text-pewterblue' />
               ) : (
                 <Dictionary
                   strokes={dictionary?.strokes}
@@ -151,35 +150,35 @@ const LiteracyPractice = ({ data }: LiteracyPracticeProps) => {
                 />
               )}
             </div>
-            <div className=" cursor-pointer">
+            <div className=' cursor-pointer'>
               {isLoadingEnglish ? (
-                <RotateCcw className=" h-8 w-8 animate-spin text-skyblue" />
+                <RotateCcw className=' h-8 w-8 animate-spin text-skyblue' />
               ) : (
                 <English english={english} />
               )}
             </div>
-            <div className=" cursor-pointer">
+            <div className=' cursor-pointer'>
               {isLoadingMeaning ? (
-                <RotateCcw className=" h-8 w-8 animate-spin text-green" />
+                <RotateCcw className=' h-8 w-8 animate-spin text-green' />
               ) : (
                 <Meaning meaning={meaning} />
               )}
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-center space-y-4">
+        <div className='flex flex-col items-center space-y-4'>
           <svg
-            xmlns="http://www.w3.org/2000/svg"
-            id="character-quiz-div"
-            className="w-[300px] h-[300px] border-2 border-primary"
+            xmlns='http://www.w3.org/2000/svg'
+            id='character-quiz-div'
+            className='h-[300px] w-[300px] border-2 border-primary'
           >
-            <line x1="0" y1="0" x2="300" y2="300" stroke="#DDD" />
-            <line x1="300" y1="0" x2="0" y2="300" stroke="#DDD" />
-            <line x1="150" y1="0" x2="150" y2="300" stroke="#DDD" />
-            <line x1="0" y1="150" x2="300" y2="150" stroke="#DDD" />
+            <line x1='0' y1='0' x2='300' y2='300' stroke='#DDD' />
+            <line x1='300' y1='0' x2='0' y2='300' stroke='#DDD' />
+            <line x1='150' y1='0' x2='150' y2='300' stroke='#DDD' />
+            <line x1='0' y1='150' x2='300' y2='150' stroke='#DDD' />
           </svg>
-          <div className=" cursor-pointer" onClick={handleAnimateReset}>
-            <RotateCcw className=" h-8 w-8  text-green" />
+          <div className=' cursor-pointer' onClick={handleAnimateReset}>
+            <RotateCcw className=' h-8 w-8  text-green' />
           </div>
         </div>
       </div>

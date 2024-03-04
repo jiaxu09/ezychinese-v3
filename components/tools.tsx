@@ -47,12 +47,12 @@ const Tools = () => {
             </div>
           </div>
           <div className="flex items-center justify-end translate-x-12 lg:-translate-x-2 xl:-translate-x-20 md:w-1/3 md:h-full ">
-            <div className="w-3/4 h-3/4 md:w-2/3 flex flex-col items-center justify-center bg-green rounded-lg shadow-md hover:bg-green/80">
+            <Link href='/pinyin/initials' className="w-3/4 h-3/4 md:w-2/3 flex flex-col items-center justify-center bg-green rounded-lg shadow-md hover:bg-green/80">
               <NotebookPen className="w-5 h-5 md:w-8 md:h-8  text-primary" />
               <h1 className="text-sm md:text-lg text-center font-semibold  text-primary">
                 Pinyin
               </h1>
-            </div>
+            </Link>
           </div>
         </div>
         <div className="hidden md:flex">

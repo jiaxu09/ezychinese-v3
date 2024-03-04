@@ -1,6 +1,6 @@
 'use client'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import React, { useState } from 'react'
+import React from 'react'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -11,32 +11,21 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
+  FormMessage
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import SubmitButton from '@/components/submit-button'
-import { Button } from '@/components/ui/button'
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
-import {
-  ChevronsUpDown,
-  Image as ImageIcon,
-  RotateCcw,
-  Trash2,
-} from 'lucide-react'
-import Image from 'next/image'
+
 import { CorrectOrder } from '@/lib/types'
 import {
   useAddCorrectOrder,
   useDeleteCorrectOrder,
-  useGetCorrectOrderByChapter,
+  useGetCorrectOrderByChapter
 } from '@/lib/react-query/queries'
 import { useQuery } from '@tanstack/react-query'
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@/components/ui/collapsible'
-import supabaseUrl from '@/lib/utils'
+
+import CollapsibleItems from '@/app/(books)/_components/collapsible-items'
+import ImageDialog from '../../../../../../_components/image-dialog'
 
 interface CorrectOrderFormProps {
   bookId: string
@@ -44,17 +33,16 @@ interface CorrectOrderFormProps {
 }
 
 const CorrectOrderForm = ({ bookId, chapterId }: CorrectOrderFormProps) => {
-  const [isOpen, setIsOpen] = useState(false)
   const {
     mutate: addCorrectOrder,
     error: addError,
-    isPending: addPending,
+    isPending: addPending
   } = useAddCorrectOrder(`${bookId}-${chapterId}`)
 
   const {
     mutate: deleteCorrectOrder,
     error: deleteError,
-    isPending: deletePending,
+    isPending: deletePending
   } = useDeleteCorrectOrder(`${bookId}-${chapterId}`)
 
   const { data: correct_order } = useQuery(
@@ -66,8 +54,8 @@ const CorrectOrderForm = ({ bookId, chapterId }: CorrectOrderFormProps) => {
     defaultValues: {
       question: '',
       answer: '',
-      source: `${bookId}-${chapterId}`,
-    },
+      source: `${bookId}-${chapterId}`
+    }
   })
 
   const handleSubmit = async (
@@ -76,7 +64,7 @@ const CorrectOrderForm = ({ bookId, chapterId }: CorrectOrderFormProps) => {
     const item: CorrectOrder = {
       question: value.question.split(' '),
       answer: value.answer,
-      source: value.source,
+      source: value.source
     }
     await addCorrectOrder(item)
     form.reset()
@@ -87,43 +75,28 @@ const CorrectOrderForm = ({ bookId, chapterId }: CorrectOrderFormProps) => {
   }
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className='flex flex-col gap-2'>
       <Card>
         <CardHeader>
           <CardTitle>连词成句</CardTitle>
         </CardHeader>
         <CardContent>
-          <Dialog>
-            <DialogTrigger asChild>
-              <ImageIcon className="w-6 h-6 cursor-pointer" />
-            </DialogTrigger>
-            <DialogContent>
-              <Image
-                className="p-2 mx-auto object-contain"
-                width={418}
-                height={403}
-                priority
-                sizes="33vw"
-                src={supabaseUrl('images/correct_order.webp')}
-                alt="ezyChinese 连词成句"
-              />
-            </DialogContent>
-          </Dialog>
+          <ImageDialog img='images/correct_order.webp' />
           <Form {...form}>
             <form
-              className="flex flex-col gap-4 w-full p-4"
+              className='flex w-full flex-col gap-4 p-4'
               onSubmit={form.handleSubmit(handleSubmit)}
             >
               <FormField
                 control={form.control}
-                name="question"
+                name='question'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>题目</FormLabel>
                     <FormControl>
                       <Input
-                        type="text"
-                        placeholder="空格分隔. ie. 看见 我 云云 唱歌"
+                        type='text'
+                        placeholder='空格分隔. ie. 看见 我 云云 唱歌'
                         {...field}
                       />
                     </FormControl>
@@ -133,14 +106,14 @@ const CorrectOrderForm = ({ bookId, chapterId }: CorrectOrderFormProps) => {
               />
               <FormField
                 control={form.control}
-                name="answer"
+                name='answer'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>答案</FormLabel>
                     <FormControl>
                       <Input
-                        type="text"
-                        placeholder="ie.我看见云云唱歌"
+                        type='text'
+                        placeholder='ie.我看见云云唱歌'
                         {...field}
                       />
                     </FormControl>
@@ -149,7 +122,7 @@ const CorrectOrderForm = ({ bookId, chapterId }: CorrectOrderFormProps) => {
                 )}
               />
               <SubmitButton
-                type="quiz-correct_order"
+                type='quiz-correct_order'
                 createdPeding={addPending}
                 updatedPending={false}
               />
@@ -157,42 +130,12 @@ const CorrectOrderForm = ({ bookId, chapterId }: CorrectOrderFormProps) => {
           </Form>
         </CardContent>
       </Card>
-      <Collapsible
-        open={isOpen}
-        onOpenChange={setIsOpen}
-        className=" space-y-2"
-      >
-        <div className="flex items-center justify-center space-x-4 px-4">
-          <h4 className="text-lg font-semibold">所有题目</h4>
-          <CollapsibleTrigger asChild>
-            <Button variant="ghost" size="sm">
-              <ChevronsUpDown className="h-4 w-4" />
-              <span className="sr-only">Toggle</span>
-            </Button>
-          </CollapsibleTrigger>
-        </div>
-        <CollapsibleContent className="space-y-2 text-lg px-6 ">
-          {correct_order?.map((item) => (
-            <div
-              className="even:bg-skyblue odd:bg-pastelblue rounded-lg p-1 flex items-center justify-between"
-              key={item.id}
-            >
-              {item.answer}
-              <Button
-                disabled={deletePending}
-                variant="ghost"
-                onClick={() => handleDeleteCorrectOrder(item.id!)}
-              >
-                {deletePending ? (
-                  <RotateCcw className="w-4 h-4 text-watermarker animate-spin" />
-                ) : (
-                  <Trash2 className="w-4 h-4 text-destructive" />
-                )}
-              </Button>
-            </div>
-          ))}
-        </CollapsibleContent>
-      </Collapsible>
+      <CollapsibleItems
+        items={correct_order}
+        property='answer'
+        deletePending={deletePending}
+        handleDelete={handleDeleteCorrectOrder}
+      />
     </div>
   )
 }

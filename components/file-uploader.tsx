@@ -14,7 +14,7 @@ type FileUploaderProps = {
 const FileUploader = ({
   fieldChange,
   fileUrl,
-  setFileUrl,
+  setFileUrl
 }: FileUploaderProps) => {
   const [file, setFile] = useState<File[]>([])
 
@@ -30,40 +30,40 @@ const FileUploader = ({
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: {
-      'image/*': ['.png', '.jpeg', '.jpg', '.webp'],
-    },
+      'image/*': ['.png', '.jpeg', '.jpg', '.webp']
+    }
   })
 
   return (
     <div
       {...getRootProps()}
-      className="flex flex-center flex-col bg-dark-3 rounded-xl cursor-pointer"
+      className='flex-center bg-dark-3 flex cursor-pointer flex-col rounded-xl'
     >
-      <input {...getInputProps()} className="cursor-pointer" />
+      <input {...getInputProps()} className='cursor-pointer' />
 
       {fileUrl ? (
         <>
-          <div className="flex flex-1 justify-center w-full lg:p-10">
-            <div className=" relative w-48 h-32 ">
+          <div className='mx-auto'>
+            <div className=' relative h-[136px] w-48 '>
               <Image
                 src={fileUrl}
                 fill
-                alt="image"
-                className=" object-cover"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                alt='image'
+                className=' object-contain'
+                sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
               />
             </div>
           </div>
-          <p className="file_uploader-label">Click or drag photo to replace</p>
+          <p className='file_uploader-label'>Click or drag photo to replace</p>
         </>
       ) : (
-        <div className="flex flex-col items-center justify-center border rounded-lg p-2">
-          <UploadCloud className="w-10 h-10 text-center mx-auto" />
+        <div className='flex flex-col items-center justify-center rounded-lg border p-2'>
+          <UploadCloud className='mx-auto h-10 w-10 text-center' />
 
-          <h3 className="base-medium text-light-2 mb-2 mt-6">
+          <h3 className='base-medium text-light-2 mb-2 mt-6'>
             Drag or Select photo here
           </h3>
-          <p className="text-light-4 small-regular mb-6">.webp</p>
+          <p className='text-light-4 small-regular mb-6'>.webp</p>
         </div>
       )}
     </div>
