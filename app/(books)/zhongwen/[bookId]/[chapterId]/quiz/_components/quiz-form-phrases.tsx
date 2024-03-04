@@ -19,9 +19,6 @@ const QuizFormPhrases = ({
 }: QuizFormPhrasesProps) => {
   const [form_phrases] = useState<FormPhrases[]>(quiz.form_phrases)
 
-  if (!quiz.hasOwnProperty('form_phrases')) {
-    return <></>
-  }
 
   return (
     <div className="flex flex-col items-center justify-center w-full animate-fade-left animate-duration-1000 animate-ease-in-out animate-fill-both">

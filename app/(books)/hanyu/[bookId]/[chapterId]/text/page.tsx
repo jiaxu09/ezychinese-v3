@@ -1,5 +1,5 @@
 import { type Metadata } from 'next'
-import React from 'react'
+import React, { Suspense } from 'react'
 import Text from '../_components/text'
 import {
   HydrationBoundary,
@@ -40,7 +40,9 @@ const TextsPage = async ({ params }: TextsPageProps) => {
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <div className='mx-auto max-w-3xl'>
-        <Text bookId={params.bookId} chapterId={params.chapterId}/>
+        <Suspense fallback={null}>
+          <Text bookId={params.bookId} chapterId={params.chapterId} />
+        </Suspense>
       </div>
     </HydrationBoundary>
   )

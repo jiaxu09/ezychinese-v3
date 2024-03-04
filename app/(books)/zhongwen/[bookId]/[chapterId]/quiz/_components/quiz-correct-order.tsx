@@ -13,17 +13,14 @@ interface CorrectOrder {
 }
 const QuizCorrectOrder = ({
   quiz,
-  setCurrentCompleted,
+  setCurrentCompleted
 }: QuizCorrectOrderProps) => {
   const [correct_order] = useState<CorrectOrder[]>(quiz.correct_order)
-
-  if (!quiz.hasOwnProperty('correct_order')) {
-    return <></>
-  }
+ 
 
   return (
-    <div className="flex flex-col items-center justify-center animate-fade-left animate-duration-1000 animate-ease-in-out animate-fill-both">
-      <h1 className="pb-4 text-center">选择词语连词成句</h1>
+    <div className='flex animate-fade-left flex-col items-center justify-center animate-duration-1000 animate-fill-both animate-ease-in-out'>
+      <h1 className='pb-4 text-center'>选择词语连词成句</h1>
       {correct_order.map((item, j) => (
         <CorrectOrder
           setCurrentCompleted={setCurrentCompleted}

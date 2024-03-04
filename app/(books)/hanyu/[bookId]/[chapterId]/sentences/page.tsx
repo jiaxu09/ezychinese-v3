@@ -1,7 +1,11 @@
 import { type Metadata } from 'next'
-import React from 'react'
+import React, { Suspense } from 'react'
 import Sentences from '../_components/sentences'
-import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query'
+import {
+  HydrationBoundary,
+  QueryClient,
+  dehydrate
+} from '@tanstack/react-query'
 import { useGetHanYuSentencesByChapter } from '@/lib/react-query/queries'
 
 interface SentencesPageProps {
@@ -34,7 +38,9 @@ const SentencesPage = async ({ params }: SentencesPageProps) => {
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <div className='mx-auto max-w-3xl'>
-        <Sentences bookId={params.bookId} chapterId={params.chapterId} />
+        <Suspense fallback={null}>
+          <Sentences bookId={params.bookId} chapterId={params.chapterId} />
+        </Suspense>
       </div>
     </HydrationBoundary>
   )

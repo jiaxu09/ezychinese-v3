@@ -15,19 +15,15 @@ interface RightExplanation {
 }
 const QuizRightExplanation = ({
   quiz,
-  setCurrentCompleted,
+  setCurrentCompleted
 }: QuizRightExplanationProps) => {
   const [right_explanation] = useState<RightExplanation[]>(
     quiz.right_explanation
   )
 
-  if (!quiz.hasOwnProperty('right_explanation')) {
-    return <></>
-  }
-
   return (
-    <div className="flex flex-col items-center justify-center w-full animate-fade-left animate-duration-1000 animate-ease-in-out animate-fill-both">
-      <h1 className="pb-4 text-center">选择正确解释</h1>
+    <div className='flex w-full animate-fade-left flex-col items-center justify-center animate-duration-1000 animate-fill-both animate-ease-in-out'>
+      <h1 className='pb-4 text-center'>选择正确解释</h1>
       {right_explanation.map((item, index) => (
         <RightExplanation
           index={index}

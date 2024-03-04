@@ -21,16 +21,11 @@ const RightExplanation = ({
   question,
   index,
   setCurrentCompleted,
-  numberOfQuestions,
+  numberOfQuestions
 }: RightExplanationProps) => {
   const [isCompleted, setCompleted] = useState(false)
 
   const [selectedAnswers, setSelectedAnswers] = useState<string[]>([])
-
-  useEffect(() => {
-    setCurrentCompleted(false)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   useEffect(() => {
     if (index === numberOfQuestions - 1 && isCompleted) {
@@ -46,41 +41,41 @@ const RightExplanation = ({
   }
 
   return (
-    <div className="flex flex-col items-center justify-center gap-6 pb-2 w-full ">
-      <div className="flex items-center justify-start gap-8">
-        <div className="mb-6">
+    <div className='flex w-full flex-col items-center justify-center gap-6 pb-2 '>
+      <div className='flex items-center justify-start gap-8'>
+        <div className='mb-6'>
           <QuestionIndex index={index} isCompleted={isCompleted} />
         </div>
-        <div className=" text-xl ">
+        <div className=' text-xl '>
           {sentence.split('').map((char, index) => (
             <ruby key={index}>
-              {char === question && <span className=" inline-block">.</span>}
+              {char === question && <span className=' inline-block'>.</span>}
 
-              <rt className=" text-lg md:text-2xl">{char}</rt>
+              <rt className=' text-lg md:text-2xl'>{char}</rt>
             </ruby>
           ))}
         </div>
       </div>
-      <div className="flex items-center justify-start md:justify-center flex-wrap gap-4">
+      <div className='flex flex-wrap items-center justify-start gap-4 md:justify-center'>
         {choices.map((ci, index) => (
-          <div className="flex items-center" key={index}>
+          <div className='flex items-center' key={index}>
             {index === 0 && (
-              <span className="mr-2 w-6 h-6 flex items-center justify-center rounded-full bg-crayola">
+              <span className='mr-2 flex h-6 w-6 items-center justify-center rounded-full bg-crayola'>
                 A
               </span>
             )}
             {index === 1 && (
-              <span className="mr-2 w-6 h-6 flex items-center justify-center rounded-full bg-skyblue">
+              <span className='mr-2 flex h-6 w-6 items-center justify-center rounded-full bg-skyblue'>
                 B
               </span>
             )}
             {index === 2 && (
-              <span className="mr-2 w-6 h-6 flex items-center justify-center rounded-full bg-pastelblue">
+              <span className='mr-2 flex h-6 w-6 items-center justify-center rounded-full bg-pastelblue'>
                 C
               </span>
             )}
             {index === 3 && (
-              <span className="mr-2 w-6 h-6 flex items-center justify-center rounded-full bg-pewterblue">
+              <span className='mr-2 flex h-6 w-6 items-center justify-center rounded-full bg-pewterblue'>
                 D
               </span>
             )}
@@ -88,18 +83,18 @@ const RightExplanation = ({
             <Button
               disabled={selectedAnswers.includes(ci) || isCompleted}
               onClick={() => handleAnswer(ci)}
-              className=" relative"
+              className=' relative'
               variant={
                 isCompleted && ci == answer
                   ? 'success'
                   : selectedAnswers.includes(ci)
-                  ? 'destructive'
-                  : 'outline'
+                    ? 'destructive'
+                    : 'outline'
               }
             >
               {ci}
               {isCompleted && ci === answer && (
-                <Sparkles className="w-4 h-4 top-[8%] left-0 text-yellow-300 animate-ping animate-twice animate-duration-1000 animate-ease-linear absolute" />
+                <Sparkles className='absolute left-0 top-[8%] h-4 w-4 animate-ping text-yellow-300 animate-duration-1000 animate-twice animate-ease-linear' />
               )}
             </Button>
           </div>
