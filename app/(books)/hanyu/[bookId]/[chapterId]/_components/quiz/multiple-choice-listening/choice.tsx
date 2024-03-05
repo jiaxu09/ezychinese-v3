@@ -8,7 +8,7 @@ import ChoiceButton from '../choice-button'
 import { Separator } from '@/components/ui/separator'
 
 interface ChoiceProps {
-  item: MultipleChoiceListeningHanyu
+  item: any
   correctAnswers: number
   setCorrectAnswers: Dispatch<React.SetStateAction<number>>
   index: number
@@ -23,7 +23,7 @@ const Choice = ({
 
   const handleSelectedChoice = (choice: string) => {
     setSelectedChoices([...selectedChoices, choice])
-    if (choice === item.rightAnswer) {
+    if (choice === item.right_answer) {
       setCorrectAnswers(correctAnswers + 1)
     }
   }
@@ -43,12 +43,12 @@ const Choice = ({
         </div>
       </div>
       <div className='flex flex-wrap items-center gap-4'>
-        {item.choices.map((choice, index) => (
+        {item.choices.map((choice: string, index: number) => (
           <ChoiceButton
             key={index}
             selectedChoices={selectedChoices}
             choice={choice}
-            rightAnswer={item.rightAnswer}
+            rightAnswer={item.right_answer}
             handleSelectedChoice={handleSelectedChoice}
           />
         ))}

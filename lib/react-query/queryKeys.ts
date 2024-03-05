@@ -43,4 +43,7 @@ export enum QUERY_KEYS {
   DELETEHANYUSENTENCE = 'deletehanyusentence',
   GETHANYUTEXTSBYCHAPTER = 'gethanyutextsbychapter',
   GETHANYUWRITINGSBYCHAPTER = 'gethanyuwritingsbychapter',
+  GETHANYUMULTIPLECHOICEBYCHAPTER = 'gethanyumultiplechoicebychapter',
+  GETHANYUMULTIPLECHOICELISTENINGBYCHAPTER = 'gethanyumultiplechoicelisteningbychapter',
+  GETHANYUSELECTRIGHTPINYINBYCHAPTER = 'gethanyuselectrightpinyinbychapter',
 }

@@ -28,6 +28,7 @@ import ImageDialog from '@/app/(books)/_components/image-dialog'
 import { Textarea } from '@/components/ui/textarea'
 import FileUploader from '@/components/file-uploader'
 import supabaseUrl from '@/lib/utils'
+import { uploadFileToStorage } from '@/lib/supabase/api-client'
 
 interface NewSentencesProps {
   bookId: string
@@ -70,52 +71,34 @@ const NewSentences = ({ bookId, chapterId }: NewSentencesProps) => {
   ) => {
     setIsLoading(true)
     const audioFile = value.audio[0]
-    let audio = ''
-
-    //upload audio to supabase first
-    if (audioFile) {
-      const fileExt = audioFile.name.split('.').pop()
-      const fileName = `${Math.random()}.${fileExt}`
-      const filePath = `mp3/${fileName}`
-      const supabase = supabaseBrowser()
-      const { error, data } = await supabase.storage
-        .from('ezyChinese')
-        .upload(filePath, audioFile)
-      if (!error) {
-        audio = data.path
-      }
-    }
-
+    const audio = await uploadFileToStorage(audioFile, 'mp3')
     const file = value.image[0]
-    let image = ''
+    const image = await uploadFileToStorage(file, 'hanyu-images')
 
-    //upload image to supabase first
-    if (file) {
-      const fileExt = file.name.split('.').pop()
-      const fileName = `${Math.random()}.${fileExt}`
-      const filePath = `hanyu-images/${fileName}`
-      const supabase = supabaseBrowser()
-      const { error, data } = await supabase.storage
-        .from('ezyChinese')
-        .upload(filePath, file)
-      if (!error) {
-        image = data.path
+    if (audio && image) {
+      const item: HanYuSentence = {
+        sentence: value.sentence,
+        image,
+        source: value.source,
+        audio
       }
+      await addHanYuSentence(item)
+      form.reset()
     }
-
-    const item: HanYuSentence = {
-      sentence: value.sentence,
-      image,
-      source: value.source,
-      audio
-    }
-    await addHanYuSentence(item)
-    form.reset()
     setIsLoading(false)
   }
 
-  const handleDeleteHanYuSentence = async (id: string) => {
-    await deleteHanYuSentence(id)
+  const handleDeleteHanYuSentence = async (
+    id: string,
+    img?: string,
+    audio?: string
+  ) => {
+    const variables = {
+      id,
+      img,
+      audio
+    }
+    await deleteHanYuSentence(variables)
   }
 
   return (

@@ -1,21 +1,26 @@
 import { Button } from '@/components/ui/button'
 import { RotateCcw, Trash2 } from 'lucide-react'
 import React from 'react'
+
 interface DeleteButtonProps {
   deletePending: boolean
-  handleDeleteHanYuWord: (id: string) => Promise<void>
+  handleDeleteHanYu: (id: string, img?: string, audio?: string) => Promise<void>
   id: string
+  img?: string
+  audio?: string
 }
 const DeleteButton = ({
   deletePending,
-  handleDeleteHanYuWord,
-  id
+  handleDeleteHanYu,
+  id,
+  img,
+  audio
 }: DeleteButtonProps) => {
   return (
     <Button
       disabled={deletePending}
       variant='ghost'
-      onClick={() => handleDeleteHanYuWord(id!)}
+      onClick={() => handleDeleteHanYu(id!, img, audio)}
     >
       {deletePending ? (
         <RotateCcw className='h-4 w-4 animate-spin text-watermarker' />

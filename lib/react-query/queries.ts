@@ -8,6 +8,9 @@ import {
   CorrectOrder,
   FindDifference,
   FormPhrases,
+  HanYuMultipleChoice,
+  HanYuMultipleChoiceListening,
+  HanYuSelectRightPinyin,
   HanYuSentence,
   HanYuText,
   HanYuWord,
@@ -19,13 +22,22 @@ import {
 } from '../types'
 import { useToast } from '@/components/ui/use-toast'
 import {
+  addHanYuMultipleChoice,
+  addHanYuMultipleChoiceListening,
+  addHanYuSelectRightPinyin,
   addHanYuSentence,
   addHanYuText,
   addHanYuWriting,
+  deleteHanYuMultipleChoice,
+  deleteHanYuMultipleChoiceListening,
+  deleteHanYuSelectRightPinyin,
   deleteHanYuSentence,
   deleteHanYuText,
   deleteHanYuWord,
   deleteHanYuWriting,
+  getHanYuMultipleChoiceByChapter,
+  getHanYuMultipleChoiceListeningByChapter,
+  getHanYuSelectRightPinyinByChapter,
   getHanYuSentencesByChapter,
   getHanYuTextsByChapter,
   getHanYuWordsByChapter,
@@ -546,7 +558,15 @@ export const useDeleteHanYuSentence = (source: string) => {
   const queryClient = useQueryClient()
   const { toast } = useToast()
   return useMutation({
-    mutationFn: (id: string) => deleteHanYuSentence(id),
+    mutationFn: ({
+      id,
+      img,
+      audio,
+    }: {
+      id: string
+      img?: string
+      audio?: string
+    }) => deleteHanYuSentence(id, img, audio),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.GETHANYUSENTENCESBYCHAPTER, source],
@@ -635,6 +655,133 @@ export const useDeleteHanYuWriting = (source: string) => {
       })
       toast({
         title: 'Cool! 汉字/Writing deleted successfully. ',
+        variant: 'success',
+      })
+    },
+  })
+}
+
+//Hanyu Quiz
+
+export const useGetHanYuMultipleChoiceByChapter = (source: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETHANYUMULTIPLECHOICEBYCHAPTER, source],
+    queryFn: () => getHanYuMultipleChoiceByChapter(source),
+  }
+}
+
+export const useAddHanYuMultipleChoice = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (item: HanYuMultipleChoice) => addHanYuMultipleChoice(item),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETHANYUMULTIPLECHOICEBYCHAPTER, source],
+      })
+      toast({
+        title: 'Cool! Question created successfully. ',
+        variant: 'success',
+      })
+    },
+  })
+}
+
+export const useDeleteHanYuMultipleChoice = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (id: string) => deleteHanYuMultipleChoice(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETHANYUMULTIPLECHOICEBYCHAPTER, source],
+      })
+      toast({
+        title: 'Cool! Question deleted successfully. ',
+        variant: 'success',
+      })
+    },
+  })
+}
+
+export const useGetHanYuMultipleChoiceListeningByChapter = (source: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETHANYUMULTIPLECHOICELISTENINGBYCHAPTER, source],
+    queryFn: () => getHanYuMultipleChoiceListeningByChapter(source),
+  }
+}
+
+export const useAddHanYuMultipleChoiceListening = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (item: HanYuMultipleChoiceListening) =>
+      addHanYuMultipleChoiceListening(item),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETHANYUMULTIPLECHOICELISTENINGBYCHAPTER, source],
+      })
+      toast({
+        title: 'Cool! Question created successfully. ',
+        variant: 'success',
+      })
+    },
+  })
+}
+
+export const useDeleteHanYuMultipleChoiceListening = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (id: string) => deleteHanYuMultipleChoiceListening(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETHANYUMULTIPLECHOICELISTENINGBYCHAPTER, source],
+      })
+      toast({
+        title: 'Cool! Question deleted successfully. ',
+        variant: 'success',
+      })
+    },
+  })
+}
+
+export const useGetHanYuSelectRightPinyinByChapter = (source: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETHANYUSELECTRIGHTPINYINBYCHAPTER, source],
+    queryFn: () => getHanYuSelectRightPinyinByChapter(source),
+  }
+}
+
+export const useAddHanYuSelectRightPinyin = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (item: HanYuSelectRightPinyin) =>
+      addHanYuSelectRightPinyin(item),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETHANYUSELECTRIGHTPINYINBYCHAPTER, source],
+      })
+      toast({
+        title: 'Cool! Question created successfully. ',
+        variant: 'success',
+      })
+    },
+  })
+}
+
+export const useDeleteHanYuSelectRightPinyin = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (id: string) => deleteHanYuSelectRightPinyin(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETHANYUSELECTRIGHTPINYINBYCHAPTER, source],
+      })
+      toast({
+        title: 'Cool! Question deleted successfully. ',
         variant: 'success',
       })
     },

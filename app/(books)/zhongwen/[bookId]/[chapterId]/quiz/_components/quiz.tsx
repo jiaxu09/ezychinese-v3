@@ -9,7 +9,7 @@ import QuizCorrectOrder from './quiz-correct-order'
 import QuizRightExplanation from './quiz-right-explanation'
 import QuizFormPhrases from './quiz-form-phrases'
 import QuizFindDifference from './quiz-find-difference'
-import { useQuery } from '@tanstack/react-query'
+import { useSuspenseQueries } from '@tanstack/react-query'
 import {
   useGetCorrectOrderByChapter,
   useGetFindDifferenceByChapter,
@@ -37,21 +37,19 @@ type Quiz = {
 }
 
 const Quiz = ({ bookId, chapterId }: QuizProps) => {
-  const { data: correct_order } = useQuery(
-    useGetCorrectOrderByChapter(`${bookId}-${chapterId}`)
-  )
-
-  const { data: find_difference } = useQuery(
-    useGetFindDifferenceByChapter(`${bookId}-${chapterId}`)
-  )
-
-  const { data: form_phrases } = useQuery(
-    useGetFormPhrasesByChapter(`${bookId}-${chapterId}`)
-  )
-
-  const { data: right_explanation } = useQuery(
-    useGetRightExplanationByChapter(`${bookId}-${chapterId}`)
-  )
+  const [
+    { data: correct_order },
+    { data: find_difference },
+    { data: form_phrases },
+    { data: right_explanation }
+  ] = useSuspenseQueries({
+    queries: [
+      useGetCorrectOrderByChapter(`${bookId}-${chapterId}`),
+      useGetFindDifferenceByChapter(`${bookId}-${chapterId}`),
+      useGetFormPhrasesByChapter(`${bookId}-${chapterId}`),
+      useGetRightExplanationByChapter(`${bookId}-${chapterId}`)
+    ]
+  })
 
   const [quiz, setQuiz] = useState<Quiz>()
 
@@ -86,42 +84,37 @@ const Quiz = ({ bookId, chapterId }: QuizProps) => {
       setAllDone(true)
     }
   }, [currentCompleted, index, quiz])
-  
+
   if (quiz && Object.keys(quiz).length === 0) {
     return <NoContent />
   }
 
   return (
     <div className='flex w-full flex-col gap-2  '>
-      {quiz &&
-        Object.keys(quiz).map((key, i) => (
-          <div className='w-full ' key={i}>
-            {quiz.correct_order && index === i && !isAllDone && (
-              <QuizCorrectOrder
-                quiz={quiz}
-                setCurrentCompleted={setCurrentCompleted}
-              />
-            )}
-            {quiz.right_explanation && index === i && !isAllDone && (
-              <QuizRightExplanation
-                quiz={quiz}
-                setCurrentCompleted={setCurrentCompleted}
-              />
-            )}
-            {quiz.form_phrases && index === i && !isAllDone && (
-              <QuizFormPhrases
-                quiz={quiz}
-                setCurrentCompleted={setCurrentCompleted}
-              />
-            )}
-            {quiz.find_difference && index === i && !isAllDone && (
-              <QuizFindDifference
-                quiz={quiz}
-                setCurrentCompleted={setCurrentCompleted}
-              />
-            )}
-          </div>
-        ))}
+      {quiz && Object.keys(quiz)[index] === 'correct_order' && (
+        <QuizCorrectOrder
+          quiz={quiz}
+          setCurrentCompleted={setCurrentCompleted}
+        />
+      )}
+      {quiz && Object.keys(quiz)[index] === 'right_explanation' && (
+        <QuizRightExplanation
+          quiz={quiz}
+          setCurrentCompleted={setCurrentCompleted}
+        />
+      )}
+      {quiz && Object.keys(quiz)[index] === 'form_phrases' && (
+        <QuizFormPhrases
+          quiz={quiz}
+          setCurrentCompleted={setCurrentCompleted}
+        />
+      )}
+      {quiz && Object.keys(quiz)[index] === 'find_difference' && (
+        <QuizFindDifference
+          quiz={quiz}
+          setCurrentCompleted={setCurrentCompleted}
+        />
+      )}
 
       {isAllDone && (
         <div className='mx-auto w-2/3'>

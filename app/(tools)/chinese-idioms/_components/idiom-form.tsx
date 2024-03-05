@@ -9,7 +9,7 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormMessage,
+  FormMessage
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -20,9 +20,10 @@ import { IIdiom } from '@/lib/types'
 
 import {
   useAddChineseIdiom,
-  useUpdateChineseIdiom,
+  useUpdateChineseIdiom
 } from '@/lib/react-query/queries'
 import SubmitButton from '../../../../components/submit-button'
+import Image from 'next/image'
 
 type IdiomFormProps = {
   idiom?: any
@@ -33,13 +34,13 @@ const IdiomForm = ({ idiom, action }: IdiomFormProps) => {
   const {
     mutate: addChineseIdiom,
     error: createdError,
-    isPending: createdPeding,
+    isPending: createdPeding
   } = useAddChineseIdiom()
 
   const {
     mutate: updateChineseIdiom,
     error: updatedError,
-    isPending: updatedPending,
+    isPending: updatedPending
   } = useUpdateChineseIdiom(idiom?.id)
 
   const form = useForm<z.infer<typeof IdiomValidation>>({
@@ -51,8 +52,8 @@ const IdiomForm = ({ idiom, action }: IdiomFormProps) => {
       background: [],
       example: idiom ? idiom.example.join('') : '',
       example_pinyin: idiom ? idiom?.example_pinyin.join(' ') : '',
-      example_meaning: idiom ? idiom?.example_meaning : '',
-    },
+      example_meaning: idiom ? idiom?.example_meaning : ''
+    }
   })
 
   const [fileUrl, setFileUrl] = useState<string>(
@@ -61,7 +62,13 @@ const IdiomForm = ({ idiom, action }: IdiomFormProps) => {
 
   const handleSubmit = async (value: z.infer<typeof IdiomValidation>) => {
     const file = value.background[0]
-    let backgroundUrl = ''
+    const regex = /\/ezyChinese\/(.*?)$/
+    const match = fileUrl.match(regex)
+    let backgroundUrl = fileUrl
+
+    if (match) {
+      backgroundUrl = match[1]
+    }
 
     //upload image to supabase first
     if (file) {
@@ -84,7 +91,7 @@ const IdiomForm = ({ idiom, action }: IdiomFormProps) => {
       background_url: backgroundUrl,
       example: value.example.replace(/,\s*$/, '').split(''),
       example_pinyin: value.example_pinyin.replace(/,\s*$/, '').split(' '),
-      example_meaning: value.example_meaning?.replace(/,\s*$/, ''),
+      example_meaning: value.example_meaning?.replace(/,\s*$/, '')
     }
     if (action === 'Create') {
       //save radical to DB
@@ -101,17 +108,17 @@ const IdiomForm = ({ idiom, action }: IdiomFormProps) => {
   return (
     <Form {...form}>
       <form
-        className="flex flex-col gap-4 w-full rounded-lg p-4"
+        className=' flex w-full flex-col gap-4 rounded-lg p-4'
         onSubmit={form.handleSubmit(handleSubmit)}
       >
-        <div className=" flex items-center justify-center space-x-2">
+        <div className=' flex items-center justify-center space-x-2'>
           <FormField
             control={form.control}
-            name="name"
+            name='name'
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input type="text" placeholder="成语" {...field} />
+                  <Input type='text' placeholder='成语' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -119,13 +126,13 @@ const IdiomForm = ({ idiom, action }: IdiomFormProps) => {
           />
           <FormField
             control={form.control}
-            name="idiom_pinyin"
+            name='idiom_pinyin'
             render={({ field }) => (
               <FormItem>
                 <FormControl>
                   <Input
-                    type="text"
-                    placeholder="成语拼音,以空格分隔"
+                    type='text'
+                    placeholder='成语拼音,以空格分隔'
                     {...field}
                   />
                 </FormControl>
@@ -134,14 +141,14 @@ const IdiomForm = ({ idiom, action }: IdiomFormProps) => {
             )}
           />
         </div>
-        <div className=" flex items-center justify-center space-x-2">
+        <div className=' flex items-center justify-center space-x-2'>
           <FormField
             control={form.control}
-            name="idiom_meaning"
+            name='idiom_meaning'
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Textarea placeholder="成语解释" {...field} />
+                  <Textarea placeholder='成语解释' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -149,46 +156,46 @@ const IdiomForm = ({ idiom, action }: IdiomFormProps) => {
           />
           <FormField
             control={form.control}
-            name="example"
+            name='example'
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Textarea placeholder="成语造句" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-        <div className=" flex items-center justify-center space-x-2">
-          <FormField
-            control={form.control}
-            name="example_pinyin"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Textarea placeholder="造句对应拼音,以空格分隔." {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="example_meaning"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Textarea placeholder="造句英文." {...field} />
+                  <Textarea placeholder='成语造句' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
         </div>
-        <FormField
+        <div className=' flex items-center justify-center space-x-2'>
+          <FormField
+            control={form.control}
+            name='example_pinyin'
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Textarea placeholder='造句对应拼音,以空格分隔.' {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='example_meaning'
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Textarea placeholder='造句英文.' {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        {/* <FormField
           control={form.control}
-          name="background"
+          name='background'
           render={({ field }) => (
             <FormItem>
               <FormControl>
@@ -198,17 +205,17 @@ const IdiomForm = ({ idiom, action }: IdiomFormProps) => {
                   setFileUrl={setFileUrl}
                 />
               </FormControl>
-              <FormMessage className="" />
+              <FormMessage className='' />
             </FormItem>
           )}
-        />
+        /> */}
         {createdError && (
-          <FormMessage className="text-center text-error h-2">
+          <FormMessage className='text-error h-2 text-center'>
             Something went wrong!
           </FormMessage>
         )}
         <SubmitButton
-          type="idiom"
+          type='idiom'
           createdPeding={createdPeding}
           updatedPending={updatedPending}
         />

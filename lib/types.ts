@@ -184,3 +184,25 @@ export type HanYuWriting = {
   hanzi: string[]
   source: string
 }
+
+//HanYu Quiz
+export type HanYuMultipleChoice = {
+  question: string
+  choices: string[]
+  rightAnswer: string
+  source: string
+}
+
+export type HanYuMultipleChoiceListening = {
+  audio: string
+  choices: string[]
+  right_answer: string
+  source: string
+}
+
+export type HanYuSelectRightPinyin = {
+  audio: string
+  choices: string[]
+  right_answer: string
+  source: string
+}

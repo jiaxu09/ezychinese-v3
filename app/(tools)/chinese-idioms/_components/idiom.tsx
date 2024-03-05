@@ -27,21 +27,21 @@ const Idiom = ({
   idiom_meaning,
   idiom_pinyin,
   name,
-  id,
+  id
 }: IdiomProps) => {
-  const edit = useChineseIdiomEdit((state) => state.edit)
+  const edit = useChineseIdiomEdit(state => state.edit)
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">{name.join('')}</Button>
+        <Button variant='outline'>{name.join('')}</Button>
       </DialogTrigger>
       {edit ? (
         <DialogContent>
           <>
-            <h2 className=" text-center pb-4">Edit Radical</h2>
+            <h2 className=' pb-4 text-center'>Edit Radical</h2>
             <IdiomForm
-              action="Edit"
+              action='Edit'
               idiom={{
                 name,
                 idiom_meaning,
@@ -50,63 +50,63 @@ const Idiom = ({
                 example_meaning,
                 example_pinyin,
                 background_url,
-                id,
+                id
               }}
             />
           </>
         </DialogContent>
       ) : (
-        <DialogContent className="sm:max-w-md md:max-w-5xl ">
-          <div className=" relative flex flex-col items-center ">
-            <div className="w-full h-full  rounded-lg grid grid-rows-2">
-              <div className="w-full h-full bg-pastelblue">
-                <div className="flex flex-col space-y-4 items-center justify-center py-16 md:py-20 ">
-                  <div className="flex items-center gap-4">
+        <DialogContent className='sm:max-w-md md:max-w-5xl '>
+          <div className=' relative flex flex-col items-center '>
+            <div className='grid h-full  w-full grid-rows-2 rounded-lg'>
+              <div className='h-full w-full bg-pastelblue'>
+                <div className='flex flex-col items-center justify-center space-y-4 py-16 md:py-20 '>
+                  <div className='flex items-center gap-4'>
                     {name.map((character, index) => (
                       <ruby key={index}>
-                        <span className=" py-1 text-2xl md:text-6xl inline-block">
+                        <span className=' inline-block py-1 text-2xl md:text-6xl'>
                           {character}
                         </span>
-                        <rt className="text-lg text-gray-600  md:text-3xl">
+                        <rt className='text-lg text-gray-600  md:text-3xl'>
                           {idiom_pinyin[index]}
                         </rt>
                       </ruby>
                     ))}
                   </div>
-                  <div className="text-lg md:text-2xl italic">
+                  <div className='text-lg italic md:text-2xl'>
                     {idiom_meaning}
                   </div>
                 </div>
               </div>
-              <div className="w-full h-full bg-skyblue flex flex-col items-center justify-start py-12">
-                <div className=" text-center flex items-center justify-center gap-4 w-full flex-wrap">
+              <div className='flex h-full w-full flex-col items-center justify-start bg-skyblue py-12'>
+                <div className=' flex w-full flex-wrap items-center justify-center gap-4 text-center'>
                   {example.map((char, index) => (
                     <ruby key={index}>
-                      <span className=" text-lg md:text-5xl inline-block">
+                      <span className=' inline-block text-lg md:text-5xl'>
                         {char}
                       </span>
-                      <rt className="text-lg text-gray-600  md:text-3xl">
+                      <rt className='text-lg text-gray-600  md:text-3xl'>
                         {example_pinyin[index]}
                       </rt>
                     </ruby>
                   ))}
                 </div>
-                <p className=" italic text-lg md:text-2xl py-4 text-center leading-relaxed tracking-wider">
+                <p className=' py-4 text-center text-lg italic leading-relaxed tracking-wider md:text-2xl'>
                   {example_meaning}
                 </p>
               </div>
             </div>
             <WaterMark />
             <BgImg />
-            <div className=" absolute top-8 right-14">
-              <div className="w-12 md:w-24">
+            <div className=' absolute right-14 top-8'>
+              <div className='w-12 md:w-24'>
                 <Image
                   src={supabaseUrl('images/idiom.webp')}
                   width={188}
                   height={114}
-                  alt="ezyChinese idiom"
+                  alt='ezyChinese idiom'
                   priority
-                  sizes="33vw"
+                  sizes='33vw'
                 />
               </div>
             </div>

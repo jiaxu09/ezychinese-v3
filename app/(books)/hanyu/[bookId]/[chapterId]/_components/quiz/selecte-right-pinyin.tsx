@@ -2,49 +2,43 @@
 import { Card, CardContent } from '@/components/ui/card'
 import React, { Dispatch, useEffect, useState } from 'react'
 import Choice from './multiple-choice-listening/choice'
-import { HanYuMultipleChoiceListening } from '@/lib/types'
 
-interface MultipleChoiceListeningProps {
+interface SelecteRightPinyinProps {
   quiz: any
   setCurrentCompleted: Dispatch<React.SetStateAction<boolean>>
 }
 
-export type MultipleChoiceListeningHanyu = {
+export type SelecteRightPinyinHanyu = {
   audio: string
   choices: string[]
-  rightAnswer: string
+  right_answer: string
 }
 
-const MultipleChoiceListening = ({
+const SlecteRightPinyin = ({
   quiz,
   setCurrentCompleted
-}: MultipleChoiceListeningProps) => {
-  const [correctAnswers, setCorrectAnswers] = useState<number>(0) //index of question
+}: SelecteRightPinyinProps) => {
+  const [correctAnswers, setCorrectAnswers] = useState<number>(0)
 
-  const [multipleChoiceListening_hanyu] = useState<
-    HanYuMultipleChoiceListening[]
-  >(quiz.multiple_choice_listening)
-
-  useEffect(() => {
-    if (correctAnswers === multipleChoiceListening_hanyu.length) {
-      setCurrentCompleted(true)
-    }
-  }, [
-    correctAnswers,
-    multipleChoiceListening_hanyu.length,
-    setCurrentCompleted
-  ])
-
+  const [selectedRightPinyin_hanyu] = useState<SelecteRightPinyinHanyu[]>(
+    quiz.select_right_pinyin
+  )
   useEffect(() => {
     setCurrentCompleted(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  useEffect(() => {
+    if (correctAnswers === selectedRightPinyin_hanyu.length) {
+      setCurrentCompleted(true)
+    }
+  }, [correctAnswers, selectedRightPinyin_hanyu.length, setCurrentCompleted])
+
   return (
     <Card className='flex animate-fade-left flex-col items-center justify-center py-4 animate-duration-1000 animate-fill-both animate-ease-in-out'>
-      <h1 className='pb-4 text-center'>听一听,选择哪个是对的</h1>
+      <h1 className='pb-4 text-center'>选出听到的拼音.</h1>
       <CardContent>
-        {multipleChoiceListening_hanyu.map((item, index) => (
+        {selectedRightPinyin_hanyu?.map((item, index) => (
           <Choice
             key={index}
             index={index}
@@ -58,4 +52,4 @@ const MultipleChoiceListening = ({
   )
 }
 
-export default MultipleChoiceListening
+export default SlecteRightPinyin
