@@ -1,7 +1,9 @@
 'use client'
-import React, { Dispatch, useEffect, useState } from 'react'
-import Choice from './multiple-choice/choice'
 import { Card, CardContent } from '@/components/ui/card'
+import React, { Dispatch, useEffect, useState } from 'react'
+
+import { HanYuMultipleChoice } from '@/lib/types'
+import Choice from './multiple-choice/choice'
 
 interface MultipleChoiceProps {
   quiz: any
@@ -9,15 +11,16 @@ interface MultipleChoiceProps {
 }
 
 export type MultipleChoiceHanyu = {
-  question: string
+  audio: string
   choices: string[]
   rightAnswer: string
 }
 
 const MultipleChoice = ({ quiz, setCurrentCompleted }: MultipleChoiceProps) => {
   const [correctAnswers, setCorrectAnswers] = useState<number>(0) //index of question
-  const [multipleChoice_hanyu] = useState<MultipleChoiceHanyu[]>(
-    quiz.multipleChoice_hanyu
+
+  const [multipleChoice_hanyu] = useState<HanYuMultipleChoice[]>(
+    quiz.multiple_choice
   )
 
   useEffect(() => {
@@ -26,14 +29,15 @@ const MultipleChoice = ({ quiz, setCurrentCompleted }: MultipleChoiceProps) => {
     }
   }, [correctAnswers, multipleChoice_hanyu.length, setCurrentCompleted])
 
-  if (!quiz.hasOwnProperty('multipleChoice_hanyu')) {
-    return <></>
-  }
+  useEffect(() => {
+    setCurrentCompleted(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <Card className='flex animate-fade-left flex-col items-center justify-center py-4 animate-duration-1000 animate-fill-both animate-ease-in-out'>
-      <h1 className='pb-4 text-center'>选择哪个是对的</h1>
-      <CardContent className='flex flex-col gap-10 '>
+      <h1 className='pb-4 text-center'>听一听,选择哪个是对的</h1>
+      <CardContent>
         {multipleChoice_hanyu.map((item, index) => (
           <Choice
             key={index}

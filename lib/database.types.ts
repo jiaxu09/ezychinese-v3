@@ -303,6 +303,60 @@ export type Database = {
         }
         Relationships: []
       }
+      multiple_choice_hanyu: {
+        Row: {
+          choices: string[]
+          created_at: string
+          id: string
+          question: string
+          rightAnswer: string
+          source: string
+        }
+        Insert: {
+          choices: string[]
+          created_at?: string
+          id?: string
+          question: string
+          rightAnswer: string
+          source: string
+        }
+        Update: {
+          choices?: string[]
+          created_at?: string
+          id?: string
+          question?: string
+          rightAnswer?: string
+          source?: string
+        }
+        Relationships: []
+      }
+      multiple_choice_listening_hanyu: {
+        Row: {
+          audio: string
+          choices: string[]
+          created_at: string
+          id: string
+          right_answer: string
+          source: string
+        }
+        Insert: {
+          audio: string
+          choices: string[]
+          created_at?: string
+          id?: string
+          right_answer: string
+          source: string
+        }
+        Update: {
+          audio?: string
+          choices?: string[]
+          created_at?: string
+          id?: string
+          right_answer?: string
+          source?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string
@@ -406,6 +460,33 @@ export type Database = {
           id?: string
           question?: string
           sentence?: string
+          source?: string
+        }
+        Relationships: []
+      }
+      select_right_pinyin_hanyu: {
+        Row: {
+          audio: string
+          choices: string[]
+          created_at: string
+          id: string
+          right_answer: string
+          source: string
+        }
+        Insert: {
+          audio: string
+          choices: string[]
+          created_at?: string
+          id?: string
+          right_answer: string
+          source: string
+        }
+        Update: {
+          audio?: string
+          choices?: string[]
+          created_at?: string
+          id?: string
+          right_answer?: string
           source?: string
         }
         Relationships: []

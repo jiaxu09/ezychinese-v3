@@ -1,7 +1,5 @@
 'use client'
-import React, { useState } from 'react'
-
-import { Button } from '@/components/ui/button'
+import React from 'react'
 import DeleteButton from '../hanyu/[bookId]/[chapterId]/new/_components/delete-button'
 import {
   Popover,
@@ -14,7 +12,7 @@ interface CollapsibleItemsProps {
   items: any[] | undefined
   property: string
   deletePending: boolean
-  handleDelete: (id: string) => Promise<void>
+  handleDelete: (id: string, img?: string, audio?: string) => Promise<void>
 }
 const CollapsibleItems = ({
   items,
@@ -22,7 +20,6 @@ const CollapsibleItems = ({
   deletePending,
   handleDelete
 }: CollapsibleItemsProps) => {
-  console.log(items)
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -40,8 +37,10 @@ const CollapsibleItems = ({
             {item[`${property}`]}
             <DeleteButton
               deletePending={deletePending}
-              handleDeleteHanYuWord={handleDelete}
+              handleDeleteHanYu={handleDelete}
               id={item['id']!}
+              img={item['image']}
+              audio={item['audio']}
             />
           </div>
         ))}

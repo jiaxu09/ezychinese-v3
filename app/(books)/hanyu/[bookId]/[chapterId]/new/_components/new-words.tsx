@@ -25,6 +25,7 @@ import {
 import { useQuery } from '@tanstack/react-query'
 import CollapsibleItems from '../../../../../_components/collapsible-items'
 import ImageDialog from '@/app/(books)/_components/image-dialog'
+import { uploadFileToStorage } from '@/lib/supabase/api-client'
 
 interface NewWordsProps {
   bookId: string
@@ -62,33 +63,21 @@ const NewWords = ({ bookId, chapterId }: NewWordsProps) => {
 
   const handleSubmit = async (value: z.infer<typeof HanYuWordsValidation>) => {
     setIsLoading(true)
-    const file = value.audio[0]
-    let audio = ''
+    const audioFile = value.audio[0]
+    const audio = await uploadFileToStorage(audioFile, 'mp3')
 
-    //upload image to supabase first
-    if (file) {
-      const fileExt = file.name.split('.').pop()
-      const fileName = `${Math.random()}.${fileExt}`
-      const filePath = `mp3/${fileName}`
-      const supabase = supabaseBrowser()
-      const { error, data } = await supabase.storage
-        .from('ezyChinese')
-        .upload(filePath, file)
-      if (!error) {
-        audio = data.path
+    if (audio) {
+      const item: HanYuWord = {
+        hanzi: value.hanzi,
+        pinyin: value.pinyin,
+        english: value.english,
+        source: value.source,
+        audio
       }
-    }
 
-    const item: HanYuWord = {
-      hanzi: value.hanzi,
-      pinyin: value.pinyin,
-      english: value.english,
-      source: value.source,
-      audio
+      await addHanYuWord(item)
+      form.reset()
     }
-
-    await addHanYuWord(item)
-    form.reset()
     setIsLoading(false)
   }
 

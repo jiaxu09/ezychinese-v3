@@ -80,7 +80,7 @@ const config = {
         },
         watermarker:{
           DEFAULT:"hsl(var(--watermarker))"
-        }
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -25,7 +25,7 @@ const ChoiceButton = ({
         'relative flex cursor-pointer items-center justify-center rounded-lg border border-primary p-6 text-xl',
         selectedChoices.includes(choice)
           ? choice === rightAnswer
-            ? 'animate-wiggle bg-green-400 animate-duration-1000 animate-once animate-ease-in-out'
+            ? 'animate-wiggle bg-success animate-duration-1000 animate-once animate-ease-in-out'
             : ' bg-red-600'
           : ''
       )}

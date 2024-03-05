@@ -90,3 +90,31 @@ export const HanYuWritingValidation = z.object({
   characters: z.string().min(1, { message: 'Sentence is required.' }),
   source: z.string().min(1, { message: 'Source is required.' }),
 })
+
+//Hanyu Quiz
+export const HanYuMultipleChoiceValidation = z.object({
+  question: z.string().min(1, { message: 'Question is required.' }),
+  choices: z.string().min(1, { message: 'Choice is required.' }),
+  rightAnswer: z.string().min(1, { message: 'Right Answer is required.' }),
+  source: z.string().min(1, { message: 'Source is required.' }),
+})
+
+export const HanYuMultipleChoiceListeningValidation = z.object({
+  audio: z
+    .any()
+    .refine((file) => file?.length == 1, 'Audio is required.')
+    .refine((file) => file[0]?.size <= 1000000, `Max file size is 1MB.`),
+  choices: z.string().min(1, { message: 'Choices is required.' }),
+  rightAnswer: z.string().min(1, { message: 'Right Answer is required.' }),
+  source: z.string().min(1, { message: 'Source is required.' }),
+})
+
+export const HanYuSelectRightPinyinValidation = z.object({
+  audio: z
+    .any()
+    .refine((file) => file?.length == 1, 'Audio is required.')
+    .refine((file) => file[0]?.size <= 1000000, `Max file size is 1MB.`),
+  choices: z.string().min(1, { message: 'Choices is required.' }),
+  rightAnswer: z.string().min(1, { message: 'Right Answer is required.' }),
+  source: z.string().min(1, { message: 'Source is required.' }),
+})

@@ -18,7 +18,7 @@ const NewPractices = ({ bookId, chapterId }: NewPracticesProps) => {
     return <Unauthorized />
   }
   return (
-    <div className='grid grid-cols-3 gap-2 overflow-x-auto'>
+    <div className='grid grid-cols-3 gap-2 '>
       <NewWords bookId={bookId} chapterId={chapterId} />
       <NewSentences bookId={bookId} chapterId={chapterId} />
       <NewTexts bookId={bookId} chapterId={chapterId} />

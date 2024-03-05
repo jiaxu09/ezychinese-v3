@@ -11,7 +11,7 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormMessage,
+  FormMessage
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import FileUploader from '@/components/file-uploader'
@@ -19,12 +19,13 @@ import FileUploader from '@/components/file-uploader'
 import { supabaseBrowser } from '@/lib/supabase/browser'
 import {
   useAddChineseRadical,
-  useUpdateChineseRadical,
+  useUpdateChineseRadical
 } from '@/lib/react-query/queries'
 
 import supabaseUrl from '@/lib/utils'
 import { IRadical } from '@/lib/types'
 import SubmitButton from '../../../../components/submit-button'
+import { uploadFileToStorage } from '@/lib/supabase/api-client'
 
 type RadicalFormProps = {
   radical?: any
@@ -35,19 +36,18 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
   const {
     mutate: addChineseRadical,
     error: createdError,
-    isPending: createdPeding,
+    isPending: createdPeding
   } = useAddChineseRadical()
   const {
     mutate: updateChineseRadical,
     error: updatedError,
-    isPending: updatedPending,
+    isPending: updatedPending
   } = useUpdateChineseRadical(radical?.id)
 
   //image uploader
   const [fileUrl, setFileUrl] = useState<string>(
     supabaseUrl(radical?.background_url)
   )
-
   const form = useForm<z.infer<typeof RadicalValidation>>({
     resolver: zodResolver(RadicalValidation),
     defaultValues: {
@@ -63,26 +63,24 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
       characters_pinyins: radical ? radical?.characters_pinyins?.join(' ') : '',
       characters_meanings: radical
         ? radical?.characters_meanings?.join(',')
-        : '',
-    },
+        : ''
+    }
   })
 
   const handleSubmit = async (value: z.infer<typeof RadicalValidation>) => {
     const file = value.background[0]
-    let backgroundUrl = ''
 
-    //upload image to supabase first
-    if (file) {
-      const fileExt = file.name.split('.').pop()
-      const fileName = `${Math.random()}.${fileExt}`
-      const filePath = `radicals/${fileName}`
-      const supabase = supabaseBrowser()
-      const { error, data } = await supabase.storage
-        .from('ezyChinese')
-        .upload(filePath, file)
-      if (!error) {
-        backgroundUrl = data.path
-      }
+    const regex = /\/ezyChinese\/(.*?)$/
+    const match = fileUrl.match(regex)
+    let backgroundUrl = fileUrl
+
+    if (match) {
+      backgroundUrl = match[1]
+    }
+
+    const uploadedUrl = await uploadFileToStorage(file, 'radicals')
+    if (uploadedUrl) {
+      backgroundUrl = uploadedUrl
     }
 
     const item: IRadical = {
@@ -100,7 +98,7 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
         .split(' '),
       characters_meanings: value.characters_meanings
         ?.replace(/,\s*$/, '')
-        .split(','),
+        .split(',')
     }
 
     if (action === 'Create') {
@@ -117,17 +115,17 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
   return (
     <Form {...form}>
       <form
-        className="flex flex-col gap-4 w-full border border-primary rounded-lg p-4"
+        className='flex w-full flex-col gap-4 rounded-lg border border-primary p-4'
         onSubmit={form.handleSubmit(handleSubmit)}
       >
-        <div className="flex items-center justify-center space-x-2">
+        <div className='flex items-center justify-center space-x-2'>
           <FormField
             control={form.control}
-            name="name"
+            name='name'
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input type="text" placeholder="部首" {...field} />
+                  <Input type='text' placeholder='部首' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -135,11 +133,11 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
           />
           <FormField
             control={form.control}
-            name="radical_pinyin"
+            name='radical_pinyin'
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input type="text" placeholder="部首拼音" {...field} />
+                  <Input type='text' placeholder='部首拼音' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -147,25 +145,25 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
           />
           <FormField
             control={form.control}
-            name="radical_meaning"
+            name='radical_meaning'
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input type="text" placeholder="部首英文" {...field} />
+                  <Input type='text' placeholder='部首英文' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
         </div>
-        <div className="flex items-center justify-center space-x-2 ">
+        <div className='flex items-center justify-center space-x-2 '>
           <FormField
             control={form.control}
-            name="radical_explain"
+            name='radical_explain'
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input type="text" placeholder="部首中文解释" {...field} />
+                  <Input type='text' placeholder='部首中文解释' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -173,13 +171,13 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
           />
           <FormField
             control={form.control}
-            name="radical_explain_pinyin"
+            name='radical_explain_pinyin'
             render={({ field }) => (
               <FormItem>
                 <FormControl>
                   <Input
-                    type="text"
-                    placeholder="对应拼音，空格分隔"
+                    type='text'
+                    placeholder='对应拼音，空格分隔'
                     {...field}
                   />
                 </FormControl>
@@ -188,14 +186,14 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
             )}
           />
         </div>
-        <div className="flex items-center justify-center space-x-2">
+        <div className='flex items-center justify-center space-x-2'>
           <FormField
             control={form.control}
-            name="characters"
+            name='characters'
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input type="text" placeholder="对应4个汉字" {...field} />
+                  <Input type='text' placeholder='对应4个汉字' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -203,13 +201,13 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
           />
           <FormField
             control={form.control}
-            name="characters_pinyins"
+            name='characters_pinyins'
             render={({ field }) => (
               <FormItem>
                 <FormControl>
                   <Input
-                    type="text"
-                    placeholder="对应汉字拼音,以空格分隔."
+                    type='text'
+                    placeholder='对应汉字拼音,以空格分隔.'
                     {...field}
                   />
                 </FormControl>
@@ -220,11 +218,11 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
         </div>
         <FormField
           control={form.control}
-          name="characters_meanings"
+          name='characters_meanings'
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input type="text" placeholder="对应英文,以,分隔." {...field} />
+                <Input type='text' placeholder='对应英文,以,分隔.' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -233,7 +231,7 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
 
         <FormField
           control={form.control}
-          name="background"
+          name='background'
           render={({ field }) => (
             <FormItem>
               <FormControl>
@@ -243,18 +241,18 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
                   setFileUrl={setFileUrl}
                 />
               </FormControl>
-              <FormMessage className="" />
+              <FormMessage className='' />
             </FormItem>
           )}
         />
         {(createdError || updatedError) && (
-          <FormMessage className="text-center text-error h-2">
+          <FormMessage className='text-error h-2 text-center'>
             Something went wrong!
           </FormMessage>
         )}
 
         <SubmitButton
-          type="radical"
+          type='radical'
           createdPeding={createdPeding}
           updatedPending={updatedPending}
         />

@@ -4,6 +4,9 @@ import {
   CorrectOrder,
   FindDifference,
   FormPhrases,
+  HanYuMultipleChoice,
+  HanYuMultipleChoiceListening,
+  HanYuSelectRightPinyin,
   HanYuSentence,
   HanYuText,
   HanYuWord,
@@ -14,6 +17,17 @@ import {
 } from '../types'
 import { getPagination } from '../utils'
 import { supabaseServer } from './server'
+
+//storage
+const deleteFile = async (fileName: string) => {
+  const supabase = supabaseServer()
+  const { data, error } = await supabase.storage
+    .from('ezyChinese')
+    .remove([`${fileName}`])
+  if (error) {
+    throw Error
+  }
+}
 
 const addTool = async (item: any, table: string) => {
   const supabase = supabaseServer()
@@ -268,7 +282,18 @@ export const getHanYuSentencesByChapter = async (source: string) => {
   return result
 }
 
-export const deleteHanYuSentence = async (id: string) => {
+export const deleteHanYuSentence = async (
+  id: string,
+  img?: string,
+  audio?: string
+) => {
+  if (img) {
+    await deleteFile(img)
+  }
+
+  if (audio) {
+    await deleteFile(audio)
+  }
   await deleteFunction(id, 'hanyu_sentences')
 }
 
@@ -294,4 +319,56 @@ export const getHanYuWritingsByChapter = async (source: string) => {
 
 export const deleteHanYuWriting = async (id: string) => {
   await deleteFunction(id, 'hanyu_writings')
+}
+
+//HanYu Quiz
+export const addHanYuMultipleChoice = async (item: HanYuMultipleChoice) => {
+  await addFunction('multiple_choice_hanyu', item)
+}
+export const getHanYuMultipleChoiceByChapter = async (source: string) => {
+  const result = (await getFunction(
+    source,
+    'multiple_choice_hanyu'
+  )) as HanYuMultipleChoice[]
+  return result
+}
+
+export const deleteHanYuMultipleChoice = async (id: string) => {
+  await deleteFunction(id, 'multiple_choice_hanyu')
+}
+
+export const addHanYuMultipleChoiceListening = async (
+  item: HanYuMultipleChoiceListening
+) => {
+  await addFunction('multiple_choice_listening_hanyu', item)
+}
+export const getHanYuMultipleChoiceListeningByChapter = async (
+  source: string
+) => {
+  const result = (await getFunction(
+    source,
+    'multiple_choice_listening_hanyu'
+  )) as HanYuMultipleChoiceListening[]
+  return result
+}
+
+export const deleteHanYuMultipleChoiceListening = async (id: string) => {
+  await deleteFunction(id, 'multiple_choice_listening_hanyu')
+}
+
+export const addHanYuSelectRightPinyin = async (
+  item: HanYuSelectRightPinyin
+) => {
+  await addFunction('select_right_pinyin_hanyu', item)
+}
+export const getHanYuSelectRightPinyinByChapter = async (source: string) => {
+  const result = (await getFunction(
+    source,
+    'select_right_pinyin_hanyu'
+  )) as HanYuSelectRightPinyin[]
+  return result
+}
+
+export const deleteHanYuSelectRightPinyin = async (id: string) => {
+  await deleteFunction(id, 'select_right_pinyin_hanyu')
 }
