@@ -46,4 +46,7 @@ export enum QUERY_KEYS {
   GETHANYUMULTIPLECHOICEBYCHAPTER = 'gethanyumultiplechoicebychapter',
   GETHANYUMULTIPLECHOICELISTENINGBYCHAPTER = 'gethanyumultiplechoicelisteningbychapter',
   GETHANYUSELECTRIGHTPINYINBYCHAPTER = 'gethanyuselectrightpinyinbychapter',
+  GETCSOLSELECTRIGHTCHOICEBYCHAPTER = 'getcsolselectrightchoicebychapter',
+  GETCSOLORDERWORDSBYCHAPTAPTER = 'getcsolorderwordsbychapter',
+  GETCSOLSELECTWORDBYCHAPTAPTER = 'getcsolselectwordbychapter',
 }

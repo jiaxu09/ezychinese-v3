@@ -1,7 +1,7 @@
 'use client'
 import { Card, CardContent } from '@/components/ui/card'
 import React, { Dispatch, useEffect, useState } from 'react'
-import Choice from './multiple-choice-listening/choice'
+import Choice from '../../../../../_components/quiz/choice'
 
 interface SelecteRightPinyinProps {
   quiz: any

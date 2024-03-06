@@ -10,6 +10,11 @@ import {
   useGetHanYuMultipleChoiceListeningByChapter,
   useGetHanYuSelectRightPinyinByChapter
 } from '@/lib/react-query/queries'
+import {
+  getHanYuMultipleChoiceByChapter,
+  getHanYuMultipleChoiceListeningByChapter,
+  getHanYuSelectRightPinyinByChapter
+} from '@/lib/supabase/api-server'
 
 interface QuizPageProps {
   params: {
@@ -19,28 +24,28 @@ interface QuizPageProps {
 }
 
 const QuizPage = async ({ params }: QuizPageProps) => {
-  const queryClient = new QueryClient()
-  await queryClient.prefetchQuery(
-    useGetHanYuSelectRightPinyinByChapter(
+  const selectRightPinyin = await getHanYuSelectRightPinyinByChapter(
+    `${params.bookId}-${params.chapterId}`
+  )
+
+  const multipleChoiceListening =
+    await getHanYuMultipleChoiceListeningByChapter(
       `${params.bookId}-${params.chapterId}`
     )
+  const multipleChoice = await getHanYuMultipleChoiceByChapter(
+    `${params.bookId}-${params.chapterId}`
   )
-  await queryClient.prefetchQuery(
-    useGetHanYuMultipleChoiceListeningByChapter(
-      `${params.bookId}-${params.chapterId}`
-    )
-  )
-  await queryClient.prefetchQuery(
-    useGetHanYuMultipleChoiceByChapter(`${params.bookId}-${params.chapterId}`)
-  )
+
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <div className='mx-auto max-w-3xl'>
-        <Suspense fallback={null}>
-          <Quiz bookId={params.bookId} chapterId={params.chapterId} />
-        </Suspense>
-      </div>
-    </HydrationBoundary>
+    <div className='mx-auto max-w-3xl'>
+      <Suspense fallback={null}>
+        <Quiz
+          select_right_pinyin={selectRightPinyin}
+          multiple_choice={multipleChoice}
+          multiple_choice_listening={multipleChoiceListening}
+        />
+      </Suspense>
+    </div>
   )
 }
 

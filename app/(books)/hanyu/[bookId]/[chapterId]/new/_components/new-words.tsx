@@ -23,7 +23,7 @@ import {
   useGetHanYuWordsByChapter
 } from '@/lib/react-query/queries'
 import { useQuery } from '@tanstack/react-query'
-import CollapsibleItems from '../../../../../_components/collapsible-items'
+import CollapsibleItems from '../../../../../_components/form/collapsible-items'
 import ImageDialog from '@/app/(books)/_components/image-dialog'
 import { uploadFileToStorage } from '@/lib/supabase/api-client'
 

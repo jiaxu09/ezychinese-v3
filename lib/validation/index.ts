@@ -99,7 +99,7 @@ export const HanYuMultipleChoiceValidation = z.object({
   source: z.string().min(1, { message: 'Source is required.' }),
 })
 
-export const HanYuMultipleChoiceListeningValidation = z.object({
+export const AudioChoiceRightAnswerValidation = z.object({
   audio: z
     .any()
     .refine((file) => file?.length == 1, 'Audio is required.')
@@ -109,7 +109,19 @@ export const HanYuMultipleChoiceListeningValidation = z.object({
   source: z.string().min(1, { message: 'Source is required.' }),
 })
 
-export const HanYuSelectRightPinyinValidation = z.object({
+//CSOL QUIZ
+export const SelectOrderWordsValidation = z.object({
+  audio: z
+    .any()
+    .refine((file) => file?.length == 1, 'Audio is required.')
+    .refine((file) => file[0]?.size <= 1000000, `Max file size is 1MB.`),
+  choices: z.string().min(1, { message: 'Choices is required.' }),
+  rightAnswer: z.string().min(1, { message: 'Right Answer is required.' }),
+  source: z.string().min(1, { message: 'Source is required.' }),
+})
+
+export const SelectRightChoiceValidation = z.object({
+  question: z.string().min(1, { message: 'Question is required.' }),
   audio: z
     .any()
     .refine((file) => file?.length == 1, 'Audio is required.')

@@ -1,43 +1,49 @@
 import Breadcrumb from '@/app/(books)/_components/breadcrumb'
 import Tabs from '@/app/(books)/_components/tabs'
 import React from 'react'
+import AddQuizButton from './_components/add-quiz-button'
 
 const tabs = [
   {
     name: 'Words',
-    path: 'words',
+    path: 'words'
   },
   {
     name: 'Singing',
-    path: 'singing',
+    path: 'singing'
   },
   {
     name: 'Writing',
-    path: 'writing',
+    path: 'writing'
   },
+  {
+    name: 'Quiz',
+    path: 'quiz'
+  }
 ]
 
 const PracticesLayout = ({
   children,
-  params,
+  params
 }: Readonly<{
   children: React.ReactNode
   params: { bookId: string; chapterId: string }
 }>) => {
   return (
-    <main className="container py-4">
+    <main className='container py-4'>
       <Breadcrumb
-        type="csol"
+        type='csol'
         bookId={params.bookId}
         chapterId={params.chapterId}
       />
       <Tabs
-        type="csol"
+        type='csol'
         tabs={tabs}
         bookId={params.bookId}
         chapterId={params.chapterId}
       />
-      <main className="max-w-3xl mx-auto">{children}</main>
+      <div className=''>{children}</div>
+      <AddQuizButton bookId={params.bookId} chapterId={params.chapterId} />
     </main>
   )
 }

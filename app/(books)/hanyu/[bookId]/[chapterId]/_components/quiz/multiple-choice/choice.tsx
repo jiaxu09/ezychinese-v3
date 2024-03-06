@@ -1,7 +1,7 @@
 'use client'
 import React, { Dispatch, useState } from 'react'
 
-import ChoiceButton from '../choice-button'
+import ChoiceButton from '../../../../../../_components/quiz/choice-button'
 import { HanYuMultipleChoice } from '@/lib/types'
 
 interface ChoiceProps {

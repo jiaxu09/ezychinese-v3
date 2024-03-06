@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React from 'react'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import Image from 'next/image'
@@ -32,20 +32,19 @@ const Radical = ({
   characters_pinyins,
   characters_meanings,
   background_url,
-  id,
+  id
 }: RadicalProps) => {
-  const edit = useChineseRadicalEdit((state) => state.edit)
-  const [isHidden, setHidden] = useState(false) // hide idiom to display background
+  const edit = useChineseRadicalEdit(state => state.edit)
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">{name}</Button>
+        <Button variant='outline'>{name}</Button>
       </DialogTrigger>
       {edit ? (
         <DialogContent>
-          <div className="container mx-auto p-4 bg-popover ">
-            <h2 className=" text-center pb-4">Edit Radical</h2>
+          <div className='container mx-auto bg-popover p-4 '>
+            <h2 className=' pb-4 text-center'>Edit Radical</h2>
             <RadicalForm
               radical={{
                 name,
@@ -57,62 +56,62 @@ const Radical = ({
                 background_url,
                 radical_explain,
                 radical_explain_pinyin,
-                id,
+                id
               }}
-              action="Edit"
+              action='Edit'
             />
           </div>
         </DialogContent>
       ) : (
-        <DialogContent className="sm:max-w-md md:max-w-5xl h-[40vh] md:h-[85vh] relative">
-          <div className=" relative flex flex-col items-center ">
-            <div className="grid grid-rows-2 w-full h-full  rounded-lg">
-              <div className="w-full h-full bg-pastelblue">
-                <div className="grid grid-cols-3 w-full h-full">
-                  <div className=" col-span-2 w-full bg-crayola">
-                    <div className=" grid grid-cols-3 w-full h-full">
-                      <div className=" col-span-2 w-full flex items-center justify-end ">
-                        <div className="w-2/3 relative h-1/2">
+        <DialogContent className='relative h-[40vh] sm:max-w-md md:h-[85vh] md:max-w-5xl'>
+          <div className=' relative flex flex-col items-center '>
+            <div className='grid h-full w-full grid-rows-2  rounded-lg'>
+              <div className='h-full w-full bg-pastelblue'>
+                <div className='grid h-full w-full grid-cols-3'>
+                  <div className=' col-span-2 w-full bg-crayola'>
+                    <div className=' grid h-full w-full grid-cols-3'>
+                      <div className=' col-span-2 flex w-full items-center justify-end '>
+                        <div className='relative h-1/2 w-2/3'>
                           {background_url && (
                             <Image
-                              className=" object-contain"
+                              className=' object-contain'
                               src={supabaseUrl(background_url)}
-                              alt="ezyChinese radical background"
+                              alt='ezyChinese radical background'
                               fill
                               priority
-                              sizes="33vw"
+                              sizes='33vw'
                             />
                           )}
                         </div>
                       </div>
-                      <div className="flex flex-col items-center justify-center ">
+                      <div className='flex flex-col items-center justify-center '>
                         <ruby>
-                          <span className=" text-xl md:text-6xl inline-block">
+                          <span className=' inline-block text-xl md:text-6xl'>
                             {name}
                           </span>
                           {radical_pinyin && (
-                            <rt className=" text-gray-600 text-lg md:text-3xl">
+                            <rt className=' text-lg text-gray-600 md:text-3xl'>
                               {radical_pinyin}
                             </rt>
                           )}
                         </ruby>
                         {radical_meaning && (
-                          <p className="italic text-sm md:text-lg">
+                          <p className='text-sm italic md:text-lg'>
                             {radical_meaning}
                           </p>
                         )}
                       </div>
                     </div>
                   </div>
-                  <div className="w-full flex items-center justify-center">
-                    <div className="flex items-center justify-center space-x-2 ">
+                  <div className='flex w-full items-center justify-center'>
+                    <div className='flex items-center justify-center space-x-2 '>
                       {radical_explain?.map((char, index) => (
                         <ruby key={index}>
-                          <span className=" text-lg md:text-xl inline-block">
+                          <span className=' inline-block text-lg md:text-xl'>
                             {char}
                           </span>
                           {radical_pinyin && radical_explain_pinyin && (
-                            <rt className=" text-gray-600 text-lg md:text-xl">
+                            <rt className=' text-lg text-gray-600 md:text-xl'>
                               {radical_explain_pinyin[index]}
                             </rt>
                           )}
@@ -122,23 +121,23 @@ const Radical = ({
                   </div>
                 </div>
               </div>
-              <div className="w-full h-full bg-pastelblue py-10 md:py-20">
-                <div className="grid grid-cols-4 ">
+              <div className='h-full w-full bg-green py-10 md:py-20'>
+                <div className='grid grid-cols-4 '>
                   {characters.map((character, index) => (
                     <div key={index}>
-                      <div className=" flex flex-col items-center justify-center">
+                      <div className=' flex flex-col items-center justify-center'>
                         <ruby>
-                          <span className=" text-xl md:text-6xl inline-block">
+                          <span className=' inline-block text-xl md:text-6xl'>
                             {character}
                           </span>
                           {characters_pinyins && (
-                            <rt className=" text-gray-600 text-sm md:text-3xl">
+                            <rt className=' text-sm text-gray-600 md:text-3xl'>
                               {characters_pinyins[index]}
                             </rt>
                           )}
                         </ruby>
                         {characters_meanings && (
-                          <p className="max-w-20 mx-auto italic text-sm md:text-lg">
+                          <p className='mx-auto max-w-20 text-sm italic md:text-lg'>
                             {characters_meanings[index]}
                           </p>
                         )}
@@ -148,15 +147,15 @@ const Radical = ({
                 </div>
               </div>
             </div>
-            <div className=" absolute top-4 left-4 md:top-8 md:left-14">
-              <div className=" w-12 md:w-24">
+            <div className=' absolute left-4 top-4 md:left-14 md:top-8'>
+              <div className=' w-12 md:w-24'>
                 <Image
                   src={supabaseUrl('images/radical.webp')}
                   width={188}
                   height={114}
-                  alt="ezyChinese idiom"
+                  alt='ezyChinese idiom'
                   priority
-                  sizes="33vw"
+                  sizes='33vw'
                 />
               </div>
             </div>
