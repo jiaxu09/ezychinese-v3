@@ -22,7 +22,7 @@ const ChoiceButton = ({
       disabled={selectedChoices.includes(choice)}
       onClick={() => handleSelectedChoice(choice)}
       className={cn(
-        'relative flex cursor-pointer items-center justify-center rounded-lg border border-primary p-6 text-xl',
+        'relative flex cursor-pointer items-center justify-center rounded-lg border border-primary p-4 text-lg md:p-6 md:text-xl',
         selectedChoices.includes(choice)
           ? choice === rightAnswer
             ? 'animate-wiggle bg-success animate-duration-1000 animate-once animate-ease-in-out'

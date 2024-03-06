@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { HanYuMultipleChoiceListeningValidation } from '@/lib/validation'
+import { AudioChoiceRightAnswerValidation } from '@/lib/validation'
 
 import { HanYuMultipleChoiceListening } from '@/lib/types'
 import {
@@ -14,11 +14,10 @@ import {
 } from '@/lib/react-query/queries'
 import { useQuery } from '@tanstack/react-query'
 
-import CollapsibleItems from '@/app/(books)/_components/collapsible-items'
 import ImageDialog from '../../../../../../_components/image-dialog'
-import { supabaseBrowser } from '@/lib/supabase/browser'
-import CommonForm from './common-form'
+import CommonForm from '../../../../../../_components/form/common-form'
 import { uploadFileToStorage } from '@/lib/supabase/api-client'
+import CollapsibleItems from '@/app/(books)/_components/form/collapsible-items'
 
 interface NewMultipleChoiceListeningProps {
   bookId: string
@@ -47,8 +46,8 @@ const NewMultipleChoiceListening = ({
     useGetHanYuMultipleChoiceListeningByChapter(`${bookId}-${chapterId}`)
   )
 
-  const form = useForm<z.infer<typeof HanYuMultipleChoiceListeningValidation>>({
-    resolver: zodResolver(HanYuMultipleChoiceListeningValidation),
+  const form = useForm<z.infer<typeof AudioChoiceRightAnswerValidation>>({
+    resolver: zodResolver(AudioChoiceRightAnswerValidation),
     defaultValues: {
       audio: undefined,
       choices: '',
@@ -58,7 +57,7 @@ const NewMultipleChoiceListening = ({
   })
 
   const handleSubmit = async (
-    value: z.infer<typeof HanYuMultipleChoiceListeningValidation>
+    value: z.infer<typeof AudioChoiceRightAnswerValidation>
   ) => {
     setIsLoading(true)
     const audioFile = value.audio[0]
@@ -94,7 +93,8 @@ const NewMultipleChoiceListening = ({
             form={form}
             handleSubmit={handleSubmit}
             isLoading={isLoading}
-            isPinyin={false}
+            placeholder_1='空格分隔ie.王小华 张晓明 王小强'
+            placeholder_2='ie.王小华'
           />
         </CardContent>
       </Card>

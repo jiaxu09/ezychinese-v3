@@ -23,62 +23,62 @@ export const metadata: Metadata = {
     url: 'http://localhost:3000',
     siteName: 'ezyChinese',
     locale: 'en_US',
-    type: 'website',
+    type: 'website'
   },
   twitter: {
     title: 'ezyChinese',
-    card: 'summary_large_image',
-  },
+    card: 'summary_large_image'
+  }
 }
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode
 }>) {
   return (
     <html
-      lang="en"
+      lang='en'
       className={cn('antialiased', GeistSans.variable, GeistMono.variable)}
     >
       <head>
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="apple-touch-icon" href="/icon.png" />
+        <link rel='manifest' href='/manifest.json' />
+        <link rel='apple-touch-icon' href='/icon.png' />
 
-        <meta name="theme-color" content="#3b4252" />
+        <meta name='theme-color' content='#3b4252' />
 
-        <meta property="og:title" content="ezyChinese" />
-        <meta name="twitter:title" content="ezyChinese" />
-
-        <meta
-          name="description"
-          content="ezyChinese - Where Learning Chinese is a Breeze for Kids!"
-        />
-        <meta
-          property="og:description"
-          content="ezyChinese - Where Learning Chinese is a Breeze for Kids!"
-        />
-        <meta
-          name="twitter:description"
-          content="ezyChinese - Where Learning Chinese is a Breeze for Kids!"
-        />
+        <meta property='og:title' content='ezyChinese' />
+        <meta name='twitter:title' content='ezyChinese' />
 
         <meta
-          property="og:image"
-          content="https://res.cloudinary.com/dp6apfu5b/image/upload/f_auto,q_auto/v1/ezyChinese-v3/logo"
+          name='description'
+          content='ezyChinese - Where Learning Chinese is a Breeze for Kids!'
         />
         <meta
-          name="twitter:image"
-          content="https://res.cloudinary.com/dp6apfu5b/image/upload/f_auto,q_auto/v1/ezyChinese-v3/logo"
+          property='og:description'
+          content='ezyChinese - Where Learning Chinese is a Breeze for Kids!'
+        />
+        <meta
+          name='twitter:description'
+          content='ezyChinese - Where Learning Chinese is a Breeze for Kids!'
+        />
+
+        <meta
+          property='og:image'
+          content='https://res.cloudinary.com/dp6apfu5b/image/upload/f_auto,q_auto/v1/ezyChinese-v3/logo'
+        />
+        <meta
+          name='twitter:image'
+          content='https://res.cloudinary.com/dp6apfu5b/image/upload/f_auto,q_auto/v1/ezyChinese-v3/logo'
         />
       </head>
       <body
-        className="flex flex-col min-h-screen bg-background text-primary"
+        className='flex min-h-screen flex-col bg-background text-primary'
         suppressHydrationWarning={true}
       >
         <QueryProvider>
           <Navbar />
-          <main className="flex-grow">{children}</main>
+          <main className='flex-grow'>{children}</main>
           <Footer />
           <AuthProvider />
         </QueryProvider>

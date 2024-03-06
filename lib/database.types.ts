@@ -464,6 +464,36 @@ export type Database = {
         }
         Relationships: []
       }
+      select_right_choice_csol_quiz: {
+        Row: {
+          audio: string
+          choices: string[]
+          created_at: string
+          id: string
+          question: string
+          right_answer: string
+          source: string
+        }
+        Insert: {
+          audio: string
+          choices: string[]
+          created_at?: string
+          id?: string
+          question: string
+          right_answer: string
+          source: string
+        }
+        Update: {
+          audio?: string
+          choices?: string[]
+          created_at?: string
+          id?: string
+          question?: string
+          right_answer?: string
+          source?: string
+        }
+        Relationships: []
+      }
       select_right_pinyin_hanyu: {
         Row: {
           audio: string
@@ -486,6 +516,36 @@ export type Database = {
           choices?: string[]
           created_at?: string
           id?: string
+          right_answer?: string
+          source?: string
+        }
+        Relationships: []
+      }
+      select_word_order_words_csol_quiz: {
+        Row: {
+          audio: string
+          choices: string[]
+          created_at: string
+          id: string
+          is_selected: boolean
+          right_answer: string
+          source: string
+        }
+        Insert: {
+          audio: string
+          choices: string[]
+          created_at?: string
+          id?: string
+          is_selected: boolean
+          right_answer: string
+          source: string
+        }
+        Update: {
+          audio?: string
+          choices?: string[]
+          created_at?: string
+          id?: string
+          is_selected?: boolean
           right_answer?: string
           source?: string
         }

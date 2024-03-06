@@ -1,51 +1,46 @@
 'use client'
+import Choice from '@/app/(books)/_components/quiz/choice'
 import { Card, CardContent } from '@/components/ui/card'
 import React, { Dispatch, useEffect, useState } from 'react'
-import Choice from '../../../../../_components/quiz/choice'
-import { HanYuMultipleChoiceListening } from '@/lib/types'
 
-interface MultipleChoiceListeningProps {
+interface SelectRightChoiceProps {
   quiz: any
   setCurrentCompleted: Dispatch<React.SetStateAction<boolean>>
 }
 
-export type MultipleChoiceListeningHanyu = {
+export type SelectRightChoiceCSOL = {
+  question: string
   audio: string
   choices: string[]
-  rightAnswer: string
+  right_answer: string
 }
-
-const MultipleChoiceListening = ({
+const SelectRightChoices = ({
   quiz,
   setCurrentCompleted
-}: MultipleChoiceListeningProps) => {
+}: SelectRightChoiceProps) => {
   const [correctAnswers, setCorrectAnswers] = useState<number>(0) //index of question
 
-  const [multipleChoiceListening_hanyu] = useState<
-    HanYuMultipleChoiceListening[]
-  >(quiz.multiple_choice_listening)
+  const [select_right_choice] = useState<SelectRightChoiceCSOL[]>(
+    quiz.select_right_choice
+  )
 
   useEffect(() => {
-    if (correctAnswers === multipleChoiceListening_hanyu.length) {
+    if (correctAnswers === select_right_choice.length) {
       setCurrentCompleted(true)
     }
-  }, [
-    correctAnswers,
-    multipleChoiceListening_hanyu.length,
-    setCurrentCompleted
-  ])
+  }, [correctAnswers, select_right_choice.length, setCurrentCompleted])
 
   useEffect(() => {
     setCurrentCompleted(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
   return (
     <Card className='flex animate-fade-left flex-col items-center justify-center py-4 animate-duration-1000 animate-fill-both animate-ease-in-out'>
-      <h1 className='pb-4 text-center'>听一听,选择哪个是对的</h1>
+      <h1 className='pb-4 text-center'>Select the right choice</h1>
       <CardContent>
-        {multipleChoiceListening_hanyu.map((item, index) => (
+        {select_right_choice.map((item, index) => (
           <Choice
+            word={item.question}
             key={index}
             index={index}
             item={item}
@@ -58,4 +53,4 @@ const MultipleChoiceListening = ({
   )
 }
 
-export default MultipleChoiceListening
+export default SelectRightChoices

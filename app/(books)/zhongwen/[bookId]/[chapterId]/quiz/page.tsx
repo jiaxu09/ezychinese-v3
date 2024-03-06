@@ -4,14 +4,15 @@ import AddButton from './add-button'
 import {
   HydrationBoundary,
   QueryClient,
-  dehydrate,
+  dehydrate
 } from '@tanstack/react-query'
+
 import {
-  useGetCorrectOrderByChapter,
-  useGetFindDifferenceByChapter,
-  useGetFormPhrasesByChapter,
-  useGetRightExplanationByChapter,
-} from '@/lib/react-query/queries'
+  getCorrectOrderByChapter,
+  getFindDifferenceByChapter,
+  getFormPhrasesByChapter,
+  getRightExplanationByChapter
+} from '@/lib/supabase/api-server'
 
 interface QuizProps {
   params: {
@@ -22,27 +23,35 @@ interface QuizProps {
 
 const QuizPage = async ({ params }: QuizProps) => {
   const queryClient = new QueryClient()
-  await queryClient.prefetchQuery(
-    useGetCorrectOrderByChapter(`${params.bookId}-${params.chapterId}`)
+  const correctOrder = await getCorrectOrderByChapter(
+    `${params.bookId}-${params.chapterId}`
   )
-  await queryClient.prefetchQuery(
-    useGetFindDifferenceByChapter(`${params.bookId}-${params.chapterId}`)
+
+  const findDifference = await getFindDifferenceByChapter(
+    `${params.bookId}-${params.chapterId}`
   )
-  await queryClient.prefetchQuery(
-    useGetFormPhrasesByChapter(`${params.bookId}-${params.chapterId}`)
+
+  const formPhrases = await getFormPhrasesByChapter(
+    `${params.bookId}-${params.chapterId}`
   )
-  await queryClient.prefetchQuery(
-    useGetRightExplanationByChapter(`${params.bookId}-${params.chapterId}`)
+
+  const rightExplanation = await getRightExplanationByChapter(
+    `${params.bookId}-${params.chapterId}`
   )
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <div className="relative flex flex-col min-h-[80vh]">
-        <div className=" absolute bottom-0 right-0 md:flex justify-end space-x-4 hidden">
+      <div className='relative flex min-h-[80vh] flex-col'>
+        <div className=' absolute bottom-0 right-0 hidden justify-end space-x-4 md:flex'>
           <AddButton params={params} />
         </div>
         <Suspense fallback={null}>
-          <Quiz bookId={params.bookId} chapterId={params.chapterId} />
+          <Quiz
+            correct_order={correctOrder}
+            find_difference={findDifference}
+            form_phrases={formPhrases}
+            right_explanation={rightExplanation}
+          />
         </Suspense>
       </div>
     </HydrationBoundary>

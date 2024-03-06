@@ -1,10 +1,13 @@
-import { type Metadata } from "next"
+import { type Metadata } from 'next'
 
 import { useGetSingByChapter } from '@/lib/react-query/queries'
-import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query'
+import {
+  HydrationBoundary,
+  QueryClient,
+  dehydrate
+} from '@tanstack/react-query'
 import React, { Suspense } from 'react'
-import Singing from "../_components/singing"
-
+import Singing from '../_components/singing'
 
 interface CSOLSingProps {
   params: {
@@ -14,7 +17,7 @@ interface CSOLSingProps {
 }
 
 export async function generateMetadata({
-  params,
+  params
 }: CSOLSingProps): Promise<Metadata> {
   const id = params.bookId
 
@@ -23,20 +26,20 @@ export async function generateMetadata({
   }
 
   return {
-    metadataBase: new URL("https://ezychinese.app"),
+    metadataBase: new URL('https://ezychinese.app'),
     title: `CSOL | ${id} - Singing`,
-    description: '',
+    description: ''
   }
 }
 
-const CSOLSingPage =async ({ params }: CSOLSingProps) => {
+const CSOLSingPage = async ({ params }: CSOLSingProps) => {
   const queryClient = new QueryClient()
   await queryClient.prefetchQuery(
     useGetSingByChapter(`${params.bookId}-${params.chapterId}`)
   )
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <main>
+      <main className='mx-auto max-w-3xl'>
         <Suspense fallback={null}>
           <Singing bookId={params.bookId} chapterId={params.chapterId} />
         </Suspense>

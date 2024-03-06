@@ -2,20 +2,14 @@
 
 import React, { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { ChevronRight, MessageCircleWarning } from 'lucide-react'
+import { ChevronRight } from 'lucide-react'
 
 import WellDone from '@/components/well-done'
 import QuizCorrectOrder from './quiz-correct-order'
 import QuizRightExplanation from './quiz-right-explanation'
 import QuizFormPhrases from './quiz-form-phrases'
 import QuizFindDifference from './quiz-find-difference'
-import { useSuspenseQueries } from '@tanstack/react-query'
-import {
-  useGetCorrectOrderByChapter,
-  useGetFindDifferenceByChapter,
-  useGetFormPhrasesByChapter,
-  useGetRightExplanationByChapter
-} from '@/lib/react-query/queries'
+
 import {
   CorrectOrder,
   FindDifference,
@@ -25,8 +19,10 @@ import {
 import NoContent from '@/components/no-content'
 
 interface QuizProps {
-  bookId: string
-  chapterId: string
+  correct_order?: CorrectOrder[] | undefined
+  find_difference?: FindDifference[] | undefined
+  form_phrases?: FormPhrases[] | undefined
+  right_explanation?: RightExplanation[] | undefined
 }
 
 type Quiz = {
@@ -36,21 +32,12 @@ type Quiz = {
   right_explanation?: RightExplanation[] | undefined
 }
 
-const Quiz = ({ bookId, chapterId }: QuizProps) => {
-  const [
-    { data: correct_order },
-    { data: find_difference },
-    { data: form_phrases },
-    { data: right_explanation }
-  ] = useSuspenseQueries({
-    queries: [
-      useGetCorrectOrderByChapter(`${bookId}-${chapterId}`),
-      useGetFindDifferenceByChapter(`${bookId}-${chapterId}`),
-      useGetFormPhrasesByChapter(`${bookId}-${chapterId}`),
-      useGetRightExplanationByChapter(`${bookId}-${chapterId}`)
-    ]
-  })
-
+const Quiz = ({
+  correct_order,
+  find_difference,
+  form_phrases,
+  right_explanation
+}: QuizProps) => {
   const [quiz, setQuiz] = useState<Quiz>()
 
   //The type of question

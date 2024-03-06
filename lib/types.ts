@@ -206,3 +206,22 @@ export type HanYuSelectRightPinyin = {
   right_answer: string
   source: string
 }
+
+//CSOL QUIZ
+
+export type CSOLSelectRightChoice = {
+  id?: string
+  question: string
+  audio: string
+  choices: string[]
+  right_answer: string
+  source: string
+}
+export type CSOLSelectOrderWord = {
+  id?: string
+  is_selected: boolean
+  audio: string
+  choices: string[]
+  right_answer: string
+  source: string
+}

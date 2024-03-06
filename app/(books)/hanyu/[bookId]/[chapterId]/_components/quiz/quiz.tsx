@@ -7,12 +7,7 @@ import MultipleChoiceListening from './multiple-choice-listening'
 import SlecteRightPinyin from './selecte-right-pinyin'
 import WellDone from '@/components/well-done'
 import NoContent from '@/components/no-content'
-import { useSuspenseQueries } from '@tanstack/react-query'
-import {
-  useGetHanYuMultipleChoiceByChapter,
-  useGetHanYuMultipleChoiceListeningByChapter,
-  useGetHanYuSelectRightPinyinByChapter
-} from '@/lib/react-query/queries'
+
 import {
   HanYuMultipleChoice,
   HanYuMultipleChoiceListening,
@@ -20,8 +15,9 @@ import {
 } from '@/lib/types'
 
 interface QuizProps {
-  bookId: string
-  chapterId: string
+  select_right_pinyin?: HanYuSelectRightPinyin[] | undefined
+  multiple_choice_listening?: HanYuMultipleChoiceListening[] | undefined
+  multiple_choice?: HanYuMultipleChoice[] | undefined
 }
 
 type Quiz = {
@@ -30,27 +26,19 @@ type Quiz = {
   multiple_choice?: HanYuMultipleChoice[] | undefined
 }
 
-const Quiz = ({ bookId, chapterId }: QuizProps) => {
+const Quiz = ({
+  select_right_pinyin,
+  multiple_choice_listening,
+  multiple_choice
+}: QuizProps) => {
   const [index, setIndex] = useState<number>(0)
   const [currentCompleted, setCurrentCompleted] = useState(false)
   const [isAllDone, setAllDone] = useState(false)
   const [quiz, setQuiz] = useState<Quiz>()
-  const [
-    { data: select_right_pinyin },
-    { data: multiple_choice_listening },
-    { data: multiple_choice }
-  ] = useSuspenseQueries({
-    queries: [
-      useGetHanYuSelectRightPinyinByChapter(`${bookId}-${chapterId}`),
-      useGetHanYuMultipleChoiceListeningByChapter(`${bookId}-${chapterId}`),
-      useGetHanYuMultipleChoiceByChapter(`${bookId}-${chapterId}`)
-    ]
-  })
 
   const handleProgress = () => {
     setIndex(index + 1)
   }
-
   useEffect(() => {
     if (quiz && index === Object.keys(quiz).length && currentCompleted) {
       setAllDone(true)

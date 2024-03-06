@@ -4,49 +4,45 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { AudioChoiceRightAnswerValidation } from '@/lib/validation'
-
-import { HanYuSelectRightPinyin } from '@/lib/types'
+import { SelectOrderWordsValidation } from '@/lib/validation'
+import { CSOLSelectOrderWord } from '@/lib/types'
 import {
-  useAddHanYuSelectRightPinyin,
-  useDeleteHanYuSelectRightPinyin,
-  useGetHanYuSelectRightPinyinByChapter
+  useAddCSOLOrderWords,
+  useDeleteCSOLOrderWords,
+  useGetCSOLOrderWordsByChapter
 } from '@/lib/react-query/queries'
 import { useQuery } from '@tanstack/react-query'
 
-import ImageDialog from '../../../../../../_components/image-dialog'
-import CommonForm from '../../../../../../_components/form/common-form'
 import { uploadFileToStorage } from '@/lib/supabase/api-client'
+import CommonForm from '@/app/(books)/_components/form/common-form'
 import CollapsibleItems from '@/app/(books)/_components/form/collapsible-items'
 
-interface NewSelectRightPinyinProps {
+interface NewOrderWordsProps {
   bookId: string
   chapterId: string
 }
 
-const NewSelectRightPinyin = ({
-  bookId,
-  chapterId
-}: NewSelectRightPinyinProps) => {
+const NewOrderWords = ({ bookId, chapterId }: NewOrderWordsProps) => {
   const [isLoading, setIsLoading] = useState(false)
 
   const {
-    mutate: addSelectRightPinyin,
+    mutate: addCSOLOrderWords,
     error: addError,
     isPending: addPending
-  } = useAddHanYuSelectRightPinyin(`${bookId}-${chapterId}`)
+  } = useAddCSOLOrderWords(`${bookId}-${chapterId}`)
 
   const {
-    mutate: deleteSelectRightPinyin,
+    mutate: deleteOrderWord,
     error: deleteError,
     isPending: deletePending
-  } = useDeleteHanYuSelectRightPinyin(`${bookId}-${chapterId}`)
+  } = useDeleteCSOLOrderWords(`${bookId}-${chapterId}`)
 
-  const { data: selectRightPinyin } = useQuery(
-    useGetHanYuSelectRightPinyinByChapter(`${bookId}-${chapterId}`)
+  const { data: orderWords } = useQuery(
+    useGetCSOLOrderWordsByChapter(`${bookId}-${chapterId}`)
   )
-  const form = useForm<z.infer<typeof AudioChoiceRightAnswerValidation>>({
-    resolver: zodResolver(AudioChoiceRightAnswerValidation),
+
+  const form = useForm<z.infer<typeof SelectOrderWordsValidation>>({
+    resolver: zodResolver(SelectOrderWordsValidation),
     defaultValues: {
       audio: undefined,
       choices: '',
@@ -56,54 +52,56 @@ const NewSelectRightPinyin = ({
   })
 
   const handleSubmit = async (
-    value: z.infer<typeof AudioChoiceRightAnswerValidation>
+    value: z.infer<typeof SelectOrderWordsValidation>
   ) => {
     setIsLoading(true)
     const audioFile = value.audio[0]
 
     const audio = await uploadFileToStorage(audioFile, 'mp3')
+
     if (audio) {
-      const item: HanYuSelectRightPinyin = {
+      const item: CSOLSelectOrderWord = {
         audio,
-        choices: value.choices.split(' '),
+        is_selected: false,
+        choices: value.choices.split(''),
         right_answer: value.rightAnswer,
         source: value.source
       }
-      await addSelectRightPinyin(item)
+
+      await addCSOLOrderWords(item)
       form.reset()
     }
     setIsLoading(false)
   }
 
-  const handleDeleteSelectRightPinyin = async (id: string) => {
-    await deleteSelectRightPinyin(id)
+  const handleDeleteOrderWord = async (id: string) => {
+    await deleteOrderWord(id)
   }
 
   return (
     <div className='flex flex-col gap-2'>
       <Card>
         <CardHeader>
-          <CardTitle>添加 - 选出听到的拼音</CardTitle>
+          <CardTitle>New - Order the words</CardTitle>
         </CardHeader>
         <CardContent>
-          <ImageDialog img='images/select-right-pinyin-hanyu.webp' />
           <CommonForm
             form={form}
             handleSubmit={handleSubmit}
             isLoading={isLoading}
-            placeholder_1='空格分隔ie.guan guang'
-            placeholder_2='ie:guan'
+            placeholder_1='ie.吃京喜京欢果糖'
+            placeholder_2='ie.京京喜欢吃糖果'
           />
         </CardContent>
       </Card>
       <CollapsibleItems
-        items={selectRightPinyin}
+        items={orderWords}
         property='right_answer'
         deletePending={deletePending}
-        handleDelete={handleDeleteSelectRightPinyin}
+        handleDelete={handleDeleteOrderWord}
       />
     </div>
   )
 }
 
-export default NewSelectRightPinyin
+export default NewOrderWords

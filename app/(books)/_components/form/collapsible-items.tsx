@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import DeleteButton from '../hanyu/[bookId]/[chapterId]/new/_components/delete-button'
+import DeleteButton from '../../hanyu/[bookId]/[chapterId]/new/_components/delete-button'
 import {
   Popover,
   PopoverContent,

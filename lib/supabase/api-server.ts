@@ -1,6 +1,8 @@
 'use server'
 
 import {
+  CSOLSelectOrderWord,
+  CSOLSelectRightChoice,
   CorrectOrder,
   FindDifference,
   FormPhrases,
@@ -371,4 +373,59 @@ export const getHanYuSelectRightPinyinByChapter = async (source: string) => {
 
 export const deleteHanYuSelectRightPinyin = async (id: string) => {
   await deleteFunction(id, 'select_right_pinyin_hanyu')
+}
+
+//CSOL QUIZ
+export const addCSOLSelectRightChoice = async (item: CSOLSelectRightChoice) => {
+  await addFunction('select_right_choice_csol_quiz', item)
+}
+export const getCSOLSelectRightChoiceByChapter = async (source: string) => {
+  const result = (await getFunction(
+    source,
+    'select_right_choice_csol_quiz'
+  )) as CSOLSelectRightChoice[]
+  return result
+}
+
+export const deleteCSOLSelectRightChoice = async (id: string) => {
+  await deleteFunction(id, 'select_right_choice_csol_quiz')
+}
+
+export const addCSOLSelectWordOrderWords = async (
+  item: CSOLSelectOrderWord
+) => {
+  await addFunction('select_word_order_words_csol_quiz', item)
+}
+export const getCSOLSelectWordByChapter = async (source: string) => {
+  const supabase = supabaseServer()
+  const { data, error } = await supabase
+    .from('select_word_order_words_csol_quiz')
+    .select('*')
+    .eq('source', source)
+    .eq('is_selected', true)
+
+  if (error) {
+    console.log(error)
+    throw Error
+  }
+  return data as CSOLSelectOrderWord[]
+}
+
+export const getCSOLOrderWordsByChapter = async (source: string) => {
+  const supabase = supabaseServer()
+  const { data, error } = await supabase
+    .from('select_word_order_words_csol_quiz')
+    .select('*')
+    .eq('source', source)
+    .eq('is_selected', false)
+
+  if (error) {
+    console.log(error)
+    throw Error
+  }
+  return data as CSOLSelectOrderWord[]
+}
+
+export const deleteCSOLSelectWordOrderWords = async (id: string) => {
+  await deleteFunction(id, 'select_word_order_words_csol_quiz')
 }

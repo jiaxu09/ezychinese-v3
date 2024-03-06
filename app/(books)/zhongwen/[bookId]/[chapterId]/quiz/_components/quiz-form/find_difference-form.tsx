@@ -23,8 +23,8 @@ import {
 import { FindDifference } from '@/lib/types'
 import { useQuery } from '@tanstack/react-query'
 
-import CollapsibleItems from '@/app/(books)/_components/collapsible-items'
 import ImageDialog from '../../../../../../_components/image-dialog'
+import CollapsibleItems from '@/app/(books)/_components/form/collapsible-items'
 
 interface FindDifferenceFormProps {
   bookId: string

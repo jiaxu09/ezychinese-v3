@@ -1,13 +1,13 @@
-import { type Metadata } from "next"
+import { type Metadata } from 'next'
 import { useGetLiteracyByChapter } from '@/lib/react-query/queries'
 import {
   HydrationBoundary,
   QueryClient,
-  dehydrate,
+  dehydrate
 } from '@tanstack/react-query'
 import React, { Suspense } from 'react'
 
-import Writing from "../_components/writing"
+import Writing from '../_components/writing'
 
 interface CSOLWriteProps {
   params: {
@@ -17,7 +17,7 @@ interface CSOLWriteProps {
 }
 
 export async function generateMetadata({
-  params,
+  params
 }: CSOLWriteProps): Promise<Metadata> {
   const id = params.bookId
 
@@ -26,9 +26,9 @@ export async function generateMetadata({
   }
 
   return {
-    metadataBase: new URL("https://ezychinese.app"),
+    metadataBase: new URL('https://ezychinese.app'),
     title: `CSOL | ${id} - Writing`,
-    description: '',
+    description: ''
   }
 }
 
@@ -39,7 +39,7 @@ const CSOLWritePage = async ({ params }: CSOLWriteProps) => {
   )
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <main>
+      <main className='mx-auto max-w-3xl'>
         <Suspense fallback={null}>
           <Writing bookId={params.bookId} chapterId={params.chapterId} />
         </Suspense>

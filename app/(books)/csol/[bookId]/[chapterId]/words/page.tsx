@@ -1,9 +1,9 @@
-import { type Metadata } from "next"
+import { type Metadata } from 'next'
 import { useGetWordsByChapter } from '@/lib/react-query/queries'
 import {
   HydrationBoundary,
   QueryClient,
-  dehydrate,
+  dehydrate
 } from '@tanstack/react-query'
 import React, { Suspense } from 'react'
 import Words from '../_components/words'
@@ -16,7 +16,7 @@ interface CSOLWordsProps {
 }
 
 export async function generateMetadata({
-  params,
+  params
 }: CSOLWordsProps): Promise<Metadata> {
   const id = params.bookId
 
@@ -25,9 +25,9 @@ export async function generateMetadata({
   }
 
   return {
-    metadataBase: new URL("https://ezychinese.app"),
+    metadataBase: new URL('https://ezychinese.app'),
     title: `CSOL | ${id} - Sing`,
-    description: '',
+    description: ''
   }
 }
 
@@ -38,7 +38,7 @@ const CSOLWordPage = async ({ params }: CSOLWordsProps) => {
   )
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <main>
+      <main className='mx-auto max-w-3xl'>
         <Suspense fallback={null}>
           <Words bookId={params.bookId} chapterId={params.chapterId} />
         </Suspense>

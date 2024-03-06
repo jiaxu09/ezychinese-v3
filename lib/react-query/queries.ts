@@ -5,6 +5,8 @@ import {
 } from '@tanstack/react-query'
 import { QUERY_KEYS } from './queryKeys'
 import {
+  CSOLSelectOrderWord,
+  CSOLSelectRightChoice,
   CorrectOrder,
   FindDifference,
   FormPhrases,
@@ -22,12 +24,16 @@ import {
 } from '../types'
 import { useToast } from '@/components/ui/use-toast'
 import {
+  addCSOLSelectRightChoice,
+  addCSOLSelectWordOrderWords,
   addHanYuMultipleChoice,
   addHanYuMultipleChoiceListening,
   addHanYuSelectRightPinyin,
   addHanYuSentence,
   addHanYuText,
   addHanYuWriting,
+  deleteCSOLSelectRightChoice,
+  deleteCSOLSelectWordOrderWords,
   deleteHanYuMultipleChoice,
   deleteHanYuMultipleChoiceListening,
   deleteHanYuSelectRightPinyin,
@@ -35,6 +41,9 @@ import {
   deleteHanYuText,
   deleteHanYuWord,
   deleteHanYuWriting,
+  getCSOLOrderWordsByChapter,
+  getCSOLSelectRightChoiceByChapter,
+  getCSOLSelectWordByChapter,
   getHanYuMultipleChoiceByChapter,
   getHanYuMultipleChoiceListeningByChapter,
   getHanYuSelectRightPinyinByChapter,
@@ -786,4 +795,130 @@ export const useDeleteHanYuSelectRightPinyin = (source: string) => {
       })
     },
   })
+}
+
+//CSOL QUIZ
+export const useAddCSOLSelectRightChoice = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (item: CSOLSelectRightChoice) => addCSOLSelectRightChoice(item),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETCSOLSELECTRIGHTCHOICEBYCHAPTER, source],
+      })
+      toast({
+        title: 'Cool! Question created successfully. ',
+        variant: 'success',
+      })
+    },
+  })
+}
+
+export const useAddCSOLOrderWords = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (item: CSOLSelectOrderWord) =>
+      addCSOLSelectWordOrderWords(item),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETCSOLORDERWORDSBYCHAPTAPTER, source],
+      })
+      toast({
+        title: 'Cool! Question created successfully. ',
+        variant: 'success',
+      })
+    },
+  })
+}
+
+export const useGetCSOLOrderWordsByChapter = (source: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETCSOLORDERWORDSBYCHAPTAPTER, source],
+    queryFn: () => getCSOLOrderWordsByChapter(source),
+  }
+}
+
+export const useDeleteCSOLOrderWords = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (id: string) => deleteCSOLSelectWordOrderWords(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETCSOLORDERWORDSBYCHAPTAPTER, source],
+      })
+      toast({
+        title: 'Cool! Question deleted successfully. ',
+        variant: 'success',
+      })
+    },
+  })
+}
+
+export const useDeleteCSOLSelectWord = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (id: string) => deleteCSOLSelectWordOrderWords(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETCSOLSELECTWORDBYCHAPTAPTER, source],
+      })
+      toast({
+        title: 'Cool! Question deleted successfully. ',
+        variant: 'success',
+      })
+    },
+  })
+}
+
+export const useGetCSOLSelectWordByChapter = (source: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETCSOLSELECTWORDBYCHAPTAPTER, source],
+    queryFn: () => getCSOLSelectWordByChapter(source),
+  }
+}
+
+export const useAddCSOLSelectWord = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (item: CSOLSelectOrderWord) =>
+      addCSOLSelectWordOrderWords(item),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETCSOLSELECTWORDBYCHAPTAPTER, source],
+      })
+      toast({
+        title: 'Cool! Question created successfully. ',
+        variant: 'success',
+      })
+    },
+  })
+}
+
+export const useDeleteCSOLSelectRightChoice = (source: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (id: string) => deleteCSOLSelectRightChoice(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETCSOLSELECTRIGHTCHOICEBYCHAPTER, source],
+      })
+      toast({
+        title: 'Cool! Question deleted successfully. ',
+        variant: 'success',
+      })
+    },
+  })
+}
+
+export const useGetCSOLSelectRightChoiceByChapter = (source: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETCSOLSELECTRIGHTCHOICEBYCHAPTER, source],
+    queryFn: () => getCSOLSelectRightChoiceByChapter(source),
+  }
 }

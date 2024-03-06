@@ -8,7 +8,7 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form'
-import { HanYuMultipleChoiceListeningValidation } from '@/lib/validation'
+import { AudioChoiceRightAnswerValidation } from '@/lib/validation'
 import * as z from 'zod'
 import { Input } from '@/components/ui/input'
 import SubmitButton from '@/components/submit-button'
@@ -20,16 +20,18 @@ interface CommonFormProps {
     { choices: string; rightAnswer: string; source: string; audio?: any }
   >
   handleSubmit: (
-    value: z.infer<typeof HanYuMultipleChoiceListeningValidation>
+    value: z.infer<typeof AudioChoiceRightAnswerValidation>
   ) => Promise<void>
   isLoading: boolean
-  isPinyin: boolean
+  placeholder_1: string
+  placeholder_2: string
 }
 const CommonForm = ({
   form,
   handleSubmit,
   isLoading,
-  isPinyin
+  placeholder_1,
+  placeholder_2
 }: CommonFormProps) => {
   const fileRef = form.register('audio', { required: true })
   return (
@@ -58,11 +60,7 @@ const CommonForm = ({
             <FormItem>
               <FormLabel>选项</FormLabel>
               <FormControl>
-                <Input
-                  type='text'
-                  placeholder={`${isPinyin ? '空格分隔ie.guan guang' : '空格分隔ie.王小华 张晓明 王小强'}`}
-                  {...field}
-                />
+                <Input type='text' placeholder={placeholder_1} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -75,11 +73,7 @@ const CommonForm = ({
             <FormItem>
               <FormLabel>答案</FormLabel>
               <FormControl>
-                <Input
-                  type='text'
-                  placeholder={`${isPinyin ? 'ie:guan' : 'ie.王小华'}`}
-                  {...field}
-                />
+                <Input type='text' placeholder={placeholder_2} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

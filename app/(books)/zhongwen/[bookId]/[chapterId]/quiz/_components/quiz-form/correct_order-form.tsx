@@ -24,8 +24,8 @@ import {
 } from '@/lib/react-query/queries'
 import { useQuery } from '@tanstack/react-query'
 
-import CollapsibleItems from '@/app/(books)/_components/collapsible-items'
 import ImageDialog from '../../../../../../_components/image-dialog'
+import CollapsibleItems from '@/app/(books)/_components/form/collapsible-items'
 
 interface CorrectOrderFormProps {
   bookId: string
