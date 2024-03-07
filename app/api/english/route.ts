@@ -25,6 +25,12 @@ export async function GET(req: NextRequest) {
     const hanzi: Word[] = JSON.parse(data)
 
     const result = hanzi.filter((item) => item.zi === text)
+
+    if (result.length === 0) {
+      return NextResponse.json({
+        english: 'No English',
+      })
+    }
     const { zi, english } = result[0]
 
     //Return the content of the data file in json format
