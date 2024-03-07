@@ -38,7 +38,6 @@ const LiteracyPractice = ({ characters }: LiteracyPracticeProps) => {
   const { data: meaning, isLoading: isLoadingMeaning } = useQuery(
     useHanziMeaning(selectedCharacter)
   )
-
   const handleCharacterClick = (character: string) => {
     setSelectedCharacter(character)
 
@@ -161,7 +160,7 @@ const LiteracyPractice = ({ characters }: LiteracyPracticeProps) => {
               {isLoadingMeaning ? (
                 <RotateCcw className=' h-8 w-8 animate-spin text-green' />
               ) : (
-                <Meaning meaning={meaning} />
+                <Meaning meaning={meaning?.pronunciations} />
               )}
             </div>
           </div>

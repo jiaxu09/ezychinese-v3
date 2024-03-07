@@ -3,23 +3,37 @@ import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import { BookMarked } from 'lucide-react'
 
 interface MeaningProps {
-  meaning: string
+  meaning: {
+    pinyin: string
+    explanations: { content: string }[]
+  }[]
 }
 const Meaning = ({ meaning }: MeaningProps) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
         <div
-          role="button"
-          className=" cursor-pointer"
-          aria-label="ezyChinese hanzi meaning"
+          role='button'
+          className=' cursor-pointer'
+          aria-label='ezyChinese hanzi meaning'
         >
-          <BookMarked className="w-8 h-8 text-green " />
+          <BookMarked className='h-8 w-8 text-green ' />
         </div>
       </DialogTrigger>
       {meaning && (
-        <DialogContent className=" max-h-[50vh] overflow-y-scroll">
-          <div className=" bg-pewterblue rounded-lg p-8">{meaning}</div>
+        <DialogContent className=' max-h-[50vh] overflow-y-scroll'>
+          <div className=' rounded-lg bg-pewterblue p-8'>
+            {meaning.map((item, index) => (
+              <div key={index} className='flex '>
+                <div className='px-3'>{item.pinyin}:</div>
+                <div className=' flex grow flex-col space-y-2'>
+                  {item.explanations.map((ex, j) => (
+                    <span key={j}>{ex.content}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </DialogContent>
       )}
     </Dialog>
