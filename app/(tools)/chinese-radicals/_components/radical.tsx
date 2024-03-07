@@ -7,7 +7,7 @@ import { useChineseRadicalEdit } from '@/lib/store/radicalEdit'
 import RadicalForm from './radical-form'
 import BgImg from '../../_components/bg-img'
 import WaterMark from '../../_components/water-mark'
-import supabaseUrl from '../../../../lib/utils'
+import supabaseUrl, { rgbDataURL } from '../../../../lib/utils'
 
 interface RadicalProps {
   id: string
@@ -79,6 +79,8 @@ const Radical = ({
                               alt='ezyChinese radical background'
                               fill
                               priority
+                              placeholder='blur'
+                              blurDataURL={rgbDataURL(216, 222, 233)}
                               sizes='33vw'
                             />
                           )}
