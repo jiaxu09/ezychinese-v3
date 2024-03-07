@@ -8,8 +8,8 @@ import Navbar from '@/components/navbar'
 import QueryProvider from '@/components/query-provider'
 import { Toaster } from '@/components/ui/toaster'
 import Footer from '@/components/footer'
-// import { Analytics } from '@vercel/analytics/react'
-// import { SpeedInsights } from '@vercel/speed-insights/next'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 export const metadata: Metadata = {
   metadataBase: new URL('http://localhost:3000'),
@@ -83,8 +83,8 @@ export default function RootLayout({
           <AuthProvider />
         </QueryProvider>
         <Toaster />
-        {/* <Analytics /> */}
-        {/* <SpeedInsights /> */}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
