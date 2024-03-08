@@ -63,8 +63,7 @@ const Quiz = ({
         })
     }
     setQuiz(result)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [correct_order, find_difference, form_phrases, right_explanation])
 
   useEffect(() => {
     if (quiz && index === Object.keys(quiz).length && currentCompleted) {

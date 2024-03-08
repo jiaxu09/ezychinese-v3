@@ -23,8 +23,8 @@ import {
 
 import supabaseUrl from '@/lib/utils'
 import { IRadical } from '@/lib/types'
-import SubmitButton from '../../../../components/submit-button'
 import { uploadFileToStorage } from '@/lib/supabase/api-client'
+import SubmitButton from '@/components/submit-button'
 
 type RadicalFormProps = {
   radical?: any

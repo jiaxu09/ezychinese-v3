@@ -1,7 +1,10 @@
 'use client'
-import React from 'react'
-import SubmitButton from '@/components/submit-button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import React from 'react'
+import { useForm } from 'react-hook-form'
+import * as z from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { HanYuMultipleChoiceValidation } from '@/lib/validation'
 import {
   Form,
   FormControl,
@@ -11,76 +14,81 @@ import {
   FormMessage
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { FormPhrasesValidation } from '@/lib/validation'
-import { useForm } from 'react-hook-form'
+import SubmitButton from '@/components/submit-button'
 
-import * as z from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { HanYuMultipleChoice } from '@/lib/types'
 import {
-  useAddFormPhrases,
-  useDeleteFormPhrases,
-  useGetFormPhrasesByChapter
+  useAddHanYuMultipleChoice,
+  useDeleteHanYuMultipleChoice,
+  useGetHanYuMultipleChoiceByChapter
 } from '@/lib/react-query/queries'
-import { FormPhrases } from '@/lib/types'
 import { useQuery } from '@tanstack/react-query'
+
 import CollapsibleItems from '@/app/(books)/_components/form/collapsible-items'
 import ImageDialog from '@/app/(books)/_components/image-dialog'
 
-interface FormPhrasesFormProps {
+interface NewMultipleChoiceProps {
   bookId: string
   chapterId: string
+  lessonId: string
 }
-const FormPhrasesForm = ({ bookId, chapterId }: FormPhrasesFormProps) => {
+
+const NewMultipleChoice = ({
+  bookId,
+  chapterId,
+  lessonId
+}: NewMultipleChoiceProps) => {
   const {
-    mutate: addFormPhrases,
+    mutate: addMultipleChoice,
     error: addError,
     isPending: addPending
-  } = useAddFormPhrases(`${bookId}-${chapterId}`)
-
-  const { data: form_phrases } = useQuery(
-    useGetFormPhrasesByChapter(`${bookId}-${chapterId}`)
-  )
+  } = useAddHanYuMultipleChoice(`${bookId}-${chapterId}-${lessonId}`)
 
   const {
-    mutate: deleteFormPhrases,
+    mutate: deleteMultipleChoice,
     error: deleteError,
     isPending: deletePending
-  } = useDeleteFormPhrases(`${bookId}-${chapterId}`)
+  } = useDeleteHanYuMultipleChoice(`${bookId}-${chapterId}-${lessonId}`)
 
-  const form = useForm<z.infer<typeof FormPhrasesValidation>>({
-    resolver: zodResolver(FormPhrasesValidation),
+  const { data: correct_order } = useQuery(
+    useGetHanYuMultipleChoiceByChapter(`${bookId}-${chapterId}-${lessonId}`)
+  )
+
+  const form = useForm<z.infer<typeof HanYuMultipleChoiceValidation>>({
+    resolver: zodResolver(HanYuMultipleChoiceValidation),
     defaultValues: {
-      choices_a: '',
-      choices_b: '',
-      answers: '',
-      source: `${bookId}-${chapterId}`
+      question: '',
+      choices: '',
+      rightAnswer: '',
+      source: `${bookId}-${chapterId}-${lessonId}`
     }
   })
 
-  const handleSubmit = async (value: z.infer<typeof FormPhrasesValidation>) => {
-    const item: FormPhrases = {
-      choices_a: value.choices_a.split(' '),
-      answers: value.answers.split(' '),
-      choices_b: value.choices_b.split(' '),
+  const handleSubmit = async (
+    value: z.infer<typeof HanYuMultipleChoiceValidation>
+  ) => {
+    const item: HanYuMultipleChoice = {
+      question: value.question,
+      choices: value.choices.split(' '),
+      rightAnswer: value.rightAnswer,
       source: value.source
     }
-    await addFormPhrases(item)
+    await addMultipleChoice(item)
     form.reset()
   }
 
-  const handleDeleteFormPhrases = async (id: string) => {
-    await deleteFormPhrases(id)
+  const handleDeleteCorrectOrder = async (id: string) => {
+    await deleteMultipleChoice(id)
   }
 
   return (
     <div className='flex flex-col gap-2'>
       <Card>
         <CardHeader>
-          <CardTitle>组成词语</CardTitle>
+          <CardTitle>添加 - 选择哪个是对的</CardTitle>
         </CardHeader>
         <CardContent>
-          <ImageDialog img='images/form_phrases.webp' />
-
+          <ImageDialog img='images/multiple-choice-hanyu.webp' />
           <Form {...form}>
             <form
               className='flex w-full flex-col gap-4 p-4'
@@ -88,14 +96,14 @@ const FormPhrasesForm = ({ bookId, chapterId }: FormPhrasesFormProps) => {
             >
               <FormField
                 control={form.control}
-                name='choices_a'
+                name='question'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>题目</FormLabel>
                     <FormControl>
                       <Input
                         type='text'
-                        placeholder='第一组词语,空格分隔.ie.街 真 上 看 方 红 停'
+                        placeholder='ie. 我__王小华.'
                         {...field}
                       />
                     </FormControl>
@@ -105,14 +113,14 @@ const FormPhrasesForm = ({ bookId, chapterId }: FormPhrasesFormProps) => {
               />
               <FormField
                 control={form.control}
-                name='choices_b'
+                name='choices'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>选择</FormLabel>
+                    <FormLabel>选项</FormLabel>
                     <FormControl>
                       <Input
                         type='text'
-                        placeholder='第二组词语,空格分隔.ie.见 向 道 是 水 学 灯'
+                        placeholder='空格分隔ie.是 好 不'
                         {...field}
                       />
                     </FormControl>
@@ -122,24 +130,19 @@ const FormPhrasesForm = ({ bookId, chapterId }: FormPhrasesFormProps) => {
               />
               <FormField
                 control={form.control}
-                name='answers'
+                name='rightAnswer'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>字</FormLabel>
+                    <FormLabel>答案</FormLabel>
                     <FormControl>
-                      <Input
-                        type='text'
-                        placeholder='空格分隔.ie.街道 看见 上学 红灯 停水 真是 方向'
-                        {...field}
-                      />
+                      <Input type='text' placeholder='ie.是' {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <SubmitButton
-                type='quiz-right_explanation'
+                type='hanyu-multiple-choice'
                 createdPeding={addPending}
                 updatedPending={false}
               />
@@ -148,13 +151,13 @@ const FormPhrasesForm = ({ bookId, chapterId }: FormPhrasesFormProps) => {
         </CardContent>
       </Card>
       <CollapsibleItems
-        items={form_phrases}
-        property='answers'
+        items={correct_order}
+        property='question'
         deletePending={deletePending}
-        handleDelete={handleDeleteFormPhrases}
+        handleDelete={handleDeleteCorrectOrder}
       />
     </div>
   )
 }
 
-export default FormPhrasesForm
+export default NewMultipleChoice

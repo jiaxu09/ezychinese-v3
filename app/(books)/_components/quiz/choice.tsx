@@ -3,7 +3,7 @@ import React, { Dispatch, useState } from 'react'
 import { Volume2 } from 'lucide-react'
 import ChoiceButton from './choice-button'
 import { Separator } from '@/components/ui/separator'
-import supabaseUrl from '../../../../lib/utils'
+import supabaseUrl from '@/lib/utils'
 
 interface ChoiceProps {
   word?: string

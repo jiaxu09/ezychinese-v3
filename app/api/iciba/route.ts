@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(req: NextRequest) {
-  const url =
-    'https://www.iciba.com/_next/data/dTlbEbttstfo-ZBl63u0M/word.json?w=马到成功'
+  const { searchParams } = new URL(req.url)
+  const text = searchParams.get('text')
+  const url = `https://www.iciba.com/_next/data/dTlbEbttstfo-ZBl63u0M/word.json?w=${text}`
   const options = {
     method: 'GET',
     headers: {

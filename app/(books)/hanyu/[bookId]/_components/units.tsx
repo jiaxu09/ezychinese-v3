@@ -20,15 +20,15 @@ const Units = ({ bookId }: UnitsProps) => {
     return <NoContent />
   }
   return (
-    <div className="grid grid-cols-3 md:grid-cols-4 gap-8 md:gap-10">
+    <div className='grid grid-cols-3 gap-8 md:grid-cols-4 md:gap-10'>
       {data?.map((item, index) => (
         <Link
-          aria-label="ezyChinese zhongwen"
+          aria-label='ezyChinese zhongwen'
           key={index}
-          className="[&:nth-child(1n)]:bg-crayola [&:nth-child(2n)]:bg-skyblue [&:nth-child(3n)]:bg-wuzzy border rounded-full"
-          href={`/hanyu/${bookId}/${item.name}/words`}
+          className='[&:nth-child(3n)]:bg-wuzzy rounded-full border [&:nth-child(1n)]:bg-crayola [&:nth-child(2n)]:bg-skyblue'
+          href={`/hanyu/${bookId}/${item.name}`}
         >
-          <div className=" cursor-pointer  flex items-center justify-center p-8 text-lg md:text-2xl ">
+          <div className=' flex  cursor-pointer items-center justify-center p-8 text-lg md:text-2xl '>
             {item.name}
           </div>
         </Link>
