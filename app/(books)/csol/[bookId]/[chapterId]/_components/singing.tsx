@@ -1,5 +1,4 @@
 'use client'
-
 import { useGetSingByChapter } from '@/lib/react-query/queries'
 import { rgbDataURL } from '@/lib/utils'
 import { useQuery } from '@tanstack/react-query'

@@ -36,10 +36,11 @@ export const getHanziEnglish = async (character: string) => {
     if (!character) {
       return
     }
-    const data = await fetch(`/api/english?text=${character}`)
+    const data = await fetch(`/api/youdao?text=${character}`)
 
     const result = await data.json()
-    return result.english
+    console.log(result)
+    return result
   } catch (error) {
     throw Error
   }

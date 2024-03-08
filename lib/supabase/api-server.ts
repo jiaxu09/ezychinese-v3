@@ -34,7 +34,6 @@ const deleteFile = async (fileName: string) => {
 const addTool = async (item: any, table: string) => {
   const supabase = supabaseServer()
   const { data } = await supabase.auth.getSession()
-
   if (!data?.session?.user) {
     return
   }
@@ -105,12 +104,12 @@ export const getAuth = async () => {
 const getTool = async (page: number, table: string) => {
   try {
     const supabase = supabaseServer()
-    const pageSize = 30 //hardcode 30 for sm and lg screen size
+    const pageSize = 36 //hardcode 30 for sm and lg screen size
     const { from, to } = getPagination(page, pageSize)
     const { data, error, count } = await supabase
       .from(table)
       .select('*', { count: 'exact' })
-      .order('created_at', { ascending: false })
+      .order('created_at', { ascending: true })
       .range(from, to)
     const hasMore = (count && (page + 1) * pageSize < count) as boolean
 

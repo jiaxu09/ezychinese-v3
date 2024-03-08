@@ -16,7 +16,6 @@ import {
 import { Input } from '@/components/ui/input'
 import FileUploader from '@/components/file-uploader'
 
-import { supabaseBrowser } from '@/lib/supabase/browser'
 import {
   useAddChineseRadical,
   useUpdateChineseRadical
@@ -54,9 +53,9 @@ const RadicalForm = ({ radical, action }: RadicalFormProps) => {
       name: radical ? radical?.name : '',
       radical_pinyin: radical ? radical?.radical_pinyin : '',
       radical_meaning: radical ? radical?.radical_meaning : '',
-      radical_explain: radical ? radical?.radical_explain.join('') : '',
+      radical_explain: radical ? radical?.radical_explain?.join('') : '',
       radical_explain_pinyin: radical
-        ? radical?.radical_explain_pinyin.join(' ')
+        ? radical?.radical_explain_pinyin?.join(' ')
         : '',
       background: [],
       characters: radical ? radical.characters.join('') : '',
