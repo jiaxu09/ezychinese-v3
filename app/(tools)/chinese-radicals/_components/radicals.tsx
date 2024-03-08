@@ -18,12 +18,12 @@ const Radicals = () => {
   }
 
   return (
-    <div className="w-full h-full flex flex-col items-center">
-      <div className="grid grid-cols-5 md:grid-cols-12 gap-6 md:gap-10 ">
+    <div className='flex h-full w-full flex-col items-center'>
+      <div className='grid grid-cols-5 gap-6 md:grid-cols-12 md:gap-10 '>
         {data?.data?.map((radical, index) => (
           <div
             key={index}
-            className="p-4 md:p-8 flex items-center justify-center "
+            className='flex items-center justify-center p-4 md:p-8 '
           >
             <Radical
               id={radical.id}
