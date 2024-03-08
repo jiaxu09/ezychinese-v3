@@ -38,6 +38,7 @@ const LiteracyPractice = ({ characters }: LiteracyPracticeProps) => {
   const { data: meaning, isLoading: isLoadingMeaning } = useQuery(
     useHanziMeaning(selectedCharacter)
   )
+
   const handleCharacterClick = (character: string) => {
     setSelectedCharacter(character)
 

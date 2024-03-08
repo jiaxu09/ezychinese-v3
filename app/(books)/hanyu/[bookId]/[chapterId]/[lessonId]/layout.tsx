@@ -38,6 +38,7 @@ const PracticesLayout = ({
         type='hanyu'
         bookId={params.bookId}
         chapterId={params.chapterId}
+        lessonId={params.lessonId}
       />
       <Tabs
         type='hanyu'

@@ -39,7 +39,6 @@ export const getHanziEnglish = async (character: string) => {
     const data = await fetch(`/api/youdao?text=${character}`)
 
     const result = await data.json()
-    console.log(result)
     return result
   } catch (error) {
     throw Error

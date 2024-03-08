@@ -67,7 +67,7 @@ const NewSelectRightPinyin = ({
     if (audio) {
       const item: HanYuSelectRightPinyin = {
         audio,
-        choices: value.choices.split(' '),
+        choices: value.choices.split(','),
         right_answer: value.rightAnswer,
         source: value.source
       }
@@ -93,7 +93,7 @@ const NewSelectRightPinyin = ({
             form={form}
             handleSubmit={handleSubmit}
             isLoading={isLoading}
-            placeholder_1='空格分隔ie.guan guang'
+            placeholder_1='以,分隔 ie.guan,tong xue'
             placeholder_2='ie:guan'
           />
         </CardContent>
