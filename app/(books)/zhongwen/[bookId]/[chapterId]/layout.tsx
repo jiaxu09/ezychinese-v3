@@ -5,46 +5,47 @@ import React from 'react'
 const tabs = [
   {
     name: '生字',
-    path: 'literacy',
+    path: 'literacy'
   },
   {
     name: '词语',
-    path: 'word',
+    path: 'word'
   },
   {
     name: '记忆',
-    path: 'match',
+    path: 'match'
   },
   {
     name: '视频',
-    path: 'video',
+    path: 'video'
   },
   {
     name: '练习',
-    path: 'quiz',
-  },
+    path: 'quiz'
+  }
 ]
 const PracticesLayout = ({
   children,
-  params,
+  params
 }: Readonly<{
   children: React.ReactNode
   params: { bookId: string; chapterId: string }
 }>) => {
   return (
-    <div className="container py-4">
+    <div className='container'>
       <Breadcrumb
-        type="zhongwen"
+        isEnd={true}
+        type='zhongwen'
         bookId={params.bookId}
         chapterId={params.chapterId}
       />
       <Tabs
-        type="zhongwen"
+        type='zhongwen'
         tabs={tabs}
         bookId={params.bookId}
         chapterId={params.chapterId}
       />
-      <main className=" max-w-3xl mx-auto">{children}</main>
+      <main className=' mx-auto max-w-3xl'>{children}</main>
     </div>
   )
 }

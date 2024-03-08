@@ -1,4 +1,5 @@
 'use client'
+import Breadcrumb from '@/app/(books)/_components/breadcrumb'
 import { useGetChaptersByBookId } from '@/lib/react-query/queries'
 import { useQuery } from '@tanstack/react-query'
 import Link from 'next/link'
@@ -15,20 +16,23 @@ const Chapters = ({ slug }: ChaptersProps) => {
   }
 
   return (
-    <div className="grid grid-cols-3 md:grid-cols-4 gap-8 md:gap-10">
-      {data?.map((item, index) => (
-        <Link
-          aria-label="ezyChinese zhongwen"
-          key={index}
-          className="[&:nth-child(1n)]:bg-crayola [&:nth-child(2n)]:bg-skyblue [&:nth-child(3n)]:bg-wuzzy border rounded-full"
-          href={`/zhongwen/${slug}/${item.name}/literacy`}
-        >
-          <div className=" cursor-pointer  flex items-center justify-center p-8 text-lg md:text-2xl ">
-            {item.name}
-          </div>
-        </Link>
-      ))}
-    </div>
+    <>
+      <Breadcrumb type='zhongwen' isEnd={false} bookId={slug} />
+      <div className='grid grid-cols-3 gap-8 py-6 md:grid-cols-4 md:gap-10'>
+        {data?.map((item, index) => (
+          <Link
+            aria-label='ezyChinese zhongwen'
+            key={index}
+            className=' rounded-full shadow-md [&:nth-child(1n)]:bg-crayola [&:nth-child(2n)]:bg-skyblue [&:nth-child(3n)]:bg-green'
+            href={`/zhongwen/${slug}/${item.name}/literacy`}
+          >
+            <div className=' flex  cursor-pointer items-center justify-center p-8 text-lg md:text-2xl '>
+              {item.name}
+            </div>
+          </Link>
+        ))}
+      </div>
+    </>
   )
 }
 

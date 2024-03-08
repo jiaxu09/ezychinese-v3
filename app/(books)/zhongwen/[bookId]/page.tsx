@@ -1,9 +1,9 @@
-import { type Metadata } from "next"
+import { type Metadata } from 'next'
 import { useGetChaptersByBookId } from '@/lib/react-query/queries'
 import {
   HydrationBoundary,
   QueryClient,
-  dehydrate,
+  dehydrate
 } from '@tanstack/react-query'
 import React from 'react'
 import Chapters from './_components/chapters'
@@ -15,7 +15,7 @@ interface BookDetailsProps {
 }
 
 export async function generateMetadata({
-  params,
+  params
 }: BookDetailsProps): Promise<Metadata> {
   const id = params.bookId
 
@@ -24,9 +24,9 @@ export async function generateMetadata({
   }
 
   return {
-    metadataBase: new URL("https://ezychinese.app"),
+    metadataBase: new URL('https://ezychinese.app'),
     title: `中文 | 第${id}册`,
-    description: '暨南大学中文1-6册.',
+    description: '暨南大学中文1-6册.'
   }
 }
 
@@ -37,10 +37,7 @@ const BookDetailsPage = async ({ params }: BookDetailsProps) => {
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <main>
-        <div className=" container mx-auto">
-          <h1 className="text-xl md:text-4xl text-center py-4 md:py-8">
-            选择练习册
-          </h1>
+        <div className=' container mx-auto'>
           <Chapters slug={params.bookId} />
         </div>
       </main>
