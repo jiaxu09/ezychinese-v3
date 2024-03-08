@@ -109,7 +109,7 @@ const getTool = async (page: number, table: string) => {
     const { data, error, count } = await supabase
       .from(table)
       .select('*', { count: 'exact' })
-      .order('created_at', { ascending: true })
+      .order('name', { ascending: true })
       .range(from, to)
     const hasMore = (count && (page + 1) * pageSize < count) as boolean
 

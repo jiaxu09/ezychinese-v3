@@ -12,30 +12,30 @@ const PaginationButton = ({
   page,
   setPage,
   isPlaceholderData,
-  hasMore,
+  hasMore
 }: PaginationButtonProps) => {
   return (
-    <div className="fixed bottom-20 md:bottom-32 ">
-      <div className="flex items-center justify-center space-x-4">
+    <div className=' pb-10 '>
+      <div className='flex items-center justify-center space-x-4'>
         <Button
-          aria-label="Previous"
-          onClick={() => setPage((old) => Math.max(old - 1, 0))}
+          aria-label='Previous'
+          onClick={() => setPage(old => Math.max(old - 1, 0))}
           disabled={page === 0}
-          variant="outline"
+          variant='outline'
         >
-          <ChevronLeft className="w-5 h-5" /> Prev
+          <ChevronLeft className='h-5 w-5' /> Prev
         </Button>
         <Button
-          aria-label="Next"
+          aria-label='Next'
           disabled={isPlaceholderData || !hasMore}
           onClick={() => {
             if (!isPlaceholderData && hasMore) {
-              setPage((old) => old + 1)
+              setPage(old => old + 1)
             }
           }}
-          variant="outline"
+          variant='outline'
         >
-          Next <ChevronRight className="w-5 h-5" />{' '}
+          Next <ChevronRight className='h-5 w-5' />{' '}
         </Button>
       </div>
     </div>

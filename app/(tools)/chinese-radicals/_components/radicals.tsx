@@ -18,7 +18,7 @@ const Radicals = () => {
   }
 
   return (
-    <div className='flex h-full w-full flex-col items-center'>
+    <div className='flex h-full w-full flex-col items-center justify-between gap-6'>
       <div className='grid grid-cols-5 gap-6 md:grid-cols-12 md:gap-10 '>
         {data?.data?.map((radical, index) => (
           <div
