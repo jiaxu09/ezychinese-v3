@@ -63,7 +63,7 @@ const Radical = ({
           </div>
         </DialogContent>
       ) : (
-        <DialogContent className=' h-[40vh] sm:max-w-md md:h-[85vh] md:max-w-5xl'>
+        <DialogContent className=' min-h-[40vh] sm:max-w-md md:max-w-5xl'>
           <div className=' relative flex flex-col items-center '>
             <div className='grid h-full w-full grid-rows-2  rounded-lg'>
               <div className='h-full w-full bg-pastelblue'>
@@ -139,7 +139,7 @@ const Radical = ({
                           )}
                         </ruby>
                         {characters_meanings && (
-                          <span className='mx-auto flex max-w-30 text-sm italic md:text-lg'>
+                          <span className='max-w-30 mx-auto flex text-sm italic md:text-lg'>
                             {characters_meanings[index]}
                           </span>
                         )}
