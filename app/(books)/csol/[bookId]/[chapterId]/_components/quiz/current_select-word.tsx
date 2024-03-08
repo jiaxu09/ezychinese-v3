@@ -3,9 +3,8 @@ import React, { Dispatch, useEffect, useState } from 'react'
 import { SelectWordCSOL } from './select-words'
 import { ChevronRight, Volume2, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
+import supabaseUrl, { cn } from '@/lib/utils'
 import { Separator } from '@/components/ui/separator'
-import supabaseUrl from '../../../../../../../lib/utils'
 
 interface CurrentSelectWordProps {
   item: SelectWordCSOL

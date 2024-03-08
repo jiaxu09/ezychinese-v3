@@ -22,8 +22,8 @@ import {
   useAddChineseIdiom,
   useUpdateChineseIdiom
 } from '@/lib/react-query/queries'
-import SubmitButton from '../../../../components/submit-button'
 import Image from 'next/image'
+import SubmitButton from '@/components/submit-button'
 
 type IdiomFormProps = {
   idiom?: any

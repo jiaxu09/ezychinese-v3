@@ -7,7 +7,7 @@ import { useChineseRadicalEdit } from '@/lib/store/radicalEdit'
 import RadicalForm from './radical-form'
 import BgImg from '../../_components/bg-img'
 import WaterMark from '../../_components/water-mark'
-import supabaseUrl, { rgbDataURL } from '../../../../lib/utils'
+import supabaseUrl, { rgbDataURL } from '@/lib/utils'
 
 interface RadicalProps {
   id: string

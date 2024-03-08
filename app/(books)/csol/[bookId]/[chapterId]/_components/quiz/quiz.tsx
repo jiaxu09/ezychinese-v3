@@ -50,8 +50,7 @@ const Quiz = ({ selectRightChoice, selectWord, orderWords }: QuizProps) => {
       ...(orderWords && orderWords.length > 0 && { order_words: orderWords })
     }
     setQuiz(result)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [orderWords, selectRightChoice, selectWord])
 
   if (quiz && Object.keys(quiz).length === 0) {
     return <NoContent />

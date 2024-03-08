@@ -23,9 +23,8 @@ import {
   useGetCorrectOrderByChapter
 } from '@/lib/react-query/queries'
 import { useQuery } from '@tanstack/react-query'
-
-import ImageDialog from '../../../../../../_components/image-dialog'
 import CollapsibleItems from '@/app/(books)/_components/form/collapsible-items'
+import ImageDialog from '@/app/(books)/_components/image-dialog'
 
 interface CorrectOrderFormProps {
   bookId: string

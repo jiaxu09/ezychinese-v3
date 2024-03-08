@@ -1,12 +1,12 @@
 'use client'
 import React from 'react'
-import DeleteButton from '../../hanyu/[bookId]/[chapterId]/new/_components/delete-button'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger
 } from '@/components/ui/popover'
 import { ExternalLink } from 'lucide-react'
+import DeleteButton from '../../hanyu/[bookId]/[chapterId]/[lessonId]/new/_components/delete-button'
 
 interface CollapsibleItemsProps {
   items: any[] | undefined

@@ -4,8 +4,8 @@ import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import React from 'react'
-import supabaseUrl from '../../../../lib/utils'
 import Link from 'next/link'
+import supabaseUrl from '@/lib/utils'
 
 const Books = () => {
   const { data, isFetched } = useQuery(useGetHanYuBooks())
