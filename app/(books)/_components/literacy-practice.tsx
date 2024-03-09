@@ -12,8 +12,6 @@ import {
 import Dictionary from './literacy/dictionary'
 import English from './literacy/english'
 import Meaning from './literacy/meaning'
-import getVoice from '@/lib/speech'
-import AudioPlayer from './audio-player'
 
 interface LiteracyPracticeProps {
   characters: string[]
