@@ -23,6 +23,7 @@ const QuizFormTabs = ({ bookId, chapterId }: QuizFormTabsProps) => {
 
   return (
     <div className='container mx-auto w-full '>
+      <h2 className=' text-center text-lg'>添加-新练习</h2>
       <Tabs defaultValue='连词成句' className='w-full'>
         <TabsList className='w-full gap-12'>
           {tabs.map(tab => (

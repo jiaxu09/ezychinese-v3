@@ -1,7 +1,7 @@
-import Breadcrumb from '@/app/(books)/_components/breadcrumb'
 import Tabs from '@/app/(books)/_components/tabs'
 import React from 'react'
 import AddQuizButton from './_components/add-quiz-button'
+import Breadcrumb from '@/app/(books)/_components/breadcrumb'
 
 const tabs = [
   {
@@ -30,11 +30,12 @@ const PracticesLayout = ({
   params: { bookId: string; chapterId: string }
 }>) => {
   return (
-    <main className='container py-4'>
+    <main className='container'>
       <Breadcrumb
         type='csol'
         bookId={params.bookId}
         chapterId={params.chapterId}
+        isEnd={true}
       />
       <Tabs
         type='csol'

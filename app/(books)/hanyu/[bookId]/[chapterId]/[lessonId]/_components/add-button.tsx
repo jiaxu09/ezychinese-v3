@@ -15,7 +15,7 @@ const AddButton = ({ bookId, chapterId, lessonId }: AddButtonProps) => {
   const pathname = usePathname()
   const user = useUser(state => state.user)
   return (
-    <div className='fixed bottom-20 right-2 md:right-20'>
+    <div className=' fixed bottom-12 right-2 md:right-20'>
       {user && user?.role === 'admin' && !pathname.includes('quiz') && (
         <Link href={`/hanyu/${bookId}/${chapterId}/${lessonId}/new`}>
           <Button variant='outline' size='icon'>

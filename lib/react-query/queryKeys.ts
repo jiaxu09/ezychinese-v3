@@ -49,4 +49,5 @@ export enum QUERY_KEYS {
   GETCSOLSELECTRIGHTCHOICEBYCHAPTER = 'getcsolselectrightchoicebychapter',
   GETCSOLORDERWORDSBYCHAPTAPTER = 'getcsolorderwordsbychapter',
   GETCSOLSELECTWORDBYCHAPTAPTER = 'getcsolselectwordbychapter',
+  GETSPEECH = 'getspeech',
 }

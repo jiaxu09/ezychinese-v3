@@ -16,13 +16,25 @@ export async function GET(req: NextRequest) {
     const {
       pageProps: {
         initialReduxState: {
-          word: { wordInfo },
+          word: {
+            wordInfo: {
+              chinese: { ci },
+              baesInfo,
+              new_sentence,
+            },
+          },
         },
       },
     } = await res.json()
 
+    if (!ci) {
+      return new NextResponse('Not Found', {
+        status: 404,
+      })
+    }
+
     //Return the content of the data file in json format
-    return NextResponse.json({ wordInfo })
+    return NextResponse.json({ ci, baesInfo, new_sentence })
   } catch (error) {
     console.log('[Dictionary_GET]', error)
     return new NextResponse('Internal Error', {

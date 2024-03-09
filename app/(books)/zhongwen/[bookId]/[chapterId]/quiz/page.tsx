@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import Quiz from './_components/quiz'
-import AddButton from './add-button'
+import AddButton from './_components/add-button'
 import {
   HydrationBoundary,
   QueryClient,
@@ -42,7 +42,7 @@ const QuizPage = async ({ params }: QuizProps) => {
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <div className='relative flex min-h-[80vh] flex-col'>
-        <div className=' absolute bottom-0 right-0 hidden justify-end space-x-4 md:flex'>
+        <div className=' absolute bottom-4 right-0 hidden space-x-4 md:flex'>
           <AddButton params={params} />
         </div>
         <Suspense fallback={null}>

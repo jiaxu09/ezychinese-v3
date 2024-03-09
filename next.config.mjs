@@ -16,7 +16,7 @@ const ContentSecurityPolicy = `
     script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com vercel.live va.vercel-scripts.com youtube.com http://www.youtube.com https://www.youtube.com;
     style-src 'self' 'unsafe-inline';
     img-src * blob: data:;
-    media-src *;
+    media-src * 'self' data:;
     connect-src *;
     font-src 'self' data:;
     worker-src * blob: data;
