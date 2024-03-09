@@ -19,16 +19,16 @@ const WordHeader = ({ word }: WordHeadProps) => {
     setIsSoundLoading(false)
   }
   return (
-    <div className='flex items-center justify-center space-x-4'>
+    <div className='flex flex-wrap items-center justify-center space-x-4 md:flex-nowrap'>
       {isSoundLoading ? (
-        <RotateCcw className=' h-8 w-8 animate-spin text-crayola' />
+        <RotateCcw className='h-6 w-6 animate-spin text-crayola md:h-8 md:w-8' />
       ) : (
         <div className=' cursor-pointer' onClick={() => handleSpeech(word)}>
           <Volume2 className='h-8 w-8 text-crayola' />
         </div>
       )}
 
-      <span className='row-span-1 text-center text-4xl font-semibold'>
+      <span className='w-full text-center text-2xl font-semibold md:text-4xl'>
         {word}
       </span>
     </div>
