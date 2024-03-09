@@ -4,14 +4,16 @@ import HanziWriter from 'hanzi-writer'
 import { PenLine, RotateCcw, Volume2 } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import {
+  useGetSpeech,
   useHanziDictionary,
   useHanziEnglish,
-  useHanziMeaning,
-  useHanziSound
+  useHanziMeaning
 } from '@/lib/react-query/queries'
 import Dictionary from './literacy/dictionary'
 import English from './literacy/english'
 import Meaning from './literacy/meaning'
+import getVoice from '@/lib/speech'
+import AudioPlayer from './audio-player'
 
 interface LiteracyPracticeProps {
   characters: string[]
@@ -20,12 +22,9 @@ interface LiteracyPracticeProps {
 const LiteracyPractice = ({ characters }: LiteracyPracticeProps) => {
   const [writer, setWriter] = useState<HanziWriter | null>(null)
   const [quiz, setQuiz] = useState<HanziWriter | null>(null)
-
+  const [isSoundLoading, setIsSoundLoading] = useState(false)
+  const [enabled, setEnabled] = useState(false)
   const [selectedCharacter, setSelectedCharacter] = useState('')
-
-  const { data: soundUrl, isLoading: isLoadingSound } = useQuery(
-    useHanziSound(selectedCharacter)
-  )
 
   const { data: dictionary, isLoading: isLoadingDictionary } = useQuery(
     useHanziDictionary(selectedCharacter)
@@ -38,6 +37,8 @@ const LiteracyPractice = ({ characters }: LiteracyPracticeProps) => {
   const { data: meaning, isLoading: isLoadingMeaning } = useQuery(
     useHanziMeaning(selectedCharacter)
   )
+
+  const { data: base64 } = useQuery(useGetSpeech(selectedCharacter, enabled))
 
   const handleCharacterClick = (character: string) => {
     setSelectedCharacter(character)
@@ -76,10 +77,14 @@ const LiteracyPractice = ({ characters }: LiteracyPracticeProps) => {
     }
   }
 
-  const handleSound = () => {
-    if (soundUrl) {
-      const audio = new Audio(soundUrl)
-      audio.play()
+  const handleSound = async () => {
+    setIsSoundLoading(true)
+    setEnabled(true)
+    setIsSoundLoading(false)
+
+    if (base64) {
+      const audio = new Audio('data:audio/wav;base64,' + base64)
+      audio?.play()
     }
   }
 
@@ -125,7 +130,7 @@ const LiteracyPractice = ({ characters }: LiteracyPracticeProps) => {
               <PenLine className='h-8 w-8 text-pastelblue ' />
             </div>
             <div>
-              {isLoadingSound ? (
+              {isSoundLoading ? (
                 <RotateCcw className=' h-8 w-8 animate-spin text-crayola' />
               ) : (
                 <div
@@ -136,6 +141,7 @@ const LiteracyPractice = ({ characters }: LiteracyPracticeProps) => {
                     onClick={handleSound}
                     className='h-8 w-8 text-crayola '
                   />
+                  <AudioPlayer base64={base64} />
                 </div>
               )}
             </div>

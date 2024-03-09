@@ -1,21 +1,3 @@
-import * as googleTTS from 'google-tts-api'
-
-export const getHanziSound = (character: string) => {
-  try {
-    if (character) {
-      const url = googleTTS.getAudioUrl(`${character}`, {
-        lang: 'zh',
-        slow: false,
-        host: 'https://translate.google.com',
-      })
-      return url
-    }
-    return ''
-  } catch (error) {
-    throw Error
-  }
-}
-
 export const getHanziDictionary = async (character: string) => {
   try {
     if (!character) {

@@ -78,7 +78,6 @@ import {
 import {
   getHanziDictionary,
   getHanziEnglish,
-  getHanziSound,
   getHanziMeaning,
 } from '../api'
 import {
@@ -99,7 +98,18 @@ import {
   updateChineseIdiom,
   updateChineseRadical,
 } from '../supabase/api-server'
+import getVoice from '../speech'
 
+//speech
+export const useGetSpeech = (word: string, enabled: boolean) => {
+  return {
+    queryKey: [QUERY_KEYS.GETSPEECH, word],
+    queryFn: () => getVoice(word),
+    enabled: enabled,
+    staleTime: 10 * (60 * 1000) * 6 * 24, // 1day
+    cacheTime: 15 * (60 * 1000) * 6 * 24, // 1day
+  }
+}
 //Chinese Radicals
 export const useAddChineseRadical = () => {
   const queryClient = useQueryClient()
@@ -199,13 +209,6 @@ export const useGetChinesePinyinByCategory = (category: PinyinCategories) => {
 }
 
 // Literacy
-export const useHanziSound = (character: string) => {
-  return {
-    queryKey: [QUERY_KEYS.GETHANZISOUND, character],
-    queryFn: () => getHanziSound(character),
-    enabled: character.length !== 0,
-  }
-}
 
 export const useHanziDictionary = (character: string) => {
   return {

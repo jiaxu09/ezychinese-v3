@@ -6,7 +6,7 @@ import {
   PopoverTrigger
 } from '@/components/ui/popover'
 import { ExternalLink } from 'lucide-react'
-import DeleteButton from '../../hanyu/[bookId]/[chapterId]/[lessonId]/new/_components/delete-button'
+import DeleteButton from './delete-button'
 
 interface CollapsibleItemsProps {
   items: any[] | undefined
