@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import HanziWriter from 'hanzi-writer'
 import { PenLine, RotateCcw, Volume2 } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
@@ -26,6 +26,10 @@ const LiteracyPractice = ({ characters }: LiteracyPracticeProps) => {
   const [enabled, setEnabled] = useState(false)
   const [selectedCharacter, setSelectedCharacter] = useState('')
 
+  useEffect(() => {
+    setEnabled(false)
+  }, [selectedCharacter])
+
   const { data: dictionary, isLoading: isLoadingDictionary } = useQuery(
     useHanziDictionary(selectedCharacter)
   )
@@ -37,7 +41,6 @@ const LiteracyPractice = ({ characters }: LiteracyPracticeProps) => {
   const { data: meaning, isLoading: isLoadingMeaning } = useQuery(
     useHanziMeaning(selectedCharacter)
   )
-
   const { data: base64 } = useQuery(useGetSpeech(selectedCharacter, enabled))
 
   const handleCharacterClick = (character: string) => {
@@ -76,16 +79,15 @@ const LiteracyPractice = ({ characters }: LiteracyPracticeProps) => {
       writer?.animateCharacter()
     }
   }
-
   const handleSound = async () => {
     setIsSoundLoading(true)
     setEnabled(true)
-    setIsSoundLoading(false)
 
     if (base64) {
       const audio = new Audio('data:audio/wav;base64,' + base64)
       audio?.play()
     }
+    setIsSoundLoading(false)
   }
 
   const handleAnimateReset = () => {
@@ -141,7 +143,7 @@ const LiteracyPractice = ({ characters }: LiteracyPracticeProps) => {
                     onClick={handleSound}
                     className='h-8 w-8 text-crayola '
                   />
-                  <AudioPlayer base64={base64} />
+                  {/* <AudioPlayer base64={base64} /> */}
                 </div>
               )}
             </div>

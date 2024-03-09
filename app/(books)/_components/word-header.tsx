@@ -16,12 +16,12 @@ const WordHeader = ({ word }: WordHeadProps) => {
   const handleSpeech = async (word: string) => {
     setIsSoundLoading(true)
     setEnabled(true)
-    setIsSoundLoading(false)
 
     if (base64) {
       const audio = new Audio('data:audio/wav;base64,' + base64)
       audio?.play()
     }
+    setIsSoundLoading(false)
   }
   return (
     <div className='flex items-center justify-center space-x-4'>
@@ -30,7 +30,7 @@ const WordHeader = ({ word }: WordHeadProps) => {
       ) : (
         <div className=' cursor-pointer' onClick={() => handleSpeech(word)}>
           <Volume2 className='h-8 w-8 text-crayola' />
-          <AudioPlayer base64={base64} />
+          {/* <AudioPlayer base64={base64} /> */}
         </div>
       )}
 
