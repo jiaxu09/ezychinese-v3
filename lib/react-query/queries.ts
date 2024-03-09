@@ -75,11 +75,7 @@ import {
   getVideoByChapter,
   getWordsByChapter,
 } from '../graphql/api'
-import {
-  getHanziDictionary,
-  getHanziEnglish,
-  getHanziMeaning,
-} from '../api'
+import { getHanziDictionary, getHanziEnglish, getHanziMeaning } from '../api'
 import {
   addChineseIdiom,
   addChineseRadical,
@@ -303,6 +299,8 @@ export const useGetAuth = () => {
   return {
     queryKey: [QUERY_KEYS.GETAUTH],
     queryFn: () => getAuth(),
+    staleTime: 10 * (60 * 1000) * 6, // 1day
+    cacheTime: 15 * (60 * 1000) * 6, // 1day
   }
 }
 

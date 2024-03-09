@@ -45,7 +45,7 @@ const PracticesLayout = ({
         bookId={params.bookId}
         chapterId={params.chapterId}
       />
-      <main className=' mx-auto max-w-3xl'>{children}</main>
+      <main className=' container'>{children}</main>
     </div>
   )
 }

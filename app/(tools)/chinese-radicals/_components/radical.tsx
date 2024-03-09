@@ -42,7 +42,7 @@ const Radical = ({
         <Button variant='outline'>{name}</Button>
       </DialogTrigger>
       {edit ? (
-        <DialogContent>
+        <DialogContent className='animate-fade animate-duration-500'>
           <div className='container mx-auto bg-popover p-4 '>
             <h2 className=' pb-4 text-center'>Edit Radical</h2>
             <RadicalForm
@@ -63,7 +63,7 @@ const Radical = ({
           </div>
         </DialogContent>
       ) : (
-        <DialogContent className=' min-h-[40vh] sm:max-w-md md:max-w-5xl'>
+        <DialogContent className='min-h-[40vh] animate-fade animate-duration-500 sm:max-w-md md:max-w-5xl'>
           <div className=' relative flex flex-col items-center '>
             <div className='grid h-full w-full grid-rows-2  rounded-lg'>
               <div className='h-full w-full bg-pastelblue'>

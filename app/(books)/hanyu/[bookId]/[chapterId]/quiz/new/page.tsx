@@ -1,7 +1,7 @@
 import React from 'react'
-import NewMultipleChoice from './_components/new-multiple-choice'
-import NewMultipleChoiceListening from './_components/new-multiple-choice-listening'
-import NewSelectRightPinyin from './_components/new-select-right-pinyin'
+import NewQuiz from './_components/new-quiz'
+import { supabaseServer } from '@/lib/supabase/server'
+import Unauthorized from '@/components/unauthorized'
 
 interface NewQuizPageProps {
   params: {
@@ -10,18 +10,22 @@ interface NewQuizPageProps {
   }
 }
 
-const NewQuizPage = ({ params }: NewQuizPageProps) => {
+const NewQuizPage = async ({ params }: NewQuizPageProps) => {
+  const supabase = await supabaseServer()
+  const { data } = await supabase.auth.getSession()
+
+  if (!data.session?.user) {
+    return (
+      <div className='mx-auto w-full '>
+        <Unauthorized />
+      </div>
+    )
+  }
   return (
     <div className='grid grid-cols-3 gap-2'>
-      <NewMultipleChoice bookId={params.bookId} chapterId={params.chapterId} />
-      <NewMultipleChoiceListening
-        bookId={params.bookId}
-        chapterId={params.chapterId}
-      />
-      <NewSelectRightPinyin
-        bookId={params.bookId}
-        chapterId={params.chapterId}
-      />
+      <div className=' col-span-2'>
+        <NewQuiz bookId={params.bookId} chapterId={params.chapterId} />
+      </div>
     </div>
   )
 }

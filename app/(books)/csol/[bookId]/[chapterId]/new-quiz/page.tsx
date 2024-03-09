@@ -15,14 +15,16 @@ const NewQuizPage = async ({ params }: NewQuizPageProps) => {
 
   if (!data.session?.user) {
     return (
-      <div>
+      <div className='mx-auto w-full '>
         <Unauthorized />
       </div>
     )
   }
   return (
-    <div className='w-full '>
-      <NewQuiz bookId={params.bookId} chapterId={params.chapterId} />
+    <div className='grid grid-cols-3 '>
+      <div className=' col-span-2'>
+        <NewQuiz bookId={params.bookId} chapterId={params.chapterId} />
+      </div>
     </div>
   )
 }

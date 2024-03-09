@@ -13,7 +13,7 @@ interface AddQuizButtonProps {
 const AddQuizButton = ({ bookId, chapterId }: AddQuizButtonProps) => {
   const user = useUser(state => state.user)
   const pathname = usePathname()
-  
+
   if (!user) {
     return <></>
   }
@@ -28,7 +28,7 @@ const AddQuizButton = ({ bookId, chapterId }: AddQuizButtonProps) => {
   return (
     <Link
       href={`/csol/${bookId}/${chapterId}/new-quiz`}
-      className='fixed bottom-20 right-20 hidden md:block'
+      className=' absolute bottom-5 right-20 hidden md:block'
     >
       <Button variant='outline' size='icon'>
         <Plus />
