@@ -30,7 +30,7 @@ const PracticesLayout = ({
   params: { bookId: string; chapterId: string }
 }>) => {
   return (
-    <main className='container'>
+    <main className='container relative'>
       <Breadcrumb
         type='csol'
         bookId={params.bookId}

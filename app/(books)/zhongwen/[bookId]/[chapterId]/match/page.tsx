@@ -1,13 +1,12 @@
-import { type Metadata } from "next"
+import { type Metadata } from 'next'
 import { useGetLiteracyByChapter } from '@/lib/react-query/queries'
 import {
   HydrationBoundary,
   QueryClient,
-  dehydrate,
+  dehydrate
 } from '@tanstack/react-query'
 import React, { Suspense } from 'react'
-import Match from "../_components/match"
-
+import Match from '../_components/match'
 
 interface MatchProps {
   params: {
@@ -17,7 +16,7 @@ interface MatchProps {
 }
 
 export async function generateMetadata({
-  params,
+  params
 }: MatchProps): Promise<Metadata> {
   const id = params.bookId
 
@@ -26,9 +25,9 @@ export async function generateMetadata({
   }
 
   return {
-    metadataBase: new URL("https://ezychinese.app"),
+    metadataBase: new URL('https://ezychinese.app'),
     title: `中文 | 第${id}册 - 记忆游戏`,
-    description: '暨南大学中文1-6册.',
+    description: '暨南大学中文1-6册.'
   }
 }
 
@@ -39,7 +38,7 @@ const MatchPage = async ({ params }: MatchProps) => {
   )
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <main className=" min-h-[80vh]">
+      <main className='mx-auto min-h-[80vh] max-w-3xl'>
         <Suspense fallback={null}>
           <Match bookId={params.bookId} chapterId={params.chapterId} />
         </Suspense>

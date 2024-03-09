@@ -3,7 +3,7 @@ import QuizFormTabs from '../_components/quiz-form-tabs'
 import {
   HydrationBoundary,
   QueryClient,
-  dehydrate,
+  dehydrate
 } from '@tanstack/react-query'
 import { useGetCorrectOrderByChapter } from '@/lib/react-query/queries'
 
@@ -22,9 +22,11 @@ const QuizFormPage = async ({ params }: QuizFormProps) => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <main className="w-full min-h-[80vh]">
-        <QuizFormTabs bookId={params.bookId} chapterId={params.chapterId} />
-      </main>
+      <div className='grid w-full grid-cols-3 '>
+        <div className=' col-span-2'>
+          <QuizFormTabs bookId={params.bookId} chapterId={params.chapterId} />
+        </div>
+      </div>
     </HydrationBoundary>
   )
 }

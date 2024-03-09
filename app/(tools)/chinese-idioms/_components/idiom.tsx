@@ -37,7 +37,7 @@ const Idiom = ({
         <Button variant='outline'>{name.join('')}</Button>
       </DialogTrigger>
       {edit ? (
-        <DialogContent>
+        <DialogContent className='animate-fade animate-duration-500'>
           <>
             <h2 className=' pb-4 text-center'>Edit Radical</h2>
             <IdiomForm
@@ -56,7 +56,7 @@ const Idiom = ({
           </>
         </DialogContent>
       ) : (
-        <DialogContent className='sm:max-w-md md:max-w-5xl '>
+        <DialogContent className='animate-fade animate-duration-500 sm:max-w-md md:max-w-5xl '>
           <div className=' relative flex flex-col items-center '>
             <div className='grid h-full  w-full grid-rows-2 rounded-lg'>
               <div className='h-full w-full bg-pastelblue'>

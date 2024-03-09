@@ -1,13 +1,16 @@
-import { type Metadata } from "next"
-import { useGetLiteracyByChapter, useGetVideosByChapter } from '@/lib/react-query/queries'
+import { type Metadata } from 'next'
+import {
+  useGetLiteracyByChapter,
+  useGetVideosByChapter
+} from '@/lib/react-query/queries'
 import {
   HydrationBoundary,
   QueryClient,
-  dehydrate,
+  dehydrate
 } from '@tanstack/react-query'
 import React, { Suspense } from 'react'
 import Literacy from '../_components/literacy'
-import Video from "../_components/video"
+import Video from '../_components/video'
 
 interface VideoProps {
   params: {
@@ -17,7 +20,7 @@ interface VideoProps {
 }
 
 export async function generateMetadata({
-  params,
+  params
 }: VideoProps): Promise<Metadata> {
   const id = params.bookId
 
@@ -26,9 +29,9 @@ export async function generateMetadata({
   }
 
   return {
-    metadataBase: new URL("https://ezychinese.app"),
+    metadataBase: new URL('https://ezychinese.app'),
     title: `中文 | 第${id}册 - 视频`,
-    description: '暨南大学中文1-6册.',
+    description: '暨南大学中文1-6册.'
   }
 }
 
@@ -39,7 +42,7 @@ const VideoPage = async ({ params }: VideoProps) => {
   )
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <main className=" min-h-[80vh]">
+      <main className='mx-auto min-h-[80vh] max-w-3xl'>
         <Suspense fallback={null}>
           <Video bookId={params.bookId} chapterId={params.chapterId} />
         </Suspense>

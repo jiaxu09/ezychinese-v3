@@ -9,11 +9,10 @@ interface NewPracticesPageProps {
 }
 const NewPracticesPage = ({ params }: NewPracticesPageProps) => {
   return (
-    <div className='container w-full'>
-      <NewPractices
-        bookId={params.bookId}
-        chapterId={params.chapterId}
-      />
+    <div className=' grid grid-cols-3'>
+      <div className=' col-span-2'>
+        <NewPractices bookId={params.bookId} chapterId={params.chapterId} />
+      </div>
     </div>
   )
 }

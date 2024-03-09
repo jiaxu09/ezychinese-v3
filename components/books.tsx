@@ -96,7 +96,7 @@ const Books = () => {
           <Link
             className='group flex items-center space-x-2 text-primary hover:text-primary/80'
             aria-label='ezyChinese zhongwen'
-            href='/csol'
+            href='/'
           >
             explore all books{' '}
             <ChevronRight className=' transition-all duration-500 group-hover:scale-75' />
