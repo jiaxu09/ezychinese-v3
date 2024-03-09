@@ -6,8 +6,7 @@ import {
   dehydrate
 } from '@tanstack/react-query'
 import { useGetHanYuUnits } from '@/lib/react-query/queries'
-import Units from './_components/units'
-import Link from 'next/link'
+import Lessons from './_components/lessons'
 
 interface HanYuUnitPageProps {
   params: {
@@ -39,7 +38,7 @@ const HanYuUnitPage = async ({ params }: HanYuUnitPageProps) => {
     <HydrationBoundary state={dehydrate(queryClient)}>
       <main>
         <div className=' container mx-auto'>
-          <Units bookId={params.bookId} />
+          <Lessons bookId={params.bookId} />
         </div>
       </main>
     </HydrationBoundary>
