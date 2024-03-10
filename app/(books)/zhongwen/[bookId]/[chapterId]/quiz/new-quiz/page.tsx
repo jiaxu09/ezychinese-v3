@@ -6,6 +6,7 @@ import {
   dehydrate
 } from '@tanstack/react-query'
 import { useGetCorrectOrderByChapter } from '@/lib/react-query/queries'
+import HanziPinyinConverter from '@/components/hanzi-pinyin-converter'
 
 interface QuizFormProps {
   params: {
@@ -22,9 +23,12 @@ const QuizFormPage = async ({ params }: QuizFormProps) => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <div className='grid w-full grid-cols-3 '>
+      <div className='grid w-full grid-cols-3 gap-8'>
         <div className=' col-span-2'>
           <QuizFormTabs bookId={params.bookId} chapterId={params.chapterId} />
+        </div>
+        <div>
+          <HanziPinyinConverter />
         </div>
       </div>
     </HydrationBoundary>

@@ -40,3 +40,31 @@ export const getHanziMeaning = async (character: string) => {
     throw Error
   }
 }
+
+export const pinyinTone = async (words: string[]) => {
+  const response = await fetch('/api/pinyin', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(words),
+  })
+
+  return (await response.json()) as string[]
+}
+
+export const convertHanziToPinyin = async (words: string) => {
+  try {
+    const response = await fetch('/api/pinyinpro', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(words),
+    })
+
+    return (await response.json()) as string[]
+  } catch (error) {
+    return []
+  }
+}

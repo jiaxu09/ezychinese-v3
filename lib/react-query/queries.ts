@@ -75,7 +75,12 @@ import {
   getVideoByChapter,
   getWordsByChapter,
 } from '../graphql/api'
-import { getHanziDictionary, getHanziEnglish, getHanziMeaning } from '../api'
+import {
+  getHanziDictionary,
+  getHanziEnglish,
+  getHanziMeaning,
+  pinyinTone,
+} from '../api'
 import {
   addChineseIdiom,
   addChineseRadical,
@@ -106,6 +111,15 @@ export const useGetSpeech = (word: string, enabled: boolean) => {
     cacheTime: 15 * (60 * 1000) * 6 * 24, // 1day
   }
 }
+
+//convert hanzi to pinyin
+export const useGetPinYin = (words: string[]) => {
+  return {
+    queryKey: [QUERY_KEYS.GETPINYIN, words],
+    queryFn: () => pinyinTone(words),
+  }
+}
+
 //Chinese Radicals
 export const useAddChineseRadical = () => {
   const queryClient = useQueryClient()
