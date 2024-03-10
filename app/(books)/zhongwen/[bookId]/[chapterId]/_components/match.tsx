@@ -1,5 +1,8 @@
 'use client'
-import { useGetLiteracyByChapter } from '@/lib/react-query/queries'
+import {
+  useGetLiteracyByChapter,
+  useGetPinYin
+} from '@/lib/react-query/queries'
 import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
@@ -28,8 +31,6 @@ const Match = ({ bookId, chapterId }: MatchProps) => {
   const [choiceTwo, setChoiceTwo] = useState<Card | null>(null)
   const [disabled, setDisabled] = useState(false)
 
-  const [pinyins, setPinyins] = useState<string[]>([])
-
   const { data, isFetched } = useQuery(
     useGetLiteracyByChapter(`${bookId}-${chapterId}`)
   )
@@ -38,33 +39,18 @@ const Match = ({ bookId, chapterId }: MatchProps) => {
     notFound()
   }
 
+  const { data: pinyins } = useQuery(useGetPinYin(data?.questions!))
+
   const random_numbers = Array.from(Array(data?.answers.length).keys())
-    .map((value) => ({ value, sort: Math.random() }))
+    .map(value => ({ value, sort: Math.random() }))
     .sort((a, b) => a.sort - b.sort)
     .map(({ value }) => value)
     .slice(0, 6)
 
-  const convertPinyin = async (pinyin: string[]) => {
-    const response = await fetch('/api/pinyin', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(pinyin),
-    })
-
-    const pinyins = (await response.json()) as string[]
-    setPinyins(pinyins)
-  }
-  useEffect(() => {
-    convertPinyin(data?.questions!)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
   useEffect(() => {
     let controller = new AbortController()
 
-    if (pinyins.length > 0) {
+    if (pinyins && pinyins.length > 0) {
       const shuffledCards = [...data?.answers!, ...pinyins]
         .map((character, index) => ({
           character,
@@ -74,9 +60,9 @@ const Match = ({ bookId, chapterId }: MatchProps) => {
             index > data?.answers?.length! - 1
               ? index - data?.answers?.length!
               : index,
-          pinyin: index > data?.answers.length! - 1,
+          pinyin: index > data?.answers.length! - 1
         }))
-        .filter((obj) => random_numbers.includes(obj.match))
+        .filter(obj => random_numbers.includes(obj.match))
         .sort(() => Math.random() - 0.5)
       setCards(shuffledCards)
     }
@@ -89,7 +75,7 @@ const Match = ({ bookId, chapterId }: MatchProps) => {
 
   useEffect(() => {
     let timeout: NodeJS.Timeout | undefined
-    if (cards && cards.every((card) => card.matched === true)) {
+    if (cards && cards.every(card => card.matched === true)) {
       timeout = setTimeout(() => setGameFinished(true), 1500)
     }
     return () => {
@@ -102,7 +88,7 @@ const Match = ({ bookId, chapterId }: MatchProps) => {
     if (choiceOne && choiceTwo) {
       setDisabled(true)
       if (choiceOne.match === choiceTwo.match) {
-        setCards((prevCards) => {
+        setCards(prevCards => {
           // @ts-ignore
           return prevCards.map((card: Card) => {
             if (card.match === choiceOne.match) {
@@ -137,49 +123,49 @@ const Match = ({ bookId, chapterId }: MatchProps) => {
   return (
     <>
       {gameFinished ? (
-        <div className="flex items-center justify-center">
-          <div className="w-full md:w-1/3">
+        <div className='flex items-center justify-center '>
+          <div className='w-full animate-fade md:w-2/3'>
             <WellDone />
           </div>
         </div>
       ) : (
-        <div className="w-full md:w-2/3 mx-auto grid grid-cols-3 place-items-center gap-4 md:grid-cols-4 py-4">
+        <div className='mx-auto grid w-full grid-cols-3 place-items-center gap-4 py-4 md:w-2/3 md:grid-cols-4'>
           {cards?.map((card, index) => {
             let flipped =
               card === choiceOne || card === choiceTwo || card.matched
             return (
               <button
                 disabled={disabled}
-                className={`w-24 h-24 rounded-lg ${flipped ? 'flipped' : ''} `}
+                className={`h-24 w-24 rounded-lg ${flipped ? 'flipped' : ''} `}
                 key={index}
-                onClick={(e) => {
+                onClick={e => {
                   e.preventDefault()
                   handleChoice(card)
                 }}
-                aria-label="match game"
+                aria-label='match game'
               >
-                <div className="inner relative w-24 h-24 ">
-                  <div className="front">
-                    <div className="text-3xl font-medium">
+                <div className='inner relative h-24 w-24 '>
+                  <div className='front'>
+                    <div className='text-3xl font-medium'>
                       {card.pinyin ? (
-                        <div className="bg-crayola rounded-lg w-24 h-24 flex items-center justify-center">
+                        <div className='flex h-24 w-24 items-center justify-center rounded-lg bg-crayola'>
                           {card.character}
                         </div>
                       ) : (
-                        <div className="bg-pewterblue rounded-lg w-24 h-24 flex items-center justify-center">
+                        <div className='flex h-24 w-24 items-center justify-center rounded-lg bg-pewterblue'>
                           {card.character}
                         </div>
                       )}
                     </div>
                   </div>
-                  <div className="m-back bg-accent transition-all duration-500 ease-in-out p-2">
+                  <div className='m-back bg-accent p-2 transition-all duration-500 ease-in-out'>
                     <Image
                       src={supabaseUrl('images/logo.webp')}
                       width={180}
                       height={163}
-                      alt="ezyChinese match game"
+                      alt='ezyChinese match game'
                       priority
-                      sizes="33vw"
+                      sizes='33vw'
                     />
                   </div>
                 </div>

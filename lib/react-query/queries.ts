@@ -106,6 +106,27 @@ export const useGetSpeech = (word: string, enabled: boolean) => {
     cacheTime: 15 * (60 * 1000) * 6 * 24, // 1day
   }
 }
+
+const convertHanziToPinyin = async (words: string[]) => {
+  const response = await fetch('/api/pinyin', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(words),
+  })
+
+  return (await response.json()) as string[]
+}
+
+//convert hanzi to pinyin
+export const useGetPinYin = (words: string[]) => {
+  return {
+    queryKey: [QUERY_KEYS.GETPINYIN, words],
+    queryFn: () => convertHanziToPinyin(words),
+  }
+}
+
 //Chinese Radicals
 export const useAddChineseRadical = () => {
   const queryClient = useQueryClient()
