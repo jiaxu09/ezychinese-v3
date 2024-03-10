@@ -2,6 +2,7 @@ import Unauthorized from '@/components/unauthorized'
 import { supabaseServer } from '@/lib/supabase/server'
 import React from 'react'
 import NewQuiz from '../_components/new-quiz/new-quiz'
+import HanziPinyinConverter from '@/components/hanzi-pinyin-converter'
 
 interface NewQuizPageProps {
   params: {
@@ -24,6 +25,9 @@ const NewQuizPage = async ({ params }: NewQuizPageProps) => {
     <div className='grid grid-cols-3 '>
       <div className=' col-span-2'>
         <NewQuiz bookId={params.bookId} chapterId={params.chapterId} />
+      </div>
+      <div>
+        <HanziPinyinConverter />
       </div>
     </div>
   )

@@ -1,5 +1,6 @@
 import React from 'react'
 import NewPractices from './_components/new-practices'
+import HanziPinyinConverter from '@/components/hanzi-pinyin-converter'
 
 interface NewPracticesPageProps {
   params: {
@@ -12,6 +13,9 @@ const NewPracticesPage = ({ params }: NewPracticesPageProps) => {
     <div className=' grid grid-cols-3'>
       <div className=' col-span-2'>
         <NewPractices bookId={params.bookId} chapterId={params.chapterId} />
+      </div>
+      <div>
+        <HanziPinyinConverter />
       </div>
     </div>
   )

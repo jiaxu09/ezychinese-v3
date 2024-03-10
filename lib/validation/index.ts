@@ -1,5 +1,10 @@
 import * as z from 'zod'
 
+//Hanzi To Pinyin
+export const HanziToPinyinValidation = z.object({
+  hanzi: z.string().min(1, { message: 'Hanzi is required.' }),
+})
+
 export const RadicalValidation = z.object({
   background: z.custom<File[]>(),
   name: z.string().min(1, { message: 'Radical is required.' }),

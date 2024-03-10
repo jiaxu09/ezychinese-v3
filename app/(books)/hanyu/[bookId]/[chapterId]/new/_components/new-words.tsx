@@ -16,7 +16,6 @@ import {
 import { Input } from '@/components/ui/input'
 import SubmitButton from '@/components/submit-button'
 import { HanYuWord } from '@/lib/types'
-import { supabaseBrowser } from '@/lib/supabase/browser'
 import {
   useAddHanYuWords,
   useDeleteHanYuWord,
