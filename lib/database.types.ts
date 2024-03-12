@@ -271,6 +271,7 @@ export type Database = {
         Row: {
           background_url: string | null
           created_at: string
+          eng_meaning: string
           example: string[]
           example_meaning: string
           example_pinyin: string[]
@@ -278,10 +279,12 @@ export type Database = {
           idiom_meaning: string | null
           idiom_pinyin: string[]
           name: string[]
+          user_id: string
         }
         Insert: {
           background_url?: string | null
           created_at?: string
+          eng_meaning: string
           example: string[]
           example_meaning: string
           example_pinyin: string[]
@@ -289,10 +292,12 @@ export type Database = {
           idiom_meaning?: string | null
           idiom_pinyin: string[]
           name: string[]
+          user_id: string
         }
         Update: {
           background_url?: string | null
           created_at?: string
+          eng_meaning?: string
           example?: string[]
           example_meaning?: string
           example_pinyin?: string[]
@@ -300,6 +305,7 @@ export type Database = {
           idiom_meaning?: string | null
           idiom_pinyin?: string[]
           name?: string[]
+          user_id?: string
         }
         Relationships: []
       }

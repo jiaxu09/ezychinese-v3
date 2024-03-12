@@ -25,9 +25,12 @@ export interface IRadical {
 }
 
 export interface IIdiom {
+  id?: string
+  user_id?: string
   name: string[]
   idiom_pinyin: string[]
-  idiom_meaning?: string
+  idiom_meaning?: string | undefined | null
+  eng_meaning: string
   example: string[]
   example_pinyin: string[]
   example_meaning: string

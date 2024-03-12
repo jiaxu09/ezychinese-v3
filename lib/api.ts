@@ -68,3 +68,32 @@ export const convertHanziToPinyin = async (words: string) => {
     return []
   }
 }
+
+export const fetchIciba = async (searchedPhrases: string) => {
+  try {
+    const response = await fetch(`/api/iciba-idiom?text=${searchedPhrases}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
+    return await response.json()
+  } catch (error) {
+    return null
+  }
+}
+export const fetchIdiom = async (searchedPhrases: string) => {
+  try {
+    const response = await fetch(`/api/idiom?text=${searchedPhrases}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
+    return await response.json()
+  } catch (error) {
+    return null
+  }
+}

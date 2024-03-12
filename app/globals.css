@@ -317,8 +317,8 @@
   --color2: #88c0d0;
   --color3: #5e81ac;
   --color4: #bf616a;
-  --color5: #D08770;
-  --color6: #EBCB8B;
+  --color5: #d08770;
+  --color6: #ebcb8b;
   --finalSize: 35vmin;
   left: 50%;
   top: 20%;
@@ -333,12 +333,12 @@
 .firework:nth-child(5),
 .firework:nth-child(5)::before,
 .firework:nth-child(5)::after {
-  --color1: #B48EAD;
-  --color2: #A3BE8C;
+  --color1: #b48ead;
+  --color2: #a3be8c;
   --color3: #5e81ac;
-  --color4: #5E81AC;
-  --color5: #D08770;
-  --color6: #EBCB8B;
+  --color4: #5e81ac;
+  --color5: #d08770;
+  --color6: #ebcb8b;
   --finalSize: 35vmin;
   left: 43%;
   top: 39%;
@@ -346,3 +346,81 @@
 }
 
 /**********End of Firework*****/
+
+/**********Loading************/
+.lds-grid {
+  display: inline-block;
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+.lds-grid div {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  animation: lds-grid 1.2s linear infinite;
+}
+.lds-grid div:nth-child(1) {
+  top: 8px;
+  left: 8px;
+  background: #8fbcbb;
+  animation-delay: 0s;
+}
+.lds-grid div:nth-child(2) {
+  top: 8px;
+  left: 32px;
+  background: #bf616a;
+  animation-delay: -0.4s;
+}
+.lds-grid div:nth-child(3) {
+  background: #a3be8c;
+  top: 8px;
+  left: 56px;
+  animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(4) {
+  background: #b48ead;
+  top: 32px;
+  left: 8px;
+  animation-delay: -0.4s;
+}
+.lds-grid div:nth-child(5) {
+  background: #5e81ac;
+  top: 32px;
+  left: 32px;
+  animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(6) {
+  background: #ebcb8b;
+  top: 32px;
+  left: 56px;
+  animation-delay: -1.2s;
+}
+.lds-grid div:nth-child(7) {
+  background: #d08770;
+  top: 56px;
+  left: 8px;
+  animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(8) {
+  background: #81a1c1;
+  top: 56px;
+  left: 32px;
+  animation-delay: -1.2s;
+}
+.lds-grid div:nth-child(9) {
+  background: #88C0D0;
+  top: 56px;
+  left: 56px;
+  animation-delay: -1.6s;
+}
+@keyframes lds-grid {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
