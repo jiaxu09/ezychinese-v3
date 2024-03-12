@@ -43,6 +43,7 @@ const Idioms = () => {
   }
 
   const handleSearch = async () => {
+    setIdiom(undefined)
     setLoading(true)
 
     if (searchedPhrase.length === 0) {
@@ -60,9 +61,9 @@ const Idioms = () => {
     }
     let result
     if (searchSource === 0) {
-      result = await fetchIciba(searchedPhrase)
+      result = (await fetchIciba(searchedPhrase)) as IIdiom
     } else {
-      result = await fetchIdiom(searchedPhrase)
+      result = (await fetchIdiom(searchedPhrase)) as IIdiom
     }
 
     try {
@@ -73,32 +74,7 @@ const Idioms = () => {
           variant: 'destructive'
         })
       } else {
-        if (searchSource === 0) {
-          let example_pinyin: string[] = []
-          if (result.new_sentence && result.new_sentence[0]) {
-            example_pinyin = await convertHanziToPinyin(
-              result.new_sentence[0]?.sentences[0].cn
-            )
-          }
-          setIdiom({
-            example:
-              result.new_sentence &&
-              result.new_sentence[0]?.sentences[0].cn.split(''),
-            example_meaning:
-              result.new_sentence && result.new_sentence[0]?.sentences[0].en,
-            example_pinyin: example_pinyin,
-            idiom_meaning: result.ci.ciyi,
-            idiom_pinyin: result?.ci.pinyin.split(' '),
-            name: result?.baesInfo?.word_name.split('')
-          })
-        } else {
-          let example_pinyin: string[] = []
-          if (result.example && result.example.length > 0) {
-            example_pinyin = await convertHanziToPinyin(result.example)
-          }
-          const item: IIdiom = result
-          setIdiom(item)
-        }
+        setIdiom(result)
       }
     } catch (error) {
       setLoading(false)
@@ -165,6 +141,7 @@ const Idioms = () => {
             <p className='py-6 text-lg'>Searched result</p>
             <div className='grid-cols-4 gap-6 md:grid-cols-12 md:gap-10'>
               <Idiom
+                eng_meaning={idiom.eng_meaning}
                 isEdit={isEdit}
                 isSaved={false}
                 example={idiom.example}
@@ -188,6 +165,7 @@ const Idioms = () => {
                       className='flex items-center justify-center p-2 md:p-8 '
                     >
                       <Idiom
+                        eng_meaning={idiom.eng_meaning}
                         isEdit={isEdit}
                         id={idiom.id}
                         background_url={idiom.background_url}
@@ -229,7 +207,9 @@ const Idioms = () => {
           >
             Edit
           </Switch>
-          <Label htmlFor='edit-mode'>Edit Mode</Label>
+          <Label className='ml-2' htmlFor='edit-mode'>
+            Edit Mode
+          </Label>
         </div>
       )}
     </div>

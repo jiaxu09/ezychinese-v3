@@ -71,14 +71,14 @@ export const convertHanziToPinyin = async (words: string) => {
 
 export const fetchIciba = async (searchedPhrases: string) => {
   try {
-    const response = await fetch(`/api/iciba?text=${searchedPhrases}`, {
+    const response = await fetch(`/api/iciba-idiom?text=${searchedPhrases}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
     })
 
-    return (await response.json()) 
+    return await response.json()
   } catch (error) {
     return null
   }
@@ -92,7 +92,7 @@ export const fetchIdiom = async (searchedPhrases: string) => {
       },
     })
 
-    return (await response.json()) 
+    return await response.json()
   } catch (error) {
     return null
   }

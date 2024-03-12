@@ -1,4 +1,6 @@
+import { IIdiom } from '@/lib/types'
 import { NextRequest, NextResponse } from 'next/server'
+import { pinyin } from 'pinyin-pro'
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
@@ -33,10 +35,26 @@ export async function GET(req: NextRequest) {
       })
     }
 
+    const { jieshi, pinyin: pinyin_org } = ci
+    const { symbols, word_name } = baesInfo
+    const { parts } = symbols[0]
+    const { means } = parts[0]
+    const { sentences } = new_sentence[0]
+    const { cn, en } = sentences[0]
+
+    const idiom: IIdiom = {
+      name: word_name.split(''),
+      idiom_pinyin: pinyin_org.split(' '),
+      idiom_meaning: jieshi,
+      eng_meaning: means.toString(),
+      example: cn.split(''),
+      example_pinyin: pinyin(cn, { type: 'array' }),
+      example_meaning: en,
+    }
+
     //Return the content of the data file in json format
-    return NextResponse.json({ ci, baesInfo, new_sentence })
+    return NextResponse.json(idiom)
   } catch (error) {
-    console.log('[Iciba_GET]', error)
     return new NextResponse('Internal Error', {
       status: 500,
     })

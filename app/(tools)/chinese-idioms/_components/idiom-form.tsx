@@ -28,7 +28,6 @@ type IdiomFormProps = {
 
 const IdiomForm = ({ idiom, action }: IdiomFormProps) => {
   const user = useUser(state => state.user)
-
   const {
     mutate: updateChineseIdiom,
     error: updatedError,
@@ -41,6 +40,7 @@ const IdiomForm = ({ idiom, action }: IdiomFormProps) => {
       name: idiom ? idiom?.name.join('') : '',
       idiom_pinyin: idiom ? idiom?.idiom_pinyin.join(' ') : '',
       idiom_meaning: idiom ? idiom?.idiom_meaning : '',
+      eng_meaning: idiom ? idiom?.eng_meaning : '',
       background: [],
       example: idiom ? idiom.example.join('') : '',
       example_pinyin: idiom ? idiom?.example_pinyin.join(' ') : '',
@@ -82,6 +82,7 @@ const IdiomForm = ({ idiom, action }: IdiomFormProps) => {
       name: value.name.split(''),
       idiom_pinyin: value.idiom_pinyin.replace(/,\s*$/, '').split(' '),
       idiom_meaning: value.idiom_meaning,
+      eng_meaning: value.eng_meaning,
       background_url: backgroundUrl,
       example: value.example.replace(/,\s*$/, '').split(''),
       example_pinyin: value.example_pinyin.replace(/,\s*$/, '').split(' '),

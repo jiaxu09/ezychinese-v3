@@ -28,7 +28,7 @@ export async function GET(req: NextRequest) {
 
     //Return the content of the data file in json format
   } catch (error) {
-    console.log('[Dictionary_GET]', error)
+    console.log('[Youdao_GET]', error)
     return new NextResponse('Internal Error', {
       status: 500,
     })

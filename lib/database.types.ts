@@ -271,6 +271,7 @@ export type Database = {
         Row: {
           background_url: string | null
           created_at: string
+          eng_meaning: string
           example: string[]
           example_meaning: string
           example_pinyin: string[]
@@ -283,6 +284,7 @@ export type Database = {
         Insert: {
           background_url?: string | null
           created_at?: string
+          eng_meaning: string
           example: string[]
           example_meaning: string
           example_pinyin: string[]
@@ -295,6 +297,7 @@ export type Database = {
         Update: {
           background_url?: string | null
           created_at?: string
+          eng_meaning?: string
           example?: string[]
           example_meaning?: string
           example_pinyin?: string[]

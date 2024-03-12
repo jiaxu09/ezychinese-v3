@@ -21,6 +21,7 @@ interface IdiomCardProps {
   example: string[]
   example_pinyin: string[]
   example_meaning: string
+  eng_meaning: string
 }
 const IdiomCard = ({
   isSaved,
@@ -30,7 +31,8 @@ const IdiomCard = ({
   idiom_meaning,
   example,
   example_pinyin,
-  example_meaning
+  example_meaning,
+  eng_meaning
 }: IdiomCardProps) => {
   const user = useUser(state => state.user)
   const [isSaveIdiom, setSavedIdiom] = useState(false)
@@ -58,6 +60,7 @@ const IdiomCard = ({
     const item: IIdiom = {
       name,
       idiom_pinyin,
+      eng_meaning,
       idiom_meaning,
       example,
       example_pinyin,
@@ -79,7 +82,7 @@ const IdiomCard = ({
     <div className=' relative flex flex-col items-center '>
       <div className='grid h-full  w-full grid-rows-2 rounded-lg'>
         <div className='h-full w-full bg-pastelblue'>
-          <div className='flex flex-col items-center justify-center space-y-4 py-16 md:py-20 '>
+          <div className='flex flex-col items-center justify-center space-y-4 py-10 md:py-10 '>
             <div className='flex items-center gap-4'>
               {name.map((character, index) => (
                 <ruby key={index}>
@@ -92,10 +95,13 @@ const IdiomCard = ({
                 </ruby>
               ))}
             </div>
-            <div className='text-lg italic md:text-2xl'>{idiom_meaning}</div>
+            <div className='text-lg  md:text-3xl'>{idiom_meaning}</div>
+            <div className=' w-[90%] text-center text-lg italic md:text-xl'>
+              {eng_meaning}
+            </div>
           </div>
         </div>
-        <div className='flex h-full w-full flex-col items-center justify-start bg-skyblue px-2 py-12'>
+        <div className='flex h-full w-full flex-col items-center justify-start bg-skyblue px-2 py-8'>
           <div className=' flex w-full flex-wrap items-center justify-center gap-4 text-center'>
             {example_pinyin?.length > 0 &&
               example?.map((char, index) => (

@@ -14,6 +14,7 @@ interface IdiomProps {
   example_pinyin: string[]
   idiom_meaning?: string | undefined | null
   idiom_pinyin: string[]
+  eng_meaning: string
   name: string[]
   id?: string
 }
@@ -25,6 +26,7 @@ const Idiom = ({
   example_pinyin,
   idiom_meaning,
   idiom_pinyin,
+  eng_meaning,
   name,
   id,
   isSaved
@@ -41,6 +43,7 @@ const Idiom = ({
             <IdiomForm
               action='Edit'
               idiom={{
+                eng_meaning,
                 name,
                 idiom_meaning,
                 idiom_pinyin,
@@ -64,6 +67,7 @@ const Idiom = ({
             example={example}
             example_pinyin={example_pinyin}
             example_meaning={example_meaning}
+            eng_meaning={eng_meaning}
           />
         </DialogContent>
       )}
