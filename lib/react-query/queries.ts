@@ -34,6 +34,7 @@ import {
   addHanYuWriting,
   deleteCSOLSelectRightChoice,
   deleteCSOLSelectWordOrderWords,
+  deleteChineseIdiom,
   deleteHanYuMultipleChoice,
   deleteHanYuMultipleChoiceListening,
   deleteHanYuSelectRightPinyin,
@@ -44,6 +45,8 @@ import {
   getCSOLOrderWordsByChapter,
   getCSOLSelectRightChoiceByChapter,
   getCSOLSelectWordByChapter,
+  getChineseIdiomByUserId,
+  getChineseIdiomsByUserId,
   getHanYuMultipleChoiceByChapter,
   getHanYuMultipleChoiceListeningByChapter,
   getHanYuSelectRightPinyinByChapter,
@@ -166,48 +169,64 @@ export const useGetChineseRadicals = (page: number) => {
 //End of Chinese Radicals
 
 //Chinese Idioms
-export const useAddChineseIdiom = () => {
+export const useSaveChineseIdiom = (name: string[], userId?: string) => {
   const queryClient = useQueryClient()
   const { toast } = useToast()
   return useMutation({
     mutationFn: (item: IIdiom) => addChineseIdiom(item),
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.GETCHINESEIDIOMS],
-      })
-      toast({
-        title: 'Cool! Idiom created successfully. ',
-        variant: 'success',
-      })
+      queryClient.refetchQueries({
+        queryKey: [QUERY_KEYS.GETCHINESEIDIOMS, userId],
+      }),
+        toast({
+          title: 'Cool! Idiom created successfully. ',
+          variant: 'success',
+        })
     },
   })
 }
 
-export const useUpdateChineseIdiom = (id: string | null) => {
+export const useUpdateChineseIdiom = (id: string | null, userId?: string) => {
   const queryClient = useQueryClient()
   const { toast } = useToast()
   return useMutation({
     mutationFn: (item: IIdiom) => updateChineseIdiom(item, id),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.GETCHINESEIDIOMS],
+        queryKey: [QUERY_KEYS.GETCHINESEIDIOMS, userId],
+      }),
+        toast({
+          title: 'Cool! Idiom updated successfully. ',
+          variant: 'success',
+        })
+    },
+  })
+}
+
+export const useGetChineseIdiomsByUserId = (userId?: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETCHINESEIDIOMS, userId],
+    queryFn: () => getChineseIdiomsByUserId(userId),
+    enabled: !!userId,
+  }
+}
+
+export const useDeleteChineseIdiom = (userId?: string) => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (id?: string) => deleteChineseIdiom(id, userId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETCHINESEIDIOMS, userId],
       })
       toast({
-        title: 'Cool! Idiom updated successfully. ',
+        title: 'Cool! Idiom removed successfully. ',
         variant: 'success',
       })
     },
   })
 }
-
-export const useGetChineseIdioms = (page: number) => {
-  return {
-    queryKey: [QUERY_KEYS.GETCHINESEIDIOMS, page],
-    queryFn: () => getChineseIdioms(page),
-    placeholderData: keepPreviousData,
-  }
-}
-
 //End of Chinese Idioms
 
 //Pinyin

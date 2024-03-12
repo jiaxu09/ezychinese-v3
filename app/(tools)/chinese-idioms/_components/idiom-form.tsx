@@ -13,17 +13,13 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import FileUploader from '@/components/file-uploader'
 import supabaseUrl from '@/lib/utils'
 import { supabaseBrowser } from '@/lib/supabase/browser'
 import { IIdiom } from '@/lib/types'
 
-import {
-  useAddChineseIdiom,
-  useUpdateChineseIdiom
-} from '@/lib/react-query/queries'
-import Image from 'next/image'
+import { useUpdateChineseIdiom } from '@/lib/react-query/queries'
 import SubmitButton from '@/components/submit-button'
+import { useUser } from '@/lib/store/user'
 
 type IdiomFormProps = {
   idiom?: any
@@ -31,17 +27,13 @@ type IdiomFormProps = {
 }
 
 const IdiomForm = ({ idiom, action }: IdiomFormProps) => {
-  const {
-    mutate: addChineseIdiom,
-    error: createdError,
-    isPending: createdPeding
-  } = useAddChineseIdiom()
+  const user = useUser(state => state.user)
 
   const {
     mutate: updateChineseIdiom,
     error: updatedError,
     isPending: updatedPending
-  } = useUpdateChineseIdiom(idiom?.id)
+  } = useUpdateChineseIdiom(idiom?.id, user?.id)
 
   const form = useForm<z.infer<typeof IdiomValidation>>({
     resolver: zodResolver(IdiomValidation),
@@ -61,6 +53,8 @@ const IdiomForm = ({ idiom, action }: IdiomFormProps) => {
   )
 
   const handleSubmit = async (value: z.infer<typeof IdiomValidation>) => {
+    if (!user || user.role !== 'admin') return
+
     const file = value.background[0]
     const regex = /\/ezyChinese\/(.*?)$/
     const match = fileUrl.match(regex)
@@ -91,17 +85,13 @@ const IdiomForm = ({ idiom, action }: IdiomFormProps) => {
       background_url: backgroundUrl,
       example: value.example.replace(/,\s*$/, '').split(''),
       example_pinyin: value.example_pinyin.replace(/,\s*$/, '').split(' '),
-      example_meaning: value.example_meaning?.replace(/,\s*$/, '')
+      example_meaning: value.example_meaning?.replace(/,\s*$/, ''),
+      user_id: user?.id
     }
-    if (action === 'Create') {
-      //save radical to DB
-      await addChineseIdiom(item)
-    }
-    //Update to DB
+
     if (action === 'Edit') {
       await updateChineseIdiom(item)
     }
-    form.reset()
     setFileUrl('')
   }
 
@@ -209,14 +199,9 @@ const IdiomForm = ({ idiom, action }: IdiomFormProps) => {
             </FormItem>
           )}
         /> */}
-        {createdError && (
-          <FormMessage className='text-error h-2 text-center'>
-            Something went wrong!
-          </FormMessage>
-        )}
         <SubmitButton
           type='idiom'
-          createdPeding={createdPeding}
+          createdPeding={false}
           updatedPending={updatedPending}
         />
       </form>

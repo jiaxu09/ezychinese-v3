@@ -278,6 +278,7 @@ export type Database = {
           idiom_meaning: string | null
           idiom_pinyin: string[]
           name: string[]
+          user_id: string
         }
         Insert: {
           background_url?: string | null
@@ -289,6 +290,7 @@ export type Database = {
           idiom_meaning?: string | null
           idiom_pinyin: string[]
           name: string[]
+          user_id: string
         }
         Update: {
           background_url?: string | null
@@ -300,6 +302,7 @@ export type Database = {
           idiom_meaning?: string | null
           idiom_pinyin?: string[]
           name?: string[]
+          user_id?: string
         }
         Relationships: []
       }

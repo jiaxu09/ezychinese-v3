@@ -81,6 +81,57 @@ export const updateChineseIdiom = async (item: IIdiom, id: string | null) => {
   updateTool(item, id, 'idioms')
 }
 
+export const getChineseIdiomsByUserId = async (user_id?: string) => {
+  if (!user_id) return null
+
+  try {
+    const supabase = supabaseServer()
+    const { data, error } = await supabase
+      .from('idioms')
+      .select('*')
+      .eq('user_id', user_id)
+
+    return data
+  } catch (error) {
+    return null
+  }
+}
+
+export const getChineseIdiomByUserId = async (
+  name: string[],
+  user_id?: string
+) => {
+  if (!user_id) return null
+
+  try {
+    const supabase = supabaseServer()
+    const { data, error } = await supabase
+      .from('idioms')
+      .select('name')
+      // .eq('name', name)
+      .eq('user_id', user_id)
+
+    //since JavaScript compares objects by reference, not value.
+    const result = data?.some(
+      (item) => JSON.stringify(item.name) === JSON.stringify(name)
+    )
+    return result
+  } catch (error) {
+    return null
+  }
+}
+
+export const deleteChineseIdiom = async (id?: string, userId?: string) => {
+  if (!userId || !id) return
+  try {
+    const supabase = supabaseServer()
+    await supabase.from('idioms').delete().eq('id', id)
+  } catch (error) {
+    throw Error
+  }
+}
+
+//Auth
 export const getAuth = async () => {
   const supabase = supabaseServer()
   const { data, error } = await supabase.auth.getSession()
@@ -123,8 +174,20 @@ export const getChineseRadicals = async (page: number) => {
   return getTool(page, 'radicals')
 }
 
-export const getChineseIdioms = async (page: number) => {
-  return getTool(page, 'idioms')
+export const getChineseIdioms = async (userId?: string) => {
+  try {
+    if (!userId) return null
+    const supabase = supabaseServer()
+    const { data } = await supabase
+      .from('idioms')
+      .select('*', { count: 'exact' })
+      .eq('user_id', userId)
+      .order('name', { ascending: true })
+
+    return { data }
+  } catch (error) {
+    return null
+  }
 }
 
 //Quiz Form

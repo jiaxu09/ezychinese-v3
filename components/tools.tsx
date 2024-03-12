@@ -6,56 +6,59 @@ import supabaseUrl, { rgbDataURL } from '@/lib/utils'
 
 const Tools = () => {
   return (
-    <div className="relative w-full py-4 md:py-10">
-      <div className=" relative grid grid-cols-3 md:flex md:flex-col md:items-center md:justify-center">
-        <h1 className=" flex flex-col justify-end text-3xl md:text-4xl p-10 md:absolute md:top-10 md:left-20">
+    <div className='relative w-full py-4 md:py-10'>
+      <div className=' relative grid grid-cols-3 md:flex md:flex-col md:items-center md:justify-center'>
+        <h1 className=' flex flex-col justify-end p-10 text-3xl md:absolute md:left-20 md:top-10 md:text-4xl'>
           Tools
         </h1>
-        <div className=" grid grid-rows-3 md:w-2/3 md:h-52 md:flex md:justify-center md:items-center ">
-          <div className=" flex items-center justify-start md:w-1/3 md:h-full lg:translate-x-2 xl:translate-x-20 lg:translate-y-32">
+        <div className=' grid grid-rows-3 md:flex md:h-52 md:w-2/3 md:items-center md:justify-center '>
+          <div className=' flex items-center justify-start md:h-full md:w-1/3 lg:translate-x-2 lg:translate-y-32 xl:translate-x-20'>
             <Link
-              href="/chinese-radicals"
-              className=" w-3/4 h-3/4 md:w-2/3 flex flex-col space-y-2 items-center justify-center bg-skyblue rounded-lg shadow-md hover:bg-skyblue/80 "
+              href='/chinese-radicals'
+              className=' flex h-3/4 w-3/4 flex-col items-center justify-center space-y-2 rounded-lg bg-skyblue shadow-md hover:bg-skyblue/80 md:w-2/3 '
             >
-              <Pen className="w-5 h-5 md:w-8 md:h-8 text-primary" />
-              <h1 className=" text-sm md:text-lg text-center font-semibold text-primary ">
+              <Pen className='h-5 w-5 text-primary md:h-8 md:w-8' />
+              <h1 className='mx-auto w-2/3 text-center text-sm font-semibold text-primary md:text-lg '>
                 Chinese Radicals
               </h1>
             </Link>
           </div>
-          <div className="relative flex items-center justify-center translate-x-6 md:translate-x-0 md:w-1/3 md:h-full md:translate-y-10">
+          <div className='relative flex translate-x-6 items-center justify-center md:h-full md:w-1/3 md:translate-x-0 md:translate-y-10'>
             <Link
-              href="/chinese-idioms"
-              className="w-3/4 h-3/4 md:w-2/3  flex flex-col items-center justify-center bg-crayola rounded-lg shadow-md rotate-12 hover:bg-crayola/80"
+              href='/chinese-idioms'
+              className='flex h-3/4 w-3/4  rotate-12 flex-col items-center justify-center rounded-lg bg-crayola shadow-md hover:bg-crayola/80 md:w-2/3'
             >
-              <BookOpenText className="w-5 h-5 md:w-8 md:h-8  text-primary" />
-              <h1 className="text-sm md:text-lg -rotate-12 text-center font-semibold w-2/3 mx-auto text-primary">
+              <BookOpenText className='h-5 w-5 text-primary md:h-8  md:w-8' />
+              <h1 className='mx-auto w-2/3 -rotate-12 text-center text-sm font-semibold text-primary md:text-lg'>
                 Chinese Idioms
               </h1>
             </Link>
-            <div className=" absolute translate-x-16 translate-y-10 md:translate-x-0 md:translate-y-0 md:-bottom-2 md:left-10 ">
-              <div className="w-8 h-8 md:w-12 md:h-12 relative">
+            <div className=' absolute translate-x-16 translate-y-10 md:-bottom-2 md:left-10 md:translate-x-0 md:translate-y-0 '>
+              <div className='relative h-8 w-8 md:h-10 md:w-10'>
                 <Image
                   src={supabaseUrl('images/circle.webp')}
                   width={48}
                   height={48}
-                  alt="circle"
+                  alt='circle'
                   priority
-                  sizes="33vw"
+                  sizes='33vw'
                 />
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-end translate-x-12 lg:-translate-x-2 xl:-translate-x-20 md:w-1/3 md:h-full ">
-            <Link href='/pinyin/initials' className="w-3/4 h-3/4 md:w-2/3 flex flex-col items-center justify-center bg-green rounded-lg shadow-md hover:bg-green/80">
-              <NotebookPen className="w-5 h-5 md:w-8 md:h-8  text-primary" />
-              <h1 className="text-sm md:text-lg text-center font-semibold  text-primary">
+          <div className='flex translate-x-12 items-center justify-end md:h-full md:w-1/3 lg:-translate-x-2 xl:-translate-x-20 '>
+            <Link
+              href='/pinyin/initials'
+              className='flex h-3/4 w-3/4 flex-col items-center justify-center rounded-lg bg-green shadow-md hover:bg-green/80 md:w-2/3'
+            >
+              <NotebookPen className='h-5 w-5 text-primary md:h-8  md:w-8' />
+              <h1 className='text-center text-sm font-semibold text-primary  md:text-lg'>
                 Pinyin
               </h1>
             </Link>
           </div>
         </div>
-        <div className="hidden md:flex">
+        <div className='hidden md:flex'>
           <Image
             src={supabaseUrl('images/stair-h.webp')}
             width={856}
@@ -64,19 +67,19 @@ const Tools = () => {
             placeholder='blur'
             blurDataURL={rgbDataURL(248, 247, 242)}
             priority
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            alt="ezyChinese tools"
+            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+            alt='ezyChinese tools'
           />
         </div>
-        <div className=" p-2 md:hidden">
+        <div className=' p-2 md:hidden'>
           <Image
             src={supabaseUrl('images/stair.webp')}
             width={180}
             height={575}
             quality={75}
             priority
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            alt="ezyChinese tools"
+            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+            alt='ezyChinese tools'
           />
         </div>
       </div>

@@ -51,4 +51,5 @@ export enum QUERY_KEYS {
   GETCSOLSELECTWORDBYCHAPTAPTER = 'getcsolselectwordbychapter',
   GETSPEECH = 'getspeech',
   GETPINYIN = 'getpinyin',
+  GETIDIOMBYUSERID = 'getidiombyuserid',
 }

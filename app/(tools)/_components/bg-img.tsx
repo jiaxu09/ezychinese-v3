@@ -4,7 +4,7 @@ import React from 'react'
 
 const BgImg = () => {
   return (
-    <div className=" absolute bottom-5 left-5 w-8 md:w-16 h-8 md:h-16">
+    <div className=" absolute bottom-5 left-5 w-8 md:w-12 h-8 md:h-12">
       <Image
         src={supabaseUrl('images/watermarker_logo.webp')}
         width={180}
