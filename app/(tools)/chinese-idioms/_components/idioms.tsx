@@ -5,7 +5,12 @@ import Idiom from './idiom'
 import { Input } from '@/components/ui/input'
 import { Cat, RotateCcw, Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { convertHanziToPinyin, fetchIciba, fetchIdiom } from '@/lib/api'
+import {
+  convertHanziToPinyin,
+  fetchIciba,
+  fetchIdiom,
+  fetchbaiduIdiom
+} from '@/lib/api'
 import { useToast } from '@/components/ui/use-toast'
 import { IIdiom } from '@/lib/types'
 import { useUser } from '@/lib/store/user'
@@ -61,8 +66,13 @@ const Idioms = () => {
     }
     let result
     if (searchSource === 0) {
+      //金山词霸
       result = (await fetchIciba(searchedPhrase)) as IIdiom
+    } else if (searchSource === 1) {
+      //百度翻译
+      result = (await fetchbaiduIdiom(searchedPhrase)) as IIdiom
     } else {
+      // idiom.json
       result = (await fetchIdiom(searchedPhrase)) as IIdiom
     }
 
@@ -116,6 +126,7 @@ const Idioms = () => {
         <div className='flex items-center space-x-2'>
           <span>Source:</span>
           <div onClick={() => setSearchSource(0)}>
+            {/* iciba */}
             <Button
               className=' h-8 w-8 rounded-full'
               variant={`${searchSource === 0 ? 'default' : 'outline'}`}
@@ -125,12 +136,23 @@ const Idioms = () => {
             </Button>
           </div>
           <div onClick={() => setSearchSource(1)}>
+            {/* baidu fanyi */}
             <Button
               className='h-8 w-8 rounded-full'
               variant={`${searchSource === 1 ? 'default' : 'outline'}`}
               size='icon'
             >
               2
+            </Button>
+          </div>
+          <div onClick={() => setSearchSource(2)}>
+            {/* idiom.json */}
+            <Button
+              className='h-8 w-8 rounded-full'
+              variant={`${searchSource === 2 ? 'default' : 'outline'}`}
+              size='icon'
+            >
+              3
             </Button>
           </div>
         </div>

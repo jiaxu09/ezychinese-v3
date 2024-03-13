@@ -80,9 +80,9 @@ const IdiomCard = ({
 
   return (
     <div className=' relative flex flex-col items-center '>
-      <div className='grid h-full  w-full grid-rows-2 rounded-lg'>
+      <div className='grid h-full w-full grid-rows-2 rounded-lg'>
         <div className='h-full w-full bg-pastelblue'>
-          <div className='flex flex-col items-center justify-center space-y-4 py-10 md:py-10 '>
+          <div className='flex flex-col items-center justify-center space-y-4 py-4 md:py-6 '>
             <div className='flex items-center gap-4'>
               {name.map((character, index) => (
                 <ruby key={index}>
@@ -95,14 +95,16 @@ const IdiomCard = ({
                 </ruby>
               ))}
             </div>
-            <div className='text-lg  md:text-3xl'>{idiom_meaning}</div>
-            <div className=' w-[90%] text-center text-lg italic md:text-xl'>
+            <div className='w-[90%] text-center text-lg  md:text-3xl'>
+              {idiom_meaning}
+            </div>
+            <div className=' line-clamp-4 w-[90%] text-center text-lg italic md:text-xl'>
               {eng_meaning}
             </div>
           </div>
         </div>
-        <div className='flex h-full w-full flex-col items-center justify-start bg-skyblue px-2 py-8'>
-          <div className=' flex w-full flex-wrap items-center justify-center gap-4 text-center'>
+        <div className='flex h-full w-full flex-col items-center justify-center bg-skyblue px-2 '>
+          <div className=' flex w-full flex-wrap items-center justify-center gap-4 py-2 text-center'>
             {example_pinyin?.length > 0 &&
               example?.map((char, index) => (
                 <ruby key={index}>
@@ -115,14 +117,14 @@ const IdiomCard = ({
                 </ruby>
               ))}
           </div>
-          <p className=' py-4 text-center text-lg italic leading-relaxed tracking-wider md:text-2xl'>
+          <p className='text-center text-lg italic leading-relaxed tracking-wider md:text-2xl'>
             {example_meaning}
           </p>
         </div>
       </div>
       <WaterMark />
       <BgImg />
-      <div className=' absolute right-14 top-8'>
+      <div className=' absolute left-8 top-2'>
         <div className='w-12 md:w-24'>
           <Image
             src={supabaseUrl('images/idiom.webp')}
@@ -135,7 +137,7 @@ const IdiomCard = ({
         </div>
       </div>
       {user && (
-        <div className=' absolute left-14 top-8 cursor-pointer'>
+        <div className=' absolute bottom-6 right-10 cursor-pointer'>
           {isSaveIdiom ? (
             <DialogClose asChild>
               <button type='button' onClick={handleRemoveIdiom}>

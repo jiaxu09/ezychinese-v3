@@ -82,6 +82,7 @@ import {
   getHanziDictionary,
   getHanziEnglish,
   getHanziMeaning,
+  getHanziSentences,
   pinyinTone,
 } from '../api'
 import {
@@ -94,7 +95,6 @@ import {
   deleteFormPhrases,
   deleteRightExplanation,
   getAuth,
-  getChineseIdioms,
   getChineseRadicals,
   getCorrectOrderByChapter,
   getFormPhrasesByChapter,
@@ -259,6 +259,14 @@ export const useHanziMeaning = (character: string) => {
   return {
     queryKey: [QUERY_KEYS.GETHANZIMEANING, character],
     queryFn: () => getHanziMeaning(character),
+    enabled: character.length !== 0,
+  }
+}
+
+export const useHanziSentences = (character: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETHANZISENTENCES, character],
+    queryFn: () => getHanziSentences(character),
     enabled: character.length !== 0,
   }
 }

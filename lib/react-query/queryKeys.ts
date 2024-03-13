@@ -12,6 +12,7 @@ export enum QUERY_KEYS {
   GETHANZIDICTIONARY = 'gethanzidictionary',
   GETHANZIENGLISH = 'gethanzienglish',
   GETHANZIMEANING = 'gethanzimeaning',
+  GETHANZISENTENCES='gethanzisentences',
   GETWORDSBYCHAPTER = 'getwordsbychapter',
   GETVideoBYCHAPTER = 'getvideobychapter',
   GETCSOLBOOKS = 'getcsolbooks',

@@ -7,11 +7,13 @@ import {
   useGetSpeech,
   useHanziDictionary,
   useHanziEnglish,
-  useHanziMeaning
+  useHanziMeaning,
+  useHanziSentences
 } from '@/lib/react-query/queries'
 import Dictionary from './literacy/dictionary'
 import English from './literacy/english'
 import Meaning from './literacy/meaning'
+import Sentences from './literacy/sentences'
 
 interface LiteracyPracticeProps {
   characters: string[]
@@ -39,6 +41,8 @@ const LiteracyPractice = ({ characters }: LiteracyPracticeProps) => {
   const { data: meaning, isLoading: isLoadingMeaning } = useQuery(
     useHanziMeaning(selectedCharacter)
   )
+
+  const { data: sentences } = useQuery(useHanziSentences(selectedCharacter))
   const { data: base64 } = useQuery(useGetSpeech(selectedCharacter, enabled))
 
   const handleCharacterClick = (character: string) => {
@@ -141,7 +145,6 @@ const LiteracyPractice = ({ characters }: LiteracyPracticeProps) => {
                     onClick={handleSound}
                     className='h-8 w-8 text-crayola '
                   />
-                  {/* <AudioPlayer base64={base64} /> */}
                 </div>
               )}
             </div>
@@ -168,6 +171,13 @@ const LiteracyPractice = ({ characters }: LiteracyPracticeProps) => {
                 <RotateCcw className=' h-8 w-8 animate-spin text-green' />
               ) : (
                 <Meaning meaning={meaning?.pronunciations} />
+              )}
+            </div>
+            <div className=' cursor-pointer'>
+              {isLoadingMeaning ? (
+                <RotateCcw className=' h-8 w-8 animate-spin text-green' />
+              ) : (
+                <Sentences sentences={sentences} />
               )}
             </div>
           </div>
