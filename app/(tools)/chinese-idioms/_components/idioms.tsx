@@ -5,12 +5,7 @@ import Idiom from './idiom'
 import { Input } from '@/components/ui/input'
 import { Cat, RotateCcw, Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import {
-  convertHanziToPinyin,
-  fetchIciba,
-  fetchIdiom,
-  fetchbaiduIdiom
-} from '@/lib/api'
+import { fetchDictcn, fetchIciba, fetchIdiom } from '@/lib/api'
 import { useToast } from '@/components/ui/use-toast'
 import { IIdiom } from '@/lib/types'
 import { useUser } from '@/lib/store/user'
@@ -69,12 +64,10 @@ const Idioms = () => {
       //金山词霸
       result = (await fetchIciba(searchedPhrase)) as IIdiom
     }
-    //Comment out as puppeteer is not working on vercel
-    //  else if (searchSource === 1) {
-    //   //百度翻译
-    //   result = (await fetchbaiduIdiom(searchedPhrase)) as IIdiom
-    // }
-    else {
+    // Get example from dict.cn
+    else if (searchSource === 1) {
+      result = (await fetchDictcn(searchedPhrase)) as IIdiom
+    } else {
       // idiom.json
       result = (await fetchIdiom(searchedPhrase)) as IIdiom
     }
@@ -139,8 +132,8 @@ const Idioms = () => {
             </Button>
           </div>
 
-          {/* <div onClick={() => setSearchSource(1)}>
-            baidu fanyi
+          <div onClick={() => setSearchSource(1)}>
+            {/* dict.cn */}
             <Button
               className='h-8 w-8 rounded-full'
               variant={`${searchSource === 1 ? 'default' : 'outline'}`}
@@ -148,7 +141,7 @@ const Idioms = () => {
             >
               2
             </Button>
-          </div> */}
+          </div>
 
           <div onClick={() => setSearchSource(2)}>
             {/* idiom.json */}
@@ -157,7 +150,7 @@ const Idioms = () => {
               variant={`${searchSource === 2 ? 'default' : 'outline'}`}
               size='icon'
             >
-              2
+              3
             </Button>
           </div>
         </div>

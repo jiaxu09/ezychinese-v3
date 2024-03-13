@@ -61,6 +61,12 @@ export async function GET(req: NextRequest) {
       item.word.replace('，', '').includes(text?.replace('，', '').trim())
     )
 
+    if (result.length === 0) {
+      return new NextResponse('Not Found', {
+        status: 404,
+      })
+    }
+
     const idiom: IIdiom = result.slice(0, 1).map((item: any) => ({
       name: item.word.split(''),
       idiom_pinyin: pinyin(item.word, { type: 'array' }),
