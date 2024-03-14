@@ -5,7 +5,12 @@ import Idiom from './idiom'
 import { Input } from '@/components/ui/input'
 import { Cat, RotateCcw, Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { fetchDictcn, fetchIciba, fetchIdiom } from '@/lib/api'
+import {
+  fetchDictcn,
+  fetchIciba,
+  fetchIdiom,
+  fetchYoudaoIdiom
+} from '@/lib/api'
 import { useToast } from '@/components/ui/use-toast'
 import { IIdiom } from '@/lib/types'
 import { useUser } from '@/lib/store/user'
@@ -13,6 +18,7 @@ import { useGetChineseIdiomsByUserId } from '@/lib/react-query/queries'
 import { Switch } from '@/components/ui/switch'
 import { Label } from '@/components/ui/label'
 import Misc from '@/components/misc'
+import SearchInput from '@/components/search-input'
 
 const Idioms = () => {
   const user = useUser(state => state.user)
@@ -63,13 +69,15 @@ const Idioms = () => {
     if (searchSource === 0) {
       //金山词霸
       result = (await fetchIciba(searchedPhrase)) as IIdiom
-    }
-    // Get example from dict.cn
-    else if (searchSource === 1) {
-      result = (await fetchDictcn(searchedPhrase)) as IIdiom
-    } else {
+    } else if (searchSource === 1) {
+      // youdao-idiom
+      result = (await fetchYoudaoIdiom(searchedPhrase)) as IIdiom
+    } else if (searchSource === 2) {
       // idiom.json
       result = (await fetchIdiom(searchedPhrase)) as IIdiom
+    } else {
+      // Get example from dict.cn
+      result = (await fetchDictcn(searchedPhrase)) as IIdiom
     }
 
     try {
@@ -102,11 +110,12 @@ const Idioms = () => {
     <div className=' flex w-full flex-col items-center'>
       <div className='flex w-full flex-wrap items-center justify-center gap-4 py-4 md:w-1/2 md:flex-nowrap'>
         <div className='relative flex w-full items-center'>
-          <Input
-            onChange={inputHandler}
-            type='text'
-            placeholder='4字以上成语或谚语'
-            value={searchedPhrase}
+          <SearchInput
+            inputHandler={inputHandler}
+            searchedPhrase={searchedPhrase}
+            handleSearch={handleSearch}
+            isLoading={isLoading}
+            placeholder='4字以上成语或谚语.'
           />
           <div
             className=' absolute right-2 cursor-pointer'
@@ -131,18 +140,16 @@ const Idioms = () => {
               1
             </Button>
           </div>
-
           <div onClick={() => setSearchSource(1)}>
-            {/* dict.cn */}
+            {/* youdao-idiom */}
             <Button
-              className='h-8 w-8 rounded-full'
+              className=' h-8 w-8 rounded-full'
               variant={`${searchSource === 1 ? 'default' : 'outline'}`}
               size='icon'
             >
               2
             </Button>
           </div>
-
           <div onClick={() => setSearchSource(2)}>
             {/* idiom.json */}
             <Button
@@ -151,6 +158,16 @@ const Idioms = () => {
               size='icon'
             >
               3
+            </Button>
+          </div>
+          <div onClick={() => setSearchSource(3)}>
+            {/* dict.cn */}
+            <Button
+              className='h-8 w-8 rounded-full'
+              variant={`${searchSource === 3 ? 'default' : 'outline'}`}
+              size='icon'
+            >
+              4
             </Button>
           </div>
         </div>

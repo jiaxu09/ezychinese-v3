@@ -89,8 +89,8 @@ const NewOrderWords = ({ bookId, chapterId }: NewOrderWordsProps) => {
             form={form}
             handleSubmit={handleSubmit}
             isLoading={isLoading}
-            placeholder_1='ie.吃京喜京欢果糖'
-            placeholder_2='ie.京京喜欢吃糖果'
+            placeholder_1='e.g.吃京喜京欢果糖'
+            placeholder_2='e.g.京京喜欢吃糖果'
           />
         </CardContent>
       </Card>

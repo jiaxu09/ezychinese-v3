@@ -60,13 +60,14 @@ export async function GET(req: NextRequest) {
         idiom_pinyin: item.pinyin.split(' '),
         idiom_meaning: item.explanation ?? '',
         eng_meaning: en_meaning.toString() ?? '',
-        example: example[0].zh.split('') ?? '',
-        example_pinyin: pinyin(example[0].zh, { type: 'array' }),
-        example_meaning: example[0].en,
+        example: example.length > 0 ? example[0].zh.split('') : [],
+        example_pinyin:
+          example.length > 0 ? pinyin(example[0].zh, { type: 'array' }) : [],
+        example_meaning: example.length > 0 ? example[0].en : '',
       }))[0]
     return NextResponse.json(idiom)
   } catch (error) {
-    console.log('[Baidu_GET]', error)
+    console.log('[Dictcn]', error)
     return new NextResponse('Internal Error', {
       status: 500,
     })

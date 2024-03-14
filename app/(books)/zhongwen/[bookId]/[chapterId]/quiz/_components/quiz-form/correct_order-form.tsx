@@ -95,7 +95,7 @@ const CorrectOrderForm = ({ bookId, chapterId }: CorrectOrderFormProps) => {
                     <FormControl>
                       <Input
                         type='text'
-                        placeholder='空格分隔. ie. 看见 我 云云 唱歌'
+                        placeholder='空格分隔. e.g. 看见 我 云云 唱歌'
                         {...field}
                       />
                     </FormControl>
@@ -112,7 +112,7 @@ const CorrectOrderForm = ({ bookId, chapterId }: CorrectOrderFormProps) => {
                     <FormControl>
                       <Input
                         type='text'
-                        placeholder='ie.我看见云云唱歌'
+                        placeholder='e.g.我看见云云唱歌'
                         {...field}
                       />
                     </FormControl>

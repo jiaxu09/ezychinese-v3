@@ -97,7 +97,7 @@ const RightExplanationForm = ({ bookId, chapterId }: FormPhrasesFormProps) => {
                     <FormControl>
                       <Input
                         type='text'
-                        placeholder='ie.春眠不觉晓'
+                        placeholder='e.g.春眠不觉晓'
                         {...field}
                       />
                     </FormControl>
@@ -114,7 +114,7 @@ const RightExplanationForm = ({ bookId, chapterId }: FormPhrasesFormProps) => {
                     <FormControl>
                       <Input
                         type='text'
-                        placeholder='空格分隔.ie.明白 天亮 天黑 晚上'
+                        placeholder='空格分隔.e.g.明白 天亮 天黑 晚上'
                         {...field}
                       />
                     </FormControl>
@@ -129,7 +129,7 @@ const RightExplanationForm = ({ bookId, chapterId }: FormPhrasesFormProps) => {
                   <FormItem>
                     <FormLabel>字</FormLabel>
                     <FormControl>
-                      <Input type='text' placeholder='ie.晓' {...field} />
+                      <Input type='text' placeholder='e.g.晓' {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -142,7 +142,7 @@ const RightExplanationForm = ({ bookId, chapterId }: FormPhrasesFormProps) => {
                   <FormItem>
                     <FormLabel>答案</FormLabel>
                     <FormControl>
-                      <Input type='text' placeholder='ie.天亮' {...field} />
+                      <Input type='text' placeholder='e.g.天亮' {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

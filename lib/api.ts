@@ -119,3 +119,18 @@ export const fetchDictcn = async (searchedPhrases: string) => {
     return null
   }
 }
+
+export const fetchYoudaoIdiom = async (searchedPhrases: string) => {
+  try {
+    const response = await fetch(`/api/youdao-idiom?text=${searchedPhrases}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
+    return await response.json()
+  } catch (error) {
+    return null
+  }
+}

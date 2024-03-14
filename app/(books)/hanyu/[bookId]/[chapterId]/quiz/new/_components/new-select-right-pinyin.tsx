@@ -91,7 +91,7 @@ const NewSelectRightPinyin = ({
             form={form}
             handleSubmit={handleSubmit}
             isLoading={isLoading}
-            placeholder_1='以,分隔 ie.guan,tong xue'
+            placeholder_1='以,分隔 e.g.guan,tong xue'
             placeholder_2='ie:guan'
           />
         </CardContent>

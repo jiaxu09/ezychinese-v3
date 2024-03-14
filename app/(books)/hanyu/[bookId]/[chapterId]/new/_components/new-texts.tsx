@@ -136,7 +136,7 @@ const NewTexts = ({ bookId, chapterId }: NewTextsProps) => {
                   <FormItem>
                     <FormControl>
                       <Textarea
-                        placeholder={`句子. ie.我是王小华，他是我爸爸.`}
+                        placeholder={`句子. e.g.我是王小华，他是我爸爸.`}
                         {...field}
                       />
                     </FormControl>

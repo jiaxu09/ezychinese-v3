@@ -103,7 +103,11 @@ const NewWords = ({ bookId, chapterId }: NewWordsProps) => {
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
-                      <Input type='text' placeholder='汉字 ie. 你' {...field} />
+                      <Input
+                        type='text'
+                        placeholder='汉字 e.g. 你'
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

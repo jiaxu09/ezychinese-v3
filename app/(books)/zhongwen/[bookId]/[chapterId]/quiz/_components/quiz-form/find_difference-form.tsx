@@ -94,7 +94,7 @@ const FindDifferenceForm = ({ bookId, chapterId }: FindDifferenceFormProps) => {
                     <FormControl>
                       <Input
                         type='text'
-                        placeholder='空格分隔.ie.哥哥 牛奶 姐姐 奶奶'
+                        placeholder='空格分隔.e.g.哥哥 牛奶 姐姐 奶奶'
                         {...field}
                       />
                     </FormControl>
@@ -109,7 +109,7 @@ const FindDifferenceForm = ({ bookId, chapterId }: FindDifferenceFormProps) => {
                   <FormItem>
                     <FormLabel>答案</FormLabel>
                     <FormControl>
-                      <Input type='text' placeholder='ie.牛奶' {...field} />
+                      <Input type='text' placeholder='e.g.牛奶' {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
