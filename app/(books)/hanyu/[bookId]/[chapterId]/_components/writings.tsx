@@ -31,7 +31,7 @@ const Writings = ({ bookId, chapterId }: WritingsProps) => {
     return <NoContent />
   }
 
-  return <LiteracyPractice characters={characters} />
+  return <LiteracyPractice characters={characters} isWriterShow={true} />
 }
 
 export default Writings

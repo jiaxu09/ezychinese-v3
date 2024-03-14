@@ -75,7 +75,7 @@ export const convertHanziToPinyin = async (words: string) => {
   }
 }
 
-export const fetchIciba = async (searchedPhrases: string) => {
+export const fetchIcibaIdiom = async (searchedPhrases: string) => {
   try {
     const response = await fetch(`/api/iciba-idiom?text=${searchedPhrases}`, {
       method: 'GET',

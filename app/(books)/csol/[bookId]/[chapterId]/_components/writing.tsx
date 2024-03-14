@@ -19,7 +19,7 @@ const Writing = ({ bookId, chapterId }: WritingProps) => {
     notFound()
   }
 
-  return <LiteracyPractice characters={data.answers} />
+  return <LiteracyPractice characters={data.answers} isWriterShow={true} />
 }
 
 export default Writing

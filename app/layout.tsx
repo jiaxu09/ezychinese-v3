@@ -8,7 +8,8 @@ import Navbar from '@/components/navbar'
 import QueryProvider from '@/components/query-provider'
 import { Toaster } from '@/components/ui/toaster'
 import Footer from '@/components/footer'
-import { Analytics } from '@vercel/analytics/react'
+import { GoogleAnalytics } from '@next/third-parties/google'
+// import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
 export const metadata: Metadata = {
@@ -83,7 +84,8 @@ export default function RootLayout({
           <AuthProvider />
         </QueryProvider>
         <Toaster />
-        <Analytics />
+        <GoogleAnalytics gaId={`${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} />
+        {/* <Analytics /> */}
         <SpeedInsights />
       </body>
     </html>

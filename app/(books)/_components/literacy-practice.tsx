@@ -17,9 +17,13 @@ import Sentences from './literacy/sentences'
 
 interface LiteracyPracticeProps {
   characters: string[]
+  isWriterShow: boolean
 }
 
-const LiteracyPractice = ({ characters }: LiteracyPracticeProps) => {
+const LiteracyPractice = ({
+  characters,
+  isWriterShow = true
+}: LiteracyPracticeProps) => {
   const [writer, setWriter] = useState<HanziWriter | null>(null)
   const [quiz, setQuiz] = useState<HanziWriter | null>(null)
   const [isSoundLoading, setIsSoundLoading] = useState(false)
@@ -182,21 +186,23 @@ const LiteracyPractice = ({ characters }: LiteracyPracticeProps) => {
             </div>
           </div>
         </div>
-        <div className='flex flex-col items-center space-y-4'>
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            id='character-quiz-div'
-            className='h-[300px] w-[300px] border-2 border-primary'
-          >
-            <line x1='0' y1='0' x2='300' y2='300' stroke='#DDD' />
-            <line x1='300' y1='0' x2='0' y2='300' stroke='#DDD' />
-            <line x1='150' y1='0' x2='150' y2='300' stroke='#DDD' />
-            <line x1='0' y1='150' x2='300' y2='150' stroke='#DDD' />
-          </svg>
-          <div className=' cursor-pointer' onClick={handleAnimateReset}>
-            <RotateCcw className=' h-8 w-8  text-green' />
+        {isWriterShow && (
+          <div className='flex flex-col items-center space-y-4'>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              id='character-quiz-div'
+              className='h-[300px] w-[300px] border-2 border-primary'
+            >
+              <line x1='0' y1='0' x2='300' y2='300' stroke='#DDD' />
+              <line x1='300' y1='0' x2='0' y2='300' stroke='#DDD' />
+              <line x1='150' y1='0' x2='150' y2='300' stroke='#DDD' />
+              <line x1='0' y1='150' x2='300' y2='150' stroke='#DDD' />
+            </svg>
+            <div className=' cursor-pointer' onClick={handleAnimateReset}>
+              <RotateCcw className=' h-8 w-8  text-green' />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   )
