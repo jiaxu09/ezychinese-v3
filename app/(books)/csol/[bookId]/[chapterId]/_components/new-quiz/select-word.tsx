@@ -87,8 +87,8 @@ const NewSelectWord = ({ bookId, chapterId }: NewSelectWordProps) => {
             form={form}
             handleSubmit={handleSubmit}
             isLoading={isLoading}
-            placeholder_1='ie.吃京喜京欢果糖'
-            placeholder_2='ie.喜欢'
+            placeholder_1='e.g.吃京喜京欢果糖'
+            placeholder_2='e.g.喜欢'
           />
         </CardContent>
       </Card>

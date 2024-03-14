@@ -92,8 +92,8 @@ const NewMultipleChoiceListening = ({
             form={form}
             handleSubmit={handleSubmit}
             isLoading={isLoading}
-            placeholder_1='空格分隔ie.王小华 张晓明 王小强'
-            placeholder_2='ie.王小华'
+            placeholder_1='空格分隔e.g.王小华 张晓明 王小强'
+            placeholder_2='e.g.王小华'
           />
         </CardContent>
       </Card>

@@ -95,7 +95,7 @@ const FormPhrasesForm = ({ bookId, chapterId }: FormPhrasesFormProps) => {
                     <FormControl>
                       <Input
                         type='text'
-                        placeholder='第一组词语,空格分隔.ie.街 真 上 看 方 红 停'
+                        placeholder='第一组词语,空格分隔.e.g.街 真 上 看 方 红 停'
                         {...field}
                       />
                     </FormControl>
@@ -112,7 +112,7 @@ const FormPhrasesForm = ({ bookId, chapterId }: FormPhrasesFormProps) => {
                     <FormControl>
                       <Input
                         type='text'
-                        placeholder='第二组词语,空格分隔.ie.见 向 道 是 水 学 灯'
+                        placeholder='第二组词语,空格分隔.e.g.见 向 道 是 水 学 灯'
                         {...field}
                       />
                     </FormControl>
@@ -129,7 +129,7 @@ const FormPhrasesForm = ({ bookId, chapterId }: FormPhrasesFormProps) => {
                     <FormControl>
                       <Input
                         type='text'
-                        placeholder='空格分隔.ie.街道 看见 上学 红灯 停水 真是 方向'
+                        placeholder='空格分隔.e.g.街道 看见 上学 红灯 停水 真是 方向'
                         {...field}
                       />
                     </FormControl>

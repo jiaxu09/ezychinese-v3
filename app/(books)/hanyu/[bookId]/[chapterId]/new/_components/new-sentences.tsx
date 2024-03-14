@@ -120,7 +120,7 @@ const NewSentences = ({ bookId, chapterId }: NewSentencesProps) => {
                   <FormItem>
                     <FormControl>
                       <Textarea
-                        placeholder={`句子. ie.       你好！
+                        placeholder={`句子. e.g.       你好！
                     谢谢！
                     不客气!`}
                         {...field}

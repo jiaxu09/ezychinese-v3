@@ -98,7 +98,7 @@ const NewMultipleChoice = ({ bookId, chapterId }: NewMultipleChoiceProps) => {
                     <FormControl>
                       <Input
                         type='text'
-                        placeholder='ie. 我__王小华.'
+                        placeholder='e.g. 我__王小华.'
                         {...field}
                       />
                     </FormControl>
@@ -115,7 +115,7 @@ const NewMultipleChoice = ({ bookId, chapterId }: NewMultipleChoiceProps) => {
                     <FormControl>
                       <Input
                         type='text'
-                        placeholder='空格分隔ie.是 好 不'
+                        placeholder='空格分隔e.g.是 好 不'
                         {...field}
                       />
                     </FormControl>
@@ -130,7 +130,7 @@ const NewMultipleChoice = ({ bookId, chapterId }: NewMultipleChoiceProps) => {
                   <FormItem>
                     <FormLabel>答案</FormLabel>
                     <FormControl>
-                      <Input type='text' placeholder='ie.是' {...field} />
+                      <Input type='text' placeholder='e.g.是' {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

@@ -111,7 +111,7 @@ const NewSelectRightChoice = ({
                   <FormItem>
                     <FormLabel>题目</FormLabel>
                     <FormControl>
-                      <Input type='text' placeholder={`ie. love`} {...field} />
+                      <Input type='text' placeholder={`e.g. love`} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -140,7 +140,7 @@ const NewSelectRightChoice = ({
                       <Input
                         type='text'
                         placeholder={
-                          '空格分隔. ie. 爱(ai) 喜欢(xihuan) 有(you) 吃(chi)'
+                          '空格分隔. e.g. 爱(ai) 喜欢(xihuan) 有(you) 吃(chi)'
                         }
                         {...field}
                       />
@@ -158,7 +158,7 @@ const NewSelectRightChoice = ({
                     <FormControl>
                       <Input
                         type='text'
-                        placeholder={'ie. 爱(ai)'}
+                        placeholder={'e.g. 爱(ai)'}
                         {...field}
                       />
                     </FormControl>

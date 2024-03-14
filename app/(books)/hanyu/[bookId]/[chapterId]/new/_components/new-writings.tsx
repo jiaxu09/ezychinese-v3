@@ -93,7 +93,7 @@ const NewWritings = ({ bookId, chapterId }: NewWritingsProps) => {
                     <FormControl>
                       <Input
                         type='text'
-                        placeholder='汉字 以空格分隔. ie.你 我 他'
+                        placeholder='汉字 以空格分隔. e.g.你 我 他'
                         {...field}
                       />
                     </FormControl>

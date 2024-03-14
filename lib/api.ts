@@ -89,9 +89,10 @@ export const fetchIciba = async (searchedPhrases: string) => {
     return null
   }
 }
-export const fetchbaiduIdiom = async (searchedPhrases: string) => {
+
+export const fetchIdiom = async (searchedPhrases: string) => {
   try {
-    const response = await fetch(`/api/baidu?text=${searchedPhrases}`, {
+    const response = await fetch(`/api/idiom?text=${searchedPhrases}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -104,9 +105,24 @@ export const fetchbaiduIdiom = async (searchedPhrases: string) => {
   }
 }
 
-export const fetchIdiom = async (searchedPhrases: string) => {
+export const fetchDictcn = async (searchedPhrases: string) => {
   try {
-    const response = await fetch(`/api/idiom?text=${searchedPhrases}`, {
+    const response = await fetch(`/api/dictcn?text=${searchedPhrases}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
+    return await response.json()
+  } catch (error) {
+    return null
+  }
+}
+
+export const fetchYoudaoIdiom = async (searchedPhrases: string) => {
+  try {
+    const response = await fetch(`/api/youdao-idiom?text=${searchedPhrases}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
