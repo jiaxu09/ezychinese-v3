@@ -19,7 +19,7 @@ const Literacy = ({ bookId, chapterId }: LiteracyProps) => {
   if (!data) {
     notFound()
   }
-  return <LiteracyPractice characters={data.answers} />
+  return <LiteracyPractice characters={data.answers} isWriterShow={true} />
 }
 
 export default Literacy

@@ -2,12 +2,11 @@
 import { useQuery } from '@tanstack/react-query'
 import React, { ChangeEvent, useState } from 'react'
 import Idiom from './idiom'
-import { Input } from '@/components/ui/input'
 import { Cat, RotateCcw, Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
   fetchDictcn,
-  fetchIciba,
+  fetchIcibaIdiom,
   fetchIdiom,
   fetchYoudaoIdiom
 } from '@/lib/api'
@@ -68,7 +67,7 @@ const Idioms = () => {
     let result
     if (searchSource === 0) {
       //金山词霸
-      result = (await fetchIciba(searchedPhrase)) as IIdiom
+      result = (await fetchIcibaIdiom(searchedPhrase)) as IIdiom
     } else if (searchSource === 1) {
       // youdao-idiom
       result = (await fetchYoudaoIdiom(searchedPhrase)) as IIdiom

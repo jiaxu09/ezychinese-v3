@@ -91,22 +91,14 @@ const Tools = () => {
         </div>
       </div>
       <div className='relative grid  grid-cols-3 md:flex md:flex-col md:items-center md:justify-center'>
-        <div className=' p-2 md:hidden'>
-          <Image
-            src={supabaseUrl('images/stair-2.webp')}
-            width={180}
-            height={575}
-            quality={75}
-            priority
-            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-            alt='ezyChinese tools'
-          />
-        </div>
+        <h1 className=' flex -translate-y-72 translate-x-0 flex-col justify-end p-10 text-3xl md:absolute md:left-20 md:top-10 md:hidden md:text-4xl'>
+          Tools
+        </h1>
 
         <div className=' grid grid-rows-3 md:flex md:h-52 md:w-2/3 md:items-center md:justify-center '>
           <div className='flex translate-x-12 items-center justify-end md:h-full md:w-1/3 md:-translate-x-16 lg:-translate-x-16 xl:-translate-x-10 '>
             <Link
-              href='/vocabulary'
+              href='/'
               className='flex h-3/4 w-3/4 flex-col items-center justify-center rounded-lg bg-green shadow-md hover:bg-green/80 md:w-2/3'
             >
               <Search className='h-5 w-5 text-primary md:h-8  md:w-8' />
@@ -125,7 +117,7 @@ const Tools = () => {
                 Chinese Strokes
               </h1>
             </Link>
-            <div className=' absolute translate-x-6 translate-y-10 md:-bottom-2 md:right-10 md:translate-x-0 md:translate-y-0 '>
+            <div className=' absolute -translate-y-10 translate-x-[60px] md:-bottom-2 md:right-10 md:translate-x-0 md:translate-y-0 '>
               <div className='relative h-8 w-8 md:h-10 md:w-10'>
                 <Image
                   src={supabaseUrl('images/circle.webp')}
@@ -163,9 +155,17 @@ const Tools = () => {
             alt='ezyChinese tools'
           />
         </div>
-        <h1 className='flex -translate-x-6 flex-col justify-end p-10 text-3xl md:absolute md:left-20 md:top-10 md:hidden md:text-4xl'>
-          Tools
-        </h1>
+        <div className=' rotate-180 p-2 md:hidden'>
+          <Image
+            src={supabaseUrl('images/stair-2.webp')}
+            width={180}
+            height={575}
+            quality={75}
+            priority
+            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+            alt='ezyChinese tools'
+          />
+        </div>
       </div>
     </div>
   )
