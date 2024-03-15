@@ -19,7 +19,7 @@ const Tools = () => {
           Tools
         </h1>
         <div className=' grid grid-rows-3 md:flex md:h-52 md:w-2/3 md:items-center md:justify-center '>
-          <div className=' flex items-center justify-start md:h-full md:w-1/3 md:translate-y-32 lg:translate-x-2 xl:translate-x-20'>
+          <div className='z-10  flex items-center justify-start md:h-full md:w-1/3 md:translate-y-32 lg:translate-x-2 xl:translate-x-20'>
             <Link
               href='/chinese-radicals'
               className=' flex h-3/4 w-3/4 flex-col items-center justify-center space-y-2 rounded-lg bg-skyblue shadow-md hover:bg-skyblue/80 md:w-2/3 '
@@ -30,7 +30,7 @@ const Tools = () => {
               </h1>
             </Link>
           </div>
-          <div className='relative flex translate-x-6 items-center justify-center md:h-full md:w-1/3 md:translate-x-0 md:translate-y-10'>
+          <div className='relative z-10 flex translate-x-6 items-center justify-center md:h-full md:w-1/3 md:translate-x-0 md:translate-y-10'>
             <Link
               href='/chinese-idioms'
               className='flex h-3/4 w-3/4  rotate-12 flex-col items-center justify-center rounded-lg bg-crayola shadow-md hover:bg-crayola/80 md:w-2/3'
@@ -53,7 +53,7 @@ const Tools = () => {
               </div>
             </div>
           </div>
-          <div className='flex translate-x-12 items-center justify-end md:h-full md:w-1/3 lg:-translate-x-2 xl:-translate-x-20 '>
+          <div className='z-10 flex translate-x-12 items-center justify-end md:h-full md:w-1/3 lg:-translate-x-2 xl:-translate-x-20 '>
             <Link
               href='/pinyin/initials'
               className='flex h-3/4 w-3/4 flex-col items-center justify-center rounded-lg bg-green shadow-md hover:bg-green/80 md:w-2/3'
@@ -66,12 +66,11 @@ const Tools = () => {
           </div>
         </div>
         <div className='hidden md:flex'>
-          <div className=''>
+          <div className='relative z-0 h-40 w-[856px]'>
             <Image
-              className=' object-contain'
+              className='  object-contain'
               src={supabaseUrl('images/stair-h.webp')}
-              width={856}
-              height={168}
+              fill
               quality={75}
               placeholder='blur'
               blurDataURL={rgbDataURL(248, 247, 242)}
@@ -99,7 +98,7 @@ const Tools = () => {
         </h1>
 
         <div className=' grid grid-rows-3 md:flex md:h-52 md:w-2/3 md:items-center md:justify-center '>
-          <div className='flex translate-x-12 items-center justify-end md:h-full md:w-1/3 md:-translate-x-16 lg:-translate-x-16 xl:-translate-x-10 '>
+          <div className='z-10 flex translate-x-12 items-center justify-end md:h-full md:w-1/3 md:-translate-x-16 lg:-translate-x-16 xl:-translate-x-10 '>
             <Link
               href='/vocabulary'
               className='flex h-3/4 w-3/4 flex-col items-center justify-center rounded-lg bg-green shadow-md hover:bg-green/80 md:w-2/3'
@@ -110,7 +109,7 @@ const Tools = () => {
               </h1>
             </Link>
           </div>
-          <div className='relative flex translate-x-6 items-center justify-center md:h-full md:w-1/3 md:translate-x-0 md:translate-y-10'>
+          <div className='relative z-10 flex translate-x-6 items-center justify-center md:h-full md:w-1/3 md:translate-x-0 md:translate-y-10'>
             <Link
               href='/'
               className='flex h-3/4 w-3/4  -rotate-12 flex-col items-center justify-center rounded-lg bg-crayola shadow-md hover:bg-crayola/80 md:w-2/3'
@@ -120,7 +119,7 @@ const Tools = () => {
                 Chinese Strokes
               </h1>
             </Link>
-            <div className=' absolute -translate-y-10 translate-x-[60px] md:-bottom-2 md:right-10 md:translate-x-0 md:translate-y-0 '>
+            <div className='absolute z-10 -translate-y-10 translate-x-[60px] md:-bottom-2 md:right-10 md:translate-x-0 md:translate-y-0 '>
               <div className='relative h-8 w-8 md:h-10 md:w-10'>
                 <Image
                   src={supabaseUrl('images/circle.webp')}
@@ -133,7 +132,7 @@ const Tools = () => {
               </div>
             </div>
           </div>
-          <div className=' flex translate-x-2 items-center justify-start md:h-full md:w-1/3 md:translate-x-28 md:translate-y-32 lg:translate-x-20 xl:translate-x-10'>
+          <div className='z-10 flex translate-x-2 items-center justify-start md:h-full md:w-1/3 md:translate-x-28 md:translate-y-32 lg:translate-x-20 xl:translate-x-10'>
             <Link
               href='/'
               className=' flex h-3/4 w-3/4 flex-col items-center justify-center space-y-2 rounded-lg bg-skyblue shadow-md hover:bg-skyblue/80 md:w-2/3 '
@@ -146,12 +145,11 @@ const Tools = () => {
           </div>
         </div>
         <div className='hidden  md:flex'>
-          <div className=''>
+          <div className='relative z-0 h-40 w-[856px] '>
             <Image
               className=' object-contain'
               src={supabaseUrl('images/stair-h-2.webp')}
-              width={856}
-              height={168}
+              fill
               quality={75}
               placeholder='blur'
               blurDataURL={rgbDataURL(248, 247, 242)}

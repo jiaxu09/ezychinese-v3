@@ -287,7 +287,7 @@
 
 .firework:nth-child(3) {
   --x: -30vmin;
-  --y: -50vmin;
+  --y: -0vmin;
 }
 
 .firework:nth-child(3),
@@ -307,7 +307,7 @@
 
 .firework:nth-child(4) {
   --x: -20vmin;
-  --y: -70vmin;
+  --y: -0vmin;
 }
 
 .firework:nth-child(4),
@@ -327,7 +327,7 @@
 
 .firework:nth-child(5) {
   --x: -69vmin;
-  --y: -40vmin;
+  --y: -0vmin;
 }
 
 .firework:nth-child(5),
@@ -410,7 +410,7 @@
   animation-delay: -1.2s;
 }
 .lds-grid div:nth-child(9) {
-  background: #88C0D0;
+  background: #88c0d0;
   top: 56px;
   left: 56px;
   animation-delay: -1.6s;

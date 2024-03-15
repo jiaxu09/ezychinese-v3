@@ -20,7 +20,7 @@ const Choice = ({ item, correctAnswers, setCorrectAnswers }: ChoiceProps) => {
     }
   }
   return (
-    <div className='flex flex-col items-center justify-center space-y-4 '>
+    <div className='flex flex-col items-center justify-center space-y-4 py-4 border-b border-gray-400'>
       <div className='flex items-center justify-center space-x-2 text-lg md:text-3xl'>
         <span>Q:</span> <p>{item.question}</p>
       </div>

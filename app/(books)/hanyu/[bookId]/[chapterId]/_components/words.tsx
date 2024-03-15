@@ -43,15 +43,15 @@ const Words = ({ bookId, chapterId }: WordsProps) => {
               >
                 <Volume2 className='h-8 w-8 text-crayola ' />
               </div>
-              <ruby>
-                <span className=' inline-block text-3xl md:text-[6rem]'>
+              <ruby className=''>
+                <span className=' inline-block text-3xl md:text-[4rem] lg:text-[6rem]'>
                   {word.hanzi}
                 </span>
-                <rt className=' text-xl text-gray-600 md:text-[5rem]'>
+                <rt className=' text-xl text-gray-600 md:text-[3rem] lg:text-[5rem]'>
                   {word.pinyin}
                 </rt>
               </ruby>
-              <p className=' text-lg text-gray-600 md:text-[3rem]'>
+              <p className='w-[90%] text-center text-lg leading-10 tracking-wider text-gray-600 md:text-[3rem]'>
                 {word.english}
               </p>
             </CardContent>
