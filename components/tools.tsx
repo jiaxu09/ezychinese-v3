@@ -66,11 +66,12 @@ const Tools = () => {
           </div>
         </div>
         <div className='hidden md:flex'>
-          <div className='relative h-[168px] w-[1200px]'>
+          <div className=''>
             <Image
               className=' object-contain'
               src={supabaseUrl('images/stair-h.webp')}
-              fill
+              width={856}
+              height={168}
               quality={75}
               placeholder='blur'
               blurDataURL={rgbDataURL(248, 247, 242)}
@@ -145,11 +146,12 @@ const Tools = () => {
           </div>
         </div>
         <div className='hidden  md:flex'>
-          <div className='relative h-[168px] w-[1200px]'>
+          <div className=''>
             <Image
               className=' object-contain'
               src={supabaseUrl('images/stair-h-2.webp')}
-              fill
+              width={856}
+              height={168}
               quality={75}
               placeholder='blur'
               blurDataURL={rgbDataURL(248, 247, 242)}
