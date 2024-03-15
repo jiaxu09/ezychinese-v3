@@ -14,7 +14,7 @@ const BooksList = ({ books, type }: BookListProps) => {
         {books?.map(book => (
           <Link
             key={book.id}
-            className='relative h-[200px] w-auto p-4 sm:h-[240px] md:h-[250px] lg:h-[280px]'
+            className='relative h-[200px] w-auto p-4 sm:h-[240px] md:h-[260px]'
             aria-label='ezyChinese zhongwen'
             href={`/${type}/${book.slug}`}
           >
