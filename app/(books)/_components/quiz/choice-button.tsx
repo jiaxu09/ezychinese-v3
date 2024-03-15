@@ -16,13 +16,13 @@ const ChoiceButton = ({
   rightAnswer
 }: ChoiceButtonProps) => {
   return (
-    <Button
+    <button
+      role='button'
       aria-label='ezyChinese hanyu'
-      variant='outline'
       disabled={selectedChoices.includes(choice)}
       onClick={() => handleSelectedChoice(choice)}
       className={cn(
-        'relative flex cursor-pointer items-center justify-center rounded-lg border border-primary p-4 text-lg md:p-6 md:text-xl',
+        'relative flex cursor-pointer items-center justify-center rounded-lg border border-primary px-4 py-2 text-lg md:text-xl',
         selectedChoices.includes(choice)
           ? choice === rightAnswer
             ? 'animate-wiggle bg-success animate-duration-1000 animate-once animate-ease-in-out'
@@ -34,7 +34,7 @@ const ChoiceButton = ({
       {selectedChoices.includes(choice) && choice === rightAnswer && (
         <Sparkles className=' absolute left-1 top-0 animate-ping text-yellow-400 animate-duration-1000 animate-infinite  animate-ease-in-out' />
       )}
-    </Button>
+    </button>
   )
 }
 

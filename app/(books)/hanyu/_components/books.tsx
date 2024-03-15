@@ -16,10 +16,10 @@ const Books = () => {
   return (
     <>
       <Breadcrumb type='hanyu' isEnd={false} />
-      <div className='grid grid-cols-2 gap-8 py-6 md:grid-cols-6'>
+      <div className='grid grid-cols-2 gap-8 py-6 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6'>
         {data?.map(item => (
           <Link
-            className='relative h-[200px] w-auto p-4 md:h-[280px]'
+            className='relative h-[200px] w-auto p-4 md:h-[240px]'
             href={`/hanyu/${item.name}`}
             key={item.id}
           >
