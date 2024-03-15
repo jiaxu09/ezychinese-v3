@@ -13,7 +13,7 @@ const withPWA = withPWAInit({
 
 const ContentSecurityPolicy = `
     default-src 'self' vercel.live;
-    script-src 'self' 'unsafe-eval' cdn.vercel-insights.com vercel.live va.vercel-scripts.com youtube.com http://www.youtube.com https://www.youtube.com;
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com vercel.live va.vercel-scripts.com youtube.com http://www.youtube.com https://www.youtube.com;
     style-src 'self' 'unsafe-inline';
     img-src * blob: data:;
     media-src * 'self' data:;
