@@ -51,7 +51,7 @@ const Words = ({ bookId, chapterId }: WordsProps) => {
                   {word.pinyin}
                 </rt>
               </ruby>
-              <p className=' text-lg text-gray-600 md:text-[3rem]'>
+              <p className='w-[90%] text-center text-lg leading-10 tracking-wider text-gray-600 md:text-[3rem]'>
                 {word.english}
               </p>
             </CardContent>

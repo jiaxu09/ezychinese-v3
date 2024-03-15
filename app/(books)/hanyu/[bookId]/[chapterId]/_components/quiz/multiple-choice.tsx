@@ -36,7 +36,7 @@ const MultipleChoice = ({ quiz, setCurrentCompleted }: MultipleChoiceProps) => {
 
   return (
     <Card className='flex animate-fade-left flex-col items-center justify-center py-4 animate-duration-1000 animate-fill-both animate-ease-in-out'>
-      <h1 className='pb-4 text-center'>Listen, Select right answer</h1>
+      <h1 className='pb-4 text-center'>Select right answer</h1>
       <CardContent>
         {multipleChoice_hanyu.map((item, index) => (
           <Choice
