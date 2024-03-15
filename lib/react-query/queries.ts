@@ -45,7 +45,6 @@ import {
   getCSOLOrderWordsByChapter,
   getCSOLSelectRightChoiceByChapter,
   getCSOLSelectWordByChapter,
-  getChineseIdiomByUserId,
   getChineseIdiomsByUserId,
   getHanYuMultipleChoiceByChapter,
   getHanYuMultipleChoiceListeningByChapter,
@@ -78,13 +77,7 @@ import {
   getVideoByChapter,
   getWordsByChapter,
 } from '../graphql/api'
-import {
-  getHanziDictionary,
-  getHanziEnglish,
-  getHanziMeaning,
-  getHanziSentences,
-  pinyinTone,
-} from '../api'
+import { fetchAPI, pinyinTone } from '../api'
 import {
   addChineseIdiom,
   addChineseRadical,
@@ -242,7 +235,7 @@ export const useGetChinesePinyinByCategory = (category: PinyinCategories) => {
 export const useHanziDictionary = (character: string) => {
   return {
     queryKey: [QUERY_KEYS.GETHANZIDICTIONARY, character],
-    queryFn: () => getHanziDictionary(character),
+    queryFn: () => fetchAPI(character, 'dictionary'),
     enabled: character.length !== 0,
   }
 }
@@ -250,23 +243,23 @@ export const useHanziDictionary = (character: string) => {
 export const useHanziEnglish = (character: string) => {
   return {
     queryKey: [QUERY_KEYS.GETHANZIENGLISH, character],
-    queryFn: () => getHanziEnglish(character),
+    queryFn: () => fetchAPI(character, 'youdao'),
     enabled: character.length !== 0,
   }
 }
 
-export const useHanziMeaning = (character: string) => {
-  return {
-    queryKey: [QUERY_KEYS.GETHANZIMEANING, character],
-    queryFn: () => getHanziMeaning(character),
-    enabled: character.length !== 0,
-  }
-}
+// export const useHanziMeaning = (character: string) => {
+//   return {
+//     queryKey: [QUERY_KEYS.GETHANZIMEANING, character],
+//     queryFn: () => getHanziMeaning(character),
+//     enabled: character.length !== 0,
+//   }
+// }
 
-export const useHanziSentences = (character: string) => {
+export const useHanziIcibaMeaning = (character: string) => {
   return {
-    queryKey: [QUERY_KEYS.GETHANZISENTENCES, character],
-    queryFn: () => getHanziSentences(character),
+    queryKey: [QUERY_KEYS.GETHANZIICIBAMEANING, character],
+    queryFn: () => fetchAPI(character, 'iciba-zi'),
     enabled: character.length !== 0,
   }
 }

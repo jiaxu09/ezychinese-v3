@@ -228,3 +228,21 @@ export type CSOLSelectOrderWord = {
   right_answer: string
   source: string
 }
+
+type Dict = {
+  pinyin: string
+  example: {
+    en_meaning: string
+    sentences: string
+  }[]
+
+  source: string
+}
+export type Vocabulary = {
+  'brief definition'?: {
+    explain: string
+    entry: string
+  }[]
+  'dictionary 1'?: Dict
+  'dictionary 2'?: Dict
+}

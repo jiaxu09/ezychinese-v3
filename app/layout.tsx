@@ -8,7 +8,7 @@ import Navbar from '@/components/navbar'
 import QueryProvider from '@/components/query-provider'
 import { Toaster } from '@/components/ui/toaster'
 import Footer from '@/components/footer'
-import { GoogleAnalytics } from '@next/third-parties/google'
+// import { GoogleAnalytics } from '@next/third-parties/google'
 // import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
@@ -84,7 +84,7 @@ export default function RootLayout({
           <AuthProvider />
         </QueryProvider>
         <Toaster />
-        <GoogleAnalytics gaId={`${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} />
+        {/* <GoogleAnalytics gaId={`${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} /> */}
         {/* <Analytics /> */}
         <SpeedInsights />
       </body>

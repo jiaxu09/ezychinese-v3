@@ -4,12 +4,7 @@ import React, { ChangeEvent, useState } from 'react'
 import Idiom from './idiom'
 import { Cat, RotateCcw, Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import {
-  fetchDictcn,
-  fetchIcibaIdiom,
-  fetchIdiom,
-  fetchYoudaoIdiom
-} from '@/lib/api'
+import { fetchAPI } from '@/lib/api'
 import { useToast } from '@/components/ui/use-toast'
 import { IIdiom } from '@/lib/types'
 import { useUser } from '@/lib/store/user'
@@ -67,16 +62,16 @@ const Idioms = () => {
     let result
     if (searchSource === 0) {
       //金山词霸
-      result = (await fetchIcibaIdiom(searchedPhrase)) as IIdiom
+      result = (await fetchAPI(searchedPhrase, 'iciba-idiom')) as IIdiom
     } else if (searchSource === 1) {
       // youdao-idiom
-      result = (await fetchYoudaoIdiom(searchedPhrase)) as IIdiom
+      result = (await fetchAPI(searchedPhrase, 'youdao-idiom')) as IIdiom
     } else if (searchSource === 2) {
       // idiom.json
-      result = (await fetchIdiom(searchedPhrase)) as IIdiom
+      result = (await fetchAPI(searchedPhrase, 'idiom')) as IIdiom
     } else {
       // Get example from dict.cn
-      result = (await fetchDictcn(searchedPhrase)) as IIdiom
+      result = (await fetchAPI(searchedPhrase, 'dictcn')) as IIdiom
     }
 
     try {
