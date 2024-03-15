@@ -10,11 +10,11 @@ interface BookListProps {
 const BooksList = ({ books, type }: BookListProps) => {
   return (
     <>
-      <div className='grid grid-cols-2 gap-8 py-6  md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6'>
+      <div className='grid grid-cols-2 gap-8 py-6 sm:grid-cols-3  md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6'>
         {books?.map(book => (
           <Link
             key={book.id}
-            className='relative h-[200px] w-auto p-4 md:h-[250px] lg:h-[280px]'
+            className='relative h-[200px] w-auto p-4 sm:h-[240px] md:h-[250px] lg:h-[280px]'
             aria-label='ezyChinese zhongwen'
             href={`/${type}/${book.slug}`}
           >
