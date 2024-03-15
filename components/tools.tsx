@@ -66,17 +66,19 @@ const Tools = () => {
           </div>
         </div>
         <div className='hidden md:flex'>
-          <Image
-            src={supabaseUrl('images/stair-h.webp')}
-            width={856}
-            height={168}
-            quality={75}
-            placeholder='blur'
-            blurDataURL={rgbDataURL(248, 247, 242)}
-            priority
-            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-            alt='ezyChinese tools'
-          />
+          <div className='relative h-[168px] w-[1200px]'>
+            <Image
+              className=' object-contain'
+              src={supabaseUrl('images/stair-h.webp')}
+              fill
+              quality={75}
+              placeholder='blur'
+              blurDataURL={rgbDataURL(248, 247, 242)}
+              priority
+              sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+              alt='ezyChinese tools'
+            />
+          </div>
         </div>
         <div className=' p-2 md:hidden'>
           <Image
@@ -98,7 +100,7 @@ const Tools = () => {
         <div className=' grid grid-rows-3 md:flex md:h-52 md:w-2/3 md:items-center md:justify-center '>
           <div className='flex translate-x-12 items-center justify-end md:h-full md:w-1/3 md:-translate-x-16 lg:-translate-x-16 xl:-translate-x-10 '>
             <Link
-              href='/'
+              href='/vocabulary'
               className='flex h-3/4 w-3/4 flex-col items-center justify-center rounded-lg bg-green shadow-md hover:bg-green/80 md:w-2/3'
             >
               <Search className='h-5 w-5 text-primary md:h-8  md:w-8' />
@@ -143,17 +145,19 @@ const Tools = () => {
           </div>
         </div>
         <div className='hidden  md:flex'>
-          <Image
-            src={supabaseUrl('images/stair-h-2.webp')}
-            width={856}
-            height={168}
-            quality={75}
-            placeholder='blur'
-            blurDataURL={rgbDataURL(248, 247, 242)}
-            priority
-            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-            alt='ezyChinese tools'
-          />
+          <div className='relative h-[168px] w-[1200px]'>
+            <Image
+              className=' object-contain'
+              src={supabaseUrl('images/stair-h-2.webp')}
+              fill
+              quality={75}
+              placeholder='blur'
+              blurDataURL={rgbDataURL(248, 247, 242)}
+              priority
+              sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+              alt='ezyChinese tools'
+            />
+          </div>
         </div>
         <div className=' rotate-180 p-2 md:hidden'>
           <Image

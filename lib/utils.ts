@@ -44,3 +44,26 @@ export function bufferToBase64(buffer: ArrayBuffer) {
   );
   return btoa(bytes);
 }
+
+const chineseToEnglishPartsOfSpeech: Record<string, string> = {
+  名: 'noun',
+  动: 'verb',
+  形: 'adjective',
+  副: 'adverb',
+  代: 'pronoun',
+  连: 'conjunction',
+  介: 'preposition',
+  叹: 'interjection',
+  量: 'quantifier',
+  数:  'number'
+}
+
+/**
+ * Converts a Chinese part of speech to its English equivalent.
+ * @param chinesePartOfSpeech - The Chinese part of speech (e.g., 名, 动, 形).
+ * @returns The English equivalent or 'unknown' if not found.
+ */
+export function convertChineseToEnglishPartsOfSpeech(chinesePartOfSpeech: string): string {
+  const englishEquivalent = chineseToEnglishPartsOfSpeech[chinesePartOfSpeech];
+  return englishEquivalent || 'unknown';
+}

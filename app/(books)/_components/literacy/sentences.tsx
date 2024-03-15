@@ -26,7 +26,7 @@ const Sentences = ({ sentences }: SentencesProps) => {
             {sentences.map((item, index) => (
               <div
                 key={index}
-                className='my-3 flex flex-col rounded-lg p-2 odd:bg-green even:bg-skyblue'
+                className='my-3 flex flex-col rounded-lg border-b border-gray-300 p-2'
               >
                 <div className=''>{item?.cn}:</div>
                 <div className=' italic '>{item.en}</div>

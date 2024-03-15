@@ -7,8 +7,7 @@ import {
   useGetSpeech,
   useHanziDictionary,
   useHanziEnglish,
-  useHanziMeaning,
-  useHanziSentences
+  useHanziIcibaMeaning
 } from '@/lib/react-query/queries'
 import Dictionary from './literacy/dictionary'
 import English from './literacy/english'
@@ -43,10 +42,9 @@ const LiteracyPractice = ({
   )
 
   const { data: meaning, isLoading: isLoadingMeaning } = useQuery(
-    useHanziMeaning(selectedCharacter)
+    useHanziIcibaMeaning(selectedCharacter)
   )
-
-  const { data: sentences } = useQuery(useHanziSentences(selectedCharacter))
+  
   const { data: base64 } = useQuery(useGetSpeech(selectedCharacter, enabled))
 
   const handleCharacterClick = (character: string) => {
@@ -65,18 +63,20 @@ const LiteracyPractice = ({
       writer?.setCharacter(character)
     }
 
-    if (!quiz) {
-      const quiz = HanziWriter.create('character-quiz-div', `${character}`, {
-        width: 300,
-        height: 300,
-        padding: 5,
-        showCharacter: false
-      })
-      setQuiz(quiz)
-      quiz.quiz()
-    } else {
-      quiz.setCharacter(character)
-      quiz.quiz()
+    if (isWriterShow) {
+      if (!quiz) {
+        const quiz = HanziWriter.create('character-quiz-div', `${character}`, {
+          width: 300,
+          height: 300,
+          padding: 5,
+          showCharacter: false
+        })
+        setQuiz(quiz)
+        quiz.quiz()
+      } else {
+        quiz.setCharacter(character)
+        quiz.quiz()
+      }
     }
   }
 
@@ -174,14 +174,14 @@ const LiteracyPractice = ({
               {isLoadingMeaning ? (
                 <RotateCcw className=' h-8 w-8 animate-spin text-green' />
               ) : (
-                <Meaning meaning={meaning?.pronunciations} />
+                <Meaning meaning={meaning?.meaning} />
               )}
             </div>
             <div className=' cursor-pointer'>
               {isLoadingMeaning ? (
                 <RotateCcw className=' h-8 w-8 animate-spin text-green' />
               ) : (
-                <Sentences sentences={sentences} />
+                <Sentences sentences={meaning?.sentences} />
               )}
             </div>
           </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import Vocabulary from './_components/vocabulary'
+import VocabularySearch from './_components/vocabulary-search'
 
 export const metadata = {
   title: 'Chinese Vocabulary',
@@ -13,7 +13,7 @@ const VocabularyPage = () => {
       <h1 className=' py-1 text-center text-xl text-primary md:text-4xl'>
         Vocabulary
       </h1>
-      <Vocabulary />
+      <VocabularySearch />
     </div>
   )
 }
