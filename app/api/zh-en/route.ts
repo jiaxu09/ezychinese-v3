@@ -98,12 +98,6 @@ export async function GET(req: NextRequest) {
       icibaResponse,
     ] = responses
 
-    console.log(
-      fanyiResponse,
-      youdaoBriefResponse,
-      youdaoDictResponse,
-      icibaResponse
-    )
     let wuguanghua, youdao //youdao dictionary
     try {
       const { wuguanghua: wRes, ce } = await youdaoDictResponse.json()

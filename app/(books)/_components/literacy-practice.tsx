@@ -125,7 +125,7 @@ const LiteracyPractice = ({
       </div>
       <div
         className={cn(
-          'flex items-center md:space-x-4 flex-wrap md:flex-nowrap',
+          'flex flex-wrap items-center md:flex-nowrap md:space-x-4',
           !isWriterShow && 'flex-nowrap'
         )}
       >
@@ -181,20 +181,25 @@ const LiteracyPractice = ({
                 <English english={english} />
               )}
             </div>
-            <div className=' cursor-pointer'>
-              {isWriterShow && isLoadingMeaning ? (
-                <RotateCcw className=' h-8 w-8 animate-spin text-green' />
-              ) : (
-                <Meaning meaning={meaning?.meaning} />
-              )}
-            </div>
-            <div className=' cursor-pointer'>
-              {isWriterShow && isLoadingMeaning ? (
-                <RotateCcw className=' h-8 w-8 animate-spin text-green' />
-              ) : (
-                <Sentences sentences={meaning?.sentences} />
-              )}
-            </div>
+            {isWriterShow && (
+              <div className=' cursor-pointer'>
+                {isLoadingMeaning ? (
+                  <RotateCcw className=' h-8 w-8 animate-spin text-green' />
+                ) : (
+                  <Meaning meaning={meaning?.meaning} />
+                )}
+              </div>
+            )}
+
+            {isWriterShow && (
+              <div className=' cursor-pointer'>
+                {isLoadingMeaning ? (
+                  <RotateCcw className=' h-8 w-8 animate-spin text-green' />
+                ) : (
+                  <Sentences sentences={meaning?.sentences} />
+                )}
+              </div>
+            )}
           </div>
         </div>
         {isWriterShow && (
