@@ -125,7 +125,7 @@ const LiteracyPractice = ({
       </div>
       <div
         className={cn(
-          'flex items-center space-x-4',
+          'flex items-center md:space-x-4 flex-wrap md:flex-nowrap',
           !isWriterShow && 'flex-nowrap'
         )}
       >
@@ -182,14 +182,14 @@ const LiteracyPractice = ({
               )}
             </div>
             <div className=' cursor-pointer'>
-              {isLoadingMeaning ? (
+              {isWriterShow && isLoadingMeaning ? (
                 <RotateCcw className=' h-8 w-8 animate-spin text-green' />
               ) : (
                 <Meaning meaning={meaning?.meaning} />
               )}
             </div>
             <div className=' cursor-pointer'>
-              {isLoadingMeaning ? (
+              {isWriterShow && isLoadingMeaning ? (
                 <RotateCcw className=' h-8 w-8 animate-spin text-green' />
               ) : (
                 <Sentences sentences={meaning?.sentences} />
@@ -198,7 +198,7 @@ const LiteracyPractice = ({
           </div>
         </div>
         {isWriterShow && (
-          <div className='flex flex-col items-center space-y-4 '>
+          <div className='flex flex-col items-center space-y-4 pt-4 md:pt-0'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               id='character-quiz-div'
