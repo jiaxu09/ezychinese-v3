@@ -13,7 +13,7 @@ import Footer from '@/components/footer'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('http://localhost:3000'),
+  metadataBase: new URL('https://www.ezychinese.app'),
   title: { default: 'ezyChinese', template: '%s - ezyChinese' },
   description:
     'Welcome to ezyChinese - Where Learning Chinese is a Breeze for Kids!',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     title: 'ezyChinese',
     description:
       'Welcome to ezyChinese - Where Learning Chinese is a Breeze for Kids!',
-    url: 'http://localhost:3000',
+    url: 'https://www.ezychinese.app',
     siteName: 'ezyChinese',
     locale: 'en_US',
     type: 'website'

@@ -229,7 +229,7 @@ export type CSOLSelectOrderWord = {
   source: string
 }
 
-type Dict = {
+type Dict_2 = {
   pinyin: string
   example: {
     en_meaning: string
@@ -238,11 +238,56 @@ type Dict = {
 
   source: string
 }
+
+type Dict_4 = {
+  pinyin: string
+  example: {
+    en_meaning: string
+    zh_meaning: string
+    sentences: {
+      en: string
+      zh: string
+    }[]
+  }[]
+
+  source: string
+}
+
+type Dict_3 = {
+  parts: string
+  sentences: {
+    meaning: string
+    example: {
+      en: string
+      cn: string
+    }[]
+  }[]
+
+  source: string
+}
+
+type Dict_1 = {
+  sentences: {
+    cn: string
+    en: string
+  }[]
+  meaning: {
+    mp3?: string
+    pinyin: string
+    explanation: {
+      partsOfSpeech: string
+      en_mean: string[]
+    }[]
+  }[]
+}
+
 export type Vocabulary = {
   'brief definition'?: {
     explain: string
     entry: string
   }[]
-  'dictionary 1'?: Dict
-  'dictionary 2'?: Dict
+  'dictionary 1'?: Dict_1
+  'dictionary 2'?: Dict_2
+  'dictionary 3'?: Dict_3[]
+  'dictionary 4'?: Dict_4[]
 }

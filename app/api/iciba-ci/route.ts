@@ -36,7 +36,7 @@ export async function GET(req: NextRequest) {
     //Return the content of the data file in json format
     return NextResponse.json({ ci, baesInfo, new_sentence })
   } catch (error) {
-    console.log('[Iciba_GET]', error)
+    console.log('[Iciba_ci_GET]', error)
     return new NextResponse('Internal Error', {
       status: 500,
     })

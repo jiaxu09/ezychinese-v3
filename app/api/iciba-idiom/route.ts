@@ -55,6 +55,7 @@ export async function GET(req: NextRequest) {
     //Return the content of the data file in json format
     return NextResponse.json(idiom)
   } catch (error) {
+    console.log('[Iciba_idiom_GET]', error)
     return new NextResponse('Internal Error', {
       status: 500,
     })

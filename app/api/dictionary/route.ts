@@ -32,6 +32,7 @@ export async function GET(req: NextRequest) {
         status: 404,
       })
     }
+
     const hanzi: Word[] = JSON.parse(data)
     const result = hanzi.filter((item) => item.char === text)
     const { strokes, radicals, pinyin } = result[0]
