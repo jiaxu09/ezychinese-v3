@@ -1,6 +1,6 @@
 'use client'
 import { useQuery } from '@tanstack/react-query'
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, KeyboardEvent, useState } from 'react'
 import Idiom from './idiom'
 import { Cat, RotateCcw, Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -41,8 +41,14 @@ const Idioms = () => {
     }
     setSearchPhrase(e.target.value)
   }
+  const handleSearch = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      performSearch()
+    }
+  }
 
-  const handleSearch = async () => {
+  const performSearch = async () => {
     setIdiom(undefined)
     setLoading(true)
 
@@ -105,22 +111,13 @@ const Idioms = () => {
       <div className='flex w-full flex-wrap items-center justify-center gap-4 py-4 md:w-1/2 md:flex-nowrap'>
         <div className='relative flex w-full items-center'>
           <SearchInput
+            handleKeyPress={handleSearch}
             inputHandler={inputHandler}
             searchedPhrase={searchedPhrase}
-            handleSearch={handleSearch}
+            handleSearch={performSearch}
             isLoading={isLoading}
             placeholder='4字以上成语或谚语.'
           />
-          <div
-            className=' absolute right-2 cursor-pointer'
-            onClick={handleSearch}
-          >
-            {isLoading ? (
-              <RotateCcw className='h-5 w-5 animate-spin' />
-            ) : (
-              <Search className='h-5 w-5' />
-            )}
-          </div>
         </div>
         <div className='flex items-center space-x-2'>
           <span>Source:</span>
@@ -169,7 +166,7 @@ const Idioms = () => {
       <div className='min-h-[60vh] w-full '>
         {searchedPhrase.length > 0 && idiom ? (
           <div className='flex w-full flex-col'>
-            <p className='py-6 text-lg'>Searched result</p>
+            <p className='text-lg'>Searched result</p>
             <div className='grid-cols-4 gap-6 md:grid-cols-12 md:gap-10'>
               <Idiom
                 eng_meaning={idiom.eng_meaning}

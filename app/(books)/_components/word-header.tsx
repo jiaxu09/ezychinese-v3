@@ -19,7 +19,7 @@ const WordHeader = ({ word }: WordHeadProps) => {
     setIsSoundLoading(false)
   }
   return (
-    <div className='flex flex-wrap items-center justify-center space-x-4 md:flex-nowrap'>
+    <div className='flex flex-col items-center justify-center space-y-4 '>
       {isSoundLoading ? (
         <RotateCcw className='h-6 w-6 animate-spin text-crayola md:h-8 md:w-8' />
       ) : (
@@ -28,9 +28,16 @@ const WordHeader = ({ word }: WordHeadProps) => {
         </div>
       )}
 
-      <span className='w-full text-center text-2xl font-semibold md:text-4xl'>
-        {word}
-      </span>
+      <div className='flex flex-col items-center text-center text-2xl font-semibold md:flex-row md:space-x-2 md:text-6xl'>
+        {word.split('(').length > 0 ? (
+          <>
+            <p>{word.split('(')[0]}</p>
+            <p>{word.split('(')[1].replaceAll(')', '')}</p>
+          </>
+        ) : (
+          <p>{word}</p>
+        )}
+      </div>
     </div>
   )
 }

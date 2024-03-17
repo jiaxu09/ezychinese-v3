@@ -13,6 +13,7 @@ import Dictionary from './literacy/dictionary'
 import English from './literacy/english'
 import Meaning from './literacy/meaning'
 import Sentences from './literacy/sentences'
+import { cn } from '@/lib/utils'
 
 interface LiteracyPracticeProps {
   characters: string[]
@@ -44,7 +45,7 @@ const LiteracyPractice = ({
   const { data: meaning, isLoading: isLoadingMeaning } = useQuery(
     useHanziIcibaMeaning(selectedCharacter)
   )
-  
+
   const { data: base64 } = useQuery(useGetSpeech(selectedCharacter, enabled))
 
   const handleCharacterClick = (character: string) => {
@@ -104,8 +105,13 @@ const LiteracyPractice = ({
   }
 
   return (
-    <div className='flex flex-col items-center justify-center space-y-4 pb-10'>
-      <div className='grid grid-cols-5 gap-6'>
+    <div className='flex flex-col items-center justify-center space-y-4  pb-10'>
+      <div
+        className={cn(
+          'grid  gap-6 ',
+          isWriterShow ? 'grid-cols-5' : 'grid-cols-3'
+        )}
+      >
         {characters.map((char, index) => (
           <div key={index} className='flex items-center justify-center p-2'>
             <div
@@ -117,7 +123,12 @@ const LiteracyPractice = ({
           </div>
         ))}
       </div>
-      <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
+      <div
+        className={cn(
+          'flex items-center space-x-4',
+          !isWriterShow && 'flex-nowrap'
+        )}
+      >
         <div className='flex flex-col items-center justify-center space-y-4'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -187,7 +198,7 @@ const LiteracyPractice = ({
           </div>
         </div>
         {isWriterShow && (
-          <div className='flex flex-col items-center space-y-4'>
+          <div className='flex flex-col items-center space-y-4 '>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               id='character-quiz-div'

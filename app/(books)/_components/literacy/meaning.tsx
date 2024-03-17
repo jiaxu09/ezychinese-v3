@@ -2,6 +2,7 @@
 import React from 'react'
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import { BookMarked, Volume2 } from 'lucide-react'
+import IcibaMeaning from './iciba-meaning'
 
 interface MeaningProps {
   meaning: {
@@ -61,6 +62,7 @@ const Meaning = ({ meaning }: MeaningProps) => {
                 </div>
               </div>
             ))}
+            <IcibaMeaning meaning={meaning} handleSound={handleSound} />
           </div>
         </DialogContent>
       )}

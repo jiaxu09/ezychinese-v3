@@ -33,7 +33,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
 Start the development server:
 npm run dev
 
-Open http://localhost:3000 in your browser and enjoy!
+Open https://www.ezychinese.app in your browser and enjoy!
 
 
 License

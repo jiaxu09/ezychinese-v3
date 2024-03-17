@@ -8,12 +8,12 @@ import Navbar from '@/components/navbar'
 import QueryProvider from '@/components/query-provider'
 import { Toaster } from '@/components/ui/toaster'
 import Footer from '@/components/footer'
-import { GoogleAnalytics } from '@next/third-parties/google'
+// import { GoogleAnalytics } from '@next/third-parties/google'
 // import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('http://localhost:3000'),
+  metadataBase: new URL('https://www.ezychinese.app'),
   title: { default: 'ezyChinese', template: '%s - ezyChinese' },
   description:
     'Welcome to ezyChinese - Where Learning Chinese is a Breeze for Kids!',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     title: 'ezyChinese',
     description:
       'Welcome to ezyChinese - Where Learning Chinese is a Breeze for Kids!',
-    url: 'http://localhost:3000',
+    url: 'https://www.ezychinese.app',
     siteName: 'ezyChinese',
     locale: 'en_US',
     type: 'website'
@@ -84,7 +84,7 @@ export default function RootLayout({
           <AuthProvider />
         </QueryProvider>
         <Toaster />
-        <GoogleAnalytics gaId={`${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} />
+        {/* <GoogleAnalytics gaId={`${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} /> */}
         {/* <Analytics /> */}
         <SpeedInsights />
       </body>

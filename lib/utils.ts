@@ -65,5 +65,55 @@ const chineseToEnglishPartsOfSpeech: Record<string, string> = {
  */
 export function convertChineseToEnglishPartsOfSpeech(chinesePartOfSpeech: string): string {
   const englishEquivalent = chineseToEnglishPartsOfSpeech[chinesePartOfSpeech];
-  return englishEquivalent || 'unknown';
+  return englishEquivalent || '';
+}
+
+export const extractIciba = (baesInfo: any, sentences: any, bidce: any) => {
+  const example = sentences
+    ? sentences.map((sentence: any) => ({
+        cn: sentence.cn,
+        en: sentence.en,
+      }))
+    : []
+
+  const { symbols: bisymbols } = bidce
+
+  const meaning_bisymbols = bisymbols.filter(
+    (item: any) => item.parts.length > 0
+  )
+
+  let meaning
+  let meaning_1
+  if (meaning_bisymbols.length > 0) {
+    meaning_1 = meaning_bisymbols.map((item: any) => ({
+      pinyin: item.word_symbol,
+      mp3: '',
+      explanation: item.parts.map((i: any) => ({
+        partsOfSpeech: `${convertChineseToEnglishPartsOfSpeech(i.part_name)}`,
+        en_mean: i.means[0].word_mean ?? '',
+      })),
+    }))
+  }
+  const { symbols } = baesInfo
+  const meaning_2 = symbols.map((item: any) => ({
+    pinyin: item.word_symbol ?? '',
+    mp3: item.symbol_mp3 ?? '',
+    explanation: item.parts.map((i: any) => ({
+      partsOfSpeech: `(${convertChineseToEnglishPartsOfSpeech(i.part)})`,
+      en_mean: i.means.join(';'),
+    })),
+  }))
+  if (
+    meaning_2.some((i: any) =>
+      i.explanation.some((j: any) => j.partsOfSpeech === '(unknown)')
+    )
+  ) {
+    meaning = meaning_1
+  } else {
+    meaning = meaning_2
+  }
+  return {
+    example,
+    meaning,
+  }
 }

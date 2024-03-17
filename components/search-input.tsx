@@ -1,5 +1,5 @@
 'use client'
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent, KeyboardEvent } from 'react'
 import { Input } from './ui/input'
 import { RotateCcw, Search } from 'lucide-react'
 
@@ -9,13 +9,15 @@ interface SearchInputProps {
   handleSearch: () => Promise<void>
   isLoading: boolean
   placeholder: string
+  handleKeyPress: (e: KeyboardEvent<HTMLInputElement>) => void
 }
 const SearchInput = ({
   inputHandler,
   searchedPhrase,
   handleSearch,
   isLoading,
-  placeholder
+  placeholder,
+  handleKeyPress
 }: SearchInputProps) => {
   return (
     <div className='relative flex w-full items-center'>
@@ -24,6 +26,7 @@ const SearchInput = ({
         type='text'
         placeholder={placeholder}
         value={searchedPhrase}
+        onKeyDown={handleKeyPress}
       />
       <div className=' absolute right-2 cursor-pointer' onClick={handleSearch}>
         {isLoading ? (

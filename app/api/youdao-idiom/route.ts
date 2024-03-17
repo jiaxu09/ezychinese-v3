@@ -61,7 +61,7 @@ export async function GET(req: NextRequest) {
           type: 'array',
         }) ?? [],
       example_meaning:
-        blng_sents_part['sentence-pair'][0]['sentence-eng']
+        blng_sents_part['sentence-pair'][0]['sentence-translation']
           .trim()
           .replaceAll('<b>', '')
           .replaceAll('</b>', '') ?? '',
