@@ -109,7 +109,7 @@ const LiteracyPractice = ({
       <div
         className={cn(
           'grid  gap-6 ',
-          isWriterShow ? 'grid-cols-5' : 'grid-cols-3'
+          isWriterShow ? 'grid-cols-4 md:grid-cols-5' : 'grid-cols-3'
         )}
       >
         {characters.map((char, index) => (
@@ -174,13 +174,16 @@ const LiteracyPractice = ({
                 />
               )}
             </div>
-            <div className=' cursor-pointer'>
-              {isLoadingEnglish ? (
-                <RotateCcw className=' h-8 w-8 animate-spin text-skyblue' />
-              ) : (
-                <English english={english} />
-              )}
-            </div>
+            {isWriterShow && (
+              <div className=' cursor-pointer'>
+                {isLoadingEnglish ? (
+                  <RotateCcw className=' h-8 w-8 animate-spin text-skyblue' />
+                ) : (
+                  <English english={english} />
+                )}
+              </div>
+            )}
+
             {isWriterShow && (
               <div className=' cursor-pointer'>
                 {isLoadingMeaning ? (
