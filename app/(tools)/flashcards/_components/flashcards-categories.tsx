@@ -13,10 +13,12 @@ const FlashcardsCategories = () => {
     notFound()
   }
   return (
-    <div className='grid grid-cols-6 gap-10 py-10'>
+    <div className='grid grid-cols-3 gap-6 py-4 md:grid-cols-6 md:gap-10 md:py-10'>
       {categories?.map((category, index) => (
         <Link href={`/flashcards/${category}`} key={index}>
-          <Button variant='outline'>{category}</Button>
+          <Button className='w-full' variant='outline'>
+            {category}
+          </Button>
         </Link>
       ))}
     </div>

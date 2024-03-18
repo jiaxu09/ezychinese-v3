@@ -17,7 +17,7 @@ const FlashCardsPage = async () => {
   await queryClient.prefetchQuery(useGetFlashcardsCategories())
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <div className='container mx-auto flex flex-col items-center py-0 md:py-10'>
+      <div className='container mx-auto flex flex-col items-center py-0 md:py-10 gap-8'>
         <h1 className=' py-1 text-center text-xl text-primary md:text-4xl'>
           Flashcards
         </h1>
