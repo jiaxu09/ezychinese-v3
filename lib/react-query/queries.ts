@@ -55,6 +55,8 @@ import {
   getHanYuWritingsByChapter,
 } from '../supabase/api-server'
 import {
+  getFlashcardsByCategory,
+  getFlashcardsCategories,
   getPinyinByCategory,
   getQiHunAllEpisodes,
   getQiHunEpisodeDetails,
@@ -237,6 +239,21 @@ export const useGetChineseStrokes = () => {
   }
 }
 
+//Flashcards
+export const useGetFlashcardsCategories = () => {
+  return {
+    queryKey: [QUERY_KEYS.GETFLASHCARDSCATEGORIES],
+    queryFn: () => getFlashcardsCategories(),
+  }
+}
+export const useGetFlashcardsByCategory = (category: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETFLASHCARDSCATEGORIES, category],
+    queryFn: () => getFlashcardsByCategory(category),
+  }
+}
+
+/***************END OF TOOLS************* */
 // Literacy
 
 export const useHanziDictionary = (character: string) => {

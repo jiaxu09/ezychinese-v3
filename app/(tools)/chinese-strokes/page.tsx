@@ -7,6 +7,12 @@ import {
 import React from 'react'
 import StrokesTable from './_components/strokes-table'
 
+export const metadata = {
+  title: 'Chinese Strokes',
+  description:
+    'Chinese characters are made out of basic strokes. Learning the basic strokes is a good first step to learning to read and write Chinese characters. '
+}
+
 const ChineseStrokesPage = async () => {
   const queryClient = new QueryClient()
 

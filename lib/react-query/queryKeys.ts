@@ -54,4 +54,6 @@ export enum QUERY_KEYS {
   GETPINYIN = 'getpinyin',
   GETIDIOMBYUSERID = 'getidiombyuserid',
   GETCHINESESTROKES = 'getchinesestrokes',
+  GETFLASHCARDSCATEGORIES = 'getflashcardscategories',
+  GETFLASHCARDSBYCATEGORY = 'getflashcardsbycategory',
 }

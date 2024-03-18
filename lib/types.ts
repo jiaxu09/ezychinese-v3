@@ -299,3 +299,9 @@ export type Strokes = {
   pinyin: string[]
   characters: string
 }
+
+export type Flashcards = {
+  slug: string
+  words: string[]
+  wordsImages: { url: string; width: string; height: string }[]
+}
