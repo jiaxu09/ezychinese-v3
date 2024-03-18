@@ -1,0 +1,340 @@
+[
+  {
+    "id": 1,
+    "stroke": "㇔",
+    "name": "点",
+    "pinyin": [
+      "diǎn"
+    ],
+    "characters": "立, 文, 头, 主, 犬"
+  },
+  {
+    "id": 2,
+    "stroke": "㇐",
+    "name": "横",
+    "pinyin": [
+      "héng"
+    ],
+    "characters": "王, 天 , 二, 工, 大"
+  },
+  {
+    "id": 3,
+    "stroke": "㇑",
+    "name": "竖",
+    "pinyin": [
+      "shù"
+    ],
+    "characters": "十, 中, 丰, 申, 干"
+  },
+  {
+    "id": 4,
+    "stroke": "㇓",
+    "name": "撇",
+    "pinyin": [
+      "piě"
+    ],
+    "characters": "八, 须, 仅, 顺, 行"
+  },
+  {
+    "id": 5,
+    "stroke": "㇏",
+    "name": "捺",
+    "pinyin": [
+      "nà"
+    ],
+    "characters": "入, 丈, 夫, 又, 伞"
+  },
+  {
+    "id": 6,
+    "stroke": "㇀",
+    "name": "提",
+    "pinyin": [
+      "tí"
+    ],
+    "characters": "冰, 湖, 凋, 泰, 冷"
+  },
+  {
+    "id": 7,
+    "stroke": "㇖",
+    "name": "横钩",
+    "pinyin": [
+      "héng",
+      "gōu"
+    ],
+    "characters": "买, 卖, 定, 皮, 胥"
+  },
+  {
+    "id": 8,
+    "stroke": "㇚",
+    "name": "竖钩",
+    "pinyin": [
+      "shù",
+      "gōu"
+    ],
+    "characters": "小, 水, 寸, 求, 刮"
+  },
+  {
+    "id": 9,
+    "stroke": "㇂",
+    "name": "斜钩",
+    "pinyin": [
+      "xié",
+      "gōu"
+    ],
+    "characters": "我, 贱, 伐, 代, 或"
+  },
+  {
+    "id": 10,
+    "stroke": "㇕",
+    "name": "横折",
+    "pinyin": [
+      "héng",
+      "zhé"
+    ],
+    "characters": "国, 口, 见, 目, 皿"
+  },
+  {
+    "id": 11,
+    "stroke": "㇗",
+    "name": "竖折",
+    "pinyin": [
+      "shù",
+      "zhé"
+    ],
+    "characters": "医, 区, 凶, 出, 山"
+  },
+  {
+    "id": 12,
+    "stroke": "㇇",
+    "name": "横撇",
+    "pinyin": [
+      "héng",
+      "piě"
+    ],
+    "characters": "又, 友, 叉, 权, 麦"
+  },
+  {
+    "id": 13,
+    "stroke": "㇛",
+    "name": "撇点",
+    "pinyin": [
+      "piě",
+      "diǎn"
+    ],
+    "characters": "女, 巡, 姜, 好, 妈"
+  },
+  {
+    "id": 14,
+    "stroke": "㇎",
+    "name": "横折折折钩",
+    "pinyin": [
+      "héng",
+      "zhé",
+      "zhé",
+      "zhé",
+      "gōu"
+    ],
+    "characters": "乃,  仍,  孕"
+  },
+  {
+    "id": 15,
+    "stroke": "乙",
+    "name": "横斜弯钩",
+    "pinyin": [
+      "héng",
+      "xié",
+      "wān",
+      "gōu"
+    ],
+    "characters": "乙, 亿, 忆"
+  },
+  {
+    "id": 16,
+    "stroke": "㇟",
+    "name": "竖弯钩",
+    "pinyin": [
+      "shù",
+      "wān",
+      "gōu"
+    ],
+    "characters": "乱, 扎, 己"
+  },
+  {
+    "id": 17,
+    "stroke": "㇈",
+    "name": "横折弯钩",
+    "pinyin": [
+      "héng",
+      "zhé",
+      "wān",
+      "gōu"
+    ],
+    "characters": "九, 几"
+  },
+  {
+    "id": 18,
+    "stroke": "㇉",
+    "name": "竖折弯钩",
+    "pinyin": [
+      "shù",
+      "zhé",
+      "wān",
+      "gōu"
+    ],
+    "characters": "亏, 马, 号, 丐, 弓"
+  },
+  {
+    "id": 19,
+    "stroke": "㇁",
+    "name": "弯钩",
+    "pinyin": [
+      "wān",
+      "gōu"
+    ],
+    "characters": "家, 狐, 逐, 狗, 狄"
+  },
+  {
+    "id": 20,
+    "stroke": "㇆",
+    "name": "横折钩",
+    "pinyin": [
+      "héng",
+      "zhé",
+      "gōu"
+    ],
+    "characters": "羽, 包, 刀, 习, 勻"
+  },
+  {
+    "id": 21,
+    "stroke": "㇊",
+    "name": "横折提",
+    "pinyin": [
+      "héng",
+      "zhé",
+      "tí"
+    ],
+    "characters": "计, 认, 识"
+  },
+  {
+    "id": 22,
+    "stroke": "㇋",
+    "name": "横折折撇",
+    "pinyin": [
+      "héng",
+      "zhé",
+      "zhé",
+      "piě"
+    ],
+    "characters": "及, 建, 极, 级"
+  },
+  {
+    "id": 23,
+    "stroke": "㇌",
+    "name": "横撇弯钩",
+    "pinyin": [
+      "héng",
+      "piě",
+      "wān",
+      "gōu"
+    ],
+    "characters": "邮, 队, 邓, 郊, 部"
+  },
+  {
+    "id": 24,
+    "stroke": "㇜",
+    "name": "撇折",
+    "pinyin": [
+      "piě",
+      "zhé"
+    ],
+    "characters": "公, 弘, 挨, 台, 抬"
+  },
+  {
+    "id": 25,
+    "stroke": "㇙",
+    "name": "竖提",
+    "pinyin": [
+      "shù",
+      "tí"
+    ],
+    "characters": "民, 很, 良, 食, 狠"
+  },
+  {
+    "id": 26,
+    "stroke": "ㄣ",
+    "name": "竖折撇",
+    "pinyin": [
+      "shù",
+      "zhé",
+      "piě"
+    ],
+    "characters": "专, 传, 转, 砖"
+  },
+  {
+    "id": 27,
+    "stroke": "㇞",
+    "name": "竖折折",
+    "pinyin": [
+      "shù",
+      "zhé",
+      "zhé"
+    ],
+    "characters": "鼎"
+  },
+  {
+    "id": 28,
+    "stroke": "㇅",
+    "name": "横折折",
+    "pinyin": [
+      "héng",
+      "zhé",
+      "zhé"
+    ],
+    "characters": "凹"
+  },
+  {
+    "id": 29,
+    "stroke": "㇎",
+    "name": "横折折折",
+    "pinyin": [
+      "héng",
+      "zhé",
+      "zhé",
+      "zhé"
+    ],
+    "characters": "凸"
+  },
+  {
+    "id": 30,
+    "stroke": "㇍",
+    "name": "横折弯",
+    "pinyin": [
+      "héng",
+      "zhé",
+      "wān"
+    ],
+    "characters": "朵, 投, 沿, 剁"
+  },
+  {
+    "id": 31,
+    "stroke": "㇃",
+    "name": "扁斜钩",
+    "pinyin": [
+      "biǎn",
+      "xié",
+      "gōu"
+    ],
+    "characters": "心, 必, 蕊, 沁, 密"
+  },
+  {
+    "id": 32,
+    "stroke": "⺄",
+    "name": "横斜钩",
+    "pinyin": [
+      "héng",
+      "xié",
+      "gōu"
+    ],
+    "characters": "飞, 气, 风"
+  }
+]

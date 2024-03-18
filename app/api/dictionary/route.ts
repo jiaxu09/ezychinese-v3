@@ -22,10 +22,7 @@ export async function GET(req: NextRequest) {
 
     const jsonDirectory = path.join(process.cwd(), 'lib')
     //Read the json data file data.json
-    const data = await fs.readFile(
-      jsonDirectory + '/char_common_base.json',
-      'utf8'
-    )
+    const data = await fs.readFile(jsonDirectory + '/char.json', 'utf8')
 
     if (!data) {
       return new NextResponse('Hanzi file not found', {

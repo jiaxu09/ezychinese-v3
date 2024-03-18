@@ -57,10 +57,10 @@ const Dictionary = ({ vocabulary, searchedWord }: DictionaryProps) => {
             </TabsList>
             {vocabulary.hasOwnProperty('brief definition') && (
               <TabsContent
-                className=' max-h-[70vh] overflow-y-auto'
+                className=' max-h-[60vh] overflow-y-auto'
                 value='brief definition'
               >
-                <div className='flex flex-col justify-center space-y-2 text-lg'>
+                <div className='flex flex-col justify-center space-y-2 text-sm md:text-lg'>
                   {vocabulary['brief definition']?.map((item, index) => (
                     <div key={index} className='flex space-x-2'>
                       <div className=' text-gray-500'>{item.entry}:</div>
@@ -72,50 +72,39 @@ const Dictionary = ({ vocabulary, searchedWord }: DictionaryProps) => {
             )}
             {vocabulary.hasOwnProperty('dictionary 1') && (
               <TabsContent
-                className=' max-h-[70vh] overflow-y-auto'
+                className=' max-h-[60vh] overflow-y-auto'
                 value='dictionary 1'
               >
-                <div className='flex flex-col space-y-3 py-2'>
+                <div className='flex flex-col space-y-3 py-2 text-sm md:text-lg'>
                   {vocabulary['dictionary 1'] && (
                     <IcibaMeaning
                       meaning={vocabulary['dictionary 1'].meaning}
                       handleSound={handleSound}
                     />
                   )}
-
-                  {/* {vocabulary['dictionary 1']?.map((item, index) => (
-                    <div className='flex flex-col space-y-2' key={index}>
-                      <p className=' italic text-gray-400'>{item.parts}</p>
-                      <div className='flex flex-col'>
-                        {item?.sentences?.map((s, i) => (
-                          <div className='flex flex-col text-lg' key={i}>
-                            <p className='pl-2'>- {s.meaning}</p>
-                            <div className='flex flex-col py-2 pl-4'>
-                              {s?.example?.map((e, j) => (
-                                <div key={j} className='flex flex-col'>
-                                  <p className=' text-gray-500'>{e.cn}</p>
-                                  <p>{e.en}</p>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        ))}
+                  {vocabulary['dictionary 1'] &&
+                    vocabulary['dictionary 1'].sentences?.map((item, index) => (
+                      <div
+                        className='flex flex-col space-y-2 border-b border-b-gray-400'
+                        key={index}
+                      >
+                        <p>{item.cn}</p>
+                        <p>{item.en}</p>
                       </div>
-                    </div>
-                  ))} */}
+                    ))}
                 </div>
               </TabsContent>
             )}
             {vocabulary.hasOwnProperty('dictionary 2') && (
               <TabsContent
-                className=' max-h-[70vh] overflow-y-auto'
+                className=' max-h-[60vh] overflow-y-auto'
                 value='dictionary 2'
               >
                 <div className='flex flex-col'>
                   <p className=' py-2 text-gray-400'>
                     /{vocabulary['dictionary 2']?.pinyin}/
                   </p>
-                  <div className=' flex flex-col text-lg'>
+                  <div className=' flex flex-col text-sm md:text-lg'>
                     {vocabulary['dictionary 2']?.example?.map((item, index) => (
                       <div className='flex flex-col' key={index}>
                         <p>-{item.en_meaning}</p>
@@ -128,7 +117,7 @@ const Dictionary = ({ vocabulary, searchedWord }: DictionaryProps) => {
             )}
             {vocabulary.hasOwnProperty('dictionary 3') && (
               <TabsContent
-                className=' max-h-[70vh] overflow-y-auto'
+                className=' max-h-[60vh] overflow-y-auto'
                 value='dictionary 3'
               >
                 <div className='flex flex-col space-y-3 py-2'>
@@ -137,7 +126,10 @@ const Dictionary = ({ vocabulary, searchedWord }: DictionaryProps) => {
                       <p className=' italic text-gray-400'>{item.parts}</p>
                       <div className='flex flex-col'>
                         {item?.sentences?.map((s, i) => (
-                          <div className='flex flex-col text-lg' key={i}>
+                          <div
+                            className='flex flex-col text-sm md:text-lg'
+                            key={i}
+                          >
                             <p className='pl-2'>- {s.meaning}</p>
                             <div className='flex flex-col py-2 pl-4'>
                               {s?.example?.map((e, j) => (
@@ -157,7 +149,7 @@ const Dictionary = ({ vocabulary, searchedWord }: DictionaryProps) => {
             )}
             {vocabulary.hasOwnProperty('dictionary 4') && (
               <TabsContent
-                className=' max-h-[70vh] overflow-y-auto'
+                className=' max-h-[60vh] overflow-y-auto'
                 value='dictionary 4'
               >
                 <div className='flex flex-col'>
@@ -166,7 +158,7 @@ const Dictionary = ({ vocabulary, searchedWord }: DictionaryProps) => {
                       <p className='py-2 text-gray-400'>
                         /{item.pinyin.replaceAll('[', '').replaceAll(']', '')}/
                       </p>
-                      <div className='flex flex-col text-lg'>
+                      <div className='flex flex-col text-sm md:text-lg'>
                         {item.example?.map((ex, i) => (
                           <div className='flex flex-col' key={i}>
                             <p>{ex.en_meaning}</p>

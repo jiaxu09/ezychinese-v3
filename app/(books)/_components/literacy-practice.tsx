@@ -174,35 +174,30 @@ const LiteracyPractice = ({
                 />
               )}
             </div>
-            {isWriterShow && (
-              <div className=' cursor-pointer'>
-                {isLoadingEnglish ? (
-                  <RotateCcw className=' h-8 w-8 animate-spin text-skyblue' />
-                ) : (
-                  <English english={english} />
-                )}
-              </div>
-            )}
 
-            {isWriterShow && (
-              <div className=' cursor-pointer'>
-                {isLoadingMeaning ? (
-                  <RotateCcw className=' h-8 w-8 animate-spin text-green' />
-                ) : (
-                  <Meaning meaning={meaning?.meaning} />
-                )}
-              </div>
-            )}
+            <div className=' cursor-pointer'>
+              {isLoadingEnglish ? (
+                <RotateCcw className=' h-8 w-8 animate-spin text-skyblue' />
+              ) : (
+                <English english={english} />
+              )}
+            </div>
 
-            {isWriterShow && (
-              <div className=' cursor-pointer'>
-                {isLoadingMeaning ? (
-                  <RotateCcw className=' h-8 w-8 animate-spin text-green' />
-                ) : (
-                  <Sentences sentences={meaning?.sentences} />
-                )}
-              </div>
-            )}
+            <div className=' cursor-pointer'>
+              {isLoadingMeaning ? (
+                <RotateCcw className=' h-8 w-8 animate-spin text-green' />
+              ) : (
+                <Meaning meaning={meaning?.meaning} />
+              )}
+            </div>
+
+            <div className=' cursor-pointer'>
+              {isLoadingMeaning ? (
+                <RotateCcw className=' h-8 w-8 animate-spin text-green' />
+              ) : (
+                <Sentences sentences={meaning?.sentences} />
+              )}
+            </div>
           </div>
         </div>
         {isWriterShow && (

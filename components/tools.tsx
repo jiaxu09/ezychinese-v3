@@ -111,7 +111,7 @@ const Tools = () => {
           </div>
           <div className='relative z-10 flex translate-x-6 items-center justify-center md:h-full md:w-1/3 md:translate-x-0 md:translate-y-10'>
             <Link
-              href='/'
+              href='/chinese-strokes'
               className='flex h-3/4 w-3/4  -rotate-12 flex-col items-center justify-center rounded-lg bg-crayola shadow-md hover:bg-crayola/80 md:w-2/3'
             >
               <Eraser className='h-5 w-5 rotate-12 text-primary md:h-8  md:w-8' />

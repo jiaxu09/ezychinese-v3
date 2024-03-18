@@ -77,7 +77,7 @@ import {
   getVideoByChapter,
   getWordsByChapter,
 } from '../graphql/api'
-import { fetchAPI, pinyinTone } from '../api'
+import { fetchAPI, fetchChineseStrokes, pinyinTone } from '../api'
 import {
   addChineseIdiom,
   addChineseRadical,
@@ -229,6 +229,13 @@ export const useGetChinesePinyinByCategory = (category: PinyinCategories) => {
     queryFn: () => getPinyinByCategory(category),
   }
 }
+//Chinese strokes
+export const useGetChineseStrokes = () => {
+  return {
+    queryKey: [QUERY_KEYS.GETCHINESESTROKES],
+    queryFn: () => fetchChineseStrokes(),
+  }
+}
 
 // Literacy
 
@@ -247,14 +254,6 @@ export const useHanziEnglish = (character: string) => {
     enabled: character.length !== 0,
   }
 }
-
-// export const useHanziMeaning = (character: string) => {
-//   return {
-//     queryKey: [QUERY_KEYS.GETHANZIMEANING, character],
-//     queryFn: () => getHanziMeaning(character),
-//     enabled: character.length !== 0,
-//   }
-// }
 
 export const useHanziIcibaMeaning = (character: string) => {
   return {

@@ -53,4 +53,5 @@ export enum QUERY_KEYS {
   GETSPEECH = 'getspeech',
   GETPINYIN = 'getpinyin',
   GETIDIOMBYUSERID = 'getidiombyuserid',
+  GETCHINESESTROKES = 'getchinesestrokes',
 }
