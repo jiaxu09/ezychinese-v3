@@ -32,7 +32,7 @@ const Flashcards = ({ category }: FlashcardsProps) => {
         id: index,
         frontHTML: (
           <div className='flex h-full w-full flex-col items-center justify-center gap-8  py-10'>
-            <div className='z-50 h-8 w-8'>
+            <div className='h-8 w-8'>
               <HanziSound word={item} />
             </div>
             <div
