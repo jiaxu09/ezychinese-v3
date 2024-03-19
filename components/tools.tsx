@@ -111,7 +111,7 @@ const Tools = () => {
           </div>
           <div className='relative z-10 flex translate-x-6 items-center justify-center md:h-full md:w-1/3 md:translate-x-0 md:translate-y-10'>
             <Link
-              href='/'
+              href='/chinese-strokes'
               className='flex h-3/4 w-3/4  -rotate-12 flex-col items-center justify-center rounded-lg bg-crayola shadow-md hover:bg-crayola/80 md:w-2/3'
             >
               <Eraser className='h-5 w-5 rotate-12 text-primary md:h-8  md:w-8' />
@@ -134,7 +134,7 @@ const Tools = () => {
           </div>
           <div className='z-10 flex translate-x-2 items-center justify-start md:h-full md:w-1/3 md:translate-x-28 md:translate-y-32 lg:translate-x-20 xl:translate-x-10'>
             <Link
-              href='/'
+              href='/flashcards'
               className=' flex h-3/4 w-3/4 flex-col items-center justify-center space-y-2 rounded-lg bg-skyblue shadow-md hover:bg-skyblue/80 md:w-2/3 '
             >
               <GalleryHorizontalEnd className='h-5 w-5 text-primary md:h-8 md:w-8' />

@@ -291,3 +291,17 @@ export type Vocabulary = {
   'dictionary 3'?: Dict_3[]
   'dictionary 4'?: Dict_4[]
 }
+
+export type Strokes = {
+  id: number
+  stroke: string
+  name: string
+  pinyin: string[]
+  characters: string
+}
+
+export type Flashcards = {
+  slug: string
+  words: string[]
+  wordsImages: { url: string; width: string; height: string }[]
+}

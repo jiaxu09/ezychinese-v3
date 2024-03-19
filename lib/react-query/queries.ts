@@ -55,6 +55,8 @@ import {
   getHanYuWritingsByChapter,
 } from '../supabase/api-server'
 import {
+  getFlashcardsByCategory,
+  getFlashcardsCategories,
   getPinyinByCategory,
   getQiHunAllEpisodes,
   getQiHunEpisodeDetails,
@@ -77,7 +79,7 @@ import {
   getVideoByChapter,
   getWordsByChapter,
 } from '../graphql/api'
-import { fetchAPI, pinyinTone } from '../api'
+import { fetchAPI, fetchChineseStrokes, pinyinTone } from '../api'
 import {
   addChineseIdiom,
   addChineseRadical,
@@ -229,7 +231,29 @@ export const useGetChinesePinyinByCategory = (category: PinyinCategories) => {
     queryFn: () => getPinyinByCategory(category),
   }
 }
+//Chinese strokes
+export const useGetChineseStrokes = () => {
+  return {
+    queryKey: [QUERY_KEYS.GETCHINESESTROKES],
+    queryFn: () => fetchChineseStrokes(),
+  }
+}
 
+//Flashcards
+export const useGetFlashcardsCategories = () => {
+  return {
+    queryKey: [QUERY_KEYS.GETFLASHCARDSCATEGORIES],
+    queryFn: () => getFlashcardsCategories(),
+  }
+}
+export const useGetFlashcardsByCategory = (category: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETFLASHCARDSCATEGORIES, category],
+    queryFn: () => getFlashcardsByCategory(category),
+  }
+}
+
+/***************END OF TOOLS************* */
 // Literacy
 
 export const useHanziDictionary = (character: string) => {
@@ -247,14 +271,6 @@ export const useHanziEnglish = (character: string) => {
     enabled: character.length !== 0,
   }
 }
-
-// export const useHanziMeaning = (character: string) => {
-//   return {
-//     queryKey: [QUERY_KEYS.GETHANZIMEANING, character],
-//     queryFn: () => getHanziMeaning(character),
-//     enabled: character.length !== 0,
-//   }
-// }
 
 export const useHanziIcibaMeaning = (character: string) => {
   return {

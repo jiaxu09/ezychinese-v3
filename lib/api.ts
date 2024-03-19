@@ -1,3 +1,5 @@
+import { Strokes } from './types'
+
 export const pinyinTone = async (words: string[]) => {
   const response = await fetch('/api/pinyin', {
     method: 'POST',
@@ -39,4 +41,14 @@ export const fetchAPI = async (searchedPhrases: string, source: string) => {
   } catch (error) {
     return null
   }
+}
+
+export const fetchChineseStrokes = async () => {
+  const response = await fetch('/api/strokes', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+  return (await response.json()) as Strokes[]
 }

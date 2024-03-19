@@ -1,5 +1,6 @@
 'use server'
 import {
+  Flashcards,
   IBook,
   IChapter,
   ILiteracies,
@@ -344,4 +345,60 @@ export const getPinyinByCategory = async (category: PinyinCategories) => {
     const initials = data.data.pinyins as Pinyin[]
     return initials
   } catch (error) {}
+}
+
+//Flashcards
+
+export const getFlashcardsCategories = async () => {
+  try {
+    const data = await fetch(graphqlAPI, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `query GetFlashcardsCategories {
+          matchFlashcardCategories {
+            categories
+          }
+        }`,
+      }),
+    }).then((res) => res.json())
+    const {
+      data: { matchFlashcardCategories },
+    } = data
+    const categories = matchFlashcardCategories[0].categories as string[]
+    return categories
+  } catch (error) {
+    throw Error
+  }
+}
+export const getFlashcardsByCategory = async (slug: string) => {
+  try {
+    const data = await fetch(graphqlAPI, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `query GetMatchFlashcardsByCategory($slug: String!) {
+          matchFlashcards(where: { slug: $slug }) {
+            slug
+            words
+            wordsImages {
+              url
+              width
+              height
+            }
+          }
+        }`,
+        variables: { slug },
+      }),
+    }).then((res) => res.json())
+    const { matchFlashcards } = data.data
+    const flashcards = matchFlashcards[0] as Flashcards
+    return flashcards
+  } catch (error) {
+    throw Error
+  }
 }
