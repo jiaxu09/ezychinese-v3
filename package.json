@@ -50,6 +50,7 @@
     "react-dropzone": "^14.2.3",
     "react-hook-form": "^7.50.1",
     "react-quizlet-flashcard": "^3.0.0",
+    "react-tooltip": "^5.26.3",
     "react-youtube": "^10.1.0",
     "sharp": "^0.33.2",
     "tailwind-merge": "^2.2.1",
