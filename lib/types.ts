@@ -305,3 +305,15 @@ export type Flashcards = {
   words: string[]
   wordsImages: { url: string; width: string; height: string }[]
 }
+
+export type Story = {
+  level: number
+  zh_title: string
+  en_title: string
+  story: string
+  en_story: string
+  grammar: string
+  exercises: string
+  audio: string
+  thumbnail: string
+}

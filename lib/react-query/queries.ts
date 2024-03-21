@@ -21,6 +21,7 @@ import {
   IRadical,
   PinyinCategories,
   RightExplanation,
+  Story,
 } from '../types'
 import { useToast } from '@/components/ui/use-toast'
 import {
@@ -32,6 +33,7 @@ import {
   addHanYuSentence,
   addHanYuText,
   addHanYuWriting,
+  addStory,
   deleteCSOLSelectRightChoice,
   deleteCSOLSelectWordOrderWords,
   deleteChineseIdiom,
@@ -972,4 +974,22 @@ export const useGetCSOLSelectRightChoiceByChapter = (source: string) => {
     queryKey: [QUERY_KEYS.GETCSOLSELECTRIGHTCHOICEBYCHAPTER, source],
     queryFn: () => getCSOLSelectRightChoiceByChapter(source),
   }
+}
+
+//Leveled Reading
+export const useAddStory = () => {
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  return useMutation({
+    mutationFn: (item: Story) => addStory(item),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GETLEVELEDREADINGSTORY],
+      })
+      toast({
+        title: 'Cool! Story created successfully. ',
+        variant: 'success',
+      })
+    },
+  })
 }

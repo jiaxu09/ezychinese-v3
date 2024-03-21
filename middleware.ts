@@ -57,10 +57,19 @@ export async function middleware(request: NextRequest) {
 	);
 
 	const { data } = await supabase.auth.getSession();
-
+	if (data.session) {
+		if (
+			// protect this page only admin can access this /dashboard/members
+			data.session.user.email !== ("jiaxu99.w@gmail.com"||"faye.he.f@gmail.com")
+		) {
+			return NextResponse.redirect(new URL("/", request.url));
+		}
+	} else {
+		return NextResponse.redirect(new URL("/", request.url));
+	}
 
 }
 
 export const config = {
-	matcher: [],
+	matcher: ["/admin/:path*"],
 };

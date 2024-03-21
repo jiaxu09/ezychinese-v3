@@ -17,6 +17,7 @@ import {
   IIdiom,
   IRadical,
   RightExplanation,
+  Story,
 } from '../types'
 import { getPagination } from '../utils'
 import { supabaseServer } from './server'
@@ -211,19 +212,21 @@ const deleteFunction = async (id: string, table: string) => {
 }
 
 const addFunction = async (table: string, item: any) => {
-  const supabase = supabaseServer()
+  try {
+    const supabase = supabaseServer()
 
-  const { data } = await supabase.auth.getSession()
+    const { data } = await supabase.auth.getSession()
 
-  if (!data?.session?.user) {
-    return
-  }
+    if (!data?.session?.user) {
+      return
+    }
 
-  const { error } = await supabase.from(table).insert(item)
-  if (error) {
-    console.log(error)
-    throw new Error('Something went wrong!')
-  }
+    const { error } = await supabase.from(table).insert(item)
+    if (error) {
+      console.log(error)
+      throw new Error('Something went wrong!')
+    }
+  } catch (error) {}
 }
 
 const getFunction = async (source: string, table: string) => {
@@ -491,4 +494,9 @@ export const getCSOLOrderWordsByChapter = async (source: string) => {
 
 export const deleteCSOLSelectWordOrderWords = async (id: string) => {
   await deleteFunction(id, 'select_word_order_words_csol_quiz')
+}
+
+//Leveled Reading
+export const addStory = async (item: Story) => {
+  await addFunction('leveled_reading', item)
 }

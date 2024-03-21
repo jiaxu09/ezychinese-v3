@@ -117,3 +117,13 @@ export const extractIciba = (baesInfo: any, sentences: any, bidce: any) => {
     meaning,
   }
 }
+
+export function isJsonString(str:string) {
+  try {
+      JSON.parse(str);
+      return true;
+  } catch (e) {
+    console.log(e);
+      return false;
+  }
+}

@@ -56,4 +56,5 @@ export enum QUERY_KEYS {
   GETCHINESESTROKES = 'getchinesestrokes',
   GETFLASHCARDSCATEGORIES = 'getflashcardscategories',
   GETFLASHCARDSBYCATEGORY = 'getflashcardsbycategory',
+  GETLEVELEDREADINGSTORY = 'getleveledreadingstory',
 }
