@@ -44,6 +44,8 @@ import {
   deleteHanYuText,
   deleteHanYuWord,
   deleteHanYuWriting,
+  fetchStoriesByLevel,
+  fetchStoryBySlug,
   getCSOLOrderWordsByChapter,
   getCSOLSelectRightChoiceByChapter,
   getCSOLSelectWordByChapter,
@@ -977,6 +979,7 @@ export const useGetCSOLSelectRightChoiceByChapter = (source: string) => {
 }
 
 //Leveled Reading
+
 export const useAddStory = () => {
   const queryClient = useQueryClient()
   const { toast } = useToast()
@@ -992,4 +995,17 @@ export const useAddStory = () => {
       })
     },
   })
+}
+
+export const useFetchStoriesByLevel = (level: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETSTORIESBYLEVEL, level],
+    queryFn: () => fetchStoriesByLevel(level),
+  }
+}
+export const useFetchStoryBySlug = (slug: string) => {
+  return {
+    queryKey: [QUERY_KEYS.GETSTORYBYSLUG, slug],
+    queryFn: () => fetchStoryBySlug(slug),
+  }
 }

@@ -1,6 +1,12 @@
 import { type Metadata } from 'next'
 import React from 'react'
 import StoryDetails from './_components/story-details'
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient
+} from '@tanstack/react-query'
+import { useFetchStoryBySlug } from '@/lib/react-query/queries'
 
 interface ReadingLevelPageProps {
   params: {
@@ -26,11 +32,16 @@ export async function generateMetadata({
   }
 }
 
-const StoryPage = ({ params }: ReadingLevelPageProps) => {
+const StoryPage = async ({ params }: ReadingLevelPageProps) => {
+  const queryClient = new QueryClient()
+
+  await queryClient.prefetchQuery(useFetchStoryBySlug(params.storyid))
   return (
-    <div className=' '>
-      <StoryDetails levelId={params.levelid} storyId={params.storyid} />
-    </div>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <div className=' '>
+        <StoryDetails levelId={params.levelid} storyId={params.storyid} />
+      </div>
+    </HydrationBoundary>
   )
 }
 

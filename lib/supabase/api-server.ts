@@ -17,6 +17,7 @@ import {
   IIdiom,
   IRadical,
   RightExplanation,
+  Stories,
   Story,
 } from '../types'
 import { getPagination } from '../utils'
@@ -499,4 +500,58 @@ export const deleteCSOLSelectWordOrderWords = async (id: string) => {
 //Leveled Reading
 export const addStory = async (item: Story) => {
   await addFunction('leveled_reading', item)
+}
+
+export const fetchStoriesByLevel = async (level: string) => {
+  const supabase = supabaseServer()
+  const { data, error } = await supabase
+    .from('leveled_reading')
+    .select('thumbnail, zh_title, en_title,slug,id')
+    .eq('level', level)
+    .order('id', { ascending: false })
+
+  if (error) {
+    console.log(error)
+    throw Error
+  }
+  const stories = data as Stories
+  return stories
+}
+
+export const fetchStoryBySlug = async (slug: string) => {
+  const supabase = supabaseServer()
+  const { data, error } = await supabase
+    .from('leveled_reading')
+    .select('*')
+    .eq('slug', slug)
+    .single()
+
+  if (error) {
+    console.log(error)
+    throw Error
+  }
+  const {
+    zh_title,
+    en_title,
+    // story,
+    en_story,
+    grammar,
+    audio,
+    thumbnail,
+    exercises,
+    level,
+  } = data
+  const result: Story = {
+    story: JSON.parse(data.story?.toString()!),
+    zh_title,
+    en_title,
+    en_story,
+    grammar: JSON.parse(grammar?.toString()!),
+    audio,
+    thumbnail,
+    exercises: JSON.parse(exercises?.toString()!),
+    level,
+    slug: data.slug,
+  }
+  return result
 }

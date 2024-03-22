@@ -14,7 +14,7 @@ import { Sparkles } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 
 interface ExercisesProps {
-  exercises: {
+  exercises?: {
     type: string
     question: string
     options: string[]
@@ -70,7 +70,7 @@ const Exercises = ({ exercises }: ExercisesProps) => {
           className='h-full w-[90%] md:w-full'
         >
           <CarouselContent>
-            {exercises.map((item, index) => (
+            {exercises?.map((item, index) => (
               <CarouselItem key={index}>
                 <Card>
                   <CardContent className='flex flex-col p-1 md:p-6'>

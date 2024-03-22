@@ -10,7 +10,7 @@ export default function Home() {
     <main>
       <Hero />
       <Books />
-      <Reading />
+      {/* <Reading /> */}
       <Suspense fallback={null}>
         <Tools />
       </Suspense>

@@ -5,24 +5,27 @@ import ReactAudioPlayer from 'react-audio-player'
 import supabaseUrl from '@/lib/utils'
 
 interface StoryProps {
-  story: {
+  story?: {
     zh: string[]
     pinyin: string[]
     en: string
   }[]
+  audio?: string
 }
-const Story = ({ story }: StoryProps) => {
+const Story = ({ story, audio }: StoryProps) => {
   return (
     <div className='flex w-full flex-col space-y-2'>
       <div className='flex w-full justify-center'>
-        <ReactAudioPlayer
-          src={supabaseUrl(`mp3/pangu.mp3`)}
-          controls
-          controlsList='nodownload noremoteplayback'
-        />
+        {audio && (
+          <ReactAudioPlayer
+            src={supabaseUrl(`${audio}`)}
+            controls
+            controlsList='nodownload noremoteplayback'
+          />
+        )}
       </div>
       <div className=' flex w-full flex-wrap gap-1'>
-        {story.map((item, index) => (
+        {story?.map((item, index) => (
           <div
             data-tooltip-id={`${item.en}+${index}`}
             className='flex cursor-pointer items-center justify-center  hover:border-b hover:border-dashed hover:border-gray-300'

@@ -1,7 +1,7 @@
 import React from 'react'
 
 interface EnglishStoryProps {
-  story: string
+  story?: string
 }
 const EnglishStory = ({ story }: EnglishStoryProps) => {
   return (

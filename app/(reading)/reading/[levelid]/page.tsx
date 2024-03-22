@@ -1,6 +1,8 @@
 import { type Metadata } from 'next'
 import React from 'react'
 import ReadingList from './_components/reading-list'
+import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query'
+import { useFetchStoriesByLevel } from '@/lib/react-query/queries'
 
 interface ReadingLevelPageProps {
   params: {
@@ -25,11 +27,16 @@ export async function generateMetadata({
   }
 }
 
-const ReadingLevelPage = ({ params }: ReadingLevelPageProps) => {
+const ReadingLevelPage = async ({ params }: ReadingLevelPageProps) => {
+  const queryClient = new QueryClient()
+
+  await queryClient.prefetchQuery(useFetchStoriesByLevel(params.levelid))
   return (
-    <main className='flex flex-col'>
-      <ReadingList />
-    </main>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <main className='flex flex-col'>
+        <ReadingList levelId={params.levelid}/>
+      </main>
+    </HydrationBoundary>
   )
 }
 

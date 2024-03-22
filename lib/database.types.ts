@@ -318,7 +318,8 @@ export type Database = {
           exercises: Json
           grammar: Json
           id: number
-          level: number
+          level: string
+          slug: string
           story: Json
           thumbnail: string
           zh_title: string
@@ -331,7 +332,8 @@ export type Database = {
           exercises: Json
           grammar: Json
           id?: number
-          level: number
+          level?: string
+          slug?: string
           story: Json
           thumbnail: string
           zh_title: string
@@ -344,7 +346,8 @@ export type Database = {
           exercises?: Json
           grammar?: Json
           id?: number
-          level?: number
+          level?: string
+          slug?: string
           story?: Json
           thumbnail?: string
           zh_title?: string

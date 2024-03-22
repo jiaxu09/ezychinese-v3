@@ -138,16 +138,9 @@ export const SelectRightChoiceValidation = z.object({
 })
 
 //leveled reading
-const stringToJSONSchema = z.string().transform(
-  (str, ctx): z.infer<ReturnType<typeof JSON.parse>> => {
-    try {
-      return JSON.parse(str)
-    } catch (e) {
-      ctx.addIssue({ code: 'custom', message: 'Invalid JSON' })
-      return z.never()
-    }
-  }
-)
+export const StoryBasicValidation = z.object({
+  zh: z.string().min(1, { message: 'Chinese title is required.' }),
+})
 
 export const StoryValidation = z.object({
   thumbnail: z.custom<File[]>(),
