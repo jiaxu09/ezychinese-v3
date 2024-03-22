@@ -1,5 +1,5 @@
-import { SupabaseClient } from '@supabase/supabase-js'
 import { Database } from './database.types'
+import { SupabaseClient } from '@supabase/supabase-js'
 
 export type TypedSupabaseClient = SupabaseClient<Database>
 
@@ -305,3 +305,36 @@ export type Flashcards = {
   words: string[]
   wordsImages: { url: string; width: string; height: string }[]
 }
+
+export type Story = {
+  level: string
+  zh_title: string
+  en_title: string
+  story: {
+    zh: string[]
+    pinyin: string[]
+    en: string
+  }[]
+  en_story: string
+  grammar: {
+    zh: string
+    en: string
+  }[]
+  exercises: {
+    type: string
+    question: string
+    options: string[]
+    answer: number
+  }[]
+  audio: string
+  thumbnail: string
+  slug: string
+}
+
+export type Stories = {
+  thumbnail: string
+  zh_title: string
+  en_title: string
+  slug: string
+  id: number
+}[]

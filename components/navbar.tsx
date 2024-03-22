@@ -10,7 +10,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
@@ -21,8 +21,8 @@ import useNetworkInformation from '@/hook/useNetworkInformation'
 
 const Navbar = () => {
   const pathname = usePathname()
-  const user = useUser((state) => state.user)
-  const setUser = useUser((state) => state.setUser)
+  const user = useUser(state => state.user)
+  const setUser = useUser(state => state.setUser)
 
   const [isOnline] = useNetworkInformation()
 
@@ -31,8 +31,8 @@ const Navbar = () => {
     supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: location.origin + `/auth/callback?next=${pathname}`,
-      },
+        redirectTo: location.origin + `/auth/callback?next=${pathname}`
+      }
     })
   }
 
@@ -43,37 +43,37 @@ const Navbar = () => {
   }
 
   return (
-    <div className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto flex items-center justify-between py-4 md:py-6">
-        <Link href="/" className="flex items-center justify-center space-x-2">
-          <div className="w-7 h-7 md:w-10 md:h-10 relative">
+    <div className='sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'>
+      <div className='container mx-auto flex items-center justify-between py-4 md:py-6'>
+        <Link href='/' className='flex items-center justify-center space-x-2'>
+          <div className='relative h-7 w-7 md:h-10 md:w-10'>
             <Image
               src={supabaseUrl('images/logo.webp')}
               width={98}
               height={89}
               priority
-              sizes="100vw"
-              alt="ezyChinese Logo"
+              sizes='100vw'
+              alt='ezyChinese Logo'
             />
           </div>
-          <div className="w-24 md:w-40 relative">
+          <div className='relative w-24 md:w-40'>
             <Image
               src={supabaseUrl('images/ezyChinese.webp')}
               width={171}
               height={33}
-              alt="ezyChinese"
+              alt='ezyChinese'
               priority
-              sizes="33vw"
+              sizes='33vw'
             />
           </div>
         </Link>
-        <div className="flex items-center justify-start">
+        <div className='flex items-center justify-start'>
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Avatar>
                   <AvatarImage
-                    className=" cursor-pointer"
+                    className=' cursor-pointer'
                     src={user.image_url!}
                   />
                   <AvatarFallback>
@@ -81,21 +81,24 @@ const Navbar = () => {
                   </AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className=" bg-background">
-                <DropdownMenuItem className=" ">
-                  <Link
-                    className="w-full flex justify-start text-lg"
-                    href="/"
-                    aria-label="myquizzes"
-                  >
-                    My Quizzes
-                  </Link>
-                </DropdownMenuItem>
+              <DropdownMenuContent className=' bg-background'>
+                {user.role === 'admin' && (
+                  <DropdownMenuItem className=' '>
+                    <Link
+                      className='flex w-full justify-start text-lg'
+                      href='/admin/story'
+                      aria-label='new story'
+                    >
+                      New Story
+                    </Link>
+                  </DropdownMenuItem>
+                )}
+
                 <DropdownMenuItem>
                   <div
-                    className="w-full flex justify-start text-lg"
-                    role="button"
-                    aria-label="sign out"
+                    className='flex w-full justify-start text-lg'
+                    role='button'
+                    aria-label='sign out'
                     onClick={handleSignout}
                   >
                     Sign out
@@ -105,9 +108,9 @@ const Navbar = () => {
             </DropdownMenu>
           ) : (
             <Button
-              aria-label="sign in"
+              aria-label='sign in'
               onClick={handleSignin}
-              variant="outline"
+              variant='outline'
             >
               <span>Sign in</span>
             </Button>
@@ -115,8 +118,8 @@ const Navbar = () => {
         </div>
       </div>
       {!isOnline && (
-        <div className=" fixed flex items-center justify-center top-0 py-1 left-0 right-0 bg-wuzzy text-center animate-fade-down">
-          <WifiOff className="w-5 h-5 mr-4" />
+        <div className=' bg-wuzzy fixed left-0 right-0 top-0 flex animate-fade-down items-center justify-center py-1 text-center'>
+          <WifiOff className='mr-4 h-5 w-5' />
           You are Offline!
         </div>
       )}

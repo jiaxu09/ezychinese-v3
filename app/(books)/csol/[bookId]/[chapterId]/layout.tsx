@@ -43,7 +43,7 @@ const PracticesLayout = ({
         bookId={params.bookId}
         chapterId={params.chapterId}
       />
-      <div className=''>{children}</div>
+      <div className='container mx-auto'>{children}</div>
       <AddQuizButton bookId={params.bookId} chapterId={params.chapterId} />
     </main>
   )

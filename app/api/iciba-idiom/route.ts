@@ -5,7 +5,7 @@ import { pinyin } from 'pinyin-pro'
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const text = searchParams.get('text')
-  const url = `https://www.iciba.com/_next/data/dTlbEbttstfo-ZBl63u0M/word.json?w=${text}`
+  const url = `https://www.iciba.com/_next/data/Oo2lhUMf85DZ7OJMbFn8g/word.json?w=${text}`
   const options = {
     method: 'GET',
     headers: {

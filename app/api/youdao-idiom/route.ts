@@ -48,10 +48,11 @@ export async function GET(req: NextRequest) {
         status: 404,
       })
     }
-
     const idiom: IIdiom = {
       name: query.split(''),
-      idiom_pinyin: word[0].phone.split(' '),
+      idiom_pinyin: pinyin(query, {
+        type: 'array',
+      }),
       idiom_meaning: newhh.dataList[0].sense[0].def.toString() ?? '',
       eng_meaning: wuguanghua.dataList[0].trs[0].tr.en ?? '',
       example:

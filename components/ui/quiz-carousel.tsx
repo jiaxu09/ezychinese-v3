@@ -61,7 +61,8 @@ const Carousel = React.forwardRef<
     const [carouselRef, api] = useEmblaCarousel(
       {
         ...opts,
-        axis: orientation === 'horizontal' ? 'x' : 'y'
+        axis: orientation === 'horizontal' ? 'x' : 'y',
+        watchDrag: false // Disable swipe/dragging
       },
       plugins
     )
@@ -78,7 +79,7 @@ const Carousel = React.forwardRef<
     }, [])
 
     const scrollPrev = React.useCallback(() => {
-      api?.scrollPrev()
+      // api?.scrollPrev()
     }, [api])
 
     const scrollNext = React.useCallback(() => {

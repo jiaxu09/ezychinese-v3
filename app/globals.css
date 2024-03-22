@@ -31,7 +31,7 @@
     --pewterblue: 179 25% 65%;
     --neutral: 220 17% 32%;
     --watermarker: 219 28% 88%;
-    --success: 147 47% 49%;
+    --success: 134 75% 72%;
   }
   .dark {
     --background: 217 50% 10%;
@@ -112,6 +112,10 @@
   h2 {
     @apply scroll-m-20 pb-2 text-3xl font-medium tracking-tight first:mt-0;
   }
+
+  .reading-link {
+    @apply flex h-full w-full flex-col items-center justify-center rounded-lg border border-primary bg-background p-2 transition-all duration-700 hover:scale-105 md:space-y-1;
+  }
 }
 
 /***************Memory game***************/
@@ -179,7 +183,7 @@
 .firework::before,
 .firework::after {
   --initialSize: 0.6vmin;
-  --finalSize: 45vmin;
+  --finalSize: 25vmin;
   --particleSize: 0.3vmin;
   --color1: yellow;
   --color2: khaki;
@@ -187,9 +191,9 @@
   --color4: lime;
   --color5: gold;
   --color6: mediumseagreen;
-  --y: -30vmin;
+  --y: -0vmin;
   --x: -50%;
-  --initialY: 60vmin;
+  --initialY: 16vmin;
   content: '';
   animation: firework 2s infinite;
   position: absolute;
@@ -250,8 +254,8 @@
 
 .firework::before {
   --x: -50%;
-  --y: -50%;
-  --initialY: -50%;
+  --y: -10%;
+  --initialY: -0%;
   /*   transform: translate(-20vmin, -2vmin) rotate(40deg) scale(1.3) rotateY(40deg); */
   transform: translate(-50%, -50%) rotate(40deg) scale(1.3) rotateY(40deg);
   /*   animation: fireworkPseudo 2s infinite; */
@@ -259,10 +263,10 @@
 
 .firework::after {
   --x: -50%;
-  --y: -50%;
+  --y: 10%;
   --initialY: -50%;
   /*   transform: translate(44vmin, -50%) rotate(170deg) scale(1.15) rotateY(-30deg); */
-  transform: translate(-50%, -50%) rotate(170deg) scale(1.15) rotateY(-30deg);
+  transform: translate(-50%, -5%) rotate(170deg) scale(1.15) rotateY(-30deg);
   /*   animation: fireworkPseudo 2s infinite; */
 }
 
@@ -279,7 +283,7 @@
   --color4: orchid;
   --color5: plum;
   --color6: lavender;
-  --finalSize: 40vmin;
+  --finalSize: 20vmin;
   left: 30%;
   top: 60%;
   animation-delay: -0.25s;
@@ -299,7 +303,7 @@
   --color4: PaleTurquoise;
   --color5: SkyBlue;
   --color6: lavender;
-  --finalSize: 35vmin;
+  --finalSize: 15vmin;
   left: 70%;
   top: 60%;
   animation-delay: -0.4s;
@@ -319,7 +323,7 @@
   --color4: #bf616a;
   --color5: #d08770;
   --color6: #ebcb8b;
-  --finalSize: 35vmin;
+  --finalSize: 15vmin;
   left: 50%;
   top: 20%;
   animation-delay: -0.6s;
@@ -339,7 +343,7 @@
   --color4: #5e81ac;
   --color5: #d08770;
   --color6: #ebcb8b;
-  --finalSize: 35vmin;
+  --finalSize: 30vmin;
   left: 43%;
   top: 39%;
   animation-delay: -0.7s;

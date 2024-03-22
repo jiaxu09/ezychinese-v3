@@ -1,0 +1,159 @@
+[
+  "在",
+  "盘古",
+  "开天辟地",
+  "后，",
+  "女娲",
+  "看着",
+  "这个",
+  "新世界，",
+  "决定",
+  "创造",
+  "生命。",
+  "她",
+  "用",
+  "黄土",
+  "捏成了",
+  "第一个",
+  "人，",
+  "但",
+  "发现",
+  "这样",
+  "太慢了。",
+  "于是，",
+  "她",
+  "把",
+  "绳子",
+  "浸",
+  "在",
+  "泥浆",
+  "里，",
+  "挥舞",
+  "绳子，",
+  "泥点",
+  "四溅，",
+  "变成了",
+  "千千万万的",
+  "人。",
+  "女娲",
+  "看着",
+  "这些人，",
+  "心中",
+  "充满了",
+  "喜悦。",
+  "但",
+  "不久，",
+  "天空",
+  "出现了",
+  "裂缝，",
+  "大水",
+  "滔滔，",
+  "火山爆发，",
+  "野兽",
+  "伤人。",
+  "女娲",
+  "决定",
+  "拯救",
+  "这个",
+  "世界。",
+  "她",
+  "熔化",
+  "五彩石头，",
+  "修补",
+  "天空，",
+  "斩断",
+  "巨龟的腿，",
+  "立",
+  "为",
+  "四极，",
+  "杀死",
+  "猖獗的",
+  "黑龙，",
+  "平息了",
+  "洪水。",
+  "最后，",
+  "她",
+  "用",
+  "芦苇的",
+  "灰烬，",
+  "阻止了",
+  "水的泛滥。",
+  "从此，",
+  "天地安定，",
+  "人们",
+  "安居乐业。",
+  "女娲的",
+  "传说，",
+  "告诉",
+  "我们",
+  "勇气",
+  "和",
+  "智慧，",
+  "可以",
+  "让",
+  "我们",
+  "克服困难，",
+  "创造",
+  "美好的",
+  "世界。"
+]
+
+
+
+
+[
+  { zh: '动词+了：表示动作的完成，例如：“捏成了”、“变成了”、“充满了”。', en: 'Verb + 了 (le): Indicates the completion of an action, such as “捏成了” (formed), “变成了” (became), “充满了” (filled with)' },
+  { zh: '连词：如"但"、“和”、“于是”，用于连接句子或句子成分。', en: 'Conjunctions: Words like “但” (but), “和” (and), “于是” (thus) that connect sentences or parts of sentences.' },
+  { zh: '名词+的：形容词性物主代词，用于表示所有关系，例如：“女娲的传说”。', en: 'Noun + 的 (de): A possessive or descriptive particle, used to indicate relationships, such as “女娲的传说” (the legend of Nüwa).' },
+  { zh: '动词+得/不+动词：表示能力或可能性，例如：“看着”、“发现”。', en: 'Verb + 得/不 + Verb: Indicates ability or possibility, such as “看着” (watching), “发现” (found).' },
+  { zh: '副词+动词：如"太"、“最后”，用来修饰动词。', en: 'Adverb + Verb: Words like “太” (too), “最后” (finally) that modify verbs.' },
+  { zh: '量词：如"一个"，用于表示数量。', en: 'Measure Words: Such as “一个” (a), used to express quantity.' },
+  { zh: '介词+名词：例如：“在泥浆里”、“用芦苇的灰烬”。', en: 'Preposition + Noun: For example, “在泥浆里” (in the mud), “用芦苇的灰烬” (with the ashes of reeds).' },
+  { zh: '动词+对象：表示动作的方向，例如：“修补天空”、“杀死黑龙”。', en: 'Verb + Object: Indicates the direction of an action, such as “修补天空” (repair the sky), “杀死黑龙” (kill the black dragon).' },
+  { zh: '时间状语：如"不久"、“最后”，用来表示时间顺序。', en: 'Time Words: Like “不久” (soon), “最后” (finally), used to indicate the sequence of time. ' }
+]
+
+[
+                          {
+                            type: 'Grammar Exercises',
+                            question:
+                              "Fill in the blank: 女娲用黄土____了第一个人。?",
+                            options: ['捏', '捏成', '捏成了'],
+                            answer: 1
+                          },
+                          {
+                            type: 'Vocabulary Exercises',
+                            question:
+                              "Choose the Correct Meaning: What does the word 绳子 (shéng zi) mean?",
+                            options: ['Yellow soil', 'Rope', 'Mud','Goddess'],
+                            answer: 2
+                          },
+                          {
+                            type: 'Grammar Exercise',
+                            question:
+                              "Choose the correct verb form to complete the sentence: 她____这些人，心中充满了喜悦。",
+                            options: ['看', '看看', '看着','看了'],
+                            answer: 3
+                          },
+                           {
+                            type: 'Reading Comprehension',
+                            question:
+                              "Answer the following question based on the story:女娲的传说告诉我们什么？",
+                            options: ['勇气和智慧可以创造美好的世界。', '黄土是创造人类的材料。', '绳子是女娲的法宝。','泥浆是千千万万人的来源。'],
+                            answer: 1
+                          },
+                           {
+                            type: 'Reading Comprehension',
+                            question:
+                              "女娲是在盘古之后创造了人。",
+                            options: ['True', 'False'],
+                            answer: 1
+                          },
+                           {
+                            type: 'Grammar Exercises',
+                            question:
+                              "Select the right conjunction: 女娲既要修补天空____拯救世界。",
+                            options: ['也', '但是','而且'],
+                            answer: 1
+                          },
+                        ]

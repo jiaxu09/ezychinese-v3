@@ -4,7 +4,7 @@ export const uploadFileToStorage = async (audioFile: any, folder: string) => {
   if (audioFile) {
     const fileExt = audioFile.name.split('.').pop()
     const fileName = `${Math.random()}.${fileExt}`
-    const filePath = `mp3/${fileName}`
+    const filePath = `${folder}/${fileName}`
     const supabase = supabaseBrowser()
     const { error, data } = await supabase.storage
       .from('ezyChinese')

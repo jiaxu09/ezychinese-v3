@@ -136,3 +136,23 @@ export const SelectRightChoiceValidation = z.object({
   rightAnswer: z.string().min(1, { message: 'Right Answer is required.' }),
   source: z.string().min(1, { message: 'Source is required.' }),
 })
+
+//leveled reading
+export const StoryBasicValidation = z.object({
+  zh: z.string().min(1, { message: 'Chinese title is required.' }),
+})
+
+export const StoryValidation = z.object({
+  thumbnail: z.custom<File[]>(),
+  level: z.string().min(1, { message: 'Level is required.' }),
+  zh_title: z.string().min(1, { message: 'Chinese title is required.' }),
+  en_title: z.string().min(1, { message: 'English title is required.' }),
+  story: z.string().min(1, { message: 'Please enter a valid json file.' }),
+  en_story: z.string().min(1, { message: 'English story is required..' }),
+  grammar: z.string().min(1, { message: 'Please enter a valid json file.' }),
+  exercises: z.string().min(1, { message: 'Please enter a valid json file.' }),
+  audio: z
+    .any()
+    .refine((file) => file?.length == 1, 'Audio is required.')
+    .refine((file) => file[0]?.size <= 1000000, `Max file size is 1MB.`),
+})
