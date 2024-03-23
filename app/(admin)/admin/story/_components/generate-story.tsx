@@ -38,11 +38,13 @@ const GenerateStory = () => {
         zh: value.zh
       })
     }
-    fetch('/api/generate-story', options)
-      .then(response => response.json())
-      .then(data => {
-        setResult(data)
-      })
+    try {
+      await fetch('/api/generate-story', options)
+        .then(response => response.json())
+        .then(data => {
+          setResult(data)
+        })
+    } catch (error) {}
 
     setIsLoading(false)
   }

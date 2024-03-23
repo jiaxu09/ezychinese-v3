@@ -227,7 +227,7 @@ const addFunction = async (table: string, item: any) => {
       console.log(error)
       throw new Error('Something went wrong!')
     }
-  } catch (error) {}
+  } catch (error) { }
 }
 
 const getFunction = async (source: string, table: string) => {
@@ -508,7 +508,7 @@ export const fetchStoriesByLevel = async (level: string) => {
     .from('leveled_reading')
     .select('thumbnail, zh_title, en_title,slug,id')
     .eq('level', level)
-    .order('id', { ascending: false })
+    .order('id', { ascending: true })
 
   if (error) {
     console.log(error)
@@ -525,7 +525,6 @@ export const fetchStoryBySlug = async (slug: string) => {
     .select('*')
     .eq('slug', slug)
     .single()
-
   if (error) {
     console.log(error)
     throw Error
@@ -540,18 +539,25 @@ export const fetchStoryBySlug = async (slug: string) => {
     thumbnail,
     exercises,
     level,
+    vocabularies
   } = data
-  const result: Story = {
-    story: JSON.parse(data.story?.toString()!),
-    zh_title,
-    en_title,
-    en_story,
-    grammar: JSON.parse(grammar?.toString()!),
-    audio,
-    thumbnail,
-    exercises: JSON.parse(exercises?.toString()!),
-    level,
-    slug: data.slug,
+  try {
+    const result: Story = {
+      story: JSON.parse(JSON.stringify(data.story)),
+      zh_title,
+      en_title,
+      en_story,
+      grammar: JSON.parse(JSON.stringify(grammar)),
+      audio,
+      thumbnail,
+      exercises: JSON.parse(JSON.stringify(exercises)),
+      vocabularies: JSON.parse(JSON.stringify(vocabularies)),
+      level,
+      slug: data.slug,
+    }
+    return result
+  } catch (error) {
+    console.log(error)
+    throw Error
   }
-  return result
 }

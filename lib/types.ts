@@ -326,6 +326,10 @@ export type Story = {
     options: string[]
     answer: number
   }[]
+  vocabularies: {
+    word: string
+    meaning: string
+  }[]
   audio: string
   thumbnail: string
   slug: string

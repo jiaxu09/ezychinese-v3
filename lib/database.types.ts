@@ -322,6 +322,7 @@ export type Database = {
           slug: string
           story: Json
           thumbnail: string
+          vocabularies: Json
           zh_title: string
         }
         Insert: {
@@ -336,6 +337,7 @@ export type Database = {
           slug?: string
           story: Json
           thumbnail: string
+          vocabularies?: Json
           zh_title: string
         }
         Update: {
@@ -350,6 +352,7 @@ export type Database = {
           slug?: string
           story?: Json
           thumbnail?: string
+          vocabularies?: Json
           zh_title?: string
         }
         Relationships: []

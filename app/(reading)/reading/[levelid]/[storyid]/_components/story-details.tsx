@@ -8,8 +8,9 @@ import Exercise from './exercises'
 import { useQuery } from '@tanstack/react-query'
 import { useFetchStoryBySlug } from '@/lib/react-query/queries'
 import { notFound } from 'next/navigation'
+import Vocabularies from './vocabularies'
 
-const tabs = ['Story', 'English Story', 'Grammar', 'Exercise']
+const tabs = ['Story', 'English Story', 'Vocabularies', 'Grammar', 'Exercise']
 
 interface StoryDetailsProps {
   levelId: string
@@ -17,7 +18,6 @@ interface StoryDetailsProps {
 }
 const StoryDetails = ({ levelId, storyId }: StoryDetailsProps) => {
   const { data: story, isFetched } = useQuery(useFetchStoryBySlug(storyId))
-
   if (isFetched && !story) {
     notFound()
   }
@@ -27,7 +27,7 @@ const StoryDetails = ({ levelId, storyId }: StoryDetailsProps) => {
       <h3 className=' text-center text-lg font-medium'>{story?.zh_title}</h3>
       <p className=' text-center'>{story?.en_title}</p>
       <Tabs defaultValue='Story' className='mx-auto w-full md:w-4/5'>
-        <TabsList className='grid w-full grid-cols-3 gap-2 md:grid-cols-4'>
+        <TabsList className='grid w-full grid-cols-3 gap-2 md:grid-cols-5'>
           {tabs.map(tab => (
             <TabsTrigger key={tab} value={tab}>
               {tab}
@@ -35,10 +35,13 @@ const StoryDetails = ({ levelId, storyId }: StoryDetailsProps) => {
           ))}
         </TabsList>
         <TabsContent className='w-full  py-4' value='Story'>
-          <Story story={story?.story} audio={story?.audio}/>
+          <Story story={story?.story} audio={story?.audio} />
         </TabsContent>
         <TabsContent className='w-full  py-4' value='English Story'>
           <EnglishStory story={story?.en_story} />
+        </TabsContent>
+        <TabsContent className='w-full  py-4' value='Vocabularies'>
+          <Vocabularies vocabularies={story?.vocabularies} />
         </TabsContent>
         <TabsContent className='w-full  py-4' value='Grammar'>
           <Grammar grammar={story?.grammar} />
