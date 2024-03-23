@@ -8,10 +8,12 @@ const Grammar = ({ grammar }: GrammarProps) => {
     <div className='flex w-full flex-col justify-center space-y-4 '>
       {grammar?.map((item, index) => (
         <div
-          className='flex flex-col justify-center odd:bg-foreground p-2 space-y-1'
+          className='flex flex-col justify-center space-y-1 p-2 odd:bg-foreground'
           key={index}
         >
-          <p>{item.zh}</p>
+          <div className='flex items-center space-x-2'>
+            <p>{item.zh}</p>
+          </div>
           <p>{item.en}</p>
         </div>
       ))}

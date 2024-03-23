@@ -1,17 +1,18 @@
 'use client'
 import LiteracyPractice from '@/app/(books)/_components/literacy-practice'
 import SearchInput from '@/components/search-input'
-import { Button } from '@/components/ui/button'
 import { fetchAPI } from '@/lib/api'
-import { useUser } from '@/lib/store/user'
 import { Vocabulary } from '@/lib/types'
-import React, { ChangeEvent, KeyboardEvent, useState } from 'react'
+import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react'
 import Dictionary from './dictionary'
 import { useToast } from '@/components/ui/use-toast'
+import { useSearchParams } from 'next/navigation'
 
 const VocabularySearch = () => {
-  const user = useUser(state => state.user)
-  const [inputWord, setInputWord] = useState<string>('')
+  const searchParams = useSearchParams()
+
+  const search = searchParams.get('search')
+  const [inputWord, setInputWord] = useState<string>(search ?? '')
   const [searchedWord, setSearchedWord] = useState<string[]>([])
 
   const [searchResult, setSearchResult] = useState<Vocabulary>()
@@ -19,6 +20,13 @@ const VocabularySearch = () => {
   const [isLoading, setLoading] = useState(false)
 
   const { toast } = useToast()
+
+  useEffect(() => {
+    if (search) {
+      performSearch()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [search])
 
   const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length === 0) {
@@ -29,14 +37,12 @@ const VocabularySearch = () => {
 
   const performSearch = async () => {
     setLoading(true)
-
     if (inputWord.length === 0) {
       setLoading(false)
       return
     }
     setSearchedWord([])
     const vocabularyRes: Vocabulary = await fetchAPI(inputWord, 'zh-en')
-    console.log(vocabularyRes)
     if (!vocabularyRes) {
       toast({
         variant: 'destructive',

@@ -73,7 +73,7 @@ export async function GET(req: NextRequest) {
       },
     }
 
-    const iciba_url = `https://www.iciba.com/_next/data/dTlbEbttstfo-ZBl63u0M/word.json?w=${text}`
+    const iciba_url = `https://www.iciba.com/_next/data/Oo2lhUMf85DZ7OJMbFn8g/word.json?w=${text}`
     const options_iciba = {
       method: 'GET',
       headers: {
@@ -162,21 +162,21 @@ export async function GET(req: NextRequest) {
             f.push({
               parts: item.category?.cat
                 ? convertChineseToEnglishPartsOfSpeech(
-                    item.category?.cat.replaceAll('〈', '').replaceAll('〉', '')
-                  )
+                  item.category?.cat.replaceAll('〈', '').replaceAll('〉', '')
+                )
                 : '',
               sentences: item.category?.sense
                 .map((se: any) => ({
                   meaning: se.description,
                   example: se.example
                     ? se.example
-                        .map((ex: any) => ({
-                          cn: ex.source
-                            .replaceAll('<b>', '')
-                            .replaceAll('</b>', ''),
-                          en: ex.target,
-                        }))
-                        .slice(0, 2)
+                      .map((ex: any) => ({
+                        cn: ex.source
+                          .replaceAll('<b>', '')
+                          .replaceAll('</b>', ''),
+                        en: ex.target,
+                      }))
+                      .slice(0, 2)
                     : [],
                 }))
                 .slice(0, 3),
@@ -188,21 +188,21 @@ export async function GET(req: NextRequest) {
             f.push({
               parts: item.category?.cat
                 ? convertChineseToEnglishPartsOfSpeech(
-                    item.category?.cat.replaceAll('〈', '').replaceAll('〉', '')
-                  )
+                  item.category?.cat.replaceAll('〈', '').replaceAll('〉', '')
+                )
                 : '',
               sentences: item.category?.sense
                 .map((se: any) => ({
                   meaning: se.description,
                   example: se.example
                     ? se.example
-                        .map((ex: any) => ({
-                          cn: ex.source
-                            .replaceAll('<b>', '')
-                            .replaceAll('</b>', ''),
-                          en: ex.target,
-                        }))
-                        .slice(0, 2)
+                      .map((ex: any) => ({
+                        cn: ex.source
+                          .replaceAll('<b>', '')
+                          .replaceAll('</b>', ''),
+                        en: ex.target,
+                      }))
+                      .slice(0, 2)
                     : [],
                 }))
                 .slice(0, 3),
