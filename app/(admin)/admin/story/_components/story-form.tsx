@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import GenerateStory from './generate-story'
 import SaveStory from './save-story'
 
-const tabs = ['Generate Story', 'Save Story']
+const tabs = ['Generate Story', 'New Story']
 const StoryForm = () => {
   return (
     <div className='w-full'>
@@ -22,7 +22,7 @@ const StoryForm = () => {
         <TabsContent value='Generate Story'>
           <GenerateStory />
         </TabsContent>
-        <TabsContent value='Save Story'>
+        <TabsContent value='New Story'>
           <SaveStory />
         </TabsContent>
       </Tabs>

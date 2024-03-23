@@ -149,6 +149,7 @@ export const StoryValidation = z.object({
   en_title: z.string().min(1, { message: 'English title is required.' }),
   story: z.string().min(1, { message: 'Please enter a valid json file.' }),
   en_story: z.string().min(1, { message: 'English story is required..' }),
+  vocabularies: z.string().min(1, { message: 'Vocabulary story is required..' }),
   grammar: z.string().min(1, { message: 'Please enter a valid json file.' }),
   exercises: z.string().min(1, { message: 'Please enter a valid json file.' }),
   audio: z

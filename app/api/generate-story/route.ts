@@ -27,5 +27,5 @@ export async function POST(req: NextRequest) {
 
 const translateStr = async (str: string) => {
   const result = await translate(str)
-  return result.text
+  return result.text.toLowerCase()
 }
