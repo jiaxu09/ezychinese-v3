@@ -1,3 +1,5 @@
+import { Link2 } from 'lucide-react'
+import Link from 'next/link'
 import React from 'react'
 
 interface VocabulariesProps {
@@ -14,6 +16,9 @@ const Vocabularies = ({ vocabularies }: VocabulariesProps) => {
         >
           <p>{item.word}:</p>
           <p>{item.meaning}</p>
+          <Link href={`/vocabulary?search=${item.word}`}>
+            <Link2 />
+          </Link>
         </div>
       ))}
     </div>
