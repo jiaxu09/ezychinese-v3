@@ -8,8 +8,8 @@ export function cn(...inputs: ClassValue[]) {
 
 export const convertFileToUrl = (file: File) => URL.createObjectURL(file);
 
-export default function supabaseUrl( src:string | null) {
-  if(src){
+export default function supabaseUrl(src: string | null) {
+  if (src) {
     return `${process.env.NEXT_PUBLIC_SUPABASE_URL!}/storage/v1/object/public/ezyChinese/${src}`
   }
   return ''
@@ -25,12 +25,11 @@ const triplet = (e1: number, e2: number, e3: number) =>
   keyStr.charAt(e3 & 63);
 
 export const rgbDataURL = (r: number, g: number, b: number) =>
-  `data:image/gif;base64,R0lGODlhAQABAPAA${
-    triplet(0, r, g) + triplet(b, 255, 255)
+  `data:image/gif;base64,R0lGODlhAQABAPAA${triplet(0, r, g) + triplet(b, 255, 255)
   }/yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==`;
 
 
-export  const getPagination = (page: number, size: number) => {
+export const getPagination = (page: number, size: number) => {
   const limit = size ? +size : 3
   const from = page ? page * limit : 0
   const to = page ? from + size - 1 : size - 1
@@ -56,7 +55,7 @@ const chineseToEnglishPartsOfSpeech: Record<string, string> = {
   介: 'preposition',
   叹: 'interjection',
   量: 'quantifier',
-  数:  'number'
+  数: 'number'
 }
 
 /**
@@ -70,11 +69,12 @@ export function convertChineseToEnglishPartsOfSpeech(chinesePartOfSpeech: string
 }
 
 export const extractIciba = (baesInfo: any, sentences: any, bidce: any) => {
+
   const example = sentences
     ? sentences.map((sentence: any) => ({
-        cn: sentence.cn,
-        en: sentence.en,
-      }))
+      cn: sentence.cn,
+      en: sentence.en,
+    }))
     : []
 
   const { symbols: bisymbols } = bidce
@@ -96,14 +96,16 @@ export const extractIciba = (baesInfo: any, sentences: any, bidce: any) => {
     }))
   }
   const { symbols } = baesInfo
+
   const meaning_2 = symbols.map((item: any) => ({
     pinyin: item.word_symbol ?? '',
     mp3: item.symbol_mp3 ?? '',
     explanation: item.parts.map((i: any) => ({
       partsOfSpeech: `(${convertChineseToEnglishPartsOfSpeech(i.part)})`,
-      en_mean: i.means.join(';'),
+      en_mean: i.means.toString(),
     })),
   }))
+  console.log(meaning_2);
   if (
     meaning_2.some((i: any) =>
       i.explanation.some((j: any) => j.partsOfSpeech === '(unknown)')
@@ -119,17 +121,17 @@ export const extractIciba = (baesInfo: any, sentences: any, bidce: any) => {
   }
 }
 
-export function isJsonString(str:string) {
+export function isJsonString(str: string) {
   try {
-      JSON.parse(str);
-      return true;
+    JSON.parse(str);
+    return true;
   } catch (e) {
     console.log(e);
-      return false;
+    return false;
   }
 }
 
-export function slugify(str:string) {
+export function slugify(str: string) {
   return String(str)
     .normalize('NFKD') // split accented characters into their base characters and diacritical marks
     .replace(/[\u0300-\u036f]/g, '') // remove all the accents, which happen to be all in the \u03xx UNICODE block.

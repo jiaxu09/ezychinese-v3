@@ -19,24 +19,23 @@ export async function GET(req: NextRequest) {
       pageProps: {
         initialReduxState: {
           word: {
-            wordInfo: { baesInfo, new_sentence, bidce },
+            wordInfo
           },
         },
       },
     } = await res.json()
-
-    if (!new_sentence) {
+    let sentences, meaningRes = []
+    if (wordInfo.baesInfo, wordInfo.sentences, wordInfo.bidce) {
+      const { example, meaning } = extractIciba(wordInfo.baesInfo, wordInfo.sentences, wordInfo.bidce)
+      sentences = example
+      meaningRes = meaning
+    } else {
       return new NextResponse('Not Found', {
         status: 404,
       })
     }
-    const { sentences } = new_sentence[0]
-    const { example, meaning } = extractIciba(baesInfo, sentences, bidce)
-    //Return the content of the data file in json format
-    return NextResponse.json({
-      sentences: example,
-      meaning,
-    })
+
+    return NextResponse.json({ sentences, meaning: meaningRes })
   } catch (error) {
     console.log('[Iciba_zi_GET]', error)
     return new NextResponse('Internal Error', {
