@@ -44,11 +44,11 @@ const ReadingList = ({ levelId }: ReadingListProps) => {
           </div>
 
           <div className='mt-4 sm:flex sm:items-center sm:justify-center sm:gap-4'>
-            <strong className='font-medium'>{item.zh_title}</strong>
+            <strong className='w-full font-medium'>{item.zh_title}</strong>
 
             <span className='hidden sm:block sm:h-px sm:w-8 sm:bg-crayola'></span>
 
-            <p className='mt-0.5 line-clamp-2 text-gray-500 sm:mt-0'>
+            <p className='w-full mt-0.5 line-clamp-2 text-gray-500 sm:mt-0'>
               {item.en_title}
             </p>
           </div>

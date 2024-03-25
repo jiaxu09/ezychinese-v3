@@ -9,10 +9,13 @@ export async function POST(req: NextRequest) {
     const body = await req.json()
     const stories = JSON.parse(body.zh)
 
+
+
     const zh_en = await Promise.all(
       stories.map(async (story: any, index: number) => ({
         zh: story.split(''),
         pinyin: pinyin(story, { type: 'array' }),
+        // en: story.en
         en: await translateStr(story),
       }))
     )

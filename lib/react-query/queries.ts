@@ -279,7 +279,7 @@ export const useHanziEnglish = (character: string) => {
 export const useHanziIcibaMeaning = (character: string) => {
   return {
     queryKey: [QUERY_KEYS.GETHANZIICIBAMEANING, character],
-    queryFn: () => fetchAPI(character, 'iciba-zi'),
+    queryFn: () => fetchAPI(character, 'youdao-zi'),
     enabled: character.length !== 0,
   }
 }

@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Title from './_components/title'
 
 const LeveledReadingLayout = ({
@@ -9,7 +10,9 @@ const LeveledReadingLayout = ({
 }>) => {
   return (
     <main className='container'>
-      <Title levelId={params.levelid} />
+      <Link href={`/reading/${params.levelid}`}>
+        <Title levelId={params.levelid} />
+      </Link>
       {children}
     </main>
   )
