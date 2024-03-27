@@ -9,6 +9,7 @@ interface StoryProps {
     zh: string[]
     pinyin: string[]
     en: string
+    hsk: string
   }[]
   audio?: string
 }
@@ -41,8 +42,14 @@ const Story = ({ story, audio }: StoryProps) => {
                 </ruby>
               </div>
             ))}
-            <Tooltip id={`${item.en}+${index}`}>
-              <div>{item.en}</div>
+            <Tooltip className=' max-w-xs' id={`${item.en}+${index}`}>
+              {item.hsk ? (
+                <div>
+                  {item.en} - (HSK lv.{item.hsk})
+                </div>
+              ) : (
+                <div>{item.en}</div>
+              )}
             </Tooltip>
           </div>
         ))}
