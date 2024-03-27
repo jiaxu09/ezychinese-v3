@@ -19,7 +19,7 @@ export async function generateMetadata({
   params
 }: ReadingLevelPageProps): Promise<Metadata> {
   const level = params.levelid
-  const story = params.storyid
+  const story = params.storyid.replaceAll('-', ' ')
 
   if (!level) {
     return {}

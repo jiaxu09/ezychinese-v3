@@ -314,6 +314,7 @@ export type Story = {
     zh: string[]
     pinyin: string[]
     en: string
+    hsk: string
   }[]
   en_story: string
   grammar: {
