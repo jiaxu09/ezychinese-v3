@@ -25,7 +25,7 @@ const ReadingList = ({ levelId }: ReadingListProps) => {
     )
   }
   return (
-    <div className='grid grid-cols-2 gap-8 md:grid-cols-5 py-4'>
+    <div className='grid grid-cols-2 gap-8 py-4 md:grid-cols-5'>
       {stories?.map((item, index) => (
         <Link
           href={`/reading/${levelId}/${item.slug.toLowerCase()}`}
@@ -40,6 +40,7 @@ const ReadingList = ({ levelId }: ReadingListProps) => {
               width={256}
               height={256}
               priority
+              sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
             />
           </div>
 
@@ -48,7 +49,7 @@ const ReadingList = ({ levelId }: ReadingListProps) => {
 
             <span className='hidden sm:block sm:h-px sm:w-8 sm:bg-crayola'></span>
 
-            <p className='w-full mt-0.5 line-clamp-2 text-gray-500 sm:mt-0'>
+            <p className='mt-0.5 line-clamp-2 w-full text-gray-500 sm:mt-0'>
               {item.en_title}
             </p>
           </div>
